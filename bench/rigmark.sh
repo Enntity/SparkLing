@@ -16,7 +16,7 @@ metadata=$(realpath "$2")
 mkdir -p "${3:-.}"
 out=$(realpath "${3:-.}")
 : "${RIGMARK:?set RIGMARK to a RigMark checkout}"
-url=${SPARKLING_URL:-http://127.0.0.1:8897}
+url=${SPARKLING_URL:-http://127.0.0.1:${SPARKLING_PORT:-8897}}
 model=${SERVED_MODEL_NAME:-ling-3.2-air-atlas}
 comparison_id=${SPARKLING_COMPARISON_ID:-sparkling-atlas}
 extra='{"chat_template_kwargs":{"enable_thinking":true}}'

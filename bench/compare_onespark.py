@@ -186,6 +186,9 @@ def validate_pair(
             errors.append(
                 f"{workload}/{label}: settings.extra_body must enable thinking explicitly"
             )
+        for field in ("comparison_id", "model"):
+            if not nonempty(run.get(field)):
+                errors.append(f"{workload}/{label}: missing run.{field}")
         if not nonempty(run.get("label")) or not run["label"].endswith(
             f"-{workload}"
         ):
@@ -199,6 +202,13 @@ def validate_pair(
             )
 
     try:
+        errors.extend(
+            f"{workload}: {error}"
+            for error in check_mapping(
+                nested(candidate, "run"), nested(reference, "run"),
+                ("comparison_id", "model"), "run",
+            )
+        )
         errors.extend(
             f"{workload}: {error}"
             for error in check_mapping(

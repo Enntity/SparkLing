@@ -27,9 +27,9 @@ RigMark comparison id. The independent functional-check default is port 8897.
 
 Run the candidate and reference one after the other on the same Spark. Stop
 the first server and let the second server finish loading before starting its
-run. Keep the metadata's hardware, topology, context limit, traffic and
-benchmark settings identical, changing only the model and serving-engine
-identity. Each receipt's appliance metadata must include the same
+run. Use the same checkpoint, request model name, context limit and benchmark
+settings. RigMark uses the comparison ID to generate prompt nonces. Record the
+engine and image for each run. Both receipts must identify the same
 `model_revision`, `physical_device_id`, hardware/topology and a
 `competing_traffic` value beginning with `none`. Never leave both model servers
 resident during a timed run.
@@ -39,8 +39,12 @@ resident during a timed run.
 SPARKLING_URL=http://127.0.0.1:8897 SERVED_MODEL_NAME=ling-3.2-air-atlas \
   RIGMARK=/path/to/rigmark bench/rigmark.sh candidate metadata-candidate.json out/candidate
 
-# Stop SparkLing, start the reference server, then run the same suites.
-SPARKLING_URL=http://127.0.0.1:8897 SERVED_MODEL_NAME=ling-3.2-air-reference \
+# In a separate terminal after stopping SparkLing
+python3 reference/serve.py --mode a16 --model-dir "$MODEL_DIR" \
+  --served-model-name ling-3.2-air-atlas --port 11897 --gpu-memory-utilization 0.86
+
+# Run against that reference from the original terminal
+SPARKLING_URL=http://127.0.0.1:11897 SERVED_MODEL_NAME=ling-3.2-air-atlas \
   RIGMARK=/path/to/rigmark bench/rigmark.sh reference metadata-reference.json out/reference
 
 python3 bench/compare_onespark.py \

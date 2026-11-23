@@ -86,11 +86,12 @@ and [InclusionAI's FP8 card](https://huggingface.co/inclusionAI/Ling-3.2-air).
 
 Stop the candidate server before loading this one. Run the same RigMark
 metadata, prompt revision, context limit, sampling settings, and concurrency
-matrix for both servers:
+matrix for both servers. Start the reference with
+`--served-model-name ling-3.2-air-atlas` so the request bodies also match.
 
 ```sh
 SPARKLING_URL=http://127.0.0.1:8897 \
-SERVED_MODEL_NAME=ling-3.2-air-reference \
+SERVED_MODEL_NAME=ling-3.2-air-atlas \
 RIGMARK=/path/to/rigmark \
   bench/rigmark.sh reference metadata-reference.json out/reference
 ```
