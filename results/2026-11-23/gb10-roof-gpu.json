@@ -1,0 +1,1 @@
+{"device": "NVIDIA GB10", "bf16_dense_tflop_s": 77.54958452701176, "bf16_mm_ms": 1.772271951039632, "read_plus_write_GBs": 244.8101306573071, "copy_ms": 2.193009376525879, "copy_bytes_each_way": 268435456, "dense_mm_n": 4096}

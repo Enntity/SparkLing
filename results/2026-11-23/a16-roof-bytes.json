@@ -1,0 +1,20 @@
+{
+  "bytes": {
+    "routed": 67947970560,
+    "trunk": 5627278464,
+    "vocab_head": 804782080,
+    "input_embedding": 804782080
+  },
+  "matrix_elements": {
+    "routed": 120795955200,
+    "vocab_head": 402391040,
+    "trunk": 2811363328,
+    "input_embedding": 402391040
+  },
+  "unclassified": [
+    "linear_proj.0.bias",
+    "linear_proj.0.weight",
+    "linear_proj.2.bias",
+    "linear_proj.2.weight"
+  ]
+}

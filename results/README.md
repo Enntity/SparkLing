@@ -3,6 +3,9 @@
 
 ## One DGX Spark, November 23, 2026
 
+The [decode and prefill rooflines](2026-11-23/roofline.md) compare the parity
+and 2× targets with the active weight traffic and measured GB10 compute rate.
+
 ### Matched 64-token decode
 
 Atlas at `bf60d05c9` and stock vLLM ran the same 39-token counting prompt
