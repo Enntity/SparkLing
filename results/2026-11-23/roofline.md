@@ -3,10 +3,17 @@
 | NVFP4A16 workload | vLLM parity | 2× target | Preliminary Atlas |
 | --- | ---: | ---: | ---: |
 | Single-stream code decode | 21.53 tokens/s | 43.07 tokens/s | 26.56 tokens/s |
-| Cold 8,192-token prefill | 2,839 tokens/s | 5,678 tokens/s | Pending matched prompt |
+| Cold 8,192-token prefill | 2,839 tokens/s | 5,678 tokens/s | 227 tokens/s (one matched prompt) |
 
 Both engines exceeded the code completion budget on both runs. Their decode
-rates count generated tokens. The 8K baseline is the median of two runs.
+rates count generated tokens. The 8K baseline is the median of two runs. On the first identical 8K token
+sequence, Atlas at `052091fda` took 36.07 seconds versus 3.17 seconds on
+vLLM (227 versus 2,583 tokens/s). The first Atlas implementation failed this
+probe because the scheduler forced the remaining tokens into one oversized
+chunk. The measured revision keeps the 2,048-token chunk limit and attends
+to preceding chunks. Text, vision, the Paris tool argument and short decode
+also passed on this revision. [8K result](decision-8k.json) ·
+[Tool and vision responses](decision-modal.jsonl) · [Decode](decision-short.jsonl)
 
 ## Decode
 
