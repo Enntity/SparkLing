@@ -1,0 +1,11 @@
+SparkLing
+Copyright 2026 the SparkLing contributors. Licensed under AGPL-3.0-only.
+
+The distribution and benchmark drivers derive from Enntity/SparkInkling,
+SparkQwen and SparkGLM (AGPL-3.0-only). Atlas is licensed under AGPL-3.0-only.
+The image build includes CUTLASS and the notices for its Rust dependencies.
+
+Ling-3.2-air weights are published by inclusionAI under MIT. Spark mode uses
+Primitive's MIT-licensed Ling-3.2-air-NVFP4A16 derivative. Model files are
+downloaded from their respective repositories. Individual upstream code files
+retain their original notices.
