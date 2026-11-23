@@ -3,7 +3,7 @@
 | NVFP4A16 workload | vLLM parity | 2× target | Preliminary Atlas |
 | --- | ---: | ---: | ---: |
 | Single-stream code decode | 21.53 tokens/s | 43.07 tokens/s | 26.56 tokens/s |
-| Cold 8,192-token prefill | 2,839 tokens/s | 5,678 tokens/s | 227 tokens/s (one matched prompt) |
+| Cold 8,192-token prefill | 2,839 tokens/s | 5,678 tokens/s | 885 tokens/s (one matched prompt) |
 
 Both engines exceeded the code completion budget on both runs. Their decode
 rates count generated tokens. The 8K baseline is the median of two runs. On the first identical 8K token
@@ -37,6 +37,19 @@ other traffic. The next decode experiments should reduce the active BF16
 weight footprint or amortize the weight reads over accepted speculative
 tokens. Keep the original FP8 checkpoint and sampling behavior in strict mode.
 
+### First decode experiment
+
+Replacing only the 238 BF16 attention projections with inclusionAI's original
+FP8 tensors and scales saved 2.425 GB per output token. The remaining
+matrix traffic is about 5.07 GB/token. On the fixed 64-token probe, this
+experimental mix reached 30.29 and 30.31 tokens/s. Both outputs matched vLLM
+and unmodified Atlas byte for byte. It also answered the arithmetic smoke test
+correctly. The comparison is across different precision profiles. These two
+checks establish a speed signal and narrow correctness coverage.
+
+[Changed tensor counts](experimental-fp8-attention-build.json) ·
+[Decode streams](hybrid-short.jsonl) · [Arithmetic check](hybrid-math.json)
+
 ## Prefill
 
 The active trunk contains about 2.811B non-routed matrix elements and 1.887B
@@ -53,6 +66,20 @@ two estimates is bandwidth. The 5,678 target would consume about 204 GB/s
 and 53.4 TFLOP/s in projections alone. It fits both first-order ceilings
 with limited headroom for other work. Actual routing skew, grouped matrix
 sizes and rereads determine how close the implementation can get.
+
+A CUDA profile of one approximately 2K-token text request assigned 78.4% of GPU
+kernel time to dense BF16 matrix multiplication, 15.1% to grouped NVFP4
+expert multiplication, 2.0% to the KDA recurrence and 0.6% to the tiled MLA
+prompt kernel. [Nsight kernel timings](prefill-profile.json)
+
+Switching dense prompt projections and shared-expert matrix multiplies to
+Atlas's tuned BF16 matrix multiply (`a83891fdb`) reduced cold time to first token on that
+same 8K prompt from 36.07 to 9.26 seconds (227 to 885 tokens/s, 3.90×).
+The matched vLLM sample took 3.17 seconds. Short decode remained 27.6–27.7
+tokens/s. The arithmetic, vision and forced-tool probes passed. This closes
+part of the prefill gap and leaves the model in development.
+[8K result](blas-8k.json) · [Decode](blas-short.jsonl) ·
+[Vision and tools](blas-modal.jsonl)
 
 ## Decision probes
 

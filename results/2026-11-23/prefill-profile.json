@@ -1,0 +1,195 @@
+{
+  "compare": "one cold text prompt of about 2K tokens and a single generated token",
+  "profile": "Nsight Systems 2025.3.2, CUDA GPU kernel summary",
+  "checkpoint": "Primitive AI NVFP4A16",
+  "kernel_base": "052091fda1be122f58481e8a9ab66cad370922dd",
+  "note": "The experimental loader also accepts FP8 attention scales. This run used the standard A16 weights.",
+  "kernels": [
+    {
+      "name": "dense_gemm_tc",
+      "time_pct": 78.4,
+      "time_ns": 7140881760,
+      "launches": 1372
+    },
+    {
+      "name": "ling_a16_grouped",
+      "time_pct": 15.1,
+      "time_ns": 1380312224,
+      "launches": 120
+    },
+    {
+      "name": "kda_recurrent_bf16_regresident",
+      "time_pct": 2.0,
+      "time_ns": 183437152,
+      "launches": 35
+    },
+    {
+      "name": "dense_gemm_bf16_f32out",
+      "time_pct": 1.9,
+      "time_ns": 173913696,
+      "launches": 80
+    },
+    {
+      "name": "ling_mla_prefill",
+      "time_pct": 0.6,
+      "time_ns": 52793216,
+      "launches": 126
+    },
+    {
+      "name": "moe_expert_gemv_wide",
+      "time_pct": 0.5,
+      "time_ns": 41544704,
+      "launches": 120
+    },
+    {
+      "name": "kda_preprocess_regresident",
+      "time_pct": 0.2,
+      "time_ns": 22477696,
+      "launches": 35
+    },
+    {
+      "name": "moe_unpermute_reduce_indexed",
+      "time_pct": 0.2,
+      "time_ns": 17871040,
+      "launches": 40
+    },
+    {
+      "name": "kda_pack_qkv",
+      "time_pct": 0.2,
+      "time_ns": 15355968,
+      "launches": 70
+    },
+    {
+      "name": "causal_conv1d_update_prefill_tp",
+      "time_pct": 0.2,
+      "time_ns": 15167840,
+      "launches": 210
+    },
+    {
+      "name": "ling_silu_mul_bf16",
+      "time_pct": 0.1,
+      "time_ns": 12662592,
+      "launches": 160
+    },
+    {
+      "name": "kda_recurrent_bf16",
+      "time_pct": 0.1,
+      "time_ns": 10378240,
+      "launches": 35
+    },
+    {
+      "name": "ling_residual_add_rms_norm",
+      "time_pct": 0.1,
+      "time_ns": 9144736,
+      "launches": 84
+    },
+    {
+      "name": "kda_sigmoid_gated_rms_norm",
+      "time_pct": 0.1,
+      "time_ns": 8027296,
+      "launches": 70
+    },
+    {
+      "name": "bf16_residual_add",
+      "time_pct": 0.1,
+      "time_ns": 7613504,
+      "launches": 124
+    },
+    {
+      "name": "ling_rms_norm_residual",
+      "time_pct": 0.1,
+      "time_ns": 5438112,
+      "launches": 84
+    },
+    {
+      "name": "dense_gemv_bf16",
+      "time_pct": 0.0,
+      "time_ns": 3361152,
+      "launches": 1
+    },
+    {
+      "name": "ling_grouped_top8",
+      "time_pct": 0.0,
+      "time_ns": 2812096,
+      "launches": 80
+    },
+    {
+      "name": "moe_sort_by_expert",
+      "time_pct": 0.0,
+      "time_ns": 1675936,
+      "launches": 40
+    },
+    {
+      "name": "ling_mrope_rope_bf16",
+      "time_pct": 0.0,
+      "time_ns": 1252448,
+      "launches": 126
+    },
+    {
+      "name": "reshape_and_cache_flash",
+      "time_pct": 0.0,
+      "time_ns": 1240352,
+      "launches": 126
+    },
+    {
+      "name": "mla_kv_assemble_batched",
+      "time_pct": 0.0,
+      "time_ns": 1012736,
+      "launches": 126
+    },
+    {
+      "name": "sigmoid_gate_mul_head_broadcast",
+      "time_pct": 0.0,
+      "time_ns": 774624,
+      "launches": 126
+    },
+    {
+      "name": "moe_silu_mul",
+      "time_pct": 0.0,
+      "time_ns": 565792,
+      "launches": 4
+    },
+    {
+      "name": "mla_q_rope_extract_batched",
+      "time_pct": 0.0,
+      "time_ns": 471104,
+      "launches": 126
+    },
+    {
+      "name": "mla_q_rope_writeback_batched",
+      "time_pct": 0.0,
+      "time_ns": 396256,
+      "launches": 126
+    },
+    {
+      "name": "ssm_state_clamp_norm_fused",
+      "time_pct": 0.0,
+      "time_ns": 358784,
+      "launches": 1
+    },
+    {
+      "name": "ling_rms_norm",
+      "time_pct": 0.0,
+      "time_ns": 318528,
+      "launches": 127
+    },
+    {
+      "name": "moe_weighted_sum_blend_rows",
+      "time_pct": 0.0,
+      "time_ns": 128032,
+      "launches": 40
+    },
+    {
+      "name": "batched_embed",
+      "time_pct": 0.0,
+      "time_ns": 75968,
+      "launches": 2
+    },
+    {
+      "name": "fill_slots_from_block_table",
+      "time_pct": 0.0,
+      "time_ns": 3776,
+      "launches": 2
+    }
+  ]
+}
