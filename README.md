@@ -15,7 +15,10 @@ Full-model serving and one-Spark performance qualification are in progress.
 One Spark shares memory between the GPU and the OS. Strict therefore needs
 disk-backed expert residency. The model activates eight of 512 routed experts
 per token in each MoE layer. Keeping cold experts on disk can preserve the
-published weights and still leave memory for attention and requests.
+published weights and still leave memory for attention and requests. The
+strict profile reserves a shared BF16 KV pool for one full-length context.
+Shorter concurrent requests share that pool, leaving the rest of unified
+memory available to cache expert pages.
 
 ## Prepare a checkpoint
 

@@ -104,6 +104,8 @@ def launch(environ, profile):
     if not Path(model).is_absolute() or any(c in model for c in '\r\n\0'):
         raise ValueError('MODEL_PATH must be an absolute path')
     env = _engine_env(environ, profile)
+    if mode == 'strict':
+        env.update(profile.get('strict_environment', {}))
     env.update(SPARKLING_MODE=mode)
     env.update(disk_prefix_cache(environ.get('SPARKLING_PREFIX_CACHE_GB', ''), mode))
     args = _memory_share(environ, [str(a).replace('${model}', model) for a in args])

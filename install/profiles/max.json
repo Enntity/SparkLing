@@ -19,5 +19,8 @@
     "--request-timeout=3600",
     "--oom-guard-mb=4096",
     "--no-tui"
-  ]
+  ],
+  "strict_environment": {
+    "ATLAS_KV_MAX_BLOCKS": "4097"
+  }
 }

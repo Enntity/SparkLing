@@ -43,6 +43,11 @@ class InstallTests(unittest.TestCase):
                 self.assertIn('--kernel-target=ling-3.2-air', args)
                 self.assertIn('--port=8897', args)
                 self.assertEqual(env['SPARKLING_MODE'], mode)
+                if mode == 'strict':
+                    length = int(next(a.split('=')[1] for a in args if a.startswith('--max-seq-len=')))
+                    self.assertEqual(int(env['ATLAS_KV_MAX_BLOCKS']), (length + 15) // 16 + 1)
+                else:
+                    self.assertNotIn('ATLAS_KV_MAX_BLOCKS', env)
             profile['server_argv'].append('--tp-size=2')
             with self.assertRaisesRegex(ValueError, 'one Spark'):
                 serve.launch({'MODEL_PATH': '/model'}, profile)
