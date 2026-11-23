@@ -23,6 +23,7 @@ COPY engine/Cargo.toml engine/Cargo.lock engine/rust-toolchain.toml engine/READM
 COPY engine/crates/ crates/
 COPY engine/kernels/ kernels/
 COPY engine/vendor/ vendor/
+COPY engine/third_party/ third_party/
 COPY engine/jinja-templates/ jinja-templates/
 COPY engine/tests/fixtures/ tests/fixtures/
 # The build-time tests compile every atlas-core test module, which include_str! these.
