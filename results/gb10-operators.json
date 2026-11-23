@@ -113,5 +113,18 @@
     ],
     "outputs_matched": 3360,
     "comparison": "bit-exact BF16 vs CPU"
+  },
+  "kda_register_resident_prefill": {
+    "gpu": "NVIDIA GB10",
+    "rows": 257,
+    "heads": 32,
+    "head_dim": 128,
+    "compared_with": "scalar KDA recurrence, identical seeded inputs and nonzero initial state",
+    "bf16_outputs": 1052672,
+    "max_abs_output_error": 3.05175781e-05,
+    "fp32_final_state_values": 524288,
+    "max_abs_final_state_error": 1.49011612e-08,
+    "test": "tests/ling/kda_prefill.cu",
+    "atlas_commit": "be1a57fa7ab977661bb42ddebbf1550fd636f748"
   }
 }
