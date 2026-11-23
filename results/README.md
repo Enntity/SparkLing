@@ -27,7 +27,26 @@ the [Atlas streams](2026-11-23/atlas-a16-initial-short.jsonl) and
 [Atlas metadata](2026-11-23/atlas-a16-initial-metadata.json) identifies the
 binary and device.
 
-### RigMark reference
+### RigMark single-stream generation
+
+The same preliminary Atlas binary ran the single-stream section with thinking
+enabled, the standard 4,096-token cap, two requests per workload and the same
+RigMark comparison ID as vLLM. Both engines passed both prose and both
+structured checks. Both failed both code checks. Atlas produced a partial
+visible answer on its second code run before the token limit.
+
+| Workload | Atlas decode tokens/s | vLLM decode tokens/s | Atlas / vLLM |
+| --- | ---: | ---: | ---: |
+| Code | 26.56 | 21.53 | 1.23× |
+| Prose | 26.92 | 21.56 | 1.25× |
+| Structured | 27.51 | 21.30 | 1.29× |
+
+The structured responses took about 37.5 s on Atlas and 47.5 s on vLLM.
+Atlas generated longer responses on prose and took 104–110 s compared with
+57–88 s on vLLM. [Atlas decode receipt](2026-11-23/atlas-a16-initial-decode.json) ·
+[vLLM code-suite receipt](2026-11-23/reference-a16-code.json)
+
+### RigMark reference under load
 
 The stock vLLM reference ran both SparkLing RigMark suites on Primitive AI's
 NVFP4A16 checkpoint. The table reports medians. Decode counts generated

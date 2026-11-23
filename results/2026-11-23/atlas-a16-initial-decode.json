@@ -1,0 +1,307 @@
+{
+  "decode": {
+    "code": {
+      "completion_gate": {
+        "passed": 0,
+        "total": 2
+      },
+      "decode_tokens_per_second": {
+        "maximum": 26.58,
+        "median": 26.562,
+        "minimum": 26.545,
+        "p90": 26.58
+      },
+      "runs": [
+        {
+          "completion_tokens": 4096,
+          "completion_validation": {
+            "error": "no visible answer",
+            "valid": false
+          },
+          "decode_seconds": 154.063651,
+          "decode_tokens_per_second": 26.58,
+          "finish_reason": "length",
+          "measured_sse_events": 4096,
+          "output": "",
+          "output_characters": 0,
+          "output_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "prompt_tokens": 152,
+          "reasoning_characters": 12057,
+          "reasoning_sha256": "b30e3704084f4a92a1cee0ebb243217fa7b7a3a214e45117ab38260e17851ab9",
+          "response_tail_seconds": 0.001931,
+          "run": 1,
+          "stream_done_marker": true,
+          "stream_sha256": "b30e3704084f4a92a1cee0ebb243217fa7b7a3a214e45117ab38260e17851ab9",
+          "time_to_first_visible_seconds": null,
+          "time_to_last_output_seconds": 155.051703,
+          "ttft_seconds": 0.988052,
+          "wall_seconds": 155.053634
+        },
+        {
+          "completion_tokens": 4096,
+          "completion_validation": {
+            "error": "non-normal finish reason: 'length'",
+            "valid": false
+          },
+          "decode_seconds": 154.269184,
+          "decode_tokens_per_second": 26.545,
+          "finish_reason": "length",
+          "measured_sse_events": 4095,
+          "output": "```go\n// File: ratelimit/token_bucket.go\npackage ratelimit\n\nimport (\n\t\"errors\"\n\t\"math\"\n\t\"sync\"\n\t\"time\"\n)\n\n// Clock abstracts time so tests can inject a fake.\ntype Clock interface {\n\tNow() time.Time\n}\n\n// Limiter is a concurrency-safe token-bucket rate limiter.\n// The bucket starts full and refills at rate tokens per second,\n// capped at burst tokens.\ntype Limiter struct {\n\tmu     sync.Mutex\n\tclock  Clock\n\trate   float64 // tokens added per second\n\tburst  float64 // maximum tokens\n\ttokens float64 // current tokens\n\tlast   time.Time\n}\n\n// NewLimiter validates its arguments and returns a fully primed limiter.\nfunc NewLimiter(rate, burst float64, clock Clock) (*Limiter, error) {\n\tif clock == nil {\n\t\treturn nil, errors.New(\"ratelimit: nil clock\")\n\t}\n\tif math.IsNaN(rate) || math.IsInf(rate, 0) || rate <= 0 {\n\t\treturn nil, errors.New(\"ratelimit: rate must be a positive finite number\")\n\t}\n\tif math.IsNaN(burst) || math.IsInf(burst, 0) || burst <= 0 {\n\t\treturn nil, errors.New(\"ratelimit: burst must be a positive finite number\")\n\t}\n\tnow := clock.Now()\n\treturn &Limiter{clock: clock, rate: rate, burst: burst, tokens: burst, last: now}, nil\n}\n\n// Allow reports whether one token may be consumed.\nfunc (l *Limiter) Allow() bool { return l.AllowN(1) }\n\n// AllowN reports whether n tokens may be consumed.\n// n <= 0 never consumes tokens; n < 0 is rejected, n == 0 succeeds.\nfunc (l *Limiter) AllowN(n int) bool {\n\tif n < 0 {\n\t\treturn false\n\t}\n\tif n == 0 {\n\t\treturn true\n\t}\n\tl.mu.Lock()\n\tdefer l.mu.Unlock()\n\tnow := l.clock.Now()\n\tl.tokens += now.Sub(l.last).Seconds() * l.rate\n\tif l.tokens > l.burst {\n\t\tl.tokens = l.burst\n\t}\n\tl.last = now\n\tif float64(n) > l.tokens {\n\t\treturn false\n\t}\n\tl.tokens -= float64(n)\n\treturn true\n}\n```\n\n```go\n// File: ratelimit/token_bucket_test.go\npackage ratelimit\n\nimport (\n\t\"sync\"\n\t\"testing\"\n\t\"time\"\n)\n\n// fakeClock is a manually advanced, mutex-guarded Clock.\ntype fakeClock struct {\n\tmu  sync.Mutex\n\tnow time.Time\n}\n\nfunc newFakeClock() *fakeClock {\n\treturn &fakeClock{now: time.Date(2024, 1, 1, 0, 0, 0, 0, time.UTC)}\n}\n\nfunc (f *fakeClock) Now() time.Time {\n\tf.mu.Lock()\n\tdefer f.mu.Unlock()\n\treturn f.now\n}\n\nfunc (f *fakeClock) Advance(d time.Duration) {\n\tf.mu.Lock()\n\tdefer f.mu.Unlock()\n\tf.now = f.now.Add(d)\n}\n\nfunc TestNewLimiterValidation(t *testing.T) {\n\tfc := newFakeClock()\n\ttests := []struct {\n\t\tname    string\n\t\trate    float64\n\t\tburst   float64\n\t\tclock   Clock\n\t\twantErr bool\n\t}{\n\t\t{\"valid\", 1, 1, fc, false},\n\t\t{\"zero rate\", 0, 1, fc, true},\n\t\t{\"negative rate\", -1, 1, fc, true},\n\t\t{\"nan rate\", math.NaN(), 1, fc, true},\n\t\t{\"zero burst\", 1, 0, fc, true},\n\t\t{\"negative burst\", 1, -1, fc, true},\n\t\t{\"nan burst\", 1, math.NaN(), fc, true},\n\t\t{\"nil clock\", 1, 1, nil, true},\n\t}\n\tfor _, tc := range tests {\n\t\tt.Run(tc.name, func(t *testing.T) {\n\t\t\tl, err := NewLimiter(tc.rate, tc.burst, tc.clock)\n\t\t\tif tc.wantErr {\n\t\t\t\tif err == nil {\n\t\t\t\t\tt.Fatal(\"expected error, got nil\")\n\t\t\t\t}\n\t\t\t\tif l != nil {\n\t\t\t\t\tt.Fatal(\"expected nil limiter on error\")\n\t\t\t\t}\n\t\t\t\treturn\n\t\t\t}\n\t\t\tif err != nil {\n\t\t\t\tt.Fatalf(\"unexpected error: %v\", err)\n\t\t\t}\n\t\t\tif l == nil {\n\t\t\t\tt.Fatal(\"expected non-nil limiter\")\n\t\t\t}\n\t\t})\n\t}\n}\n\nfunc TestAllowN(t *testing.T) {\n\tfc := newFakeClock()\n\tl, err := NewLimiter(2, 4, fc) // 2 tokens/sec, burst 4\n\tif err != nil {\n\t\tt.Fatal(err)\n\t}\n\ttests := []struct {\n\t\tname    string\n\t\tadvance time.Duration\n\t\tn       int\n\t\twant    bool\n\t}{\n\t\t{\"primed full drain\", 0, 4, true},\n\t\t{\"empty bucket\", 0, 1, false},\n\t\t{\"refill one token\", 500 * time.Millisecond, 1, true},\n\t\t{\"refill insufficient\", 500 * time.Millisecond, 2, false},\n\t\t{\"refill exactly two\", time.Second, 2, true},\n\t\t{\"zero tokens\", 0, 0, true},\n\t\t{\"negative tokens\", 0, -1, false},\n\t\t{\"leftover token\", 0, 1,",
+          "output_characters": 3723,
+          "output_sha256": "6eeb1f3d509245e69e00ad4f55d69fe3d0429b283d19b91e19ded205a43b8e67",
+          "prompt_tokens": 151,
+          "reasoning_characters": 8007,
+          "reasoning_sha256": "42d665b29fcb6442b4071fcbad885fa4da9cce6957984901dab20428c6915da9",
+          "response_tail_seconds": 0.002028,
+          "run": 2,
+          "stream_done_marker": true,
+          "stream_sha256": "084134833c13e7bd4d062f86ae4a4c547f892bdb432601fd91720242d60c2008",
+          "time_to_first_visible_seconds": 100.652537,
+          "time_to_last_output_seconds": 155.23912,
+          "ttft_seconds": 0.969937,
+          "wall_seconds": 155.241148
+        }
+      ],
+      "time_to_last_output_seconds": {
+        "maximum": 155.239,
+        "median": 155.145,
+        "minimum": 155.052,
+        "p90": 155.239
+      },
+      "ttft_seconds": {
+        "maximum": 0.988,
+        "median": 0.979,
+        "minimum": 0.97,
+        "p90": 0.988
+      },
+      "wall_seconds": {
+        "maximum": 155.241,
+        "median": 155.147,
+        "minimum": 155.054,
+        "p90": 155.241
+      }
+    },
+    "prose": {
+      "completion_gate": {
+        "passed": 2,
+        "total": 2
+      },
+      "decode_tokens_per_second": {
+        "maximum": 26.936,
+        "median": 26.924,
+        "minimum": 26.912,
+        "p90": 26.936
+      },
+      "runs": [
+        {
+          "completion_tokens": 2945,
+          "completion_validation": {
+            "valid": true
+          },
+          "decode_seconds": 109.394197,
+          "decode_tokens_per_second": 26.912,
+          "finish_reason": "stop",
+          "measured_sse_events": 2943,
+          "output": "**To:** Infrastructure Working Group\n**From:** Platform Engineering\n**Subject:** Acquiring local AI hardware versus improving utilisation of what we own\n\n**Recommendation:** we should not buy more hardware this quarter. We should spend the next eight weeks improving utilisation of what we own, and revisit the question only if the numbers say so.\n\nThe case against buying rests on four things: cost, latency, reliability, and the fact that a hardware purchase is close to irreversible while almost everything else we are proposing is reversible.\n\nCost is the obvious consideration, and it is larger than the sticker price suggests. A single high-end GPU node costs not just the purchase but power, cooling, rack space, spares, firmware maintenance, and the engineering time to keep it healthy. Those carrying costs run for the life of the asset, typically three to five years, and they do not shrink if the workload does. If our current cluster is idle a meaningful fraction of the week, every additional unit multiplies that idle cost. We would be paying for capacity we cannot use, in much the same way a team pays rent for office space it never books.\n\nLatency cuts the other way and deserves honesty. Local hardware does give us control: no cross-region network hops, no shared-tenancy surprises, and tail latency we can tune ourselves. If our workloads are latency-sensitive and our cloud egress is already a bottleneck, that is a real argument. But the latency we are actually experiencing is more likely a symptom of poor scheduling and batching than of insufficient hardware. A well-tuned inference server with continuous batching, a router that sends small requests to small models, and a cache for repeated prompts will often beat a bigger cluster running the same naive software. We should measure before we assume the bottleneck is silicon.\n\nReliability is where the utilisation argument gets strongest. An underutilised cluster is a forgiving one: headroom absorbs failures, rolling upgrades, and traffic spikes without user-visible impact. A cluster run hot has no such margin, and the failure modes get worse as utilisation rises \u2014 tail latency spikes, thermal throttling, and a single node failure that takes a fifth of the fleet with it. Ironically, buying more hardware and running it harder can make us less reliable, not more.\n\nOpportunity cost is the quieter one. Engineering time is finite, and every week spent on procurement, vendor evaluation, racking, and commissioning is a week not spent on the product. The capital itself is also an opportunity cost: money tied up in depreciating assets is money not spent on the things that grow the business. For a small team, the scarcest resource is attention, and a hardware project consumes a great deal of it.\n\nReversibility is what tips the balance. If we buy and the demand does not materialise, we are stuck with hardware that loses value every month and sells for a fraction of cost on the secondary market. If we optimise and the demand does materialise, we have lost only some engineering time, and we can buy later with better information and better software to run on it. The optimisation work is a one-way door in reverse: it is cheap to do, hard to undo, and it improves the return on any hardware we eventually purchase.\n\nI want to be candid about the uncertainty. Our utilisation numbers may be distorted: a quiet period, a recent deployment, or a seasonal dip can make a healthy fleet look idle. We do not have a reliable forecast of demand over the next year, and we do not know how much of the current latency problem is software rather than hardware. If the forecast is wrong and demand doubles, we will have delayed a purchase by a quarter, which is a real cost. That risk is why I recommend a decision gate rather than a permanent decision: agree now on the metrics that would justify a purchase \u2014 sustained utilisation above a defined threshold, p95 latency that optimisation cannot bring under target, and a demand forecast we actually trust \u2014 and revisit them in eight weeks.\n\nThe recommendation is therefore to optimise first, with a pre-agreed trigger for buying. It is cheaper, it is reversible, it improves reliability, and it makes any future purchase more effective.",
+          "output_characters": 4264,
+          "output_sha256": "822b4063a2193a3de2fee8404c78841c22c896ae35952acbc2d6de99d2aa41c6",
+          "prompt_tokens": 138,
+          "reasoning_characters": 9200,
+          "reasoning_sha256": "7496ee7130c01019c3b549a1c758c0c3f668e84b34f89094837978092a65278d",
+          "response_tail_seconds": 0.04114,
+          "run": 1,
+          "stream_done_marker": true,
+          "stream_sha256": "1675a6a542adcea4ac88833a913fd6b04c1f780ed4f02cee082b230d3eddc2db",
+          "time_to_first_visible_seconds": 77.742261,
+          "time_to_last_output_seconds": 110.397656,
+          "ttft_seconds": 1.003459,
+          "wall_seconds": 110.438796
+        },
+        {
+          "completion_tokens": 2785,
+          "completion_validation": {
+            "valid": true
+          },
+          "decode_seconds": 103.356564,
+          "decode_tokens_per_second": 26.936,
+          "finish_reason": "stop",
+          "measured_sse_events": 2783,
+          "output": "MEMORANDUM\n\nTo: Engineering Leadership\nFrom: Infrastructure Team\nDate: [Date]\nSubject: Acquiring new AI hardware versus improving utilisation of existing capacity\n\nThe question in front of us appears simple: should we buy more local AI hardware, or should we make better use of what we already own? Having spent the past several weeks examining our utilisation figures, our cost structure, and our roadmap, I believe the answer is to improve utilisation first and revisit the purchase only if specific, measurable thresholds are crossed. What follows is the reasoning, along with an honest account of what we do not know.\n\nThe case against buying begins with cost, though not the cost anyone first thinks of. A new GPU cluster is not a single expense; it is a stream of them. Beyond the sticker price there is power, cooling, rack space, warranty extensions, and eventual disposal, and most of these persist whether the hardware is busy or idle. Depreciation schedules make the purchase feel cheaper than it is, because we tend to compare the acquisition against a single year of cloud spend rather than against the four or five years the machine will occupy our budget. Meanwhile our existing cluster runs at roughly a third of capacity during business hours and lower still at night. Adding capacity before fixing the utilisation problem would mean paying twice for the same idle resource.\n\nLatency deserves more care than it usually receives in these discussions. It is true that local hardware can reduce tail latency for inference jobs, because data does not cross a network boundary and scheduling is deterministic. But latency is a property of the queue, not the machine. If our jobs already complete within their service-level targets, additional cards will not make them faster; they will simply sit there. If jobs are queueing, the honest diagnosis is that our scheduling and batching are inefficient, which is a software problem with a software fix. Before spending capital to solve what may be an orchestration defect, we should first establish where the latency actually comes from.\n\nReliability cuts both ways. Spare capacity is genuinely valuable: a cluster with headroom can absorb a failed node without dropping work, and that resilience is one of the real arguments for owning hardware rather than renting. But reliability is also a maintenance obligation. Every additional machine is another firmware update, another drive to replace, another incident to investigate, and our team is small enough that each of these pulls an engineer away from product work. A purchase that degrades reliability because we cannot staff its upkeep is a net loss dressed up as a capacity gain.\n\nThe opportunity cost is the factor I would weight most heavily. Every hour our two infrastructure engineers spend tuning schedulers, right-sizing jobs, and manually rebalancing load is an hour not spent on the features that generate revenue. Conversely, capital tied up in underused hardware is capital unavailable for the tooling, hiring, and experiments that could grow the business. Utilisation work has the rare property of paying for itself twice: it reduces the operating cost of what we own and frees the people who own it.\n\nReversibility is what ultimately tips the balance. Utilisation improvements are cheap to attempt and easy to undo. If we rewrite our batching logic, consolidate workloads, or shift non-critical jobs to cheaper capacity and it fails, we revert in days and lose little. A hardware purchase is the opposite: it is irreversible in practice, because resale values for specialised GPU systems fall quickly and the market for used accelerators is thin. When the option to walk away is cheap, we should take it; when it is expensive, we should wait.\n\nI want to be candid about the uncertainties. Our utilisation figures cover only a few months, and we do not yet know how much demand will grow as the roadmap ships. If a major product launches next quarter and queue times triple, the calculus changes and I would support an emergency purchase. Vendor pricing is also moving quickly, and waiting too long could mean paying more than we would today. To guard against this, I propose we set concrete triggers \u2014 sustained utilisation above a defined threshold, or queue times exceeding targets for a defined period \u2014 at which the purchase question returns automatically.\n\nThe recommendation, then, is to defer the acquisition, dedicate the infrastructure team to utilisation work for one quarter, and define the thresholds that would bring the decision back to the table early. This path costs little, preserves our flexibility, and \u2014 if the data surprises us \u2014 can be abandoned without regret.",
+          "output_characters": 4710,
+          "output_sha256": "1d1dc9eac14f447e3c5112790eb2d592e1d349e46babac6cb732ad51ca56473c",
+          "prompt_tokens": 138,
+          "reasoning_characters": 8659,
+          "reasoning_sha256": "6be76e89b8becb9f1fa4f8a121986f41cc62892cf87bad6eba8a519ed52ae0a7",
+          "response_tail_seconds": 0.041527,
+          "run": 2,
+          "stream_done_marker": true,
+          "stream_sha256": "24a99db9b9b205d59b0358c36c5bd3acccdea2017fbd1ed0f7aa63894873c413",
+          "time_to_first_visible_seconds": 70.171728,
+          "time_to_last_output_seconds": 104.36404,
+          "ttft_seconds": 1.007476,
+          "wall_seconds": 104.405568
+        }
+      ],
+      "time_to_last_output_seconds": {
+        "maximum": 110.398,
+        "median": 107.381,
+        "minimum": 104.364,
+        "p90": 110.398
+      },
+      "ttft_seconds": {
+        "maximum": 1.007,
+        "median": 1.005,
+        "minimum": 1.003,
+        "p90": 1.007
+      },
+      "wall_seconds": {
+        "maximum": 110.439,
+        "median": 107.422,
+        "minimum": 104.406,
+        "p90": 110.439
+      }
+    },
+    "structured": {
+      "completion_gate": {
+        "passed": 2,
+        "total": 2
+      },
+      "decode_tokens_per_second": {
+        "maximum": 27.513,
+        "median": 27.506,
+        "minimum": 27.498,
+        "p90": 27.513
+      },
+      "runs": [
+        {
+          "completion_tokens": 1001,
+          "completion_validation": {
+            "valid": true
+          },
+          "decode_seconds": 36.345824,
+          "decode_tokens_per_second": 27.513,
+          "finish_reason": "stop",
+          "measured_sse_events": 999,
+          "output": "[{\"index\":1,\"square\":1},{\"index\":2,\"square\":4},{\"index\":3,\"square\":9},{\"index\":4,\"square\":16},{\"index\":5,\"square\":25},{\"index\":6,\"square\":36},{\"index\":7,\"square\":49},{\"index\":8,\"square\":64},{\"index\":9,\"square\":81},{\"index\":10,\"square\":100},{\"index\":11,\"square\":121},{\"index\":12,\"square\":144},{\"index\":13,\"square\":169},{\"index\":14,\"square\":196},{\"index\":15,\"square\":225},{\"index\":16,\"square\":256},{\"index\":17,\"square\":289},{\"index\":18,\"square\":324},{\"index\":19,\"square\":361},{\"index\":20,\"square\":400},{\"index\":21,\"square\":441},{\"index\":22,\"square\":484},{\"index\":23,\"square\":529},{\"index\":24,\"square\":576},{\"index\":25,\"square\":625},{\"index\":26,\"square\":676},{\"index\":27,\"square\":729},{\"index\":28,\"square\":784},{\"index\":29,\"square\":841},{\"index\":30,\"square\":900},{\"index\":31,\"square\":961},{\"index\":32,\"square\":1024},{\"index\":33,\"square\":1089},{\"index\":34,\"square\":1156},{\"index\":35,\"square\":1225},{\"index\":36,\"square\":1296},{\"index\":37,\"square\":1369},{\"index\":38,\"square\":1444},{\"index\":39,\"square\":1521},{\"index\":40,\"square\":1600},{\"index\":41,\"square\":1681},{\"index\":42,\"square\":1764},{\"index\":43,\"square\":1849},{\"index\":44,\"square\":1936},{\"index\":45,\"square\":2025},{\"index\":46,\"square\":2116},{\"index\":47,\"square\":2209},{\"index\":48,\"square\":2304},{\"index\":49,\"square\":2401},{\"index\":50,\"square\":2500}]",
+          "output_characters": 1299,
+          "output_sha256": "654a5359e59bad57071f454922f88d55d393a17d6eec293ae79ea185c3cd7453",
+          "prompt_tokens": 129,
+          "reasoning_characters": 548,
+          "reasoning_sha256": "5b5717ee825e8cf3a326bc30031885e9c06592c6f05d89701862332f1ba917c4",
+          "response_tail_seconds": 0.038567,
+          "run": 1,
+          "stream_done_marker": true,
+          "stream_sha256": "05fd9328838b0d828f2ef4bf3e753b0d7cfe1b51f01d2de218726fe378d2cbf3",
+          "time_to_first_visible_seconds": 15.496977,
+          "time_to_last_output_seconds": 37.312517,
+          "ttft_seconds": 0.966694,
+          "wall_seconds": 37.351084
+        },
+        {
+          "completion_tokens": 1006,
+          "completion_validation": {
+            "valid": true
+          },
+          "decode_seconds": 36.54811,
+          "decode_tokens_per_second": 27.498,
+          "finish_reason": "stop",
+          "measured_sse_events": 1004,
+          "output": "[{\"index\":1,\"square\":1},{\"index\":2,\"square\":4},{\"index\":3,\"square\":9},{\"index\":4,\"square\":16},{\"index\":5,\"square\":25},{\"index\":6,\"square\":36},{\"index\":7,\"square\":49},{\"index\":8,\"square\":64},{\"index\":9,\"square\":81},{\"index\":10,\"square\":100},{\"index\":11,\"square\":121},{\"index\":12,\"square\":144},{\"index\":13,\"square\":169},{\"index\":14,\"square\":196},{\"index\":15,\"square\":225},{\"index\":16,\"square\":256},{\"index\":17,\"square\":289},{\"index\":18,\"square\":324},{\"index\":19,\"square\":361},{\"index\":20,\"square\":400},{\"index\":21,\"square\":441},{\"index\":22,\"square\":484},{\"index\":23,\"square\":529},{\"index\":24,\"square\":576},{\"index\":25,\"square\":625},{\"index\":26,\"square\":676},{\"index\":27,\"square\":729},{\"index\":28,\"square\":784},{\"index\":29,\"square\":841},{\"index\":30,\"square\":900},{\"index\":31,\"square\":961},{\"index\":32,\"square\":1024},{\"index\":33,\"square\":1089},{\"index\":34,\"square\":1156},{\"index\":35,\"square\":1225},{\"index\":36,\"square\":1296},{\"index\":37,\"square\":1369},{\"index\":38,\"square\":1444},{\"index\":39,\"square\":1521},{\"index\":40,\"square\":1600},{\"index\":41,\"square\":1681},{\"index\":42,\"square\":1764},{\"index\":43,\"square\":1849},{\"index\":44,\"square\":1936},{\"index\":45,\"square\":2025},{\"index\":46,\"square\":2116},{\"index\":47,\"square\":2209},{\"index\":48,\"square\":2304},{\"index\":49,\"square\":2401},{\"index\":50,\"square\":2500}]",
+          "output_characters": 1299,
+          "output_sha256": "654a5359e59bad57071f454922f88d55d393a17d6eec293ae79ea185c3cd7453",
+          "prompt_tokens": 125,
+          "reasoning_characters": 559,
+          "reasoning_sha256": "b306fa2c6b44c18614c104085cb95f80817d03115fbe205fab2505cbeb02e48f",
+          "response_tail_seconds": 0.038345,
+          "run": 2,
+          "stream_done_marker": true,
+          "stream_sha256": "b711d12fc4a995782e3fd86ffd0940cecc363c36ede41c1824e5d9529cc09987",
+          "time_to_first_visible_seconds": 15.616247,
+          "time_to_last_output_seconds": 37.455675,
+          "ttft_seconds": 0.907565,
+          "wall_seconds": 37.494019
+        }
+      ],
+      "time_to_last_output_seconds": {
+        "maximum": 37.456,
+        "median": 37.384,
+        "minimum": 37.313,
+        "p90": 37.456
+      },
+      "ttft_seconds": {
+        "maximum": 0.967,
+        "median": 0.937,
+        "minimum": 0.908,
+        "p90": 0.967
+      },
+      "wall_seconds": {
+        "maximum": 37.494,
+        "median": 37.423,
+        "minimum": 37.351,
+        "p90": 37.494
+      }
+    }
+  },
+  "protocol": {
+    "prompts_sha256": "0c3ac4015813af6a1b967659bd2289990fde895a5e43ae065b894d1e1f909ecb",
+    "prompts_version": "1.0.0",
+    "repository_dirty": false,
+    "repository_revision": "40fabcaf6e963ac27ab347f61d54a225dbd07419",
+    "repository_source": "git-worktree",
+    "repository_source_sha256": "71cf88ee30ff5e0c976ad5b1d8221af9115447a690039ac9aa020a85015fe300",
+    "version": "1.1.0"
+  },
+  "run": {
+    "appliance": {
+      "binary_sha256": "6138d2be38c49098fa8236e630ec3e9e395e5508a91609031faf3bc7596ed1ad",
+      "competing_traffic": "none (single reserved Spark, inference workloads drained)",
+      "context_limit": 40960,
+      "drafter": "none",
+      "hardware": "1x NVIDIA DGX Spark (GB10, 128 GB)",
+      "kv_cache_dtype": "bf16",
+      "model": "primitive-ai/Ling-3.2-air-NVFP4A16",
+      "model_revision": "741cdea2fde8a8e5f1b1bda209bc0fef4d60a18a",
+      "negotiated_link_speed": "not applicable",
+      "physical_device_id": "d60c6f269767441f2c079ce1fc313f680b1a9f704eb4fbd64db2469bd6e942f8",
+      "quantisation": "NVFP4 routed experts, BF16 activations",
+      "scheduler": "8 sequences; max prefill 2048, prefix cache, 0.80 GPU memory",
+      "serving_engine": "Atlas bf60d05c9ba12b99f52f5b79b669641f6064bdaf",
+      "serving_image": "sha256:7aa5df884fc906648f193a8ffe97ac704706964bc954f1b50a4df34c099c54fc",
+      "topology": "TP1, single Spark"
+    },
+    "comparison_id": "sparkling-a16",
+    "finished_at": "2026-11-23T21:47:53.168146+00:00",
+    "label": "sparkling-atlas-a16-initial-code",
+    "model": "ling-3.2-air-atlas",
+    "platform": "Linux-7.0.0-1019-nvidia-aarch64-with-glibc2.39",
+    "python": "3.12.3",
+    "started_at": "2026-11-23T21:37:53.180738+00:00"
+  },
+  "schema": 1,
+  "settings": {
+    "concurrency": [],
+    "concurrency_runs": 3,
+    "concurrency_tokens": 256,
+    "concurrency_workload": "code",
+    "decode_tokens": 4096,
+    "extra_body": {
+      "chat_template_kwargs": {
+        "enable_thinking": true
+      }
+    },
+    "prefill_depths": [],
+    "prefill_runs": 3,
+    "runs": 2,
+    "seed": 20260905,
+    "staggered": [],
+    "staggered_arrival_tokens": 256,
+    "staggered_delay_seconds": 1.0,
+    "staggered_depth": 32768,
+    "staggered_incumbent_tokens": 1024,
+    "staggered_runs": 3,
+    "staggered_workload": "code",
+    "temperature": 0.0,
+    "top_p": 1.0
+  }
+}
