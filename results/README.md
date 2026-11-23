@@ -3,6 +3,32 @@
 
 ## One DGX Spark, November 23, 2026
 
+### Matched 64-token decode
+
+Atlas at `bf60d05c9` and stock vLLM ran the same 39-token counting prompt
+three times each, sequentially on the same physical Spark. All six runs
+returned the same 64 tokens. The table gives medians with thinking off.
+
+| Engine | Decode tokens/s | Time to first token |
+| --- | ---: | ---: |
+| Atlas | 27.63 | 0.448 s |
+| vLLM | 21.61 | 0.141 s |
+
+Atlas decoded 28% faster on this prompt. vLLM returned the first token
+0.307 s sooner. Both recognized a solid red image, and each reproduced its
+two serial responses when the requests ran concurrently. On a forced weather
+call, vLLM returned the city `Paris`. This Atlas revision returned
+`<arg_value>Paris`.
+
+Run `python3 bench/short_decode.py PORT` against each endpoint to reproduce
+the probe. The request digest, response text, timings and token counts are in
+the [Atlas streams](2026-11-23/atlas-a16-initial-short.jsonl) and
+[vLLM streams](2026-11-23/reference-a16-short.jsonl). The
+[Atlas metadata](2026-11-23/atlas-a16-initial-metadata.json) identifies the
+binary and device.
+
+### RigMark reference
+
 The stock vLLM reference ran both SparkLing RigMark suites on Primitive AI's
 NVFP4A16 checkpoint. The table reports medians. Decode counts generated
 tokens, including reasoning. The two code runs each used all 4,096 tokens
@@ -21,7 +47,7 @@ passed RigMark's basic completion check.
 The context limit was 40,960, KV storage was BF16 and speculation was off.
 The concurrency rows give aggregate end-to-end throughput across requests.
 The reference image digest, checkpoint revision and hashed physical device
-ID are in the receipts. A paired Atlas result is pending.
+ID are in the receipts. The full paired RigMark result is pending.
 
 [Code receipt](2026-11-23/reference-a16-code.json) ·
 [Prose receipt](2026-11-23/reference-a16-prose.json) ·

@@ -4,8 +4,10 @@
 SparkLing serves Ling-3.2-air on one NVIDIA DGX Spark using Atlas. Strict
 Atlas and SGLang both answered `17 × 23` with `391` on the original checkpoint,
 using the same 35-token prompt and four completion tokens. The native vision
-path also identified a solid red image. The NVFP4A16 reference completed both
-RigMark suites. Atlas performance qualification is in progress.
+path also identified a solid red image. On a matched 64-token NVFP4A16 decode
+probe, Atlas reached 27.63 tokens/s and vLLM reached 21.61. Median time to
+first token was 0.448 s on Atlas and 0.141 s on vLLM. The full RigMark
+comparison is in progress.
 [One-Spark benchmark receipts](results/README.md) ·
 [Strict serving result](results/gb10-strict-serving.json) · [GB10 kernel checks](results/gb10-operators.json)
 

@@ -1,0 +1,17 @@
+{
+  "hardware": "1x NVIDIA DGX Spark (GB10, 128 GB)",
+  "topology": "TP1, single Spark",
+  "negotiated_link_speed": "not applicable",
+  "model": "primitive-ai/Ling-3.2-air-NVFP4A16",
+  "model_revision": "741cdea2fde8a8e5f1b1bda209bc0fef4d60a18a",
+  "physical_device_id": "d60c6f269767441f2c079ce1fc313f680b1a9f704eb4fbd64db2469bd6e942f8",
+  "kv_cache_dtype": "bf16",
+  "quantisation": "NVFP4 routed experts, BF16 activations",
+  "context_limit": 40960,
+  "serving_engine": "Atlas bf60d05c9ba12b99f52f5b79b669641f6064bdaf",
+  "serving_image": "sha256:7aa5df884fc906648f193a8ffe97ac704706964bc954f1b50a4df34c099c54fc",
+  "scheduler": "8 sequences; max prefill 2048, prefix cache, 0.80 GPU memory",
+  "drafter": "none",
+  "competing_traffic": "none (single reserved Spark, inference workloads drained)",
+  "binary_sha256": "6138d2be38c49098fa8236e630ec3e9e395e5508a91609031faf3bc7596ed1ad"
+}
