@@ -98,3 +98,31 @@ RIGMARK=/path/to/rigmark \
 The Primitive card's throughput and quality numbers are a useful sanity check,
 not a SparkLing result. A claim that SparkLing beats this reference needs the
 paired run on the same Spark, with no second model resident during timing.
+
+## File-backed SGLang on GB10
+
+The original FP8 model also runs through SGLang on one Spark. The launcher
+places the two routed FP8 weight arrays per layer in temporary NVMe-backed
+mappings and passes their coherent GB10 addresses to Triton. SGLang still
+loads the original tensors, runs the model kernels and schedules requests.
+On the arithmetic probe it generated `391` and stopped on token 156895.
+
+Allow 120 GiB of free NVMe space for temporary weights in addition to the
+verified checkpoint. The mappings are released when the server exits. From
+the SparkLing checkout, with `STRICT_DIR` set to the original checkpoint:
+
+```sh
+SCRATCH="$HOME/models/sparkling-sglang-scratch"
+mkdir -p "$SCRATCH"
+docker run --rm --gpus device=0 --ipc=host \
+  -p 127.0.0.1:11897:11897 \
+  -v "$STRICT_DIR:/model:ro" -v "$PWD/reference:/reference:ro" \
+  -v "$SCRATCH:/expert-disk" -e LING_EXPERT_DISK=/expert-disk -e HF_HUB_OFFLINE=1 \
+  --entrypoint python3 \
+  lmsysorg/sglang@sha256:7d0d06441b8220e537ae6bb287294cab26f3c877ded3bc6803a148c294b2cce6 \
+  /reference/strict_sglang.py --model-path /model --tp 1 --trust-remote-code \
+  --served-model-name ling-3.2-air-atlas --host 0.0.0.0 --port 11897 \
+  --attention-backend triton --moe-runner-backend triton --cuda-graph-max-bs-decode 8 \
+  --context-length 40960 --max-total-tokens 40960 --max-running-requests 8 \
+  --mem-fraction-static 0.82
+```
