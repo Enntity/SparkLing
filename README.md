@@ -6,8 +6,9 @@ Atlas and SGLang both answered `17 × 23` with `391` on the original checkpoint,
 using the same 35-token prompt and four completion tokens. The native vision
 path also identified a solid red image. On a matched 64-token NVFP4A16 decode
 probe, Atlas reached 27.63 tokens/s and vLLM reached 21.61. Median time to
-first token was 0.448 s on Atlas and 0.141 s on vLLM. The full RigMark
-comparison is in progress.
+first token was 0.448 s on Atlas and 0.141 s on vLLM. Cold prefill on the
+same 8K prompt took 9.26 s on Atlas and 3.17 s on vLLM. Full release
+qualification is deferred while prefill trails the reference.
 [One-Spark benchmark receipts](results/README.md) ·
 [Strict serving result](results/gb10-strict-serving.json) · [GB10 kernel checks](results/gb10-operators.json)
 
