@@ -175,5 +175,19 @@
       ],
       "max_relative_l2_vs_gemv": 3.23e-05
     }
+  },
+  "paged_mla_prefill": {
+    "test": "tests/ling/mla_prefill.cu",
+    "atlas_commit": "dc9cff2db135e3a4c3849ffdbb2c7d90d1091e92",
+    "gpu": "NVIDIA GB10",
+    "heads": 32,
+    "head_dimension": 192,
+    "short_cpu_reference_max_abs": 0.000968605,
+    "comparison": "four warmed single-kernel launches, same BF16 Q/K/V, shuffled page table",
+    "128_queries_after_8192_tokens": {
+      "per_query_kernel_ms": 145.732,
+      "tiled_kernel_ms": 3.793,
+      "worst_absolute_difference": 6.1035156e-05
+    }
   }
 }
