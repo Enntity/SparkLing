@@ -75,15 +75,6 @@ def disk_prefix_cache(gb, mode):
 
 
 def check_prefix_cache_dir(env):
-    """Set the optional disk tier for prefix-cache blocks."""
-    if gb in ('', '0'):
-        return {}
-    if not re.fullmatch(r'[1-9][0-9]{1,2}', gb) or not 16 <= int(gb) <= 100:
-        raise ValueError('SPARKLING_PREFIX_CACHE_GB must be a whole number from 16 to 100')
-    return {'ATLAS_KV_NVME_DIR': f'/prefix-cache/{mode}/kv', 'ATLAS_KV_NVME_GB': gb, 'ATLAS_GLM_NVME_FAST': '1'}
-
-
-def check_prefix_cache_dir(env):
     """The disk tier's directory must be a mount (start.sh makes it): without
     one the engine would fill the container's own filesystem."""
     path = env.get('ATLAS_KV_NVME_DIR', '')

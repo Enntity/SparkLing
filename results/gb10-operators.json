@@ -1,0 +1,42 @@
+{
+  "kind": "operator correctness",
+  "device": "NVIDIA GB10",
+  "sm": "12.1",
+  "accelerators": 1,
+  "atlas": "85b7871b2e2379c9590b6d90dba4ce4a804d0c40",
+  "strict_checkpoint": "inclusionAI/Ling-3.2-air@1613b1a4dcc6aa0d8f346606628cd9a92061a525",
+  "router": {
+    "test": "tests/ling/router.cu",
+    "rows": 35,
+    "top_k": 8,
+    "cpu_gpu_match": true
+  },
+  "original_fp8": {
+    "test": "tests/ling/real_fp8.py",
+    "rows": [
+      1,
+      9
+    ],
+    "max_absolute_output_difference": {
+      "model.layers.0.attention.q_proj": [
+        0.0,
+        7.62939453125e-06
+      ],
+      "model.layers.2.mlp.experts.0.gate_proj": [
+        0.0,
+        0.0
+      ],
+      "model.layers.5.attention.kv_a_proj_with_mqa": [
+        0.0,
+        0.0
+      ]
+    }
+  },
+  "file_backed_read": {
+    "test": "tests/ling/file_backed.cu",
+    "cuda_pageable_memory_access_uses_host_page_tables": true,
+    "bytes_from_packed_expert": 983040,
+    "cpu_byte_sum": 128307342,
+    "gpu_byte_sum": 128307342
+  }
+}

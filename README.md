@@ -2,9 +2,10 @@
 # SparkLing
 
 Ling-3.2-air on one NVIDIA DGX Spark, with engine development in Atlas. This is
-a development checkout. The GB10 grouped-router kernel passes its operator
-test. The full Atlas forward pass and the one-Spark performance comparison
-are pending.
+a development checkout. On GB10, Atlas matched an independent router calculation and
+reproduced three original FP8 projections within 0.000008 absolute error.
+Full-model serving and one-Spark performance qualification are in progress.
+[Operator results](results/gb10-operators.json)
 
 | Mode | Checkpoint | Weight storage |
 | --- | --- | --- |

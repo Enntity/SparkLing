@@ -1,11 +1,11 @@
 <!-- SPDX-License-Identifier: AGPL-3.0-only -->
 # One-Spark comparison
 
-Use RigMark at `40fabcaf6e96`, the revision used by SparkInkling 0.4.2.
+Use RigMark at `40fabcaf6e963ac27ab347f61d54a225dbd07419`, the revision used by SparkInkling 0.4.2.
 Reserve one physical GB10. Record the GPU UUID, model revision, image digest,
 cache dtype, sequence limit, drafter settings, driver version and concurrent
 traffic for both engines. Stop the first engine before bringing up the second.
-Use the same tokenizer, template, thinking setting and generation parameters.
+Allow at least 40,960 tokens on both endpoints to leave room for the 32K prefill and its completion. Use the same tokenizer, template, thinking setting and generation parameters.
 
 Run the code and prose suites and the functional checks in [bench](../bench/README.md).
 Keep cold and replayed prefill separate. Save each repetition, failed

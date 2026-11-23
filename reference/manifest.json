@@ -18,7 +18,7 @@
         "format": "nvfp4-pack-quantized"
       },
       "defaults": {
-        "max_model_len": 32768,
+        "max_model_len": 40960,
         "gpu_memory_utilization": 0.92
       }
     },
@@ -42,7 +42,7 @@
         ]
       },
       "defaults": {
-        "max_model_len": 32768,
+        "max_model_len": 40960,
         "gpu_memory_utilization": 0.85
       },
       "note": "The publisher card reports 129.28 GB and uses tensor parallel 4 in its vLLM recipe. TP=1 is an opt-in diagnostic path and is not a one-Spark baseline."
