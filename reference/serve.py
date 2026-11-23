@@ -2,9 +2,9 @@
 # SPDX-License-Identifier: AGPL-3.0-only
 """Run the pinned Ling vLLM reference on exactly one GPU.
 
-The A16 checkpoint is the one-Spark reference.  The strict mode is retained for
-comparison work, but is guarded because the publisher's FP8 checkpoint does
-not fit in the memory budget reported for one Spark.
+Both modes use the requested checkpoint. The publisher's original FP8 recipe
+uses four GPUs. Its TP=1 invocation lets operators measure the memory boundary
+on their own hardware.
 """
 
 from __future__ import annotations
@@ -239,7 +239,7 @@ def build_parser() -> argparse.ArgumentParser:
     parser.add_argument("--allow-unpinned-image", action="store_true",
                         help="allow an image override without @sha256 (diagnostic only)")
     parser.add_argument("--allow-strict-tp1", action="store_true",
-                        help="run the strict FP8 TP=1 diagnostic despite its published memory requirement")
+                        help=argparse.SUPPRESS)
     parser.add_argument("--skip-model-check", action="store_true",
                         help="only for printing/testing the Docker command")
     parser.add_argument("--pull", action="store_true",
@@ -254,12 +254,6 @@ def main(argv: list[str] | None = None) -> int:
     args = parser.parse_args(argv)
     manifest = load_manifest()
     spec = manifest["models"][args.mode]
-
-    if args.mode == "strict" and not args.allow_strict_tp1:
-        parser.error(
-            "strict is the 129.28 GB FP8 checkpoint; it is not a one-Spark baseline. "
-            "Pass --allow-strict-tp1 only for an explicit diagnostic."
-        )
 
     try:
         selected_platform = args.platform or default_platform()

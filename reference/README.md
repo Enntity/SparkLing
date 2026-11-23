@@ -24,12 +24,12 @@ hf download primitive-ai/Ling-3.2-air-NVFP4A16 \
   --revision 741cdea2fde8a8e5f1b1bda209bc0fef4d60a18a \
   --local-dir "$MODEL_DIR"
 
-python3 sparkling/reference/serve.py \
+python3 reference/serve.py \
   --mode a16 \
   --model-dir "$MODEL_DIR"
 ```
 
-The generated Docker invocation uses TP=1, GPU 0, port `8897`, a 32K context,
+The generated Docker invocation uses TP=1, GPU 0, port `8897`, a 40,960-token context,
 and `--gpu-memory-utilization 0.92`. On an ARM64 Spark it selects the pinned
 ARM64 image manifest automatically. Use `--platform linux/amd64` only when
 reproducing on an x86 host.
@@ -37,7 +37,7 @@ reproducing on an x86 host.
 To inspect the command without starting Docker:
 
 ```sh
-python3 sparkling/reference/serve.py \
+python3 reference/serve.py \
   --mode a16 \
   --model-dir "$MODEL_DIR" \
   --print-command
@@ -45,10 +45,8 @@ python3 sparkling/reference/serve.py \
 
 ## Strict FP8 diagnostic
 
-The original publisher checkpoint is retained as `strict` for an apples-to-
-apples quality reference. Its card reports 129.28 GB and a tensor-parallel
-vLLM recipe, so it is not a one-Spark baseline. The launcher refuses this mode
-unless the operator opts in explicitly:
+The publisher runs the original 129.28 GB FP8 checkpoint on four GPUs. This
+command tests the stock TP=1 allocation on the same device as Atlas.
 
 ```sh
 STRICT_DIR="$PWD/models/Ling-3.2-air"
@@ -56,17 +54,15 @@ hf download inclusionAI/Ling-3.2-air \
   --revision 1613b1a4dcc6aa0d8f346606628cd9a92061a525 \
   --local-dir "$STRICT_DIR"
 
-python3 sparkling/reference/serve.py \
+python3 reference/serve.py \
   --mode strict \
-  --allow-strict-tp1 \
   --model-dir "$STRICT_DIR"
 ```
 
-That flag permits a TP=1 diagnostic and does not claim that the FP8 checkpoint
-will fit or start on one Spark. The strict command also enables the publisher's
-prefix-cache, aligned Mamba cache, and three-token MTP settings. If the
-publisher's vLLM fork is required by the installed image, pass a digest-pinned
-fork image with `--image`.
+The command enables the publisher's prefix cache, aligned Mamba cache and
+three-token MTP. Record any allocation failure with the device's available
+memory. A file-backed reference run must identify its placement changes in
+the benchmark metadata.
 
 ## Image pin
 
@@ -96,7 +92,7 @@ matrix for both servers:
 SPARKLING_URL=http://127.0.0.1:8897 \
 SERVED_MODEL_NAME=ling-3.2-air-reference \
 RIGMARK=/path/to/rigmark \
-  sparkling/bench/rigmark.sh reference metadata-reference.json out/reference
+  bench/rigmark.sh reference metadata-reference.json out/reference
 ```
 
 The Primitive card's throughput and quality numbers are a useful sanity check,

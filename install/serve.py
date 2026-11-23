@@ -64,9 +64,8 @@ def _memory_share(environ, args):
 def disk_prefix_cache(gb, mode):
     """Engine settings that keep the KV blocks the prefix cache evicts on the
     Spark's disk, in the directory start.sh mounts at /prefix-cache, one
-    subdirectory per mode. Their conv-state snapshots stay in host memory (an
-    Inkling snapshot is about 5 MB). Empty or 0 leaves the tier off. The KV
-    tier and its settings are SparkQwen's and SparkGLM's."""
+    subdirectory per mode. Recurrent-state snapshots stay in host memory.
+    Empty or 0 leaves the tier off."""
     if gb in ('', '0'):
         return {}
     if not re.fullmatch(r'[1-9][0-9]{1,2}', gb) or not 16 <= int(gb) <= 100:

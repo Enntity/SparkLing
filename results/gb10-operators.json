@@ -38,5 +38,21 @@
     "bytes_from_packed_expert": 983040,
     "cpu_byte_sum": 128307342,
     "gpu_byte_sum": 128307342
+  },
+  "bf16_normalization": {
+    "test": "tests/ling/rms_norm.cu",
+    "atlas": "74aa1a55a5e1f7ebd5267a363070831b43920df8",
+    "hidden_widths": [
+      512,
+      2560
+    ],
+    "rows_per_variant": 9,
+    "variants": [
+      "normalize",
+      "normalize_and_save_residual",
+      "add_residual_and_normalize"
+    ],
+    "outputs_matched": 82944,
+    "comparison": "bit-exact BF16 vs CPU"
   }
 }

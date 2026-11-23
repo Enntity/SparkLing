@@ -30,7 +30,7 @@
       "config_url": "https://huggingface.co/inclusionAI/Ling-3.2-air/resolve/1613b1a4dcc6aa0d8f346606628cd9a92061a525/config.json",
       "served_model_name": "ling-3.2-air-strict-reference",
       "single_spark": false,
-      "reference_tensor_parallel": 2,
+      "reference_tensor_parallel": 4,
       "expected_config": {
         "model_type": "bailing_moe_v3_vl",
         "architecture": "BailingMoeV3VLForConditionalGeneration",
@@ -45,7 +45,7 @@
         "max_model_len": 40960,
         "gpu_memory_utilization": 0.85
       },
-      "note": "The publisher card reports 129.28 GB and uses tensor parallel 4 in its vLLM recipe. TP=1 is an opt-in diagnostic path and is not a one-Spark baseline."
+      "note": "The publisher uses tensor parallel 4. A stock TP=1 launch must fit 120.4 GiB of weights plus the OS, inference state and kernel workspace."
     }
   },
   "container": {
