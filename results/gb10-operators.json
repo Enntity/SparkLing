@@ -150,5 +150,30 @@
     ],
     "max_abs_error_vs_cpu": 0.00048828125,
     "test": "tests/ling/real_fp8.py"
+  },
+  "grouped_nvfp4_experts": {
+    "atlas_commit": "bf60d05c9ba12b99f52f5b79b669641f6064bdaf",
+    "exact_fixture_outputs": 1680,
+    "test": "tests/ling/experts_a16.cu",
+    "isolated_synthetic_gate_projection": {
+      "description": "64 expert matrices, eight routes per token, N=768 K=2560, six warmed launches; times exclude sorting and the remaining model",
+      "unit": "ms",
+      "rows": [
+        33,
+        257,
+        2048
+      ],
+      "wide_gemv": [
+        1.784,
+        14.417,
+        111.539
+      ],
+      "grouped_bf16_mma": [
+        0.521,
+        1.424,
+        15.105
+      ],
+      "max_relative_l2_vs_gemv": 3.23e-05
+    }
   }
 }
