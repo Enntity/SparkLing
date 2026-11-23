@@ -11,7 +11,8 @@ if [[ ${1:-} == --mode ]]; then
 fi
 cmd=${1:-up}
 [[ $# -le 1 ]] || { echo 'expected one command' >&2; exit 2; }
-name=atlas-sparkling
+name=${CONTAINER_NAME:-atlas-sparkling}
+[[ $name =~ ^[a-zA-Z0-9][a-zA-Z0-9_.-]*$ ]] || { echo "invalid CONTAINER_NAME" >&2; exit 2; }
 case "$cmd" in
   stop) exec docker stop "$name" ;;
   logs) exec docker logs -f --tail 100 "$name" ;;

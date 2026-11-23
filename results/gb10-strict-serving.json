@@ -37,5 +37,22 @@
       "prompt_tokens": 35,
       "completion_tokens": 4
     }
-  ]
+  ],
+  "additional_atlas_probes": {
+    "context_limit": 4096,
+    "image": {
+      "input": "96 by 96 solid red RGB PNG",
+      "prompt": "What color fills the square? Answer with a single color.",
+      "content": "Red"
+    },
+    "tool": {
+      "prompt": "Call get_weather for Paris.",
+      "choice": "forced get_weather",
+      "function": {
+        "name": "get_weather",
+        "arguments": "{\"city\":\"Paris\"}"
+      },
+      "finish_reason": "tool_calls"
+    }
+  }
 }
