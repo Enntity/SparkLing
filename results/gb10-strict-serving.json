@@ -1,0 +1,41 @@
+{
+  "kind": "end-to-end correctness",
+  "hardware": "1x DGX Spark GB10",
+  "context_limit": 40960,
+  "kv_cache_dtype": "bf16",
+  "checkpoint": "inclusionAI/Ling-3.2-air@1613b1a4dcc6aa0d8f346606628cd9a92061a525",
+  "request": {
+    "model": "ling-3.2-air-atlas",
+    "messages": [
+      {
+        "role": "user",
+        "content": "What is 17*23? Answer with the number."
+      }
+    ],
+    "temperature": 0,
+    "max_tokens": 8,
+    "seed": 31,
+    "stream": false,
+    "chat_template_kwargs": {
+      "enable_thinking": false
+    }
+  },
+  "engines": [
+    {
+      "engine": "Atlas",
+      "revision": "9b2481e6f256681e23166688e865bc6401689a7f",
+      "content": "391",
+      "finish_reason": "stop",
+      "prompt_tokens": 35,
+      "completion_tokens": 4
+    },
+    {
+      "engine": "SGLang with file-backed FP8 experts",
+      "revision": "lmsysorg/sglang@sha256:7d0d06441b8220e537ae6bb287294cab26f3c877ded3bc6803a148c294b2cce6",
+      "content": "391",
+      "finish_reason": "stop",
+      "prompt_tokens": 35,
+      "completion_tokens": 4
+    }
+  ]
+}

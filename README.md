@@ -1,11 +1,11 @@
 <!-- SPDX-License-Identifier: AGPL-3.0-only -->
 # SparkLing
 
-Ling-3.2-air on one NVIDIA DGX Spark, with engine development in Atlas. This is
-a development checkout. On GB10, Atlas matched an independent router calculation and
-reproduced three original FP8 projections within 0.000008 absolute error.
-Full-model serving and one-Spark performance qualification are in progress.
-[Operator results](results/gb10-operators.json)
+SparkLing serves Ling-3.2-air on one NVIDIA DGX Spark using Atlas. Strict
+Atlas and SGLang both answered `17 × 23` with `391` on the original checkpoint,
+using the same 35-token prompt and four completion tokens. The native vision
+path also identified a solid red image. Performance qualification is in progress.
+[Strict serving result](results/gb10-strict-serving.json) · [GB10 kernel checks](results/gb10-operators.json)
 
 | Mode | Checkpoint | Weight storage |
 | --- | --- | --- |
@@ -38,7 +38,7 @@ modes only if the disk has room for both snapshots.
 ## Serving and qualification
 
 The distribution follows SparkInkling's `start.sh`, install-tree image tags,
-profiles and RigMark suites. The intended Atlas endpoint is
+profiles and RigMark suites. The default Atlas endpoint is
 `http://127.0.0.1:8897/v1` and the served model name is `ling-3.2-air-atlas`.
 The launcher includes build, status, logs and stop commands. Settings are
 listed in `.env.example`. Default, saver and max profiles are development
