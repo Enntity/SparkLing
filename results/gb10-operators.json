@@ -126,5 +126,29 @@
     "max_abs_final_state_error": 1.49011612e-08,
     "test": "tests/ling/kda_prefill.cu",
     "atlas_commit": "be1a57fa7ab977661bb42ddebbf1550fd636f748"
+  },
+  "unaligned_strict_experts": {
+    "atlas_commit": "2f6fde67d2badfbb56e6d7d1226854330c5d6af9",
+    "gate_up_down_byte_offsets": [
+      1,
+      2,
+      3
+    ],
+    "bf16_outputs": 8192,
+    "max_abs_error": 0
+  },
+  "block_fp8_tensor_core_prefill": {
+    "original_checkpoint": "inclusionAI/Ling-3.2-air@1613b1a4dcc6aa0d8f346606628cd9a92061a525",
+    "rows_tested": [
+      17,
+      65
+    ],
+    "projections": [
+      "layer 0 q",
+      "layer 2 expert 0 gate",
+      "layer 5 MLA kv_a"
+    ],
+    "max_abs_error_vs_cpu": 0.00048828125,
+    "test": "tests/ling/real_fp8.py"
   }
 }
