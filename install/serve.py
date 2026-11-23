@@ -106,6 +106,10 @@ def launch(environ, profile):
     env = _engine_env(environ, profile)
     if mode == 'strict':
         env.update(profile.get('strict_environment', {}))
+        # Use the checkpoint's own generation settings and template. Atlas's
+        # chat defaults otherwise add min-p, top-n-sigma and tool constraints.
+        if '--reference-mode' not in args:
+            args.append('--reference-mode')
     env.update(SPARKLING_MODE=mode)
     env.update(disk_prefix_cache(environ.get('SPARKLING_PREFIX_CACHE_GB', ''), mode))
     args = _memory_share(environ, [str(a).replace('${model}', model) for a in args])

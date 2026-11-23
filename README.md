@@ -26,7 +26,8 @@ disk-backed expert residency. Keeping cold experts on disk preserves the
 published weights and leaves memory for attention and requests. The
 strict profile reserves a shared BF16 KV pool for one full-length context.
 Shorter concurrent requests share that pool, leaving the rest of unified
-memory available to cache expert pages.
+memory available to cache expert pages. Strict also enables Atlas reference
+mode so the checkpoint supplies the chat template and sampling defaults.
 
 ## Prepare a checkpoint
 

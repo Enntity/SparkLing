@@ -43,6 +43,7 @@ class InstallTests(unittest.TestCase):
                 self.assertIn('--kernel-target=ling-3.2-air', args)
                 self.assertIn('--port=8897', args)
                 self.assertEqual(env['SPARKLING_MODE'], mode)
+                self.assertEqual('--reference-mode' in args, mode == 'strict')
                 if mode == 'strict':
                     length = int(next(a.split('=')[1] for a in args if a.startswith('--max-seq-len=')))
                     self.assertEqual(int(env['ATLAS_KV_MAX_BLOCKS']), (length + 15) // 16 + 1)
