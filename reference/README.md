@@ -29,7 +29,7 @@ python3 reference/serve.py \
   --model-dir "$MODEL_DIR"
 ```
 
-The generated Docker invocation uses TP=1, GPU 0, port `8897`, a 40,960-token context,
+The generated Docker invocation uses TP=1, GPU 0, port `8897`, a 40,960-token context, eight concurrent sequences,
 and `--gpu-memory-utilization 0.92`. On an ARM64 Spark it selects the pinned
 ARM64 image manifest automatically. Use `--platform linux/amd64` only when
 reproducing on an x86 host.

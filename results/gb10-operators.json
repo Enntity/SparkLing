@@ -54,5 +54,64 @@
     ],
     "outputs_matched": 82944,
     "comparison": "bit-exact BF16 vs CPU"
+  },
+  "strict_expert_ffn": {
+    "test": "tests/ling/ffn_fp8.cu",
+    "atlas": "34891bbd12006ddd196c7491d13e54532e245e54",
+    "routed_expert": 7,
+    "shared_expert": true,
+    "input_quantization": "dynamic per 128 elements, FP8 E4M3",
+    "clamp_after_silu": {
+      "routed": 4,
+      "shared": 5
+    },
+    "gate_up_outputs_matched": 3072,
+    "down_outputs_matched": 5120,
+    "maximum_absolute_error": 0
+  },
+  "paged_attention": {
+    "test": "tests/ling/paged_attention.cu",
+    "atlas": "34891bbd12006ddd196c7491d13e54532e245e54",
+    "head_width": 192,
+    "pool_index": 6,
+    "causal_lengths": [
+      1,
+      17,
+      37
+    ],
+    "maximum_absolute_error": 0.0004877,
+    "comparison": "shuffled paged BF16 vs CPU"
+  },
+  "full_text_oracle": {
+    "test": "tests/ling/strict_text.py",
+    "atlas": "34891bbd12006ddd196c7491d13e54532e245e54",
+    "implementation": "Independent layer-by-layer PyTorch/Triton calculation, original checkpoint",
+    "decoder_layers": 42,
+    "prompt": "What is 17*23? Answer with the number.",
+    "thinking": false,
+    "sampling": "greedy",
+    "generated_ids_including_eos": [
+      18,
+      24,
+      16,
+      156895
+    ],
+    "text": "391"
+  },
+  "batched_nvfp4_experts": {
+    "test": "tests/ling/experts_a16.cu",
+    "atlas": "c584a4592d349ecb445bbcb9540b9e2fa5a5f6d9",
+    "kernels": [
+      "moe_expert_gemv",
+      "moe_expert_gemv_wide"
+    ],
+    "tokens": 3,
+    "routes_per_token": 8,
+    "input_layouts": [
+      "shared across routes",
+      "one row per route"
+    ],
+    "outputs_matched": 3360,
+    "comparison": "bit-exact BF16 vs CPU"
   }
 }

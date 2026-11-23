@@ -2,8 +2,8 @@
   "schema": "sparkling.atlas-engine-source/v1",
   "repository": "https://github.com/Enntity/atlas.git",
   "branch": "ling/3.2-air",
-  "commit": "b96ed6e981110c637efd66ee0ef14a0cf3add6b2",
-  "tree": "87742a0c6f3325594e413891c14e4109a8799312",
+  "commit": "c584a4592d349ecb445bbcb9540b9e2fa5a5f6d9",
+  "tree": "2014169238e6eca02284ca446b4342b4bce29c91",
   "kernel_target": "ling-3.2-air",
   "model_type": "bailing_moe_v3_vl",
   "license": "AGPL-3.0-only"

@@ -158,7 +158,7 @@ def image_reference(
 def build_command(
     manifest: dict[str, Any], mode: str, model_dir: Path, selected_platform: str,
     image: str, gpu: str, port: int, model_name: str, max_model_len: int,
-    gpu_memory_utilization: float,
+    gpu_memory_utilization: float, max_num_seqs: int = 8,
 ) -> list[str]:
     spec = manifest["models"][mode]
     command = [
@@ -195,6 +195,7 @@ def build_command(
         model_name,
         "--max-model-len",
         str(max_model_len),
+        "--max-num-seqs", str(max_num_seqs),
         "--gpu-memory-utilization",
         f"{gpu_memory_utilization:.2f}",
         "--reasoning-parser",
@@ -230,6 +231,8 @@ def build_parser() -> argparse.ArgumentParser:
                         help="host port (default: 8897)")
     parser.add_argument("--served-model-name",
                         help="OpenAI model name (defaults to the pinned mode name)")
+    parser.add_argument("--max-num-seqs", type=positive_int, default=8,
+                        help="maximum concurrent sequences (default: 8)")
     parser.add_argument("--max-model-len", type=positive_int,
                         help="vLLM context limit (defaults to the pinned mode value)")
     parser.add_argument("--gpu-memory-utilization", type=memory_utilization,
@@ -285,6 +288,7 @@ def main(argv: list[str] | None = None) -> int:
             model_name,
             max_model_len,
             utilization,
+            args.max_num_seqs,
         )
     except (OSError, KeyError, TypeError, ValueError) as exc:
         parser.error(str(exc))

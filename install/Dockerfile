@@ -96,7 +96,7 @@ COPY install/profiles/ /opt/atlas/profiles/
 COPY install/atlas-source.json /opt/atlas/source-manifest.json
 COPY engine/LICENSE /LICENSE
 ENV LD_LIBRARY_PATH=/usr/local/nvidia/lib:/usr/local/nvidia/lib64:/usr/local/cuda/lib64
-ENV RUST_LOG=info
+ENV RUST_LOG=info ATLAS_USE_HF_REF_JSON_DUMPS=1
 EXPOSE 8897
 # The image's identity is the git tree of install/ (its tag); label it last.
 ARG INSTALL_TREE
