@@ -1,7 +1,7 @@
 # SPDX-License-Identifier: AGPL-3.0-only
 import json, urllib.request
 
-from _common import chat_url
+from _common import SERVED_MODEL_NAME, chat_url
 
 URL = chat_url()
 tools = [{"type": "function", "function": {"name": "fetch_url", "description": "Fetch a URL.", "parameters": {"type": "object", "properties": {"url": {"type": "string"}}, "required": ["url"]}}}]
@@ -15,7 +15,7 @@ for label, tc, thinking, prompt, ask in (("forced benign thinking-on", forced, T
                           ("forced blocked thinking-on", forced, True, blocked, True),
                           ("forced benign thinking-on, not asked", forced, True, benign, False),
                           ("forced blocked thinking-on, not asked", forced, True, blocked, False)):
-    b = {"model": "m", "stream": True, "temperature": 0, "max_tokens": 600, "tools": tools, "tool_choice": tc, "chat_template_kwargs": {"enable_thinking": thinking}, "messages": [{"role": "user", "content": prompt}]}
+    b = {"model": SERVED_MODEL_NAME, "stream": True, "temperature": 0, "max_tokens": 600, "tools": tools, "tool_choice": tc, "chat_template_kwargs": {"enable_thinking": thinking}, "messages": [{"role": "user", "content": prompt}]}
     if ask: b["stream_tool_arguments"] = True
     chunks, finish, guard, content, reasoning, args = 0, None, None, "", "", ""
     for line in urllib.request.urlopen(urllib.request.Request(URL, json.dumps(b).encode(), {"Content-Type": "application/json"}), timeout=600):

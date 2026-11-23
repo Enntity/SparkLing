@@ -1,12 +1,12 @@
 # SPDX-License-Identifier: AGPL-3.0-only
 import json, urllib.request
 
-from _common import chat_url
+from _common import SERVED_MODEL_NAME, chat_url
 
 URL = chat_url()
 tools = [{"type": "function", "function": {"name": "Say", "description": "Speak text aloud", "parameters": {"type": "object", "properties": {"text": {"type": "string"}}, "required": ["text"]}}}]
 def req(stream, extra):
-    b = {"model": "m", "messages": [{"role": "system", "content": "You talk by calling Say."}, {"role": "user", "content": "Greet me."}], "tools": tools, "max_tokens": 400, "temperature": 0, "stream": stream, **extra}
+    b = {"model": SERVED_MODEL_NAME, "messages": [{"role": "system", "content": "You talk by calling Say."}, {"role": "user", "content": "Greet me."}], "tools": tools, "max_tokens": 400, "temperature": 0, "stream": stream, **extra}
     r = urllib.request.urlopen(urllib.request.Request(URL, json.dumps(b).encode(), {"Content-Type": "application/json"}), timeout=300)
     if not stream:
         d = json.load(r); m = d["choices"][0]["message"]

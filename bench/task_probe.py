@@ -2,12 +2,12 @@
 """Quick task probe: 30 arithmetic problems (exact answer) + 10 tool-call prompts (right tool, right args)."""
 import json, os, random, re, sys, urllib.request
 
-from _common import chat_url
+from _common import SERVED_MODEL_NAME, chat_url
 
 port = sys.argv[1] if len(sys.argv) > 1 else os.environ.get("SPARKLING_PORT", "8897")
 URL = chat_url(port)
 def chat(messages, tools=None, max_tokens=1536):
-    body = {"model": "m", "messages": messages, "temperature": 0, "max_tokens": max_tokens,
+    body = {"model": SERVED_MODEL_NAME, "messages": messages, "temperature": 0, "max_tokens": max_tokens,
             "chat_template_kwargs": {"enable_thinking": True}}
     if tools:
         body["tools"] = tools

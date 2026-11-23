@@ -4,7 +4,7 @@ Per turn: a user-turn request, then a follow-up with that turn's Say call + resu
 Prints client TTFT (first streamed delta) per request."""
 import json, sys, time, urllib.request
 
-from _common import chat_url
+from _common import SERVED_MODEL_NAME, chat_url
 
 URL = chat_url()
 TURNS = int(sys.argv[1]) if len(sys.argv) > 1 else 8
@@ -18,7 +18,7 @@ words = ["How was your morning?", "Tell me about the archive.", "Which keeper do
 
 
 def stream(msgs):
-    b = {"model": "m", "stream": True, "temperature": 0, "max_tokens": 48, "tools": tools, "tool_choice": "auto",
+    b = {"model": SERVED_MODEL_NAME, "stream": True, "temperature": 0, "max_tokens": 48, "tools": tools, "tool_choice": "auto",
          "chat_template_kwargs": {"enable_thinking": True}, "messages": msgs}
     t0 = time.time()
     first = None
