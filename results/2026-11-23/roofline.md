@@ -102,6 +102,12 @@ against 130.73 on the corresponding reference round. The development
 candidate passed the image, tool-call, arithmetic and retrieval checks.
 [Matched decision receipts](nvfp4-prefill-decision.json)
 
+Atlas commit `423b7f0e0` switched concurrent decode to batched BF16 matrix-vector
+products and enabled CUDA graph replay keyed by the ordered recurrent-state slots.
+The same eight-client code round improved from 40.53 to 87.40 aggregate tokens/s.
+The reference reached 130.73. Two independent requests produced the same
+outputs serially and concurrently. [Batch decode receipt](batch-decode-decision.json)
+
 ## Decision probes
 
 Use one cold 8K RigMark prompt and a short warm single-stream decode to test a
