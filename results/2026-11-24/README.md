@@ -26,3 +26,7 @@ Routed expert bytes, scales, trunk and vocabulary head give about 4.72 GB of act
 A separate launch through `./start.sh --model sante-air-vl --mode spark up` used the packaged ARM64 image, allocated the 128K pool and passed its arithmetic smoke. [Image and launch receipt](package-smoke.json)
 
 Run `bench/sante_air_vl.py` for the paired probes and `bench/context_window.py` for the context check. [Commands](../../docs/REPRODUCE.md)
+
+## LingSante Air-VL Strict
+
+The packaged launcher served the original BF16 checkpoint at revision `1f398c937d6069994a156689636832c47d8c09be` from an external USB SSD on the same Spark. All 50 shards and the pinned inference files passed the manifest checks. The server allocated 8,193 KV blocks, advertised 131,072 tokens and passed the launch smoke. On the two identical test requests it answered `391` and `Blue`. Time to first token was 11.82 seconds for text and 40.21 seconds for the image. These are short serving checks. [Original BF16 responses](sante-bf16-parity.jsonl)

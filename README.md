@@ -52,7 +52,7 @@ On one Spark, the model recalled a key from the beginning of a 262,132-token pro
 
 Air-VL has the same 42-layer backbone and vision tower. Its config specifies 128K natively. Its publisher’s extended 256K configuration uses YaRN. Air-VL’s Spark mode reads the publisher’s MXFP4 expert weights and E8M0 scales directly. Strict pages the original BF16 expert matrices from the checkpoint. Both modes use Air-VL’s own tokenizer, chat template, processor and served API name `lingsante-air-vl`. [Medical checkpoint](https://huggingface.co/inclusionAI/LingSante-3.1-air-VL) · [Publisher MXFP4 release](https://huggingface.co/inclusionAI/LingSante-3.1-air-VL-MXFP4)
 
-On the publisher’s MXFP4 checkpoint, Atlas and SGLang both returned `391` for 17 × 23 and identified a blue square. Two matched 64-token decode runs measured **10.47–10.48 tokens/s on Atlas** and **27.59–28.37 on SGLang**. [Air-VL results and reproduction](results/2026-11-24/README.md)
+On the publisher’s MXFP4 checkpoint, Atlas and SGLang both returned `391` for 17 × 23 and identified a blue square. Strict mode also returned both answers using the original BF16 weights on a USB SSD. Two matched MXFP4 64-token decode runs measured **10.47–10.48 tokens/s on Atlas** and **27.59–28.37 on SGLang**. [Air-VL results and reproduction](results/2026-11-24/README.md)
 
 ```sh
 ./start.sh --model sante-air-vl --mode spark up
