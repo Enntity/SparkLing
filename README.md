@@ -4,11 +4,12 @@
 SparkLing serves Ling-3.2-air on one NVIDIA DGX Spark using Atlas. Strict
 Atlas and SGLang both answered `17 × 23` with `391` on the original checkpoint,
 using the same 35-token prompt and four completion tokens. The native vision
-path also identified a solid red image. The candidate with opt-in NVFP4 attention and output-head weights decoded a
-fixed response at 49.01 tokens/s against 21.61 for vLLM. The eight-client
-code probe reached 138.07 aggregate tokens/s against 130.73. Cold time to
-first token was 2.37 s at 8K and 11.97 s at 32K. Identical prompts replayed
-in 9.4 ms and 12.7 ms. These figures are short decision probes.
+path also identified a solid red image. On the full single-Spark RigMark suites, the opt-in NVFP4 candidate led vLLM
+on 23 of 24 throughput measures. Single-stream code decode was 46.09 versus
+21.53 tokens/s. Eight-client prose was slower at 118.44 versus 123.22
+aggregate tokens/s. The quality gate failed. Both engines exhausted the
+standard code budget, and Atlas also missed one prose completion. The
+candidate remains experimental.
 [One-Spark benchmark receipts](results/README.md) ·
 [Strict serving result](results/gb10-strict-serving.json) · [GB10 kernel checks](results/gb10-operators.json)
 
@@ -69,7 +70,11 @@ It uses those copies for forward passes of up to eight rows, including short
 prompt tails. Larger passes continue using the published BF16 weights. This
 option can be combined with `PREFILL_PRECISION=nvfp4` in Spark mode.
 
-For the speed candidate, run
+The preferred fast profile keeps the vocabulary head in BF16. Run
+`PREFILL_PRECISION=nvfp4 DECODE_PRECISION=nvfp4 ./start.sh --mode spark up`.
+It completed both standard prose prompts in 38.3 s and 30.3 s.
+
+For the experimental quantized output head, run
 `PREFILL_PRECISION=nvfp4 DECODE_PRECISION=nvfp4-head ./start.sh --mode spark up`.
 Atlas also quantizes the BF16 vocabulary output matrix from Primitive AI’s
 checkpoint. Small batches use tensor cores for attention and routed experts.

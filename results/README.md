@@ -6,10 +6,39 @@
 The [decode and prefill rooflines](2026-11-23/roofline.md) compare the parity
 and 2× targets with the active weight traffic and measured GB10 compute rate.
 
-The candidate with opt-in NVFP4 attention and output-head weights reached
-49.01 tokens/s on a fixed 64-token response, against 21.61 in vLLM. It also
-completed a matched eight-client round at 138.07 aggregate tokens/s against
-130.73. [Decode, prefill and exact-prefix replay](2026-11-23/roofline.md#output-head-routed-tensor-cores-and-prefix-reuse)
+### Full paired RigMark qualification
+
+Atlas `50e6bd5d9` ran the unmodified Spark-family code and prose suites on the
+same DGX Spark as stock vLLM. Both used Primitive AI's NVFP4A16 checkpoint.
+The Atlas candidate additionally quantized the attention and vocabulary head
+weights and the large-prompt expert activations. The candidate image was
+built by `./start.sh build` and served by the normal launcher.
+
+Atlas led 23 of RigMark's 24 throughput comparisons. The comparator rejected
+the run on completion quality. Both engines exhausted 4,096 tokens on both
+standard code prompts. Atlas also exhausted the budget on one prose prompt
+without producing a visible answer. vLLM completed both prose prompts. Both
+engines passed both structured-output checks.
+
+| Workload | Atlas tokens/s | vLLM tokens/s | Ratio |
+| --- | ---: | ---: | ---: |
+| Single-stream code decode | 46.09 | 21.53 | 2.14× |
+| Single-stream prose decode, prose suite | 46.87 | 21.60 | 2.17× |
+| Cold 8K / 32K prefill | 3,447 / 2,732 | 2,839 / 2,533 | 1.21× / 1.08× |
+| Repeated 8K / 32K prompt | 843,134 / 2,589,143 | 34,123 / 118,405 | 24.71× / 21.87× |
+| Eight-client code, aggregate | 141.97 | 134.33 | 1.06× |
+| Eight-client prose, aggregate | 118.44 | 123.22 | 0.96× |
+
+Replay throughput counts previously processed prompt tokens. On eight-client
+prose, median per-stream decode was 16.91 tokens/s on Atlas and 15.90 on
+vLLM. Median first-token latency was 2.20 s on Atlas and 0.61 s on vLLM.
+
+In a separate control, both engines received the first Go coding prompt
+with thinking disabled and the same token cap. Both returned visible code
+and passed RigMark's basic completion check. Atlas decoded at 47.59 tokens/s
+and vLLM at 21.55. The check scores completion; it does not compile the Go.
+[Qualification measurements](2026-11-23/one-spark-qualification.json) ·
+[Rooflines and decision probes](2026-11-23/roofline.md)
 
 ### Initial matched 64-token decode
 
@@ -74,7 +103,7 @@ passed RigMark's basic completion check.
 The context limit was 40,960, KV storage was BF16 and speculation was off.
 The concurrency rows give aggregate end-to-end throughput across requests.
 The reference image digest, checkpoint revision and hashed physical device
-ID are in the receipts. The full paired RigMark result is pending.
+ID are in the receipts. The paired candidate result appears above.
 
 [Code receipt](2026-11-23/reference-a16-code.json) ·
 [Prose receipt](2026-11-23/reference-a16-prose.json) ·

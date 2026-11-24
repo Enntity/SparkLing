@@ -70,6 +70,8 @@ def precision_cache_namespace(mode, prefill, decode):
         if precision not in options or mode != 'spark':
             raise ValueError(f"{phase.upper()}_PRECISION accepts checkpoint in either mode or {' / '.join(options)} in spark mode")
         namespace += f'-{phase}-{precision}'
+    if decode == 'nvfp4':
+        namespace += '-tensor-v2'
     return namespace
 
 
@@ -126,12 +128,11 @@ def launch(environ, profile):
     decode_precision = environ.get('SPARKLING_DECODE_PRECISION', 'checkpoint')
     namespace = precision_cache_namespace(mode, precision, decode_precision)
     if decode_precision != 'checkpoint':
-        env.update(ATLAS_LING_NVFP4_DECODE='1', ATLAS_LING_EXPERT_UNION='1')
-    if decode_precision == 'nvfp4-head':
         # Ling reads historical K/V through the paged MLA kernel. Exact hits
         # restore both the recurrent state and final hidden row.
-        env.update(ATLAS_LING_EXPERT_UNION='tensor', ATLAS_SKINNY_MMA='1',
+        env.update(ATLAS_LING_NVFP4_DECODE='1', ATLAS_LING_EXPERT_UNION='tensor', ATLAS_SKINNY_MMA='1',
                    ATLAS_MLA_PREFIX_SKIP='1', ATLAS_MARCONI_EXACT='1', ATLAS_EXACT_DIRECT='1')
+    if decode_precision == 'nvfp4-head':
         args.append('--lm-head-dtype=nvfp4')
     if precision == 'nvfp4':
         env.update(ATLAS_LING_W4A4_PREFILL='1', ATLAS_BF16_GEMM_CUTLASS='1')

@@ -54,8 +54,9 @@ class InstallTests(unittest.TestCase):
             serve.launch(options, profile)
         _, env = serve.launch({**options, 'SPARKLING_MODE': 'spark'}, profile)
         self.assertEqual(env['ATLAS_LING_NVFP4_DECODE'], '1')
-        self.assertEqual(env['ATLAS_KV_NVME_DIR'], '/prefix-cache/spark-decode-nvfp4/kv')
+        self.assertEqual(env['ATLAS_KV_NVME_DIR'], '/prefix-cache/spark-decode-nvfp4-tensor-v2/kv')
         self.assertNotIn('ATLAS_LING_W4A4_PREFILL', env)
+        self.assertEqual(env['ATLAS_LING_EXPERT_UNION'], 'tensor')
 
     def test_nvfp4_head_uses_separate_weights_and_cache(self):
         profile = json.loads((HERE/'profiles/default.json').read_text())

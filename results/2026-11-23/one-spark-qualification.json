@@ -1,0 +1,210 @@
+{
+  "candidate": "50e6bd5d9289f9c2d1732b6e4a4f7c54fd1a58af",
+  "model": {
+    "repository": "primitive-ai/Ling-3.2-air-NVFP4A16",
+    "revision": "741cdea2fde8a8e5f1b1bda209bc0fef4d60a18a"
+  },
+  "candidate_image": "sha256:339d704f1ba05d02216b1cabcb59a1e780c31b73c66b6735c815fe89d009e3e1",
+  "candidate_precision": {
+    "routed_expert_weights": "Primitive AI NVFP4",
+    "large_prefill_expert_activations": "dynamic NVFP4",
+    "small_batch_attention_and_output_head": "Atlas NVFP4 from checkpoint BF16",
+    "kv_cache": "BF16"
+  },
+  "reference_precision": "Primitive AI checkpoint NVFP4A16, stock vLLM",
+  "reference_receipts": [
+    "reference-a16-code.json",
+    "reference-a16-prose.json"
+  ],
+  "paired_suites": {
+    "code": {
+      "temperature": 0.0,
+      "seed": 20260905,
+      "completion_gates": {
+        "atlas": {
+          "code": {
+            "passed": 0,
+            "total": 2
+          },
+          "prose": {
+            "passed": 1,
+            "total": 2
+          },
+          "structured": {
+            "passed": 2,
+            "total": 2
+          }
+        },
+        "vllm": {
+          "code": {
+            "passed": 0,
+            "total": 2
+          },
+          "prose": {
+            "passed": 2,
+            "total": 2
+          },
+          "structured": {
+            "passed": 2,
+            "total": 2
+          }
+        }
+      },
+      "decode_tokens_per_second": {
+        "code": {
+          "atlas": 46.091,
+          "vllm": 21.534,
+          "ratio": 2.1404
+        },
+        "prose": {
+          "atlas": 47.005,
+          "vllm": 21.558,
+          "ratio": 2.1804
+        },
+        "structured": {
+          "atlas": 49.19,
+          "vllm": 21.297,
+          "ratio": 2.3097
+        }
+      },
+      "concurrent_aggregate_tokens_per_second": {
+        "1": {
+          "atlas": 46.809,
+          "vllm": 21.264,
+          "ratio": 2.2013
+        },
+        "2": {
+          "atlas": 68.62,
+          "vllm": 45.947,
+          "ratio": 1.4935
+        },
+        "4": {
+          "atlas": 98.987,
+          "vllm": 79.857,
+          "ratio": 1.2396
+        },
+        "8": {
+          "atlas": 141.972,
+          "vllm": 134.329,
+          "ratio": 1.0569
+        }
+      },
+      "prefill_tokens_per_second": {
+        "32768": {
+          "cold": {
+            "atlas": 2731.59,
+            "vllm": 2532.709,
+            "ratio": 1.0785
+          },
+          "warm_replay": {
+            "atlas": 2589143.221,
+            "vllm": 118405.135,
+            "ratio": 21.8668
+          }
+        },
+        "8192": {
+          "cold": {
+            "atlas": 3447.316,
+            "vllm": 2839.155,
+            "ratio": 1.2142
+          },
+          "warm_replay": {
+            "atlas": 843133.641,
+            "vllm": 34123.125,
+            "ratio": 24.7086
+          }
+        }
+      }
+    },
+    "prose": {
+      "temperature": 0.0,
+      "seed": 20260905,
+      "completion_gates": {
+        "atlas": {
+          "code": {
+            "passed": 0,
+            "total": 2
+          },
+          "prose": {
+            "passed": 1,
+            "total": 2
+          },
+          "structured": {
+            "passed": 2,
+            "total": 2
+          }
+        },
+        "vllm": {
+          "code": {
+            "passed": 0,
+            "total": 2
+          },
+          "prose": {
+            "passed": 2,
+            "total": 2
+          },
+          "structured": {
+            "passed": 2,
+            "total": 2
+          }
+        }
+      },
+      "decode_tokens_per_second": {
+        "code": {
+          "atlas": 45.868,
+          "vllm": 21.551,
+          "ratio": 2.1283
+        },
+        "prose": {
+          "atlas": 46.873,
+          "vllm": 21.601,
+          "ratio": 2.1699
+        },
+        "structured": {
+          "atlas": 49.221,
+          "vllm": 21.605,
+          "ratio": 2.2782
+        }
+      },
+      "concurrent_aggregate_tokens_per_second": {
+        "1": {
+          "atlas": 45.599,
+          "vllm": 21.288,
+          "ratio": 2.142
+        },
+        "4": {
+          "atlas": 87.841,
+          "vllm": 78.803,
+          "ratio": 1.1147
+        },
+        "8": {
+          "atlas": 118.439,
+          "vllm": 123.217,
+          "ratio": 0.9612
+        }
+      },
+      "prefill_tokens_per_second": {}
+    }
+  },
+  "direct_code_control": {
+    "atlas": {
+      "completion_gate": {
+        "passed": 1,
+        "total": 1
+      },
+      "tokens_per_second": 47.587,
+      "completion_tokens": 2580,
+      "finish_reason": "stop"
+    },
+    "vllm": {
+      "completion_gate": {
+        "passed": 1,
+        "total": 1
+      },
+      "tokens_per_second": 21.545,
+      "completion_tokens": 2282,
+      "finish_reason": "stop"
+    },
+    "settings": "One repetition of the same RigMark code task, original 4096-token cap, thinking disabled on both engines."
+  }
+}
