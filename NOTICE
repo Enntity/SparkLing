@@ -9,3 +9,6 @@ Ling-3.2-air weights are published by inclusionAI under MIT. Spark mode uses
 Primitive's MIT-licensed Ling-3.2-air-NVFP4A16 derivative. Model files are
 downloaded from their respective repositories. Individual upstream code files
 retain their original notices.
+
+LingSante-3.1-air-VL and its MXFP4 release are published by inclusionAI.
+SparkLing builds the optional NVFP4 derivative from the original BF16 files.

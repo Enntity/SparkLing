@@ -6,9 +6,14 @@ if [[ ${1:-} == --version ]]; then exec python3 install/serve.py --version; fi
 if [[ -f .env ]]; then set -a; source ./.env; set +a; fi
 mode=${MODE:-strict}
 model_id=${MODEL:-ling-3.2-air}
-while [[ ${1:-} == --mode || ${1:-} == --model ]]; do
+quant=${QUANT:-publisher}
+while [[ ${1:-} == --mode || ${1:-} == --model || ${1:-} == --quant ]]; do
   [[ $# -ge 2 ]] || { echo "$1 requires a value" >&2; exit 2; }
-  if [[ $1 == --mode ]]; then mode=$2; else model_id=$2; fi
+  case "$1" in
+    --mode) mode=$2 ;;
+    --model) model_id=$2 ;;
+    --quant) quant=$2 ;;
+  esac
   shift 2
 done
 case "$model_id" in
@@ -16,6 +21,10 @@ case "$model_id" in
   sante-air-vl) manifest=install/checkpoint-sante-air-vl.json ;;
   *) echo "unknown SparkLing model: $model_id" >&2; exit 2 ;;
 esac
+if [[ $quant != publisher && ( $quant != nvfp4 || $model_id != sante-air-vl || $mode != spark ) ]]; then
+  echo '--quant nvfp4 requires --model sante-air-vl --mode spark' >&2
+  exit 2
+fi
 cmd=${1:-up}
 [[ $# -le 1 ]] || { echo 'expected one command' >&2; exit 2; }
 name=${CONTAINER_NAME:-atlas-sparkling}
@@ -25,7 +34,7 @@ case "$cmd" in
   logs) exec docker logs -f --tail 100 "$name" ;;
   status) exec docker ps -a --filter "name=^/${name}$" ;;
   build) exec install/build.sh ;;
-  --help|-h) echo './start.sh [--model ling-3.2-air|sante-air-vl] [--mode strict|spark] [download|verify|build|up|stop|logs|status]'; exit ;;
+  --help|-h) echo './start.sh [--model ling-3.2-air|sante-air-vl] [--mode strict|spark] [--quant publisher|nvfp4] [download|verify|build|up|stop|logs|status]'; exit ;;
   up|verify|download) ;;
   *) echo "unknown command: $cmd" >&2; exit 2 ;;
 esac
@@ -37,14 +46,36 @@ MODEL_ROOT=$(realpath "$MODEL_ROOT")
 model=$MODEL_ROOT/$revision
 # shellcheck source=install/common.sh
 source install/common.sh
-if [[ $cmd == download || ( $cmd == up && ! -f $model/.sparkling-verified ) ]]; then
+if [[ $quant == nvfp4 ]]; then
+  manifest=install/checkpoint-sante-nvfp4.json
+  model=$MODEL_ROOT/$(python3 -c 'import json,sys; print(json.load(open(sys.argv[1]))["spark"]["revision"])' "$manifest")
+  if [[ $cmd != verify && ! -f $model/.sparkling-verified ]]; then
+    source_rev=$(python3 -c 'import json,sys; print(json.load(open(sys.argv[1]))["source_revision"])' "$manifest")
+    if [[ ! -f $MODEL_ROOT/$source_rev/.sparkling-verified ]]; then
+      ./start.sh --model sante-air-vl --mode strict --quant publisher download
+    fi
+    mkdir -p "$model"
+    docker run --rm --gpus device=0 --user "$(id -u):$(id -g)" --memory 18g --ipc host \
+      -e HOME=/tmp -e TRITON_CACHE_DIR=/tmp/triton -e CUDA_CACHE_PATH=/tmp/cuda \
+      -v "$(realpath "$MODEL_ROOT/$source_rev"):/original:ro" -v "$model:/output" \
+      -v "$PWD/install/quantize_sante.py:/quantize.py:ro" --entrypoint python3 \
+      lmsysorg/sglang@sha256:7d0d06441b8220e537ae6bb287294cab26f3c877ded3bc6803a148c294b2cce6 \
+      /quantize.py /original /output
+    python3 install/check_files.py spark "$model" --manifest "$manifest"
+    touch "$model/.sparkling-verified"
+  fi
+elif [[ $cmd == download || ( $cmd == up && ! -f $model/.sparkling-verified ) ]]; then
   hf_download "$repo" "$revision" "$model"
   python3 install/check_files.py "$mode" "$model" --manifest "$manifest"
   touch "$model/.sparkling-verified"
 fi
 [[ $cmd != download ]] || exit 0
 if [[ $cmd == verify ]]; then exec python3 install/check_files.py "$mode" "$model" --manifest "$manifest"; fi
-[[ ${DRAFTER:-none} == none ]] || { echo 'The Ling MTP drafter requires an Atlas implementation' >&2; exit 2; }
+drafter=${DRAFTER:-none}
+if [[ $drafter != none && ( $drafter != mtp || $model_id != ling-3.2-air ) ]]; then
+  echo 'DRAFTER accepts none or mtp on Ling-3.2-air. Air-VL has no draft head.' >&2
+  exit 2
+fi
 profile=${PROFILE:-default}
 mounts=(--mount "type=bind,src=$model,dst=/model,readonly")
 if [[ -f $profile ]]; then
@@ -55,7 +86,8 @@ elif [[ ! -f install/profiles/$profile.json ]]; then
 fi
 precision=${PREFILL_PRECISION:-checkpoint}
 decode_precision=${DECODE_PRECISION:-checkpoint}
-cache_namespace=$(python3 -c 'import sys; sys.path.insert(0,"install"); import serve; print(serve.precision_cache_namespace(*sys.argv[1:]))' "$mode" "$precision" "$decode_precision" "$model_id")
+cache_namespace=$(python3 -c 'import sys; sys.path.insert(0,"install"); import serve; print(serve.precision_cache_namespace(*sys.argv[1:]))' "$mode" "$precision" "$decode_precision" "$model_id" "$quant")
+if [[ $drafter == mtp ]]; then cache_namespace+=-mtp1; fi
 if [[ -n ${PREFIX_CACHE_DIR:-} || -n ${PREFIX_CACHE_GB:-} ]]; then
   [[ ${PREFIX_CACHE_DIR:-} == /* ]] || { echo 'PREFIX_CACHE_DIR must be absolute' >&2; exit 2; }
   export PREFIX_CACHE_GB=${PREFIX_CACHE_GB:-48}
@@ -74,7 +106,7 @@ if docker container inspect "$name" >/dev/null 2>&1; then docker rm -f "$name"; 
 docker run -d --name "$name" --memory 114g --gpus device=0 --ipc host --network host \
   --label io.enntity.owner=SparkLing --label io.enntity.job=serve --security-opt no-new-privileges=true \
   "${mounts[@]}" -e MODEL_PATH=/model -e SERVED_MODEL_NAME="$served" \
-  -e SPARKLING_MODEL="$model_id" -e SPARKLING_MODE="$mode" -e SPARKLING_DECODE_PRECISION="$decode_precision" -e SPARKLING_PREFILL_PRECISION="$precision" -e SPARKLING_PROFILE="$profile" \
+  -e SPARKLING_MODEL="$model_id" -e SPARKLING_DRAFTER="$drafter" -e SPARKLING_QUANT="$quant" -e SPARKLING_MODE="$mode" -e SPARKLING_DECODE_PRECISION="$decode_precision" -e SPARKLING_PREFILL_PRECISION="$precision" -e SPARKLING_PROFILE="$profile" \
   -e SPARKLING_GPU_MEMORY_UTILIZATION="${GPU_MEMORY_UTILIZATION:-}" \
   -e SPARKLING_PREFIX_CACHE_GB="${PREFIX_CACHE_GB:-}" -e SPARKLING_TOOL_GUARD="${TOOL_GUARD:-stream}" \
   -e SPARKLING_TOOL_GUARD_ALLOW_HOSTS="${TOOL_GUARD_ALLOW_HOSTS:-}" -e SPARKLING_TOOL_GUARD_DENY_HOSTS="${TOOL_GUARD_DENY_HOSTS:-}" \

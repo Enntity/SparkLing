@@ -40,6 +40,38 @@ class InstallTests(unittest.TestCase):
                 serve.launch({**env, 'SPARKLING_DECODE_PRECISION': 'nvfp4'},
                              json.loads((HERE/'profiles/default.json').read_text()))
 
+    def test_air_derived_quant_and_publisher_cache_separation(self):
+        profile = json.loads((HERE/'profiles/default.json').read_text())
+        env = {'MODEL_PATH': '/model', 'SPARKLING_MODE': 'spark', 'SPARKLING_MODEL': 'sante-air-vl',
+               'SPARKLING_QUANT': 'nvfp4', 'SPARKLING_PREFIX_CACHE_GB': '48'}
+        _, exact = serve.launch(env, profile)
+        args, fast = serve.launch({**env, 'SPARKLING_DECODE_PRECISION': 'nvfp4',
+                                  'SPARKLING_PREFILL_PRECISION': 'nvfp4'}, profile)
+        self.assertIn('--max-seq-len=131072', args)
+        self.assertIn('sante-air-vl-nvfp4-rne-v1-kv2', exact['ATLAS_KV_NVME_DIR'])
+        self.assertNotEqual(exact['ATLAS_KV_NVME_DIR'], fast['ATLAS_KV_NVME_DIR'])
+        self.assertNotIn('ATLAS_LING_NVFP4_DECODE', exact)
+        self.assertEqual(fast['ATLAS_LING_NVFP4_DECODE'], '1')
+        for name, head in [('nvfp4-mlp-head', 'nvfp4'), ('nvfp4-mlp-fp8-head', 'fp8')]:
+            args, settings = serve.launch({**env, 'SPARKLING_DECODE_PRECISION': name}, profile)
+            self.assertIn(f'--lm-head-dtype={head}', args)
+            self.assertEqual(settings['ATLAS_LING_NVFP4_MLP_DECODE'], '1')
+            self.assertIn(name, settings['ATLAS_KV_NVME_DIR'])
+        for invalid in ({'SPARKLING_MODE': 'strict'}, {'SPARKLING_MODEL': 'ling-3.2-air'}):
+            with self.assertRaisesRegex(ValueError, 'Air-VL Spark'):
+                serve.launch({**env, **invalid}, profile)
+
+    def test_native_draft_requires_a_checkpoint_head(self):
+        profile = json.loads((HERE/'profiles/default.json').read_text())
+        env = {'MODEL_PATH': '/model', 'SPARKLING_DRAFTER': 'mtp', 'SPARKLING_PREFIX_CACHE_GB': '48'}
+        args, settings = serve.launch(env, profile)
+        self.assertIn('--speculative', args)
+        self.assertIn('--num-drafts=1', args)
+        self.assertEqual(settings['ATLAS_MTP_DRAFTER_PREFILL'], '1')
+        self.assertTrue(settings['ATLAS_KV_NVME_DIR'].endswith('-mtp1/kv'))
+        with self.assertRaisesRegex(ValueError, 'embedded'):
+            serve.launch({**env, 'SPARKLING_MODEL': 'sante-air-vl'}, profile)
+
     def test_immutable_weight_and_template_checks(self):
         with tempfile.TemporaryDirectory() as tmp:
             directory = Path(tmp)

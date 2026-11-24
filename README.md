@@ -9,7 +9,7 @@
 
 ## RigMark on one Spark
 
-SparkLing decoded prose at **43.70 tok/s**, 2.02× vLLM. Both engines finished both prompts. The two answers took **38.3 and 30.5 seconds** on SparkLing and **65.8 and 64.3 seconds** on vLLM. SparkLing led with four prose clients. At eight clients vLLM served more tokens per second.
+At 40K context with drafting off on both engines, SparkLing’s fast Spark profile decoded prose at **43.70 tok/s**, 2.02× vLLM. Both engines finished both prompts. The two answers took **38.3 and 30.5 seconds** on SparkLing and **65.8 and 64.3 seconds** on vLLM. SparkLing led with four prose clients. At eight clients vLLM served more tokens per second.
 
 | November 23, 2026 · one GB10 | SparkLing (Spark mode) | vLLM |
 | --- | ---: | ---: |
@@ -50,13 +50,17 @@ Ling-3.2-air uses its **262,144-token window** in the default and max profiles. 
 
 On one Spark, the model recalled a key from the beginning of a 262,132-token prompt with 12 tokens reserved for the answer. It returned `MARIGOLD` in 8m 3s, including prefill. The first 480 prompt tokens came from the short control’s cache. [256K retrieval result](results/2026-11-24/base-window-long.json)
 
-Air-VL has the same 42-layer backbone and vision tower. Its config specifies 128K natively. Its publisher’s extended 256K configuration uses YaRN. Air-VL’s Spark mode reads the publisher’s MXFP4 expert weights and E8M0 scales directly. Strict pages the original BF16 expert matrices from the checkpoint. Both modes use Air-VL’s own tokenizer, chat template, processor and served API name `lingsante-air-vl`. [Medical checkpoint](https://huggingface.co/inclusionAI/LingSante-3.1-air-VL) · [Publisher MXFP4 release](https://huggingface.co/inclusionAI/LingSante-3.1-air-VL-MXFP4)
+Air-VL also has a 42-layer language backbone and a vision tower. Its checkpoint omits the appended native predictor that Ling-3.2-air ships. Its config specifies 128K natively. Its publisher’s extended 256K configuration uses YaRN. Air-VL’s Spark mode reads the publisher’s MXFP4 expert weights and E8M0 scales directly. Strict pages the original BF16 expert matrices from the checkpoint. Both modes use Air-VL’s own tokenizer, chat template, processor and served API name `lingsante-air-vl`. [Medical checkpoint](https://huggingface.co/inclusionAI/LingSante-3.1-air-VL) · [Publisher MXFP4 release](https://huggingface.co/inclusionAI/LingSante-3.1-air-VL-MXFP4)
 
-On the publisher’s MXFP4 checkpoint, Atlas and SGLang both returned `391` for 17 × 23 and identified a blue square. Strict mode also returned both answers using the original BF16 weights on a USB SSD. Two matched MXFP4 64-token decode runs measured **10.47–10.48 tokens/s on Atlas** and **27.59–28.37 on SGLang**. [Air-VL results and reproduction](results/2026-11-24/README.md)
+Atlas now serves the publisher’s MXFP4 at **30.26–30.31 tok/s** on the same 64-token counting probe that previously ran at 10.47–10.48. The pinned SGLang reference measured 27.59–28.37. Both engines returned `391` for 17 × 23 and identified a blue square. Strict passed both checks on the original BF16 checkpoint.
+
+SparkLing can also build **NVFP4 directly from inclusionAI’s BF16**. The 70.88 GiB derivative packs the 61,440 routed expert matrices in groups of 16 and retains the original non-expert weights. At runtime, the optional fast settings also quantize attention, shared and dense MLP projections, and the vocabulary head. On the short counting probe the BF16-head fast profile measured **43.94–43.98 tok/s**. With NVFP4 MLPs and vocabulary head it measured **54.07–54.98 tok/s**. These are single-stream, 4K-context decision runs. [Original measurements](results/2026-11-24/README.md) · [Updated Air-VL measurements](results/2026-11-24/air-vl-quant)
 
 ```sh
 ./start.sh --model sante-air-vl --mode spark up
-# To serve the original BF16 checkpoint, on a disk with room for the snapshot
+# Convert the pinned BF16 original locally, then serve the fast NVFP4 profile
+PREFILL_PRECISION=nvfp4 DECODE_PRECISION=nvfp4-mlp-head ./start.sh --model sante-air-vl --mode spark --quant nvfp4 up
+# Serve the publisher's original BF16
 ./start.sh --model sante-air-vl --mode strict up
 ```
 
@@ -86,11 +90,21 @@ curl -sS http://127.0.0.1:8897/v1/chat/completions \
 
 Use `./start.sh status`, `./start.sh logs` and `./start.sh stop` to manage the server. `./start.sh --version` prints the product version and exact Atlas revision. To stage a checkpoint before launch, run `./start.sh --mode strict download` and `./start.sh --mode strict verify`, substituting `spark` for the other checkpoint. Each snapshot has its own immutable revision under `MODEL_ROOT` (default `~/models/sparkling`). Allow space for both if you download both.
 
+The default Strict 256K configuration pages experts to fit one Spark. Its 37-token arithmetic smoke took 62.5 s to first token and four output tokens averaged 1.08 tok/s. The 256K Spark retrieval control took 41.5 s to first token on a 512-token prompt. The 40K RigMark and 4K drafting runs use different memory profiles. [Strict smoke](results/2026-11-24/strict-base-window-smoke.json) · [Spark retrieval control](results/2026-11-24/base-window-short.json)
+
+## Native drafting on Ling-3.2-air
+
+Set `DRAFTER=mtp` to use the checkpoint’s one-token predictor. Atlas gives the predictor private attention state and verifies each proposal with the target. In Spark mode only the drafter gets a separate NVFP4 vocabulary head when the target uses its BF16 head. Ordinary decoding is the default. On short greedy requests the batched verifier can choose a different continuation from the single-row target. The 256K retrieval check and 40K RigMark table above used ordinary decode.
+
+```sh
+DRAFTER=mtp PROFILE=rigmark-40k PREFILL_PRECISION=nvfp4 DECODE_PRECISION=nvfp4 ./start.sh --mode spark up
+```
+
 ## Precision and caching
 
 By default, `--mode spark` follows the checkpoint’s activation and attention precision. `PREFILL_PRECISION=nvfp4` quantizes routed expert activations for large prompt batches and uses an 8,192-token prompt chunk in the bundled profiles. Single-token expert decode retains BF16 activations. `DECODE_PRECISION=nvfp4` quantizes the large attention projections at load time. Atlas uses these copies for up to eight rows, including short prompt tails, and the published BF16 weights for larger passes.
 
-The experimental `DECODE_PRECISION=nvfp4-head` also quantizes the vocabulary head. It reached 46.87 tok/s on single-stream prose, but finished only one of two prompts. Keep `DECODE_PRECISION=nvfp4` for the BF16 head used above. Optional disk prefix caches use distinct directories for each precision. The default, saver and max memory profiles are development settings. Ling’s bundled next-token predictor still needs an Atlas speculative decoding path. [Launcher settings](.env.example) · [Experimental head results](results/2026-11-23/one-spark-qualification.json)
+The experimental `DECODE_PRECISION=nvfp4-head` also quantizes the vocabulary head. It reached 46.87 tok/s on single-stream prose, but finished only one of two prompts. Keep `DECODE_PRECISION=nvfp4` for the BF16 head used above. Optional disk prefix caches use distinct directories for each precision. The default, saver and max memory profiles are development settings. Strict uses the published sampling settings. Spark uses Atlas sampling defaults unless the request overrides them. The launcher enables the streaming tool guard by default. A filtered response can end with `content_filter`. [Launcher settings](.env.example) · [Experimental head results](results/2026-11-23/one-spark-qualification.json)
 
 ## Reproduce the results
 

@@ -61,18 +61,23 @@ def _memory_share(environ, args):
     return [f'--gpu-memory-utilization={util}' if a.startswith('--gpu-memory-utilization=') else a for a in args]
 
 
-def precision_cache_namespace(mode, prefill, decode, model_id='ling-3.2-air'):
-    if model_id == 'sante-air-vl':
+def precision_cache_namespace(mode, prefill, decode, model_id='ling-3.2-air', quant='publisher'):
+    derived = quant == 'nvfp4' and model_id == 'sante-air-vl' and mode == 'spark'
+    if quant != 'publisher' and not derived:
+        raise ValueError('NVFP4 quantization requires Air-VL Spark mode')
+    if model_id == 'sante-air-vl' and not derived:
         if prefill != 'checkpoint' or decode != 'checkpoint':
             raise ValueError('Air-VL uses checkpoint precision for both phases')
         return f'sante-air-vl-{mode}-kv2'
-    if model_id != 'ling-3.2-air':
+    if model_id != 'ling-3.2-air' and not derived:
         raise ValueError(f'Unknown SparkLing model {model_id}')
-    namespace = mode + '-kv2'
+    namespace = 'sante-air-vl-nvfp4-rne-v1-kv2' if derived else mode + '-kv2'
     for phase, precision in [('prefill', prefill), ('decode', decode)]:
         if precision == 'checkpoint':
             continue
         options = ('nvfp4', 'nvfp4-head') if phase == 'decode' else ('nvfp4',)
+        if derived and phase == 'decode':
+            options += ('nvfp4-mlp-head', 'nvfp4-mlp-fp8-head')
         if precision not in options or mode != 'spark':
             raise ValueError(f"{phase.upper()}_PRECISION accepts checkpoint in either mode or {' / '.join(options)} in spark mode")
         namespace += f'-{phase}-{precision}'
@@ -143,13 +148,28 @@ def launch(environ, profile):
             args.append('--reference-mode')
     precision = environ.get('SPARKLING_PREFILL_PRECISION', 'checkpoint')
     decode_precision = environ.get('SPARKLING_DECODE_PRECISION', 'checkpoint')
-    namespace = precision_cache_namespace(mode, precision, decode_precision, environ.get('SPARKLING_MODEL', 'ling-3.2-air'))
+    namespace = precision_cache_namespace(mode, precision, decode_precision,
+                                          environ.get('SPARKLING_MODEL', 'ling-3.2-air'),
+                                          environ.get('SPARKLING_QUANT', 'publisher'))
+    drafter = environ.get('SPARKLING_DRAFTER', 'none')
+    if drafter == 'mtp' and environ.get('SPARKLING_MODEL', 'ling-3.2-air') == 'ling-3.2-air':
+        args += ['--speculative', '--num-drafts=1', '--mtp-quantization=bf16']
+        env.update(ATLAS_MTP_DRAFTER_PREFILL='1', ATLAS_MTP_CATCHUP='1')
+        if mode == 'spark':
+            env['ATLAS_LING_MTP_QUANT_HEAD'] = '1'
+        namespace += '-mtp1'
+    elif drafter != 'none':
+        raise ValueError('DRAFTER=mtp requires the embedded Ling-3.2-air predictor')
     if decode_precision != 'checkpoint':
         # Ling reads historical K/V through the paged MLA kernel. Exact hits
         # restore both the recurrent state and final hidden row.
         env.update(ATLAS_LING_NVFP4_DECODE='1', ATLAS_LING_EXPERT_UNION='tensor', ATLAS_SKINNY_MMA='1',
                    ATLAS_MLA_PREFIX_SKIP='1', ATLAS_MARCONI_EXACT='1', ATLAS_EXACT_DIRECT='1')
-    if decode_precision == 'nvfp4-head':
+    if decode_precision in ('nvfp4-mlp-head', 'nvfp4-mlp-fp8-head'):
+        env['ATLAS_LING_NVFP4_MLP_DECODE'] = '1'
+    if decode_precision == 'nvfp4-mlp-fp8-head':
+        args.append('--lm-head-dtype=fp8')
+    if decode_precision in ('nvfp4-head', 'nvfp4-mlp-head'):
         args.append('--lm-head-dtype=nvfp4')
     if precision == 'nvfp4':
         env.update(ATLAS_LING_W4A4_PREFILL='1', ATLAS_BF16_GEMM_CUTLASS='1')
@@ -165,7 +185,7 @@ def launch(environ, profile):
     return ['/usr/local/bin/spark', *args], env
 
 
-def check_model_dir(model, mode, model_id='ling-3.2-air'):
+def check_model_dir(model, mode, model_id='ling-3.2-air', selection='publisher'):
     root = Path(model)
     config = json.loads((root/'config.json').read_text())
     if config.get('model_type') != 'bailing_moe_v3_vl':
@@ -174,7 +194,10 @@ def check_model_dir(model, mode, model_id='ling-3.2-air'):
     medical = model_id == 'sante-air-vl'
     if medical and mode == 'strict' and (quant or config.get('torch_dtype') != 'bfloat16'):
         raise ValueError('Air-VL strict requires the original BF16 checkpoint')
-    if medical and mode == 'spark' and (quant.get('routed_experts_quant_method') != 'mxfp4' or
+    if selection == 'nvfp4' and (not medical or mode != 'spark' or
+                                 quant.get('format') != 'nvfp4-pack-quantized'):
+        raise ValueError('Air-VL NVFP4 requires the BF16-derived checkpoint')
+    if medical and mode == 'spark' and selection == 'publisher' and (quant.get('routed_experts_quant_method') != 'mxfp4' or
                                        quant.get('routed_experts_group_size') != 32):
         raise ValueError('Air-VL spark requires the publisher MXFP4 checkpoint')
     if not medical and mode == 'strict' and (quant.get('quant_method') != 'fp8' or
@@ -220,11 +243,12 @@ def main():
         return
     profile = profile_path(os.environ, here)
     argv, env = launch(os.environ, json.loads(profile.read_text()))
-    check_model_dir(env['MODEL_PATH'], env['SPARKLING_MODE'], env.get('SPARKLING_MODEL', 'ling-3.2-air'))
+    check_model_dir(env['MODEL_PATH'], env['SPARKLING_MODE'], env.get('SPARKLING_MODEL', 'ling-3.2-air'),
+                    env.get('SPARKLING_QUANT', 'publisher'))
     check_prefix_cache_dir(env)
     source = json.loads((here/'source-manifest.json').read_text())
     print(json.dumps({'event': 'atlas-recipe-start', **release_info(here), 'profile': profile.stem,
-                      'mode': env['SPARKLING_MODE'], 'drafter': 'none',
+                      'mode': env['SPARKLING_MODE'], 'drafter': env.get('SPARKLING_DRAFTER', 'none'),
                       'source': f"{source['repository']}@{source['commit']}"}), flush=True)
     os.execve(argv[0], argv, env)
 

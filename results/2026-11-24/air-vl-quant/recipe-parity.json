@@ -1,0 +1,1 @@
+{"matrix": "model.layers.2.mlp.experts.0.down_proj", "shape": [2560, 768], "shipping_recipe_matches_built_shard_byte_for_byte": {"weight_packed": true, "weight_scale": true, "weight_global_scale": true}}
