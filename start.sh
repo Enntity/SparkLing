@@ -46,11 +46,13 @@ if [[ -f $profile ]]; then
 elif [[ ! -f install/profiles/$profile.json ]]; then
   echo "unknown profile: $profile" >&2; exit 2
 fi
+precision=${PREFILL_PRECISION:-checkpoint}
+cache_namespace=$(python3 -c 'import sys; sys.path.insert(0,"install"); import serve; print(serve.prefill_cache_namespace(*sys.argv[1:]))' "$mode" "$precision")
 if [[ -n ${PREFIX_CACHE_DIR:-} || -n ${PREFIX_CACHE_GB:-} ]]; then
   [[ ${PREFIX_CACHE_DIR:-} == /* ]] || { echo 'PREFIX_CACHE_DIR must be absolute' >&2; exit 2; }
   export PREFIX_CACHE_GB=${PREFIX_CACHE_GB:-48}
   python3 -c 'import os,sys; sys.path.insert(0,"install"); import serve; serve.disk_prefix_cache(os.environ["PREFIX_CACHE_GB"],sys.argv[1])' "$mode"
-  mkdir -p "$PREFIX_CACHE_DIR/$mode/kv"
+  mkdir -p "$PREFIX_CACHE_DIR/$cache_namespace/kv"
   mounts+=(--mount "type=bind,src=$(realpath "$PREFIX_CACHE_DIR"),dst=/prefix-cache")
 fi
 image=${IMAGE:-$(install/build.sh --tag)}
@@ -64,7 +66,7 @@ if docker container inspect "$name" >/dev/null 2>&1; then docker rm -f "$name"; 
 docker run -d --name "$name" --memory 114g --gpus device=0 --ipc host --network host \
   --label io.enntity.owner=SparkLing --label io.enntity.job=serve --security-opt no-new-privileges=true \
   "${mounts[@]}" -e MODEL_PATH=/model -e SERVED_MODEL_NAME="$served" \
-  -e SPARKLING_MODE="$mode" -e SPARKLING_PROFILE="$profile" \
+  -e SPARKLING_MODE="$mode" -e SPARKLING_PREFILL_PRECISION="$precision" -e SPARKLING_PROFILE="$profile" \
   -e SPARKLING_GPU_MEMORY_UTILIZATION="${GPU_MEMORY_UTILIZATION:-}" \
   -e SPARKLING_PREFIX_CACHE_GB="${PREFIX_CACHE_GB:-}" -e SPARKLING_TOOL_GUARD="${TOOL_GUARD:-stream}" \
   -e SPARKLING_TOOL_GUARD_ALLOW_HOSTS="${TOOL_GUARD_ALLOW_HOSTS:-}" -e SPARKLING_TOOL_GUARD_DENY_HOSTS="${TOOL_GUARD_DENY_HOSTS:-}" \

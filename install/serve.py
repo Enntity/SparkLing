@@ -61,6 +61,14 @@ def _memory_share(environ, args):
     return [f'--gpu-memory-utilization={util}' if a.startswith('--gpu-memory-utilization=') else a for a in args]
 
 
+def prefill_cache_namespace(mode, precision):
+    if precision == 'checkpoint':
+        return mode
+    if precision == 'nvfp4' and mode == 'spark':
+        return 'spark-prefill-nvfp4'
+    raise ValueError('PREFILL_PRECISION accepts checkpoint in either mode or nvfp4 in spark mode')
+
+
 def disk_prefix_cache(gb, mode):
     """Engine settings that keep the KV blocks the prefix cache evicts on the
     Spark's disk, in the directory start.sh mounts at /prefix-cache, one
@@ -110,8 +118,13 @@ def launch(environ, profile):
         # chat defaults otherwise add min-p, top-n-sigma and tool constraints.
         if '--reference-mode' not in args:
             args.append('--reference-mode')
+    precision = environ.get('SPARKLING_PREFILL_PRECISION', 'checkpoint')
+    namespace = prefill_cache_namespace(mode, precision)
+    if precision == 'nvfp4':
+        env.update(ATLAS_LING_W4A4_PREFILL='1', ATLAS_BF16_GEMM_CUTLASS='1')
+        args = ['--max-prefill-tokens=8192' if a == '--max-prefill-tokens=2048' else a for a in args]
     env.update(SPARKLING_MODE=mode)
-    env.update(disk_prefix_cache(environ.get('SPARKLING_PREFIX_CACHE_GB', ''), mode))
+    env.update(disk_prefix_cache(environ.get('SPARKLING_PREFIX_CACHE_GB', ''), namespace))
     args = _memory_share(environ, [str(a).replace('${model}', model) for a in args])
     name = environ.get('SERVED_MODEL_NAME', SERVED_MODEL_NAME)
     if not re.fullmatch(r'[A-Za-z0-9][A-Za-z0-9._/-]{0,127}', name):

@@ -55,6 +55,14 @@ listed in `.env.example`. Default, saver and max profiles are development
 settings pending measurements on GB10. The bundled next-token prediction
 layer still needs a Ling-specific speculative path.
 
+For experimental faster prompt processing on one Spark, run
+`PREFILL_PRECISION=nvfp4 ./start.sh --mode spark up`. This uses Primitive AI’s
+checkpoint, quantizes the routed expert activations to NVFP4 for large prompt
+batches, and uses an 8,192-token prompt chunk in the bundled profiles.
+Single-token decode keeps BF16 activations. The default
+`PREFILL_PRECISION=checkpoint` follows the activation precision of the selected
+checkpoint. Disk prefix caches use a separate directory for each precision.
+
 Compare strict to the original FP8 weights and Spark to the same NVFP4A16
 weights in the reference engine. The results directory includes raw one-Spark
 RigMark receipts and the engine and model revisions used for each run.
