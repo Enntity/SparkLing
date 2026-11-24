@@ -22,6 +22,24 @@ class InstallTests(unittest.TestCase):
             self.assertIn('model.safetensors.index.json', files)
             self.assertIn('chat_template.jinja', files)
 
+    def test_sante_checkpoints_context_and_caches(self):
+        pin = json.loads((HERE/'checkpoint-sante-air-vl.json').read_text())
+        self.assertEqual(pin['strict']['repository'], 'inclusionAI/LingSante-3.1-air-VL')
+        self.assertEqual(pin['spark']['repository'], 'inclusionAI/LingSante-3.1-air-VL-MXFP4')
+        for mode in serve.MODES:
+            files = pin[mode]['files']
+            self.assertEqual(sum(n.endswith('.safetensors') for n in files), 50)
+            self.assertIn('processor_config.json', files)
+            env = {'MODEL_PATH': '/model', 'SPARKLING_MODE': mode, 'SPARKLING_MODEL': 'sante-air-vl',
+                   'SPARKLING_PREFIX_CACHE_GB': '48'}
+            args, settings = serve.launch(env, json.loads((HERE/'profiles/default.json').read_text()))
+            self.assertIn('--max-seq-len=131072', args)
+            self.assertEqual(settings['ATLAS_KV_MAX_BLOCKS'], '8193')
+            self.assertIn(f'sante-air-vl-{mode}-kv2', settings['ATLAS_KV_NVME_DIR'])
+            with self.assertRaisesRegex(ValueError, 'checkpoint precision'):
+                serve.launch({**env, 'SPARKLING_DECODE_PRECISION': 'nvfp4'},
+                             json.loads((HERE/'profiles/default.json').read_text()))
+
     def test_immutable_weight_and_template_checks(self):
         with tempfile.TemporaryDirectory() as tmp:
             directory = Path(tmp)
@@ -44,7 +62,7 @@ class InstallTests(unittest.TestCase):
         args, env = serve.launch({**options, 'SPARKLING_MODE': 'spark'}, profile)
         self.assertIn('--max-prefill-tokens=8192', args)
         self.assertEqual(env['ATLAS_LING_W4A4_PREFILL'], '1')
-        self.assertEqual(env['ATLAS_KV_NVME_DIR'], '/prefix-cache/spark-prefill-nvfp4/kv')
+        self.assertEqual(env['ATLAS_KV_NVME_DIR'], '/prefix-cache/spark-kv2-prefill-nvfp4/kv')
 
     def test_nvfp4_decode_is_explicit_and_keeps_its_own_cache(self):
         profile = json.loads((HERE/'profiles/default.json').read_text())
@@ -54,7 +72,7 @@ class InstallTests(unittest.TestCase):
             serve.launch(options, profile)
         _, env = serve.launch({**options, 'SPARKLING_MODE': 'spark'}, profile)
         self.assertEqual(env['ATLAS_LING_NVFP4_DECODE'], '1')
-        self.assertEqual(env['ATLAS_KV_NVME_DIR'], '/prefix-cache/spark-decode-nvfp4-tensor-v2/kv')
+        self.assertEqual(env['ATLAS_KV_NVME_DIR'], '/prefix-cache/spark-kv2-decode-nvfp4-tensor-v2/kv')
         self.assertNotIn('ATLAS_LING_W4A4_PREFILL', env)
         self.assertEqual(env['ATLAS_LING_EXPERT_UNION'], 'tensor')
 
@@ -67,7 +85,7 @@ class InstallTests(unittest.TestCase):
         args, env = serve.launch({**options, 'SPARKLING_MODE': 'spark'}, profile)
         self.assertIn('--lm-head-dtype=nvfp4', args)
         self.assertEqual(env['ATLAS_LING_EXPERT_UNION'], 'tensor')
-        self.assertEqual(env['ATLAS_KV_NVME_DIR'], '/prefix-cache/spark-decode-nvfp4-head/kv')
+        self.assertEqual(env['ATLAS_KV_NVME_DIR'], '/prefix-cache/spark-kv2-decode-nvfp4-head/kv')
 
     def test_launcher_profiles_preserve_the_mode_and_one_spark(self):
         for path in (HERE/'profiles').glob('*.json'):
@@ -78,8 +96,8 @@ class InstallTests(unittest.TestCase):
                 self.assertIn('--port=8897', args)
                 self.assertEqual(env['SPARKLING_MODE'], mode)
                 self.assertEqual('--reference-mode' in args, mode == 'strict')
-                if mode == 'strict':
-                    length = int(next(a.split('=')[1] for a in args if a.startswith('--max-seq-len=')))
+                length = int(next(a.split('=')[1] for a in args if a.startswith('--max-seq-len=')))
+                if mode == 'strict' or length >= 262144:
                     self.assertEqual(int(env['ATLAS_KV_MAX_BLOCKS']), (length + 15) // 16 + 1)
                 else:
                     self.assertNotIn('ATLAS_KV_MAX_BLOCKS', env)

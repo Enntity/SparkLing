@@ -61,8 +61,14 @@ def _memory_share(environ, args):
     return [f'--gpu-memory-utilization={util}' if a.startswith('--gpu-memory-utilization=') else a for a in args]
 
 
-def precision_cache_namespace(mode, prefill, decode):
-    namespace = mode
+def precision_cache_namespace(mode, prefill, decode, model_id='ling-3.2-air'):
+    if model_id == 'sante-air-vl':
+        if prefill != 'checkpoint' or decode != 'checkpoint':
+            raise ValueError('Air-VL uses checkpoint precision for both phases')
+        return f'sante-air-vl-{mode}-kv2'
+    if model_id != 'ling-3.2-air':
+        raise ValueError(f'Unknown SparkLing model {model_id}')
+    namespace = mode + '-kv2'
     for phase, precision in [('prefill', prefill), ('decode', decode)]:
         if precision == 'checkpoint':
             continue
@@ -118,15 +124,26 @@ def launch(environ, profile):
     if not Path(model).is_absolute() or any(c in model for c in '\r\n\0'):
         raise ValueError('MODEL_PATH must be an absolute path')
     env = _engine_env(environ, profile)
+    seq_len = int(_flag_values(args, '--max-seq-len')[0])
+    if seq_len >= 262144 and mode == 'spark' and environ.get('SPARKLING_MODEL', 'ling-3.2-air') == 'ling-3.2-air':
+        env['ATLAS_LING_LONG_KV'] = '1'
+        env['ATLAS_KV_MAX_BLOCKS'] = str((seq_len + 15) // 16 + 1)
+    if environ.get('SPARKLING_MODEL') == 'sante-air-vl':
+        # This checkpoint declares 128K natively. Its 256K recipe uses YaRN.
+        env['ATLAS_KV_MAX_BLOCKS'] = str((min(131072, seq_len) + 15) // 16 + 1)
+        args = [f'--max-seq-len={min(131072, seq_len)}' if a.startswith('--max-seq-len=')
+                else a for a in args]
     if mode == 'strict':
         env.update(profile.get('strict_environment', {}))
+        if environ.get('SPARKLING_MODEL') == 'sante-air-vl' and 'ATLAS_KV_MAX_BLOCKS' in env:
+            env['ATLAS_KV_MAX_BLOCKS'] = str(min(8193, int(env['ATLAS_KV_MAX_BLOCKS'])))
         # Use the checkpoint's own generation settings and template. Atlas's
         # chat defaults otherwise add min-p, top-n-sigma and tool constraints.
         if '--reference-mode' not in args:
             args.append('--reference-mode')
     precision = environ.get('SPARKLING_PREFILL_PRECISION', 'checkpoint')
     decode_precision = environ.get('SPARKLING_DECODE_PRECISION', 'checkpoint')
-    namespace = precision_cache_namespace(mode, precision, decode_precision)
+    namespace = precision_cache_namespace(mode, precision, decode_precision, environ.get('SPARKLING_MODEL', 'ling-3.2-air'))
     if decode_precision != 'checkpoint':
         # Ling reads historical K/V through the paged MLA kernel. Exact hits
         # restore both the recurrent state and final hidden row.
@@ -148,17 +165,23 @@ def launch(environ, profile):
     return ['/usr/local/bin/spark', *args], env
 
 
-def check_model_dir(model, mode):
+def check_model_dir(model, mode, model_id='ling-3.2-air'):
     root = Path(model)
     config = json.loads((root/'config.json').read_text())
     if config.get('model_type') != 'bailing_moe_v3_vl':
         raise ValueError('expected bailing_moe_v3_vl')
-    quant = config['quantization_config']
-    if mode == 'strict' and (quant.get('quant_method') != 'fp8' or
+    quant = config.get('quantization_config', {})
+    medical = model_id == 'sante-air-vl'
+    if medical and mode == 'strict' and (quant or config.get('torch_dtype') != 'bfloat16'):
+        raise ValueError('Air-VL strict requires the original BF16 checkpoint')
+    if medical and mode == 'spark' and (quant.get('routed_experts_quant_method') != 'mxfp4' or
+                                       quant.get('routed_experts_group_size') != 32):
+        raise ValueError('Air-VL spark requires the publisher MXFP4 checkpoint')
+    if not medical and mode == 'strict' and (quant.get('quant_method') != 'fp8' or
                              quant.get('weight_block_size') != [128, 128] or
                              quant.get('activation_scheme') != 'dynamic'):
         raise ValueError('strict requires the original dynamic block-FP8 checkpoint')
-    if mode == 'spark' and quant.get('format') != 'nvfp4-pack-quantized':
+    if not medical and mode == 'spark' and quant.get('format') != 'nvfp4-pack-quantized':
         raise ValueError('spark requires the pinned NVFP4A16 checkpoint')
     weights = json.loads((root/'model.safetensors.index.json').read_text())['weight_map']
     if not weights or any(not (root/f).is_file() for f in set(weights.values())):
@@ -197,7 +220,7 @@ def main():
         return
     profile = profile_path(os.environ, here)
     argv, env = launch(os.environ, json.loads(profile.read_text()))
-    check_model_dir(env['MODEL_PATH'], env['SPARKLING_MODE'])
+    check_model_dir(env['MODEL_PATH'], env['SPARKLING_MODE'], env.get('SPARKLING_MODEL', 'ling-3.2-air'))
     check_prefix_cache_dir(env)
     source = json.loads((here/'source-manifest.json').read_text())
     print(json.dumps({'event': 'atlas-recipe-start', **release_info(here), 'profile': profile.stem,

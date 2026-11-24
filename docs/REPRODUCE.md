@@ -5,7 +5,7 @@ Use RigMark at `40fabcaf6e963ac27ab347f61d54a225dbd07419`, the revision used by 
 Reserve one physical GB10. Record the GPU UUID, model revision, image digest,
 cache dtype, sequence limit, drafter settings, driver version and concurrent
 traffic for both engines. Stop the first engine before bringing up the second.
-Allow at least 40,960 tokens on both endpoints to leave room for the 32K prefill and its completion. Use the same tokenizer, template, thinking setting and generation parameters.
+Use `PROFILE=rigmark-40k` for the historical 40,960-token comparison. Allow at least 40,960 tokens on both endpoints to leave room for the 32K prefill and its completion. Use the same tokenizer, template, thinking setting and generation parameters.
 
 Run the code and prose suites and the functional checks in [bench](../bench/README.md).
 Keep cold and replayed prefill separate. Save each repetition, failed

@@ -1,0 +1,26 @@
+{
+  "schema": "sparkling.atlas-install-profile/v1",
+  "status": "development",
+  "environment": {
+    "RUST_LOG": "info",
+    "CUDA_CACHE_PATH": "/atlas-cuda-cache"
+  },
+  "server_argv": [
+    "serve",
+    "--model-from-path=${model}",
+    "--kernel-target=ling-3.2-air",
+    "--kv-cache-dtype=bf16",
+    "--gpu-memory-utilization=0.80",
+    "--max-num-seqs=8",
+    "--max-batch-size=8",
+    "--max-seq-len=40960",
+    "--max-prefill-tokens=2048",
+    "--enable-prefix-caching",
+    "--request-timeout=3600",
+    "--oom-guard-mb=4096",
+    "--no-tui"
+  ],
+  "strict_environment": {
+    "ATLAS_KV_MAX_BLOCKS": "2561"
+  }
+}

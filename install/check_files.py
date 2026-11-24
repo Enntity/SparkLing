@@ -28,6 +28,7 @@ if __name__ == '__main__':
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('mode', choices=('strict', 'spark'))
     parser.add_argument('directory', type=Path)
+    parser.add_argument('--manifest', type=Path, default=Path(__file__).with_name('checkpoint.json'))
     args = parser.parse_args()
-    pin = json.loads(Path(__file__).with_name('checkpoint.json').read_text())
+    pin = json.loads(args.manifest.read_text())
     verify(args.directory, pin[args.mode]['files'])

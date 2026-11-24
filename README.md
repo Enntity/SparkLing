@@ -39,6 +39,23 @@ Ling-3.2-air is a **124B mixture-of-experts model with 5.5B parameters active pe
 
 Strict shares one BF16 KV pool between requests, leaving unified memory available to cache expert pages. Its published comparison with SGLang covers serving correctness. [Strict serving receipt](results/gb10-strict-serving.json) · [GB10 kernel checks](results/gb10-operators.json)
 
+## Model selection and context
+
+| Launcher model | Strict (default) | Spark | Default context, prompt and output combined |
+| --- | --- | --- | ---: |
+| `ling-3.2-air` (default) | inclusionAI dynamic FP8 | Primitive AI NVFP4A16 | 262,144 tokens |
+| `sante-air-vl` | inclusionAI original BF16, 232.55 GiB | inclusionAI MXFP4, 64.79 GiB | 131,072 tokens |
+
+For Ling-3.2-air, the default and max profiles request the checkpoint’s full 256K window. The saver profile uses 8,192 tokens. Use `PROFILE=rigmark-40k` to reproduce the earlier benchmark window. The context pool is shared across clients. The seven full-attention layers use 28.44 GiB of BF16 KV for one 256K sequence. Atlas stores the 64 rotary-key channels shared by all heads once per token. In Spark mode at 256K, the upper routed layers can read their original packed matrices from the model files.
+
+Air-VL has the same 42-layer backbone and vision tower. Its config specifies 128K natively. Its publisher’s extended 256K configuration uses YaRN. Air-VL’s Spark mode reads the publisher’s MXFP4 expert weights and E8M0 scales directly. Strict pages the original BF16 expert matrices from the checkpoint. Both modes use Air-VL’s own tokenizer, chat template, processor and served API name `lingsante-air-vl`. [Medical checkpoint](https://huggingface.co/inclusionAI/LingSante-3.1-air-VL) · [Publisher MXFP4 release](https://huggingface.co/inclusionAI/LingSante-3.1-air-VL-MXFP4)
+
+```sh
+./start.sh --model sante-air-vl --mode spark up
+# To serve the original BF16 checkpoint, on a disk with room for the snapshot
+./start.sh --model sante-air-vl --mode strict up
+```
+
 ## Quick start
 
 On a DGX Spark with Docker and NVIDIA GPU access, clone the repo and launch Strict. The first start downloads and verifies the selected checkpoint, then pulls or builds the pinned Atlas image.
@@ -49,10 +66,10 @@ cd SparkLing
 ./start.sh --mode strict up
 ```
 
-To run the **Spark profile measured above**, use:
+To run the **40K Spark profile measured above**, use
 
 ```sh
-PREFILL_PRECISION=nvfp4 DECODE_PRECISION=nvfp4 ./start.sh --mode spark up
+PROFILE=rigmark-40k PREFILL_PRECISION=nvfp4 DECODE_PRECISION=nvfp4 ./start.sh --mode spark up
 ```
 
 The endpoint is `http://127.0.0.1:8897/v1`. For a short text request:

@@ -81,3 +81,5 @@ concurrency matrix and prefill depths. It requires finite positive medians for
 every decode, concurrency and cold or warm-replay prefill metric. It then
 prints candidate/reference ratios and a separate `winner` field for each
 metric. It does not hide failed completion gates or mismatched settings.
+
+For Air-VL set `SERVED_MODEL_NAME=lingsante-air-vl` when running these drivers against either engine. The SparkLing launcher uses that API name for both Air-VL precisions.

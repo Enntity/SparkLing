@@ -91,7 +91,7 @@ COPY --from=builder /build/dist/spark /usr/local/bin/spark
 COPY --from=builder /build/jinja-templates/ /jinja-templates/
 COPY --from=builder /opt/cutlass/LICENSE.txt /opt/atlas/notices/CUTLASS-LICENSE.txt
 COPY --from=builder /build/dist/notices-rust/ /opt/atlas/notices/rust/
-COPY install/serve.py install/release.json install/checkpoint.json /opt/atlas/
+COPY install/serve.py install/release.json install/checkpoint.json install/checkpoint-sante-air-vl.json /opt/atlas/
 COPY install/profiles/ /opt/atlas/profiles/
 COPY install/atlas-source.json /opt/atlas/source-manifest.json
 COPY engine/LICENSE /LICENSE

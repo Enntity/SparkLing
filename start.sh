@@ -5,10 +5,17 @@ cd "$(dirname "${BASH_SOURCE[0]}")"
 if [[ ${1:-} == --version ]]; then exec python3 install/serve.py --version; fi
 if [[ -f .env ]]; then set -a; source ./.env; set +a; fi
 mode=${MODE:-strict}
-if [[ ${1:-} == --mode ]]; then
-  [[ $# -ge 2 ]] || { echo '--mode requires strict or spark' >&2; exit 2; }
-  mode=$2; shift 2
-fi
+model_id=${MODEL:-ling-3.2-air}
+while [[ ${1:-} == --mode || ${1:-} == --model ]]; do
+  [[ $# -ge 2 ]] || { echo "$1 requires a value" >&2; exit 2; }
+  if [[ $1 == --mode ]]; then mode=$2; else model_id=$2; fi
+  shift 2
+done
+case "$model_id" in
+  ling-3.2-air) manifest=install/checkpoint.json ;;
+  sante-air-vl) manifest=install/checkpoint-sante-air-vl.json ;;
+  *) echo "unknown SparkLing model: $model_id" >&2; exit 2 ;;
+esac
 cmd=${1:-up}
 [[ $# -le 1 ]] || { echo 'expected one command' >&2; exit 2; }
 name=${CONTAINER_NAME:-atlas-sparkling}
@@ -18,12 +25,12 @@ case "$cmd" in
   logs) exec docker logs -f --tail 100 "$name" ;;
   status) exec docker ps -a --filter "name=^/${name}$" ;;
   build) exec install/build.sh ;;
-  --help|-h) echo './start.sh [--mode strict|spark] [download|verify|build|up|stop|logs|status]'; exit ;;
+  --help|-h) echo './start.sh [--model ling-3.2-air|sante-air-vl] [--mode strict|spark] [download|verify|build|up|stop|logs|status]'; exit ;;
   up|verify|download) ;;
   *) echo "unknown command: $cmd" >&2; exit 2 ;;
 esac
 [[ $mode == strict || $mode == spark ]] || { echo 'MODE must be strict or spark' >&2; exit 2; }
-read -r repo revision served < <(python3 -c 'import json,sys; p=json.load(open("install/checkpoint.json")); m=p[sys.argv[1]]; print(m["repository"],m["revision"],p["served_model_name"])' "$mode")
+read -r repo revision served < <(python3 -c 'import json,sys; p=json.load(open(sys.argv[2])); m=p[sys.argv[1]]; print(m["repository"],m["revision"],p["served_model_name"])' "$mode" "$manifest")
 MODEL_ROOT=${MODEL_ROOT:-$HOME/models/sparkling}
 mkdir -p "$MODEL_ROOT"
 MODEL_ROOT=$(realpath "$MODEL_ROOT")
@@ -32,11 +39,11 @@ model=$MODEL_ROOT/$revision
 source install/common.sh
 if [[ $cmd == download || ( $cmd == up && ! -f $model/.sparkling-verified ) ]]; then
   hf_download "$repo" "$revision" "$model"
-  python3 install/check_files.py "$mode" "$model"
+  python3 install/check_files.py "$mode" "$model" --manifest "$manifest"
   touch "$model/.sparkling-verified"
 fi
 [[ $cmd != download ]] || exit 0
-if [[ $cmd == verify ]]; then exec python3 install/check_files.py "$mode" "$model"; fi
+if [[ $cmd == verify ]]; then exec python3 install/check_files.py "$mode" "$model" --manifest "$manifest"; fi
 [[ ${DRAFTER:-none} == none ]] || { echo 'The Ling MTP drafter requires an Atlas implementation' >&2; exit 2; }
 profile=${PROFILE:-default}
 mounts=(--mount "type=bind,src=$model,dst=/model,readonly")
@@ -48,7 +55,7 @@ elif [[ ! -f install/profiles/$profile.json ]]; then
 fi
 precision=${PREFILL_PRECISION:-checkpoint}
 decode_precision=${DECODE_PRECISION:-checkpoint}
-cache_namespace=$(python3 -c 'import sys; sys.path.insert(0,"install"); import serve; print(serve.precision_cache_namespace(*sys.argv[1:]))' "$mode" "$precision" "$decode_precision")
+cache_namespace=$(python3 -c 'import sys; sys.path.insert(0,"install"); import serve; print(serve.precision_cache_namespace(*sys.argv[1:]))' "$mode" "$precision" "$decode_precision" "$model_id")
 if [[ -n ${PREFIX_CACHE_DIR:-} || -n ${PREFIX_CACHE_GB:-} ]]; then
   [[ ${PREFIX_CACHE_DIR:-} == /* ]] || { echo 'PREFIX_CACHE_DIR must be absolute' >&2; exit 2; }
   export PREFIX_CACHE_GB=${PREFIX_CACHE_GB:-48}
@@ -67,7 +74,7 @@ if docker container inspect "$name" >/dev/null 2>&1; then docker rm -f "$name"; 
 docker run -d --name "$name" --memory 114g --gpus device=0 --ipc host --network host \
   --label io.enntity.owner=SparkLing --label io.enntity.job=serve --security-opt no-new-privileges=true \
   "${mounts[@]}" -e MODEL_PATH=/model -e SERVED_MODEL_NAME="$served" \
-  -e SPARKLING_MODE="$mode" -e SPARKLING_DECODE_PRECISION="$decode_precision" -e SPARKLING_PREFILL_PRECISION="$precision" -e SPARKLING_PROFILE="$profile" \
+  -e SPARKLING_MODEL="$model_id" -e SPARKLING_MODE="$mode" -e SPARKLING_DECODE_PRECISION="$decode_precision" -e SPARKLING_PREFILL_PRECISION="$precision" -e SPARKLING_PROFILE="$profile" \
   -e SPARKLING_GPU_MEMORY_UTILIZATION="${GPU_MEMORY_UTILIZATION:-}" \
   -e SPARKLING_PREFIX_CACHE_GB="${PREFIX_CACHE_GB:-}" -e SPARKLING_TOOL_GUARD="${TOOL_GUARD:-stream}" \
   -e SPARKLING_TOOL_GUARD_ALLOW_HOSTS="${TOOL_GUARD_ALLOW_HOSTS:-}" -e SPARKLING_TOOL_GUARD_DENY_HOSTS="${TOOL_GUARD_DENY_HOSTS:-}" \
