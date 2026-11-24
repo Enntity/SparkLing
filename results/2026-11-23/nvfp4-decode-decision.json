@@ -1,0 +1,115 @@
+{
+  "atlas_revision": "6ff4a609a0784f101cb0285b6560a60d4621ef2f",
+  "reference": "reference-a16-code.json",
+  "precision": "Primitive AI NVFP4A16 checkpoint. Optional Atlas conversion of 238 BF16 attention matrices to NVFP4 on load for 1\u20138 rows. NVFP4 large-prompt expert activations in these runs.",
+  "attention_quantization_bytes": {
+    "matrices": 238,
+    "original": 4850384896,
+    "with_scales": 1364171704,
+    "saved": 3486213192
+  },
+  "note": "Public timing and pass/fail fields from sequential one-Spark decision probes. Full request and response bodies are held in the research workspace.",
+  "quantized_attention": {
+    "concurrency_8": {
+      "wall_seconds": 18.482531,
+      "completion_tokens": 2048,
+      "aggregate_end_to_end_tokens_per_second": 110.807
+    },
+    "concurrent_outputs_match_serial": [
+      true,
+      true
+    ],
+    "8k": [
+      {
+        "prompt_tokens": 8192,
+        "completion_tokens": 8,
+        "effective_prefill_tokens_per_second": 3401.837,
+        "ttft_seconds": 2.408111
+      },
+      {
+        "prompt_tokens": 8192,
+        "completion_tokens": 8,
+        "effective_prefill_tokens_per_second": 3411.417,
+        "ttft_seconds": 2.401348
+      }
+    ],
+    "32k": [
+      {
+        "prompt_tokens": 32768,
+        "completion_tokens": 8,
+        "effective_prefill_tokens_per_second": 2737.121,
+        "ttft_seconds": 11.971703
+      },
+      {
+        "prompt_tokens": 32768,
+        "completion_tokens": 8,
+        "effective_prefill_tokens_per_second": 2733.669,
+        "ttft_seconds": 11.986822
+      }
+    ],
+    "decode": [
+      {
+        "decode_tok_s": 44.852019807428675,
+        "ttft_s": 0.24659312702715397,
+        "completion_tokens": 64,
+        "matched_reference_output": true
+      }
+    ]
+  },
+  "quantized_attention_expert_reuse": {
+    "concurrency_8": {
+      "wall_seconds": 17.828421,
+      "completion_tokens": 2048,
+      "aggregate_end_to_end_tokens_per_second": 114.873
+    },
+    "concurrent_outputs_match_serial": [
+      true,
+      true
+    ],
+    "decode": [
+      {
+        "decode_tok_s": 45.01156002978074,
+        "ttft_s": 0.2417091652750969,
+        "completion_tokens": 64,
+        "matched_reference_output": true
+      }
+    ]
+  },
+  "checkpoint_decode_batched_kda": {
+    "concurrency_8": {
+      "wall_seconds": 20.072102,
+      "completion_tokens": 2048,
+      "aggregate_end_to_end_tokens_per_second": 102.032
+    },
+    "concurrent_outputs_match_serial": [
+      true,
+      true
+    ]
+  },
+  "quality": {
+    "reference": [
+      true,
+      false,
+      true,
+      true
+    ],
+    "checkpoint_precision": [
+      true,
+      false,
+      true,
+      true
+    ],
+    "quantized_attention": [
+      true,
+      false,
+      true,
+      true
+    ],
+    "case_order": [
+      "arithmetic",
+      "evaluate Python expression",
+      "short retrieval",
+      "long retrieval"
+    ]
+  }
+}

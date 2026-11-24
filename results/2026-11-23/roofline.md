@@ -2,8 +2,9 @@
 
 | NVFP4A16 workload | vLLM parity | 2× target | Preliminary Atlas |
 | --- | ---: | ---: | ---: |
-| Single-stream code decode | 21.53 tokens/s | 43.07 tokens/s | 26.56 tokens/s |
-| Cold 8,192-token prefill | 2,839 tokens/s | 5,678 tokens/s | 3,350 tokens/s (opt-in NVFP4 activations) |
+| Initial RigMark code decode | 21.53 tokens/s | 43.07 tokens/s | 26.56 tokens/s |
+| Matched single-stream 64-token decode | 21.61 tokens/s | 43.22 tokens/s | 45.01 tokens/s (Atlas NVFP4 attention) |
+| Cold 8,192-token prefill | 2,839 tokens/s | 5,678 tokens/s | 3,407 tokens/s (opt-in NVFP4 activations) |
 
 Both engines exceeded the code completion budget on both runs. Their decode
 rates count generated tokens. The 8K baseline is the median of two runs. On the first identical 8K token
@@ -107,6 +108,40 @@ products and enabled CUDA graph replay keyed by the ordered recurrent-state slot
 The same eight-client code round improved from 40.53 to 87.40 aggregate tokens/s.
 The reference reached 130.73. Two independent requests produced the same
 outputs serially and concurrently. [Batch decode receipt](batch-decode-decision.json)
+
+### Attention requantization and eight-client decode
+
+Atlas `6ff4a609a` can quantize 238 BF16 attention matrices in the Primitive AI
+checkpoint to NVFP4 at load time. The packed matrices, including scales,
+occupy 1.364 GB in place of 4.850 GB of reads per decoded token. That brings
+estimated weight traffic to 4.008 GB/token. At the measured 244.8 GB/s,
+the streaming estimate rises from 32.7 to 61.1 tokens/s. The original
+matrices remain available for larger prompt batches.
+
+| Matched decision probe | Atlas | vLLM | Atlas / vLLM |
+| --- | ---: | ---: | ---: |
+| Fixed 64-token response, single-stream decode | 45.01 tokens/s | 21.61 tokens/s | 2.08× |
+| Cold 8K prompt, median prefill | 3,407 tokens/s | 2,839 tokens/s | 1.20× |
+| Cold 32K prompt, median prefill | 2,735 tokens/s | 2,533 tokens/s | 1.08× |
+| Eight clients, 256 tokens each, aggregate | 114.87 tokens/s | 130.73 tokens/s | 0.88× |
+
+Both 8K continuations and both 32K continuations matched vLLM byte for byte,
+as did the 64-token response. Each prefill median uses two requests. vLLM
+was faster on the second 32K request (11.58 s versus 11.99 s). The 64-token
+and eight-client rows use expert-weight reuse across requests. The long-prompt
+probes preceded that switch. The eight-client round improved from 87.40 to
+102.03 tokens/s with batched recurrence and routing, to 110.81 with quantized
+attention, and to 114.87 with expert-weight reuse. All eight streams ran to
+their reasoning-token cap in the final probe. This measures serving throughput.
+
+In four additional greedy tests with thinking disabled, stock vLLM, Atlas
+with checkpoint-precision decode and Atlas with quantized attention gave
+the same four answers. All returned 11 for a Python expression whose value
+is 15. All answered the other arithmetic question and both retrieval questions
+correctly. The quantized candidate also passed image recognition and the forced
+weather tool call. These probes give limited quality coverage.
+
+[Decode, prefill, concurrency and quality receipts](nvfp4-decode-decision.json)
 
 ## Decision probes
 
