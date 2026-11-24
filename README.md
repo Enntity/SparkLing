@@ -4,10 +4,11 @@
 SparkLing serves Ling-3.2-air on one NVIDIA DGX Spark using Atlas. Strict
 Atlas and SGLang both answered `17 × 23` with `391` on the original checkpoint,
 using the same 35-token prompt and four completion tokens. The native vision
-path also identified a solid red image. The opt-in NVFP4 profile decoded a fixed 64-token response at 44.9 tokens/s
-against 21.6 for vLLM on the same Spark. The eight-client code probe reached
-114.9 aggregate tokens/s against 130.7. Median cold prefill throughput was
-higher on Atlas at both 8K and 32K. Release qualification is pending.
+path also identified a solid red image. The candidate with opt-in NVFP4 attention and output-head weights decoded a
+fixed response at 49.01 tokens/s against 21.61 for vLLM. The eight-client
+code probe reached 138.07 aggregate tokens/s against 130.73. Cold time to
+first token was 2.37 s at 8K and 11.97 s at 32K. Identical prompts replayed
+in 9.4 ms and 12.7 ms. These figures are short decision probes.
 [One-Spark benchmark receipts](results/README.md) ·
 [Strict serving result](results/gb10-strict-serving.json) · [GB10 kernel checks](results/gb10-operators.json)
 

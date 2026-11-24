@@ -143,6 +143,24 @@ weather tool call. These probes give limited quality coverage.
 
 [Decode, prefill, concurrency and quality receipts](nvfp4-decode-decision.json)
 
+### Output head, routed tensor cores and prefix reuse
+
+Atlas `50e6bd5d9` adds `DECODE_PRECISION=nvfp4-head` in Spark mode.
+Requantizing the vocabulary head as well as the attention matrices brings
+estimated weight reads down to 3.43 GB/token. That corresponds to 71.4
+tokens/s at the measured streaming bandwidth. Single-stream decode reached
+49.01 tokens/s on the matched 64-token response, against vLLM’s 21.61.
+Eight clients reached 138.07 aggregate tokens/s in one 2,048-token round,
+against 130.73 on the corresponding reference round.
+
+The Ling attention kernel reads historical keys and values from the paged
+cache. The candidate restores the recurrent state and final hidden row on an
+exact hit. Cold and repeated 8K prompts took 2.372 s and 0.0094 s. At 32K
+they took 11.970 s and 0.0127 s. All four continuations matched the reference.
+Three requests with a shared prefix and different lookup questions returned
+the expected answers. All eight concurrent lookup responses matched serial
+execution. [Candidate decision probes](nvfp4-head-decision.json)
+
 ## Decision probes
 
 Use one cold 8K RigMark prompt and a short warm single-stream decode to test a

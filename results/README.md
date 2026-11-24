@@ -6,11 +6,10 @@
 The [decode and prefill rooflines](2026-11-23/roofline.md) compare the parity
 and 2× targets with the active weight traffic and measured GB10 compute rate.
 
-The latest development probe on one Spark reached 45.01 tokens/s on a fixed
-64-token response with opt-in NVFP4 attention. vLLM reached 21.61. Median
-cold prefill improved by 20% at 8K and 8% at 32K. Eight concurrent code
-requests reached 114.87 aggregate tokens/s against 130.73. [Matched probes
-and precision settings](2026-11-23/roofline.md#attention-requantization-and-eight-client-decode)
+The candidate with opt-in NVFP4 attention and output-head weights reached
+49.01 tokens/s on a fixed 64-token response, against 21.61 in vLLM. It also
+completed a matched eight-client round at 138.07 aggregate tokens/s against
+130.73. [Decode, prefill and exact-prefix replay](2026-11-23/roofline.md#output-head-routed-tensor-cores-and-prefix-reuse)
 
 ### Initial matched 64-token decode
 

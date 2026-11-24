@@ -1,0 +1,53 @@
+{
+  "atlas_revision": "50e6bd5d9289f9c2d1732b6e4a4f7c54fd1a58af",
+  "profile": {
+    "mode": "spark",
+    "prefill_precision": "nvfp4",
+    "decode_precision": "nvfp4-head"
+  },
+  "active_decode_weight_estimate_bytes": 3429097276.0,
+  "estimated_weight_stream_tokens_per_second_at_244_8_GB_s": 71.38905090658618,
+  "fixed_64_token_decode": {
+    "atlas_tokens_per_second": 49.0109438245266,
+    "reference_median_tokens_per_second": 21.61,
+    "matched_reference_output": true
+  },
+  "prefill_and_replay": [
+    {
+      "prompt_tokens": 8192,
+      "cold_ttft_s": 2.372035,
+      "replay_ttft_s": 0.009426,
+      "both_outputs_matched_reference": true
+    },
+    {
+      "prompt_tokens": 32768,
+      "cold_ttft_s": 11.97018,
+      "replay_ttft_s": 0.012732,
+      "both_outputs_matched_reference": true
+    }
+  ],
+  "eight_client_first_round": {
+    "atlas_aggregate_tokens_per_second": 138.066,
+    "reference_aggregate_tokens_per_second": 130.732,
+    "tokens_generated": 2048
+  },
+  "quality": {
+    "serial_concurrent_exact_matches": [
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true
+    ],
+    "shared_prefix_questions": [
+      true,
+      true,
+      true
+    ],
+    "matched_all_four_reference_answers": true,
+    "correct_answers_out_of_four": 3
+  }
+}
