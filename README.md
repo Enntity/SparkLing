@@ -44,24 +44,25 @@ Strict shares one BF16 KV pool between requests, leaving unified memory availabl
 | Launcher model | Strict (default) | Spark | Default context, prompt and output combined |
 | --- | --- | --- | ---: |
 | `ling-3.2-air` (default) | inclusionAI dynamic FP8 | Primitive AI NVFP4A16 | 262,144 tokens |
-| `sante-air-vl` | inclusionAI original BF16, 232.55 GiB | inclusionAI MXFP4, 64.79 GiB, or local NVFP4, 70.88 GiB | 131,072 tokens |
+| `sante-air-vl` | inclusionAI original BF16, 232.55 GiB | Enntity NVFP4, 70.88 GiB (default), or inclusionAI MXFP4, 64.79 GiB | 131,072 tokens |
 
 Ling-3.2-air uses its **262,144-token window** in the default and max profiles. The pool is shared across clients. Seven full-attention layers take 28.44 GiB of BF16 KV for one full sequence. Atlas stores the 64 rotary-key channels shared by the heads once per token. At 256K, Spark mode reads some upper-layer expert weights from the model files. Saver uses 8,192 tokens. `PROFILE=rigmark-40k` reproduces the earlier 40,960-token benchmark setting.
 
 On one Spark, the model recalled a key from the beginning of a 262,132-token prompt with 12 tokens reserved for the answer. It returned `MARIGOLD` in 8m 3s, including prefill. The first 480 prompt tokens came from the short control’s cache. [256K retrieval result](results/2026-11-24/base-window-long.json)
 
-Air-VL also has a 42-layer language backbone and a vision tower. Its checkpoint omits the appended native predictor that Ling-3.2-air ships. Its config specifies 128K natively. Its publisher’s extended 256K configuration uses YaRN. Air-VL’s Spark mode reads the publisher’s MXFP4 expert weights and E8M0 scales directly. Strict pages the original BF16 expert matrices from the checkpoint. Both modes use Air-VL’s own tokenizer, chat template, processor and served API name `lingsante-air-vl`. [Medical checkpoint](https://huggingface.co/inclusionAI/LingSante-3.1-air-VL) · [Publisher MXFP4 release](https://huggingface.co/inclusionAI/LingSante-3.1-air-VL-MXFP4)
+Air-VL also has a 42-layer language backbone and a vision tower. Its checkpoint omits the appended native predictor that Ling-3.2-air ships. Its config specifies 128K natively. Its publisher’s extended 256K configuration uses YaRN. Air-VL’s Spark mode downloads Enntity’s NVFP4 by default. Select `--quant publisher` to read inclusionAI’s MXFP4 expert weights and E8M0 scales directly. Strict pages the original BF16 expert matrices from the checkpoint. Both modes use Air-VL’s own tokenizer, chat template, processor and served API name `lingsante-air-vl`. [Medical checkpoint](https://huggingface.co/inclusionAI/LingSante-3.1-air-VL) · [Publisher MXFP4 release](https://huggingface.co/inclusionAI/LingSante-3.1-air-VL-MXFP4)
 
 Atlas now serves the publisher’s MXFP4 at **30.26–30.31 tok/s** on the same 64-token counting probe that previously ran at 10.47–10.48. The pinned SGLang reference measured 27.59–28.37. Both engines returned `391` for 17 × 23 and identified a blue square. Strict passed both checks on the original BF16 checkpoint.
 
-SparkLing can also build **NVFP4 directly from inclusionAI’s BF16**. The 70.88 GiB derivative packs the 61,440 routed expert matrices in groups of 16 and retains the original non-expert weights. At runtime, the optional fast settings also quantize attention, shared and dense MLP projections, and the vocabulary head. On the short counting probe the BF16-head fast profile measured **43.94–43.98 tok/s**. With NVFP4 MLPs and vocabulary head it measured **54.07–54.98 tok/s**. These are single-stream, 4K-context decision runs. [Original measurements](results/2026-11-24/README.md) · [Updated Air-VL measurements](results/2026-11-24/air-vl-quant)
+SparkLing downloads **Enntity’s NVFP4 checkpoint**, quantized directly from inclusionAI’s original BF16. The launcher pins the Hub revision, verifies all 70 inference files and reuses an existing verified local conversion. The 70.88 GiB derivative packs the 61,440 routed expert matrices in groups of 16 and retains the original non-expert weights. At runtime, the optional fast settings also quantize attention, shared and dense MLP projections, and the vocabulary head. On the short counting probe the BF16-head fast profile measured **43.94–43.98 tok/s**. With NVFP4 MLPs and vocabulary head it measured **54.07–54.98 tok/s**. These are single-stream, 4K-context decision runs. [Hugging Face weights](https://huggingface.co/Enntity/LingSante-3.1-air-VL-NVFP4) · [Original measurements](results/2026-11-24/README.md) · [Updated Air-VL measurements](results/2026-11-24/air-vl-quant)
 
 The experimental `DRAFTER=ling-mtp` option borrows Ling’s predictor. Santé verifies each proposal using its own weights. On the same NVFP4 target, drafting raised counting from **54.3 to 61.0 tok/s**, prose from **54.3 to 57.7**, and Python from **53.7 to 68.9**. Counting reached **2.05×** the fresh SGLang MXFP4 counting baseline of 29.67 tok/s. Counting and Python matched undrafted Santé byte for byte. Prose diverged. The arithmetic and image checks passed. At the default 128K setting the packaged launcher reproduced all three drafted outputs at **61.1, 57.6 and 68.9 tok/s** on the same short prompts. [Packaged 128K check](results/2026-11-24/packaged) · [Paired decode and parity results](results/2026-11-24/air-vl-quant#borrowed-ling-predictor)
 
 ```sh
-./start.sh --model sante-air-vl --mode spark up
-# Convert the pinned BF16 original locally, then serve the fast NVFP4 profile
-PREFILL_PRECISION=nvfp4 DECODE_PRECISION=nvfp4-mlp-head ./start.sh --model sante-air-vl --mode spark --quant nvfp4 up
+# Serve the publisher’s MXFP4 weights
+./start.sh --model sante-air-vl --mode spark --quant publisher up
+# Download the pinned NVFP4 weights and serve the fast NVFP4 profile
+PREFILL_PRECISION=nvfp4 DECODE_PRECISION=nvfp4-mlp-head ./start.sh --model sante-air-vl --mode spark up
 # Add the experimental Ling predictor to the same fast NVFP4 target
 DRAFTER=ling-mtp PREFILL_PRECISION=nvfp4 DECODE_PRECISION=nvfp4-mlp-head ./start.sh --model sante-air-vl --mode spark --quant nvfp4 up
 # Serve the publisher's original BF16

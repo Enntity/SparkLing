@@ -6,7 +6,7 @@ if [[ ${1:-} == --version ]]; then exec python3 install/serve.py --version; fi
 if [[ -f .env ]]; then set -a; source ./.env; set +a; fi
 mode=${MODE:-strict}
 model_id=${MODEL:-ling-3.2-air}
-quant=${QUANT:-publisher}
+quant=${QUANT:-}
 while [[ ${1:-} == --mode || ${1:-} == --model || ${1:-} == --quant ]]; do
   [[ $# -ge 2 ]] || { echo "$1 requires a value" >&2; exit 2; }
   case "$1" in
@@ -21,6 +21,10 @@ case "$model_id" in
   sante-air-vl) manifest=install/checkpoint-sante-air-vl.json ;;
   *) echo "unknown SparkLing model: $model_id" >&2; exit 2 ;;
 esac
+if [[ -z $quant ]]; then
+  quant=publisher
+  if [[ $model_id == sante-air-vl && $mode == spark ]]; then quant=nvfp4; fi
+fi
 if [[ $quant != publisher && ( $quant != nvfp4 || $model_id != sante-air-vl || $mode != spark ) ]]; then
   echo '--quant nvfp4 requires --model sante-air-vl --mode spark' >&2
   exit 2
@@ -44,35 +48,23 @@ case "$model_id/$quant/$drafter" in
   */*/none|ling-3.2-air/publisher/mtp|sante-air-vl/nvfp4/ling-mtp) ;;
   *) echo 'Use DRAFTER=mtp for Ling, or DRAFTER=ling-mtp for BF16-derived Air-VL NVFP4.' >&2; exit 2 ;;
 esac
-read -r repo revision served < <(python3 -c 'import json,sys; p=json.load(open(sys.argv[2])); m=p[sys.argv[1]]; print(m["repository"],m["revision"],p["served_model_name"])' "$mode" "$manifest")
+if [[ $quant == nvfp4 ]]; then
+  manifest=install/checkpoint-sante-nvfp4.json
+fi
+read -r repo revision served cache_dir < <(python3 -c '
+import json, sys
+pin = json.load(open(sys.argv[2]))
+snapshot = pin[sys.argv[1]]
+print(snapshot["repository"], snapshot["revision"], pin["served_model_name"],
+      snapshot.get("cache_directory", snapshot["revision"]))
+' "$mode" "$manifest")
 MODEL_ROOT=${MODEL_ROOT:-$HOME/models/sparkling}
 mkdir -p "$MODEL_ROOT"
 MODEL_ROOT=$(realpath "$MODEL_ROOT")
-model=$MODEL_ROOT/$revision
+model=$MODEL_ROOT/$cache_dir
 # shellcheck source=install/common.sh
 source install/common.sh
-if [[ $quant == nvfp4 ]]; then
-  manifest=install/checkpoint-sante-nvfp4.json
-  model=$MODEL_ROOT/$(python3 -c 'import json,sys; print(json.load(open(sys.argv[1]))["spark"]["revision"])' "$manifest")
-  if [[ $cmd != verify && ! -f $model/.sparkling-verified ]]; then
-    source_rev=$(python3 -c 'import json,sys; print(json.load(open(sys.argv[1]))["source_revision"])' "$manifest")
-    if [[ ! -f $MODEL_ROOT/$source_rev/.sparkling-verified ]]; then
-      source_repo=$(python3 -c 'import json; print(json.load(open("install/checkpoint-sante-air-vl.json"))["strict"]["repository"])')
-      hf_download "$source_repo" "$source_rev" "$MODEL_ROOT/$source_rev"
-      python3 install/check_files.py strict "$MODEL_ROOT/$source_rev" --manifest install/checkpoint-sante-air-vl.json
-      touch "$MODEL_ROOT/$source_rev/.sparkling-verified"
-    fi
-    mkdir -p "$model"
-    docker run --rm --gpus device=0 --user "$(id -u):$(id -g)" --memory 18g --ipc host \
-      -e HOME=/tmp -e TRITON_CACHE_DIR=/tmp/triton -e CUDA_CACHE_PATH=/tmp/cuda \
-      -v "$(realpath "$MODEL_ROOT/$source_rev"):/original:ro" -v "$model:/output" \
-      -v "$PWD/install/quantize_sante.py:/quantize.py:ro" --entrypoint python3 \
-      lmsysorg/sglang@sha256:7d0d06441b8220e537ae6bb287294cab26f3c877ded3bc6803a148c294b2cce6 \
-      /quantize.py /original /output
-    python3 install/check_files.py spark "$model" --manifest "$manifest"
-    touch "$model/.sparkling-verified"
-  fi
-elif [[ $cmd == download || ( $cmd == up && ! -f $model/.sparkling-verified ) ]]; then
+if [[ $cmd != verify && ( ! -f $model/.sparkling-verified || ( $cmd == download && $quant == publisher ) ) ]]; then
   hf_download "$repo" "$revision" "$model"
   python3 install/check_files.py "$mode" "$model" --manifest "$manifest"
   touch "$model/.sparkling-verified"

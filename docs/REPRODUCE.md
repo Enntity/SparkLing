@@ -37,7 +37,9 @@ arithmetic and image answers. Replace `parity` with `speed` to time two
 
 `bench/draft_decode.py PORT` sends three greedy 64-token requests. Run it against the same profile with `DRAFTER=none` and `DRAFTER=mtp`. Compare the output strings, accepted prediction token counts and tokens per second after the first token. For Air-VL, pass `--model lingsante-air-vl`.
 
-Build the Air-VL derivative with `./start.sh --model sante-air-vl --mode spark --quant nvfp4 download`. The conversion needs both the 232.55 GiB original and 70.88 GiB output. To reuse an original on another volume, link its immutable revision directory into `MODEL_ROOT`. The launcher checks the BF16 source and verifies the derived files against the pinned SHA-256 manifest. `verify` repeats the hashes. The publisher’s MXFP4 and Strict BF16 keep separate checkpoint directories.
+Download the 70.88 GiB Air-VL checkpoint with `./start.sh --model sante-air-vl --mode spark --quant nvfp4 download`. The launcher fetches Enntity’s pinned Hub revision, checks SHA-256 for all 70 inference files, and shares the cache directory with the previous byte-identical local conversion. An existing verified copy also works offline. The same command with `verify` repeats the hashes. Strict BF16 and publisher MXFP4 have their own checkpoint directories. [Published weights](https://huggingface.co/Enntity/LingSante-3.1-air-VL-NVFP4)
+
+To reproduce the quantization independently, run `python3 install/quantize_sante.py ORIGINAL_BF16 OUTPUT` with Python, CUDA PyTorch, Triton and safetensors as used in the pinned SGLang image. The 232.55 GiB original and the output must both fit on disk. [Quantizer](../install/quantize_sante.py)
 
 Use `python3 bench/sante_air_vl.py PORT parity` and `speed` for the paired image, text and decode probes. `python3 bench/sante_distributions.py PORT quality` records next-token top-five probabilities. The `prefill` command sends the same cold 512- and 2,048-token inputs to each server. `bench/sante_experts.py --help` gives the offline comparison against the original expert tensors.
 

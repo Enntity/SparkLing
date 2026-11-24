@@ -130,7 +130,7 @@ docker run --rm --gpus device=0 --ipc=host \
 
 ## LingSante Air-VL MXFP4 on GB10
 
-Download the publisher checkpoint with `./start.sh --model sante-air-vl --mode spark download`. Run SGLang on the same Spark separately from Atlas. The ARM64 manifest below belongs to the publisher-recommended `lmsysorg/sglang:dev-Ling-3.0-flash-VL` image. The short comparison uses one GPU, a 4,096-token reference window and the native FlashInfer MXFP4 MoE backend.
+Download the publisher checkpoint with `./start.sh --model sante-air-vl --mode spark --quant publisher download`. Run SGLang on the same Spark separately from Atlas. The ARM64 manifest below belongs to the publisher-recommended `lmsysorg/sglang:dev-Ling-3.0-flash-VL` image. The short comparison uses one GPU, a 4,096-token reference window and the native FlashInfer MXFP4 MoE backend.
 
 ```sh
 rev=be6dd27338cdb9677e11418ec62b349dfb48fb2d

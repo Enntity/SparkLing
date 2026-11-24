@@ -1,8 +1,11 @@
 {
+  "served_model_name": "lingsante-air-vl",
   "source_revision": "1f398c937d6069994a156689636832c47d8c09be",
   "format": "NVFP4 E2M1 group 16, per-expert E4M3 scales, BF16 trunk",
   "spark": {
-    "revision": "1f398c937d6069994a156689636832c47d8c09be-nvfp4-rne-v1",
+    "repository": "Enntity/LingSante-3.1-air-VL-NVFP4",
+    "revision": "2702935791ac4f04b2b103c748a19de89f6df940",
+    "cache_directory": "1f398c937d6069994a156689636832c47d8c09be-nvfp4-rne-v1",
     "files": {
       "bailingmm_utils.py": {
         "bytes": 19139,

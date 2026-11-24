@@ -1,6 +1,9 @@
 # SPDX-License-Identifier: AGPL-3.0-only
 import hashlib
 import json
+import os
+import shutil
+import subprocess
 from pathlib import Path
 import tempfile
 import unittest
@@ -39,6 +42,34 @@ class InstallTests(unittest.TestCase):
             with self.assertRaisesRegex(ValueError, 'checkpoint precision'):
                 serve.launch({**env, 'SPARKLING_DECODE_PRECISION': 'nvfp4'},
                              json.loads((HERE/'profiles/default.json').read_text()))
+
+    def test_air_spark_download_uses_published_pin_and_reuses_verified_conversion(self):
+        pin = json.loads((HERE / 'checkpoint-sante-nvfp4.json').read_text())
+        snapshot = pin['spark']
+        self.assertEqual(snapshot['repository'], 'Enntity/LingSante-3.1-air-VL-NVFP4')
+        self.assertRegex(snapshot['revision'], r'^[a-f0-9]{40}$')
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            launcher = root / 'start.sh'
+            shutil.copy2(HERE.parent / 'start.sh', launcher)
+            (root / 'install').symlink_to(HERE.resolve(), target_is_directory=True)
+            hf = root / 'hf'
+            hf.write_text('#!/bin/sh\nprintf "%s\\n" "$@" > "$MODEL_ROOT/hf-args"\nexit 42\n')
+            hf.chmod(0o755)
+            models = root / 'models'
+            env = {'PATH': f"{root}:{os.environ['PATH']}", 'HOME': tmp, 'MODEL_ROOT': str(models)}
+            args = [str(launcher), '--model', 'sante-air-vl', '--mode', 'spark', 'download']
+            self.assertEqual(subprocess.run(args, env=env).returncode, 42)
+            cache = models / snapshot['cache_directory']
+            calls = models / 'hf-args'
+            self.assertEqual(calls.read_text().splitlines(), [
+                'download', snapshot['repository'], '--revision', snapshot['revision'], '--local-dir', str(models.resolve() / cache.name)
+            ])
+            calls.unlink()
+            cache.mkdir()
+            (cache / '.sparkling-verified').touch()
+            subprocess.run(args, env=env, check=True)
+            self.assertFalse(calls.exists())
 
     def test_air_derived_quant_and_publisher_cache_separation(self):
         profile = json.loads((HERE/'profiles/default.json').read_text())
