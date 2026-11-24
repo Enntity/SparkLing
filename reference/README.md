@@ -127,3 +127,21 @@ docker run --rm --gpus device=0 --ipc=host \
   --context-length 40960 --max-total-tokens 40960 --max-running-requests 8 \
   --mem-fraction-static 0.82
 ```
+
+## LingSante Air-VL MXFP4 on GB10
+
+Download the publisher checkpoint with `./start.sh --model sante-air-vl --mode spark download`. Run SGLang on the same Spark separately from Atlas. The ARM64 manifest below belongs to the publisher-recommended `lmsysorg/sglang:dev-Ling-3.0-flash-VL` image. The short comparison uses one GPU, a 4,096-token reference window and the native FlashInfer MXFP4 MoE backend.
+
+```sh
+rev=be6dd27338cdb9677e11418ec62b349dfb48fb2d
+docker run --rm --gpus device=0 --network host --ipc host \
+  -v "${MODEL_ROOT:-$HOME/models/sparkling}/$rev:/model:ro" \
+  -e HF_HUB_OFFLINE=1 -e OMP_NUM_THREADS=1 -e MKL_NUM_THREADS=1 \
+  --entrypoint python3 lmsysorg/sglang@sha256:7d0d06441b8220e537ae6bb287294cab26f3c877ded3bc6803a148c294b2cce6 \
+  -m sglang.launch_server --model-path /model --served-model-name lingsante-air-vl \
+  --host 127.0.0.1 --port 8898 --tp-size 1 --trust-remote-code --context-length 4096 \
+  --dtype bfloat16 --mem-fraction-static 0.85 --max-running-requests 1 \
+  --attention-backend flashinfer --mm-attention-backend triton_attn \
+  --moe-runner-backend flashinfer_mxfp4 --disable-shared-experts-fusion \
+  --reasoning-parser ling3 --disable-cuda-graph
+```
