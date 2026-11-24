@@ -68,6 +68,12 @@ It uses those copies for forward passes of up to eight rows, including short
 prompt tails. Larger passes continue using the published BF16 weights. This
 option can be combined with `PREFILL_PRECISION=nvfp4` in Spark mode.
 
+For the speed candidate, run
+`PREFILL_PRECISION=nvfp4 DECODE_PRECISION=nvfp4-head ./start.sh --mode spark up`.
+Atlas also quantizes the BF16 vocabulary output matrix from Primitive AI’s
+checkpoint. Small batches use tensor cores for attention and routed experts.
+This profile has a distinct disk-cache directory.
+
 Compare strict to the original FP8 weights and Spark to the same NVFP4A16
 weights in the reference engine. The results directory includes raw one-Spark
 RigMark receipts and the engine and model revisions used for each run.
