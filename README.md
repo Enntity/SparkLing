@@ -5,7 +5,7 @@
 
 # SparkLing
 
-**SparkLing 0.1.0-dev** serves inclusionAI’s Ling-3.2-air on one NVIDIA DGX Spark. The Atlas engine provides an OpenAI-compatible API for text, images and tool calls. Strict mode serves the original FP8 model. Video input has yet to pass a SparkLing serving check. Spark mode uses Primitive AI’s NVFP4A16 checkpoint. [Original model](https://huggingface.co/inclusionAI/Ling-3.2-air) · [Primitive AI checkpoint](https://huggingface.co/primitive-ai/Ling-3.2-air-NVFP4A16)
+**SparkLing 0.1.0-dev** serves inclusionAI’s Ling-3.2-air on one NVIDIA DGX Spark. The Atlas engine provides an OpenAI-compatible API for text, images and tool calls. Strict mode serves the original FP8 model. The invoice and grid checks pass. Video input currently fails the animated GIF check, and the default server disables MP4 decoding. [Media checks](results/2026-11-24/packaged/media.jsonl) Spark mode uses Primitive AI’s NVFP4A16 checkpoint. [Original model](https://huggingface.co/inclusionAI/Ling-3.2-air) · [Primitive AI checkpoint](https://huggingface.co/primitive-ai/Ling-3.2-air-NVFP4A16)
 
 ## RigMark on one Spark
 
@@ -56,7 +56,7 @@ Atlas now serves the publisher’s MXFP4 at **30.26–30.31 tok/s** on the same 
 
 SparkLing can also build **NVFP4 directly from inclusionAI’s BF16**. The 70.88 GiB derivative packs the 61,440 routed expert matrices in groups of 16 and retains the original non-expert weights. At runtime, the optional fast settings also quantize attention, shared and dense MLP projections, and the vocabulary head. On the short counting probe the BF16-head fast profile measured **43.94–43.98 tok/s**. With NVFP4 MLPs and vocabulary head it measured **54.07–54.98 tok/s**. These are single-stream, 4K-context decision runs. [Original measurements](results/2026-11-24/README.md) · [Updated Air-VL measurements](results/2026-11-24/air-vl-quant)
 
-The experimental `DRAFTER=ling-mtp` option borrows Ling’s predictor. Santé verifies each proposal using its own weights. On the same NVFP4 target, drafting raised counting from **54.3 to 61.0 tok/s**, prose from **54.3 to 57.7**, and Python from **53.7 to 68.9**. Counting reached **2.05×** the fresh SGLang MXFP4 counting baseline of 29.67 tok/s. Counting and Python matched undrafted Santé byte for byte. Prose diverged. The arithmetic and image checks passed. [Paired decode and parity results](results/2026-11-24/air-vl-quant#borrowed-ling-predictor)
+The experimental `DRAFTER=ling-mtp` option borrows Ling’s predictor. Santé verifies each proposal using its own weights. On the same NVFP4 target, drafting raised counting from **54.3 to 61.0 tok/s**, prose from **54.3 to 57.7**, and Python from **53.7 to 68.9**. Counting reached **2.05×** the fresh SGLang MXFP4 counting baseline of 29.67 tok/s. Counting and Python matched undrafted Santé byte for byte. Prose diverged. The arithmetic and image checks passed. At the default 128K setting the packaged launcher reproduced all three drafted outputs at **61.1, 57.6 and 68.9 tok/s** on the same short prompts. [Packaged 128K check](results/2026-11-24/packaged) · [Paired decode and parity results](results/2026-11-24/air-vl-quant#borrowed-ling-predictor)
 
 ```sh
 ./start.sh --model sante-air-vl --mode spark up
@@ -94,7 +94,7 @@ curl -sS http://127.0.0.1:8897/v1/chat/completions \
 
 Use `./start.sh status`, `./start.sh logs` and `./start.sh stop` to manage the server. `./start.sh --version` prints the product version and exact Atlas revision. To stage a checkpoint before launch, run `./start.sh --mode strict download` and `./start.sh --mode strict verify`, substituting `spark` for the other checkpoint. Each snapshot has its own immutable revision under `MODEL_ROOT` (default `~/models/sparkling`). Allow space for both if you download both.
 
-The default Strict 256K configuration pages experts to fit one Spark. Its 37-token arithmetic smoke took 62.5 s to first token and four output tokens averaged 1.08 tok/s. The 256K Spark retrieval control took 41.5 s to first token on a 512-token prompt. The 40K RigMark and 4K drafting runs use different memory profiles. [Strict smoke](results/2026-11-24/strict-base-window-smoke.json) · [Spark retrieval control](results/2026-11-24/base-window-short.json)
+The default Strict 256K configuration pages experts to fit one Spark. After startup, a new 39-token counting prompt took **26.56 s to first token** and decoded eight tokens at **1.58 tok/s**. Repeating it warm took **0.637 s to first token** and decoded 64 tokens at **3.37 tok/s**. The earlier 37-token arithmetic smoke took 62.5 s to first token. [Packaged Strict timings](results/2026-11-24/packaged/strict-256k.jsonl) The 256K Spark retrieval control took 41.5 s to first token on a 512-token prompt. The 40K RigMark and 4K drafting runs use different memory profiles. [Strict smoke](results/2026-11-24/strict-base-window-smoke.json) · [Spark retrieval control](results/2026-11-24/base-window-short.json)
 
 ## Native drafting on Ling-3.2-air
 

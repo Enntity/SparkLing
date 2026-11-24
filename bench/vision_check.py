@@ -22,7 +22,7 @@ CASES = {
 
 
 def correct(case, answer):
-    answer = answer.lower()
+    answer = answer.lower().translate(str.maketrans("", "", "*_`"))
     if case == "invoice":
         return all(field in answer for field in ("harbor street bakery", "48213", "66.15"))
     if case == "grid":
