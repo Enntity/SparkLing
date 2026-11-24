@@ -46,6 +46,17 @@ class InstallTests(unittest.TestCase):
         self.assertEqual(env['ATLAS_LING_W4A4_PREFILL'], '1')
         self.assertEqual(env['ATLAS_KV_NVME_DIR'], '/prefix-cache/spark-prefill-nvfp4/kv')
 
+    def test_nvfp4_decode_is_explicit_and_keeps_its_own_cache(self):
+        profile = json.loads((HERE/'profiles/default.json').read_text())
+        options = {'MODEL_PATH': '/model', 'SPARKLING_DECODE_PRECISION': 'nvfp4',
+                   'SPARKLING_PREFIX_CACHE_GB': '48'}
+        with self.assertRaisesRegex(ValueError, 'spark mode'):
+            serve.launch(options, profile)
+        _, env = serve.launch({**options, 'SPARKLING_MODE': 'spark'}, profile)
+        self.assertEqual(env['ATLAS_LING_NVFP4_DECODE'], '1')
+        self.assertEqual(env['ATLAS_KV_NVME_DIR'], '/prefix-cache/spark-decode-nvfp4/kv')
+        self.assertNotIn('ATLAS_LING_W4A4_PREFILL', env)
+
     def test_launcher_profiles_preserve_the_mode_and_one_spark(self):
         for path in (HERE/'profiles').glob('*.json'):
             profile = json.loads(path.read_text())

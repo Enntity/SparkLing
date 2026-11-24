@@ -4,11 +4,10 @@
 SparkLing serves Ling-3.2-air on one NVIDIA DGX Spark using Atlas. Strict
 Atlas and SGLang both answered `17 × 23` with `391` on the original checkpoint,
 using the same 35-token prompt and four completion tokens. The native vision
-path also identified a solid red image. On a matched 64-token NVFP4A16 decode
-probe, Atlas reached 27.63 tokens/s and vLLM reached 21.61. Median time to
-first token was 0.448 s on Atlas and 0.141 s on vLLM. Cold prefill on the
-same 8K prompt took 9.26 s on Atlas and 3.17 s on vLLM. Full release
-qualification is deferred while prefill trails the reference.
+path also identified a solid red image. The opt-in NVFP4 profile decoded a fixed 64-token response at 44.9 tokens/s
+against 21.6 for vLLM on the same Spark. The eight-client code probe reached
+114.9 aggregate tokens/s against 130.7. Median cold prefill throughput was
+higher on Atlas at both 8K and 32K. Release qualification is pending.
 [One-Spark benchmark receipts](results/README.md) ·
 [Strict serving result](results/gb10-strict-serving.json) · [GB10 kernel checks](results/gb10-operators.json)
 
@@ -62,6 +61,12 @@ batches, and uses an 8,192-token prompt chunk in the bundled profiles.
 Single-token decode keeps BF16 activations. The default
 `PREFILL_PRECISION=checkpoint` follows the activation precision of the selected
 checkpoint. Disk prefix caches use a separate directory for each precision.
+
+The experimental `DECODE_PRECISION=nvfp4` option asks Atlas to quantize the
+large BF16 attention projections in Primitive AI’s checkpoint at load time.
+It uses those copies for forward passes of up to eight rows, including short
+prompt tails. Larger passes continue using the published BF16 weights. This
+option can be combined with `PREFILL_PRECISION=nvfp4` in Spark mode.
 
 Compare strict to the original FP8 weights and Spark to the same NVFP4A16
 weights in the reference engine. The results directory includes raw one-Spark

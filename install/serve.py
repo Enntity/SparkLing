@@ -61,12 +61,15 @@ def _memory_share(environ, args):
     return [f'--gpu-memory-utilization={util}' if a.startswith('--gpu-memory-utilization=') else a for a in args]
 
 
-def prefill_cache_namespace(mode, precision):
-    if precision == 'checkpoint':
-        return mode
-    if precision == 'nvfp4' and mode == 'spark':
-        return 'spark-prefill-nvfp4'
-    raise ValueError('PREFILL_PRECISION accepts checkpoint in either mode or nvfp4 in spark mode')
+def precision_cache_namespace(mode, prefill, decode):
+    namespace = mode
+    for phase, precision in [('prefill', prefill), ('decode', decode)]:
+        if precision == 'checkpoint':
+            continue
+        if precision != 'nvfp4' or mode != 'spark':
+            raise ValueError(f'{phase.upper()}_PRECISION accepts checkpoint in either mode or nvfp4 in spark mode')
+        namespace += f'-{phase}-nvfp4'
+    return namespace
 
 
 def disk_prefix_cache(gb, mode):
@@ -119,7 +122,10 @@ def launch(environ, profile):
         if '--reference-mode' not in args:
             args.append('--reference-mode')
     precision = environ.get('SPARKLING_PREFILL_PRECISION', 'checkpoint')
-    namespace = prefill_cache_namespace(mode, precision)
+    decode_precision = environ.get('SPARKLING_DECODE_PRECISION', 'checkpoint')
+    namespace = precision_cache_namespace(mode, precision, decode_precision)
+    if decode_precision == 'nvfp4':
+        env.update(ATLAS_LING_NVFP4_DECODE='1', ATLAS_LING_EXPERT_UNION='1')
     if precision == 'nvfp4':
         env.update(ATLAS_LING_W4A4_PREFILL='1', ATLAS_BF16_GEMM_CUTLASS='1')
         args = ['--max-prefill-tokens=8192' if a == '--max-prefill-tokens=2048' else a for a in args]
