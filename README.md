@@ -5,7 +5,9 @@
 
 # SparkLing
 
-**SparkLing 0.1.0-dev** serves inclusionAI’s Ling-3.2-air on one NVIDIA DGX Spark. The Atlas engine provides an OpenAI-compatible API for text, images and tool calls. Strict mode serves the original FP8 model. The invoice and grid checks pass. Video input currently fails the animated GIF check, and the default server disables MP4 decoding. [Media checks](results/2026-11-24/packaged/media.jsonl) Spark mode uses Primitive AI’s NVFP4A16 checkpoint. [Original model](https://huggingface.co/inclusionAI/Ling-3.2-air) · [Primitive AI checkpoint](https://huggingface.co/primitive-ai/Ling-3.2-air-NVFP4A16)
+**SparkLing 0.1.0-dev** serves inclusionAI’s Ling-3.2-air on one NVIDIA DGX Spark. The Atlas engine provides an OpenAI-compatible API for text, images and tool calls. Spark mode, the default, uses Primitive AI’s NVFP4A16 checkpoint. Strict mode serves the original FP8 model. [Original model](https://huggingface.co/inclusionAI/Ling-3.2-air) · [Primitive AI checkpoint](https://huggingface.co/primitive-ai/Ling-3.2-air-NVFP4A16)
+
+The invoice and grid image checks pass. Video input currently fails the animated GIF check, and the default server disables MP4 decoding. [Media checks](results/2026-11-24/packaged/media.jsonl)
 
 ## RigMark on one Spark
 
@@ -30,7 +32,7 @@ With thinking enabled, both engines spent all 4,096 tokens on reasoning for each
 
 Ling-3.2-air is a **124B mixture-of-experts model with 5.5B parameters active per token**. After two dense layers, each of the next 40 layers selects eight of 512 routed experts and also runs a shared expert.
 
-| | Strict (default) | Spark |
+| | Strict | Spark (default) |
 | --- | --- | --- |
 | Checkpoint | inclusionAI’s original dynamic FP8, including its BF16 and FP32 exceptions | Primitive AI’s NVFP4A16 routed experts with BF16 activations |
 | Weight storage | 120.4 GiB in 13 shards. Atlas pages cold experts from disk. | About 72.5 GiB |
@@ -41,7 +43,7 @@ Strict shares one BF16 KV pool between requests, leaving unified memory availabl
 
 ## Model selection and context
 
-| Launcher model | Strict (default) | Spark | Default context, prompt and output combined |
+| Launcher model | Strict | Spark (default) | Default context, prompt and output combined |
 | --- | --- | --- | ---: |
 | `ling-3.2-air` (default) | inclusionAI dynamic FP8 | Primitive AI NVFP4A16 | 262,144 tokens |
 | `sante-air-vl` | inclusionAI original BF16, 232.55 GiB | Enntity NVFP4, 70.88 GiB (default), or inclusionAI MXFP4, 64.79 GiB | 131,072 tokens |
@@ -71,18 +73,18 @@ DRAFTER=ling-mtp PREFILL_PRECISION=nvfp4 DECODE_PRECISION=nvfp4-mlp-head ./start
 
 ## Quick start
 
-On a DGX Spark with Docker and NVIDIA GPU access, clone the repo and launch Strict. The first start downloads and verifies the selected checkpoint, then pulls or builds the pinned Atlas image.
+On a DGX Spark with Docker and NVIDIA GPU access, clone the repo and launch. The first start downloads and verifies the selected checkpoint, then pulls or builds the pinned Atlas image. Spark mode with NVFP4 prefill and decode is the default, at Ling’s full 262,144-token window.
 
 ```sh
 git clone https://github.com/Enntity/SparkLing.git
 cd SparkLing
-./start.sh --mode strict up
+./start.sh up
 ```
 
-To run the **40K Spark profile measured above**, use
+To run the **40K profile measured above**, use `PROFILE=rigmark-40k ./start.sh up`. To serve inclusionAI’s original FP8 checkpoint instead, use
 
 ```sh
-PROFILE=rigmark-40k PREFILL_PRECISION=nvfp4 DECODE_PRECISION=nvfp4 ./start.sh --mode spark up
+./start.sh --mode strict up
 ```
 
 The endpoint is `http://127.0.0.1:8897/v1`. For a short text request:
@@ -93,21 +95,21 @@ curl -sS http://127.0.0.1:8897/v1/chat/completions \
   -d '{"model":"ling-3.2-air-atlas","messages":[{"role":"user","content":"What is 17 times 23?"}],"max_tokens":32,"chat_template_kwargs":{"enable_thinking":false}}'
 ```
 
-Use `./start.sh status`, `./start.sh logs` and `./start.sh stop` to manage the server. `./start.sh --version` prints the product version and exact Atlas revision. To stage a checkpoint before launch, run `./start.sh --mode strict download` and `./start.sh --mode strict verify`, substituting `spark` for the other checkpoint. Each snapshot has its own immutable revision under `MODEL_ROOT` (default `~/models/sparkling`). Allow space for both if you download both.
+Use `./start.sh status`, `./start.sh logs` and `./start.sh stop` to manage the server. `./start.sh --version` prints the product version and exact Atlas revision. To stage a checkpoint before launch, run `./start.sh download` and `./start.sh verify`, adding `--mode strict` for the original checkpoint. Each snapshot has its own immutable revision under `MODEL_ROOT` (default `~/models/sparkling`). Allow space for both if you download both.
 
-The default Strict 256K configuration pages experts to fit one Spark. After startup, a new 39-token counting prompt took **26.56 s to first token** and decoded eight tokens at **1.58 tok/s**. Repeating it warm took **0.637 s to first token** and decoded 64 tokens at **3.37 tok/s**. The earlier 37-token arithmetic smoke took 62.5 s to first token. [Packaged Strict timings](results/2026-11-24/packaged/strict-256k.jsonl) The 256K Spark retrieval control took 41.5 s to first token on a 512-token prompt. The 40K RigMark and 4K drafting runs use different memory profiles. [Strict smoke](results/2026-11-24/strict-base-window-smoke.json) · [Spark retrieval control](results/2026-11-24/base-window-short.json)
+Strict at 256K pages experts to fit one Spark. After startup, a new 39-token counting prompt took **26.56 s to first token** and decoded eight tokens at **1.58 tok/s**. Repeating it warm took **0.637 s to first token** and decoded 64 tokens at **3.37 tok/s**. The earlier 37-token arithmetic smoke took 62.5 s to first token. [Packaged Strict timings](results/2026-11-24/packaged/strict-256k.jsonl) The 256K Spark retrieval control took 41.5 s to first token on a 512-token prompt. The 40K RigMark and 4K drafting runs use different memory profiles. [Strict smoke](results/2026-11-24/strict-base-window-smoke.json) · [Spark retrieval control](results/2026-11-24/base-window-short.json)
 
 ## Native drafting on Ling-3.2-air
 
 Set `DRAFTER=mtp` to use the checkpoint’s one-token predictor. Atlas gives the predictor private attention state and verifies each proposal with the target. In Spark mode only the drafter gets a separate NVFP4 vocabulary head when the target uses its BF16 head. Ordinary decoding is the default. On short greedy requests the batched verifier can choose a different continuation from the single-row target. The 256K retrieval check and 40K RigMark table above used ordinary decode.
 
 ```sh
-DRAFTER=mtp PROFILE=rigmark-40k PREFILL_PRECISION=nvfp4 DECODE_PRECISION=nvfp4 ./start.sh --mode spark up
+DRAFTER=mtp PROFILE=rigmark-40k ./start.sh up
 ```
 
 ## Precision and caching
 
-By default, `--mode spark` follows the checkpoint’s activation and attention precision. `PREFILL_PRECISION=nvfp4` quantizes routed expert activations for large prompt batches and uses an 8,192-token prompt chunk in the bundled profiles. Single-token expert decode retains BF16 activations. `DECODE_PRECISION=nvfp4` quantizes the large attention projections at load time. Atlas uses these copies for up to eight rows, including short prompt tails, and the published BF16 weights for larger passes.
+For Ling-3.2-air, Spark mode defaults to `PREFILL_PRECISION=nvfp4` and `DECODE_PRECISION=nvfp4`, the fast profile measured above. Set either to `checkpoint` to follow the checkpoint’s activation and attention precision. Air-VL keeps checkpoint precision unless you choose otherwise. `PREFILL_PRECISION=nvfp4` quantizes routed expert activations for large prompt batches and uses an 8,192-token prompt chunk in the bundled profiles. Single-token expert decode retains BF16 activations. `DECODE_PRECISION=nvfp4` quantizes the large attention projections at load time. Atlas uses these copies for up to eight rows, including short prompt tails, and the published BF16 weights for larger passes.
 
 The experimental `DECODE_PRECISION=nvfp4-head` also quantizes the vocabulary head. It reached 46.87 tok/s on single-stream prose, but finished only one of two prompts. Keep `DECODE_PRECISION=nvfp4` for the BF16 head used above. Optional disk prefix caches use distinct directories for each precision. The default, saver and max memory profiles are development settings. Strict uses the published sampling settings. Spark uses Atlas sampling defaults, including min-p 0.08 and top-n-sigma 1.0, unless the request overrides them. The launcher enables the streaming tool guard by default. A filtered response can end with `content_filter`. [Launcher settings](.env.example) · [Experimental head results](results/2026-11-23/one-spark-qualification.json)
 
