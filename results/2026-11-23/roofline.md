@@ -161,6 +161,13 @@ Three requests with a shared prefix and different lookup questions returned
 the expected answers. All eight concurrent lookup responses matched serial
 execution. [Candidate decision probes](nvfp4-head-decision.json)
 
+The preferred profile keeps the BF16 output head. Its estimated active weight
+reads are 4.008 GB/token, for a 61.1 tokens/s streaming ceiling. On the stock
+prose suite it reached 43.70 tokens/s versus 21.60 on vLLM, completing both
+prompts. In the thinking-disabled coding control it reached 42.85 versus
+21.55. Eight-client throughput trailed vLLM by 1.3% for code and 6.4% for
+prose. [Preferred-profile measurements](bf16-head-qualification.json)
+
 ## Decision probes
 
 Use one cold 8K RigMark prompt and a short warm single-stream decode to test a

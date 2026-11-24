@@ -1,0 +1,159 @@
+{
+  "atlas_revision": "50e6bd5d9289f9c2d1732b6e4a4f7c54fd1a58af",
+  "image": "sha256:652fba1c1abd69c06cb5d75e8e1a5c32581c23de44e7249034face7b6423594f",
+  "configuration": "One Spark. Primitive AI NVFP4A16. NVFP4 routed expert prompt activations and Atlas-quantized attention for 1\u20138 rows. BF16 original vocabulary head, BF16 KV. No speculation.",
+  "coverage": "Stock prose suite plus matched eight-client code rounds, one cold and repeated prompt at each depth, shared-prefix retrieval, serial/concurrent text, image, tool and thinking-disabled code.",
+  "single_stream": {
+    "code": {
+      "tokens_per_second": {
+        "atlas": 41.645,
+        "vllm": 21.551,
+        "ratio": 1.9324
+      },
+      "wall_seconds": {
+        "atlas": [
+          98.677756,
+          98.711275
+        ],
+        "vllm": [
+          190.28516,
+          190.165175
+        ]
+      }
+    },
+    "prose": {
+      "tokens_per_second": {
+        "atlas": 43.696,
+        "vllm": 21.601,
+        "ratio": 2.0229
+      },
+      "wall_seconds": {
+        "atlas": [
+          38.296918,
+          30.475096
+        ],
+        "vllm": [
+          65.804234,
+          64.303405
+        ]
+      }
+    },
+    "structured": {
+      "tokens_per_second": {
+        "atlas": 44.094,
+        "vllm": 21.605,
+        "ratio": 2.0409
+      },
+      "wall_seconds": {
+        "atlas": [
+          23.000424,
+          23.834882
+        ],
+        "vllm": [
+          46.802002,
+          47.996215
+        ]
+      }
+    }
+  },
+  "completion_gates": {
+    "code": {
+      "atlas": {
+        "passed": 0,
+        "total": 2
+      },
+      "vllm": {
+        "passed": 0,
+        "total": 2
+      }
+    },
+    "prose": {
+      "atlas": {
+        "passed": 2,
+        "total": 2
+      },
+      "vllm": {
+        "passed": 2,
+        "total": 2
+      }
+    },
+    "structured": {
+      "atlas": {
+        "passed": 2,
+        "total": 2
+      },
+      "vllm": {
+        "passed": 2,
+        "total": 2
+      }
+    }
+  },
+  "eight_client_code": {
+    "atlas": 132.536,
+    "vllm": 134.329,
+    "ratio": 0.9867
+  },
+  "concurrent_prose": {
+    "1": {
+      "atlas": 41.121,
+      "vllm": 21.288,
+      "ratio": 1.9317
+    },
+    "4": {
+      "atlas": 83.781,
+      "vllm": 78.803,
+      "ratio": 1.0632
+    },
+    "8": {
+      "atlas": 115.349,
+      "vllm": 123.217,
+      "ratio": 0.9361
+    }
+  },
+  "prefill_seconds": {
+    "8192": {
+      "atlas_cold": 2.378468,
+      "atlas_replay": 0.011734,
+      "reference_first_cold": 3.171794,
+      "reference_first_replay": 0.247791,
+      "outputs_match": true
+    },
+    "32768": {
+      "atlas_cold": 11.997737,
+      "atlas_replay": 0.013468,
+      "reference_first_cold": 14.659711,
+      "reference_first_replay": 0.287513,
+      "outputs_match": true
+    }
+  },
+  "thinking_disabled_code": {
+    "throughput": {
+      "atlas": 42.848,
+      "vllm": 21.545,
+      "ratio": 1.9888
+    },
+    "atlas_gate": {
+      "passed": 1,
+      "total": 1
+    },
+    "reference_gate": {
+      "passed": 1,
+      "total": 1
+    }
+  },
+  "concurrent_exact_matches": [
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true
+  ],
+  "shared_prefix_checks": [
+    true,
+    true,
+    true
+  ]
+}

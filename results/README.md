@@ -6,7 +6,34 @@
 The [decode and prefill rooflines](2026-11-23/roofline.md) compare the parity
 and 2× targets with the active weight traffic and measured GB10 compute rate.
 
-### Full paired RigMark qualification
+### Preferred profile with the BF16 output head
+
+`PREFILL_PRECISION=nvfp4 DECODE_PRECISION=nvfp4` keeps the BF16 vocabulary
+head from Primitive AI’s checkpoint. This profile ran from the pinned product
+image on the same Spark as vLLM. It passed both prose and both structured
+completions in the stock prose suite. Both engines exhausted the 4,096-token
+budget on the two thinking-enabled code prompts.
+
+| Workload | Atlas | vLLM |
+| --- | ---: | ---: |
+| Prose decode, tokens/s | 43.70 | 21.60 |
+| Prose completion times, seconds | 38.30 / 30.48 | 65.80 / 64.30 |
+| Structured decode, tokens/s | 44.09 | 21.61 |
+| Same Go coding task, thinking off, tokens/s | 42.85 | 21.55 |
+| Four-client prose, aggregate tokens/s | 83.78 | 78.80 |
+| Eight-client prose, aggregate tokens/s | 115.35 | 123.22 |
+| Eight-client code, aggregate tokens/s | 132.54 | 134.33 |
+| 8K cold / exact replay, first matched pair in seconds | 2.378 / 0.0117 | 3.172 / 0.2478 |
+| 32K cold / exact replay, first matched pair in seconds | 11.998 / 0.0135 | 14.660 / 0.2875 |
+
+Both engines returned visible code in the thinking-disabled control. All eight
+concurrent lookup responses matched serial execution. Atlas answered three
+shared-prefix questions correctly, recognized the red image and called the
+weather tool with Paris. Both cold and both cached completions matched vLLM.
+The eight-client code, cache and thinking-disabled rows are focused comparisons
+alongside the stock prose suite. [Preferred-profile measurements](2026-11-23/bf16-head-qualification.json)
+
+### Full paired RigMark qualification with the experimental NVFP4 output head
 
 Atlas `50e6bd5d9` ran the unmodified Spark-family code and prose suites on the
 same DGX Spark as stock vLLM. Both used Primitive AI's NVFP4A16 checkpoint.
