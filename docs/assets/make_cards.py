@@ -130,15 +130,11 @@ class Card:
 
 PINK = (255, 70, 120)
 def scores(card, x0, y, k, ky, data):
-    """Lay out the measured Spark and vLLM rates in tokens per second."""
+    """Show packaged single-stream decode rates for both models."""
     head, small, label, num = int(21 * k), int(13 * k), int(23 * k), int(31 * k)
-    cols = [("SPARK", "BF16 head", x0 + int(800 * k)),
-            ("vLLM", "reference", x0 + int(1200 * k))]
-    workloads = [
-        ("PROSE", data["single_stream"]["prose"]["tokens_per_second"]),
-        ("STRUCTURED", data["single_stream"]["structured"]["tokens_per_second"]),
-        ("8X PROSE", data["concurrent_prose"]["8"]),
-    ]
+    cols = [("LING", "40K profile", x0 + int(800 * k)),
+            ("SANTÉ", "128K profile", x0 + int(1200 * k))]
+    workloads = [("COUNTING", "count"), ("PROSE", "prose"), ("PYTHON", "code")]
 
     def right(xr, yy, s, size, color, glow=None):
         card.text((xr - int(card.font(size).getlength(s)), yy), [s], size, color, glow=glow)
@@ -151,17 +147,17 @@ def scores(card, x0, y, k, ky, data):
     line = y + int(54 * ky)
     card.draw.rectangle((x0, line, cols[-1][2], line + 2), fill=(170, 60, 230))
     card.inked.append((x0, line, cols[-1][2], line + 2))
-    for row, (name, rates) in enumerate(workloads):
+    for row, (name, probe) in enumerate(workloads):
         yy = y + int(72 * ky) + row * int(42 * ky)
         card.text((x0, yy + (num - label) // 2), [name], label, WHITE)
-        for engine, (_, _, xr) in zip(("atlas", "vllm"), cols):
-            right(xr, yy, f"{rates[engine]:.1f}", num, YELLOW, glow=ORANGE)
+        for rates, (_, _, xr) in zip(data, cols):
+            right(xr, yy, f"{rates[probe]:.1f}", num, YELLOW, glow=ORANGE)
 
 
-LINES = (["Strict", "original FP8", "disk-backed experts"],
-         ["Spark", "Primitive AI NVFP4A16", "BF16 head"],
-         ["124B MoE", "5.5B active per token"])
-SOURCE = ["0.1.0-dev", "RigMark", "23 NOV 2026"]
+LINES = (["Ling", "native MTP", "NVFP4A16"],
+         ["Santé Air-VL", "borrowed MTP", "NVFP4"],
+         ["Single stream", "64 output tokens per prompt"])
+SOURCE = ["0.1.0-dev", "24 NOV 2026"]
 URL = "github.com/Enntity/SparkLing"
 
 
@@ -173,7 +169,7 @@ def banner(base, font, out, data):
     c.clear((150, 521, 1200, 700))        # supporting lines (icons stay)
     c.clear((1550, 636, 2110, 688), stars=False)  # the URL (the GitHub mark stays)
     c.title((88, 112), [("Spark", SPARK), ("Ling", LING)], 112)
-    c.text((88, 270), ["Ling-3.2-air on one NVIDIA DGX Spark", "Atlas"], 23, WHITE)
+    c.text((88, 270), ["Ling + Santé Air-VL on one DGX Spark", "Atlas"], 23, WHITE)
     scores(c, 100, 326, 1.0, 1.0, data)
     for y, parts in zip((537, 580, 624), LINES):
         c.text((172, y), parts, 20, WHITE)
@@ -195,7 +191,7 @@ def social(base, font, out, data):
     c.clear((150, 596, 1050, 815))        # supporting lines (icons stay)
     c.clear((1140, 784, 1690, 830), stars=False)  # the URL (the GitHub mark stays)
     c.title((80, 178), [("Spark", SPARK), ("Ling", LING)], 86)
-    c.text((82, 312), ["Ling-3.2-air on one NVIDIA DGX Spark", "Atlas"], 19, WHITE)
+    c.text((82, 312), ["Ling + Santé Air-VL on one DGX Spark", "Atlas"], 19, WHITE)
     scores(c, 82, 380, 0.84, 1.08, data)
     for y, parts in zip((618, 668, 718), LINES):
         c.text((170, y), parts, 17, WHITE, gap=12)
@@ -208,7 +204,10 @@ def social(base, font, out, data):
 
 if __name__ == "__main__":
     base, font, out = Path(sys.argv[1]), sys.argv[2], Path(sys.argv[3])
-    receipt = Path(__file__).resolve().parents[2] / "results/2026-11-23/bf16-head-qualification.json"
-    data = json.loads(receipt.read_text())
+    results = Path(__file__).resolve().parents[2] / "results/2026-11-24/packaged"
+    data = []
+    for filename in ("ling-streams.jsonl", "sante-128k-drafted.jsonl"):
+        records = map(json.loads, (results / filename).read_text().splitlines())
+        data.append({row["probe"]: row["decode_tok_s"] for row in records})
     banner(base / "banner.png", font, out / "banner.png", data)
     social(base / "social-preview.png", font, out / "social-preview.png", data)

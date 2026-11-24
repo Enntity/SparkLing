@@ -1,6 +1,6 @@
 <!-- SPDX-License-Identifier: AGPL-3.0-only -->
 <p align="center">
-  <img src="docs/assets/banner.png" alt="SparkLing on one DGX Spark. Spark versus vLLM in tokens per second: prose 43.7 vs 21.6, structured output 44.1 vs 21.6, eight-client prose 115.3 vs 123.2 aggregate." width="100%">
+  <img src="docs/assets/banner.png" alt="Drafted decode on one DGX Spark, in counting, prose and Python. Ling at 40K: 59.5, 50.8, 54.5 tokens/s. Santé at 128K: 61.1, 57.6, 68.9 tokens/s." width="100%">
 </p>
 
 # SparkLing
