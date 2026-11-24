@@ -44,7 +44,7 @@ Strict shares one BF16 KV pool between requests, leaving unified memory availabl
 | Launcher model | Strict (default) | Spark | Default context, prompt and output combined |
 | --- | --- | --- | ---: |
 | `ling-3.2-air` (default) | inclusionAI dynamic FP8 | Primitive AI NVFP4A16 | 262,144 tokens |
-| `sante-air-vl` | inclusionAI original BF16, 232.55 GiB | inclusionAI MXFP4, 64.79 GiB | 131,072 tokens |
+| `sante-air-vl` | inclusionAI original BF16, 232.55 GiB | inclusionAI MXFP4, 64.79 GiB, or local NVFP4, 70.88 GiB | 131,072 tokens |
 
 Ling-3.2-air uses its **262,144-token window** in the default and max profiles. The pool is shared across clients. Seven full-attention layers take 28.44 GiB of BF16 KV for one full sequence. Atlas stores the 64 rotary-key channels shared by the heads once per token. At 256K, Spark mode reads some upper-layer expert weights from the model files. Saver uses 8,192 tokens. `PROFILE=rigmark-40k` reproduces the earlier 40,960-token benchmark setting.
 
@@ -56,10 +56,14 @@ Atlas now serves the publisher’s MXFP4 at **30.26–30.31 tok/s** on the same 
 
 SparkLing can also build **NVFP4 directly from inclusionAI’s BF16**. The 70.88 GiB derivative packs the 61,440 routed expert matrices in groups of 16 and retains the original non-expert weights. At runtime, the optional fast settings also quantize attention, shared and dense MLP projections, and the vocabulary head. On the short counting probe the BF16-head fast profile measured **43.94–43.98 tok/s**. With NVFP4 MLPs and vocabulary head it measured **54.07–54.98 tok/s**. These are single-stream, 4K-context decision runs. [Original measurements](results/2026-11-24/README.md) · [Updated Air-VL measurements](results/2026-11-24/air-vl-quant)
 
+The experimental `DRAFTER=ling-mtp` option borrows Ling’s predictor. Santé verifies each proposal using its own weights. On the same NVFP4 target, drafting raised counting from **54.3 to 61.0 tok/s**, prose from **54.3 to 57.7**, and Python from **53.7 to 68.9**. Counting reached **2.05×** the fresh SGLang MXFP4 counting baseline of 29.67 tok/s. Counting and Python matched undrafted Santé byte for byte. Prose diverged. The arithmetic and image checks passed. [Paired decode and parity results](results/2026-11-24/air-vl-quant#borrowed-ling-predictor)
+
 ```sh
 ./start.sh --model sante-air-vl --mode spark up
 # Convert the pinned BF16 original locally, then serve the fast NVFP4 profile
 PREFILL_PRECISION=nvfp4 DECODE_PRECISION=nvfp4-mlp-head ./start.sh --model sante-air-vl --mode spark --quant nvfp4 up
+# Add the experimental Ling predictor to the same fast NVFP4 target
+DRAFTER=ling-mtp PREFILL_PRECISION=nvfp4 DECODE_PRECISION=nvfp4-mlp-head ./start.sh --model sante-air-vl --mode spark --quant nvfp4 up
 # Serve the publisher's original BF16
 ./start.sh --model sante-air-vl --mode strict up
 ```

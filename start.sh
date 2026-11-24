@@ -39,6 +39,11 @@ case "$cmd" in
   *) echo "unknown command: $cmd" >&2; exit 2 ;;
 esac
 [[ $mode == strict || $mode == spark ]] || { echo 'MODE must be strict or spark' >&2; exit 2; }
+drafter=${DRAFTER:-none}
+case "$model_id/$quant/$drafter" in
+  */*/none|ling-3.2-air/publisher/mtp|sante-air-vl/nvfp4/ling-mtp) ;;
+  *) echo 'Use DRAFTER=mtp for Ling, or DRAFTER=ling-mtp for BF16-derived Air-VL NVFP4.' >&2; exit 2 ;;
+esac
 read -r repo revision served < <(python3 -c 'import json,sys; p=json.load(open(sys.argv[2])); m=p[sys.argv[1]]; print(m["repository"],m["revision"],p["served_model_name"])' "$mode" "$manifest")
 MODEL_ROOT=${MODEL_ROOT:-$HOME/models/sparkling}
 mkdir -p "$MODEL_ROOT"
@@ -52,7 +57,10 @@ if [[ $quant == nvfp4 ]]; then
   if [[ $cmd != verify && ! -f $model/.sparkling-verified ]]; then
     source_rev=$(python3 -c 'import json,sys; print(json.load(open(sys.argv[1]))["source_revision"])' "$manifest")
     if [[ ! -f $MODEL_ROOT/$source_rev/.sparkling-verified ]]; then
-      ./start.sh --model sante-air-vl --mode strict --quant publisher download
+      source_repo=$(python3 -c 'import json; print(json.load(open("install/checkpoint-sante-air-vl.json"))["strict"]["repository"])')
+      hf_download "$source_repo" "$source_rev" "$MODEL_ROOT/$source_rev"
+      python3 install/check_files.py strict "$MODEL_ROOT/$source_rev" --manifest install/checkpoint-sante-air-vl.json
+      touch "$MODEL_ROOT/$source_rev/.sparkling-verified"
     fi
     mkdir -p "$model"
     docker run --rm --gpus device=0 --user "$(id -u):$(id -g)" --memory 18g --ipc host \
@@ -69,13 +77,29 @@ elif [[ $cmd == download || ( $cmd == up && ! -f $model/.sparkling-verified ) ]]
   python3 install/check_files.py "$mode" "$model" --manifest "$manifest"
   touch "$model/.sparkling-verified"
 fi
+if [[ $drafter == ling-mtp ]]; then
+  read -r donor_repo donor_rev < <(python3 -c 'import json; p=json.load(open("install/checkpoint.json"))["spark"]; print(p["repository"],p["revision"])')
+  donor=$MODEL_ROOT/$donor_rev
+  donor_files=(config.json model.safetensors.index.json experts-layer42.safetensors rest-001.safetensors)
+  for file in "${donor_files[@]}"; do
+    if [[ ! -f $donor/$file ]]; then
+      [[ $cmd != verify ]] || { echo "missing donor file: $donor/$file" >&2; exit 1; }
+      hf_download "$donor_repo" "$donor_rev" "$donor" "${donor_files[@]}"
+      break
+    fi
+  done
+  view="$(realpath "$model")-ling-mtp-${donor_rev:0:12}"
+  flags=()
+  if [[ $cmd == verify ]]; then
+    python3 install/check_files.py "$mode" "$model" --manifest "$manifest"
+    flags+=(--verify)
+  fi
+  python3 install/prepare_sante_draft.py "$model" "$donor" "$view" "${flags[@]}"
+  model=$view
+  [[ $cmd != verify ]] || exit 0
+fi
 [[ $cmd != download ]] || exit 0
 if [[ $cmd == verify ]]; then exec python3 install/check_files.py "$mode" "$model" --manifest "$manifest"; fi
-drafter=${DRAFTER:-none}
-if [[ $drafter != none && ( $drafter != mtp || $model_id != ling-3.2-air ) ]]; then
-  echo 'DRAFTER accepts none or mtp on Ling-3.2-air. Air-VL has no draft head.' >&2
-  exit 2
-fi
 profile=${PROFILE:-default}
 mounts=(--mount "type=bind,src=$model,dst=/model,readonly")
 if [[ -f $profile ]]; then
@@ -87,7 +111,7 @@ fi
 precision=${PREFILL_PRECISION:-checkpoint}
 decode_precision=${DECODE_PRECISION:-checkpoint}
 cache_namespace=$(python3 -c 'import sys; sys.path.insert(0,"install"); import serve; print(serve.precision_cache_namespace(*sys.argv[1:]))' "$mode" "$precision" "$decode_precision" "$model_id" "$quant")
-if [[ $drafter == mtp ]]; then cache_namespace+=-mtp1; fi
+if [[ $drafter != none ]]; then cache_namespace+="-${drafter}1"; fi
 if [[ -n ${PREFIX_CACHE_DIR:-} || -n ${PREFIX_CACHE_GB:-} ]]; then
   [[ ${PREFIX_CACHE_DIR:-} == /* ]] || { echo 'PREFIX_CACHE_DIR must be absolute' >&2; exit 2; }
   export PREFIX_CACHE_GB=${PREFIX_CACHE_GB:-48}

@@ -72,6 +72,17 @@ class InstallTests(unittest.TestCase):
         with self.assertRaisesRegex(ValueError, 'embedded'):
             serve.launch({**env, 'SPARKLING_MODEL': 'sante-air-vl'}, profile)
 
+    def test_transferred_draft_on_medical_nvfp4(self):
+        profile = json.loads((HERE/'profiles/default.json').read_text())
+        env = {'MODEL_PATH': '/model', 'SPARKLING_MODE': 'spark', 'SPARKLING_QUANT': 'nvfp4',
+               'SPARKLING_MODEL': 'sante-air-vl', 'SPARKLING_DRAFTER': 'ling-mtp', 'SPARKLING_PREFIX_CACHE_GB': '48'}
+        args, settings = serve.launch(env, profile)
+        self.assertIn('--num-drafts=1', args)
+        self.assertTrue(settings['ATLAS_KV_NVME_DIR'].endswith('-ling-mtp1/kv'))
+        for override in ({'SPARKLING_QUANT': 'publisher'}, {'SPARKLING_MODE': 'strict'}):
+            with self.assertRaises(ValueError):
+                serve.launch({**env, **override}, profile)
+
     def test_immutable_weight_and_template_checks(self):
         with tempfile.TemporaryDirectory() as tmp:
             directory = Path(tmp)

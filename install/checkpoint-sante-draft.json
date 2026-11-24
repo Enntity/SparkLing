@@ -1,0 +1,25 @@
+{
+  "source_revision": "3a78e58506316b5b9b7d06037910c3f4abdd291f",
+  "files": {
+    "config.json": {
+      "bytes": 4199,
+      "sha256": "f09b453d04a4d484ba698e847a9336390db07d0df5a48e806d65b0a423d4613a"
+    },
+    "draft-experts-layer42.safetensors": {
+      "bytes": 1699277952,
+      "sha256": "48b9b49d6d8978ee2be100b767b3abea4910914c76cabd9f65fff71fe42b363c"
+    },
+    "draft-provenance.json": {
+      "bytes": 286,
+      "sha256": "fc16c61c012307f842be72abfaea666f6880d59c71125b14b27557ec2c55c8c8"
+    },
+    "draft-rest-001.safetensors": {
+      "bytes": 104593312,
+      "sha256": "c5b425fbb218de3d682cd5e91274830bd813f53acff8a8ce45bab4edae57a62f"
+    },
+    "model.safetensors.index.json": {
+      "bytes": 18154590,
+      "sha256": "d61f8df8a581544911b94de3dfe1b2c7efe7e44845be75b66efd55abd4361c5f"
+    }
+  }
+}

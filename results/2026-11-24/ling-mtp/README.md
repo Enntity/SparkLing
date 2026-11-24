@@ -15,3 +15,17 @@ The third run accepted 29, 23 and 25 predicted tokens. Counting and Python match
 Set `DRAFTER=mtp` when launching the base model. The default and Strict launcher settings use ordinary decode. For vLLM use the same A16 checkpoint, `--draft-tokens 3`, and the same one-client requests. The publisher uses its own three-token MTP vLLM recipe on four GPUs. [Publisher recipe](https://huggingface.co/inclusionAI/Ling-3.2-air) · [SparkLing reference launcher](../../../reference/serve.py)
 
 KV-only prompt priming computes the predictor's keys and values in tiles of 128, omitting its historical queries, attention outputs, MoE and vocabulary projection. This version measured **59.04, 50.47 and 53.99 tok/s** with 29, 23 and 25 accepted predictions. A diagnostic with scalar KDA verification measured **43.68, 37.36 and 41.29**, and still differed on prose. [KV-only priming](primed.jsonl) · [Scalar KDA control](serial.jsonl)
+
+A second control forced scalar target verification for KDA, MLA and vocabulary projection. It reproduced all three ordinary continuations byte for byte at 39.40, 36.08 and 36.21 tok/s. Keeping the faster batched verifier changes the prose continuation on this probe. [Scalar target verification](serial-all.jsonl)
+
+## Matched vLLM with drafting on
+
+The pinned vLLM ARM64 image ran the same Primitive A16 weights at TP=1 and 4K with the publisher's three-token MTP lookahead. Atlas used one draft. Both served the same three request bodies and generated 64 tokens per request.
+
+| Workload | Atlas, one draft | vLLM, three drafts | Atlas / vLLM |
+| --- | ---: | ---: | ---: |
+| Counting | 59.04 | 46.91 | 1.26× |
+| Prose | 50.47 | 29.44 | 1.71× |
+| Python | 53.99 | 47.61 | 1.13× |
+
+These are three short decisions on fixed prompts. The independent 40K RigMark comparison has speculation off on both engines. [vLLM streams](vllm-mtp3.jsonl) · [Atlas streams](primed.jsonl)

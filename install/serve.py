@@ -152,14 +152,18 @@ def launch(environ, profile):
                                           environ.get('SPARKLING_MODEL', 'ling-3.2-air'),
                                           environ.get('SPARKLING_QUANT', 'publisher'))
     drafter = environ.get('SPARKLING_DRAFTER', 'none')
-    if drafter == 'mtp' and environ.get('SPARKLING_MODEL', 'ling-3.2-air') == 'ling-3.2-air':
+    model_id = environ.get('SPARKLING_MODEL', 'ling-3.2-air')
+    if drafter != 'none':
+        if drafter == 'ling-mtp' and model_id == 'sante-air-vl' and environ.get('SPARKLING_QUANT') == 'nvfp4' and mode == 'spark':
+            namespace += '-ling-mtp1'
+        elif drafter == 'mtp' and model_id == 'ling-3.2-air':
+            namespace += '-mtp1'
+        else:
+            raise ValueError('mtp requires the embedded Ling predictor; ling-mtp requires BF16-derived Air-VL NVFP4')
         args += ['--speculative', '--num-drafts=1', '--mtp-quantization=bf16']
         env.update(ATLAS_MTP_DRAFTER_PREFILL='1', ATLAS_MTP_CATCHUP='1')
         if mode == 'spark':
             env['ATLAS_LING_MTP_QUANT_HEAD'] = '1'
-        namespace += '-mtp1'
-    elif drafter != 'none':
-        raise ValueError('DRAFTER=mtp requires the embedded Ling-3.2-air predictor')
     if decode_precision != 'checkpoint':
         # Ling reads historical K/V through the paged MLA kernel. Exact hits
         # restore both the recurrent state and final hidden row.
@@ -185,13 +189,16 @@ def launch(environ, profile):
     return ['/usr/local/bin/spark', *args], env
 
 
-def check_model_dir(model, mode, model_id='ling-3.2-air', selection='publisher'):
+def check_model_dir(model, mode, model_id='ling-3.2-air', selection='publisher', drafter='none'):
     root = Path(model)
     config = json.loads((root/'config.json').read_text())
     if config.get('model_type') != 'bailing_moe_v3_vl':
         raise ValueError('expected bailing_moe_v3_vl')
     quant = config.get('quantization_config', {})
     medical = model_id == 'sante-air-vl'
+    if drafter == 'ling-mtp' and (config.get('text_config', {}).get('num_nextn_predict_layers') != 1
+                                  or not (root/'draft-provenance.json').is_file()):
+        raise ValueError('missing transferred Ling predictor in Air-VL model directory')
     if medical and mode == 'strict' and (quant or config.get('torch_dtype') != 'bfloat16'):
         raise ValueError('Air-VL strict requires the original BF16 checkpoint')
     if selection == 'nvfp4' and (not medical or mode != 'spark' or
@@ -244,7 +251,7 @@ def main():
     profile = profile_path(os.environ, here)
     argv, env = launch(os.environ, json.loads(profile.read_text()))
     check_model_dir(env['MODEL_PATH'], env['SPARKLING_MODE'], env.get('SPARKLING_MODEL', 'ling-3.2-air'),
-                    env.get('SPARKLING_QUANT', 'publisher'))
+                    env.get('SPARKLING_QUANT', 'publisher'), env.get('SPARKLING_DRAFTER', 'none'))
     check_prefix_cache_dir(env)
     source = json.loads((here/'source-manifest.json').read_text())
     print(json.dumps({'event': 'atlas-recipe-start', **release_info(here), 'profile': profile.stem,

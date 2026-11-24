@@ -39,3 +39,15 @@ For 2,048 prompt tokens, the active projections require roughly 9.40 GFLOP/token
 A fresh SGLang MXFP4 run on the identical counting request averaged **29.67 tok/s**, moving the 2× bar to **59.35 tok/s**. The same two distinct, uncached 2,048-token inputs took SGLang **32.98 s and 0.671 s**. Using the second shape-warm, content-cold result as the reference gives **3,052 input tok/s** and a 2× prefill target of roughly **6,104 tok/s**. It fits the projection and idealized streaming ceilings, with limited bandwidth headroom. Atlas reached roughly **0.81×** SGLang on that second prompt. The first SGLang observation is included separately because averaging the two would hide the startup cost. [Fresh SGLang streams](sglang-speed.jsonl) · [Fresh SGLang cold prompts](sglang-prefill.jsonl)
 
 Across all five Atlas profiles on the same probability bins, the mean coarsened total variation from BF16 was 0.1026 for publisher MXFP4, 0.0876 for weight-only NVFP4, 0.0862 for the fast BF16 head and 0.0911 for the fastest NVFP4 head. The FP8-head variant scored 0.0841 and matched 55/68 passage choices and 4/5 free choices. [Distribution summary](distribution-summary.json)
+
+## Borrowed Ling predictor
+
+Each pair uses identical request bodies and the same Santé NVFP4 target with fast MLP and vocabulary projections. Ling supplies the predictor block. Santé supplies the target weights, embedding, processor, tokenizer and output head. One client generated 64 tokens per prompt at 4K configured context.
+
+| Request | Ordinary tok/s | Drafted tok/s | Accepted proposals | Same output |
+| --- | ---: | ---: | ---: | --- |
+| Counting | 54.27 | 60.98 | 25 | Yes |
+| Prose | 54.30 | 57.66 | 22 | No |
+| Python | 53.69 | 68.87 | 28 | Yes |
+
+SGLang with the publisher’s MXFP4 averaged 29.67 tok/s on counting. Drafted Santé reached 2.05× on that request. The SGLang comparison covered counting only. Drafted Santé also returned 391 for the arithmetic check and identified the blue square. [Ordinary streams](mlp4-streams.jsonl) · [Drafted streams](ling-draft-streams.jsonl) · [Text and image checks](ling-draft-parity.jsonl)
