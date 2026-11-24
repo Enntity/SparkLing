@@ -4,7 +4,7 @@
   "model_type": "bailing_moe_v3_vl",
   "strict": {
     "repository": "inclusionAI/Ling-3.2-air",
-    "revision": "1613b1a4dcc6aa0d8f346606628cd9a92061a525",
+    "revision": "ff099487f6f57165e6fa9386ad61fddfafc78b76",
     "files": {
       "bailingmm_utils.py": {
         "git_blob": "6ce80b10d82c029b59dd094c2114485bd2f61ed0",
@@ -19,8 +19,8 @@
         "bytes": 8582
       },
       "config.json": {
-        "git_blob": "f6a44fd16771c1b6a6b9850f15a988432e8ba9c2",
-        "bytes": 4086
+        "git_blob": "2b77619e0cf3dfd5c41a95f6365ca5f3025d88a2",
+        "bytes": 6709
       },
       "configuration_bailing_moe_v3_vl.py": {
         "git_blob": "a219deabbcaa3edfc272f42c0976571dff336c2e",
@@ -122,7 +122,7 @@
   },
   "spark": {
     "repository": "primitive-ai/Ling-3.2-air-NVFP4A16",
-    "revision": "741cdea2fde8a8e5f1b1bda209bc0fef4d60a18a",
+    "revision": "3a78e58506316b5b9b7d06037910c3f4abdd291f",
     "files": {
       "bailingmm_utils.py": {
         "git_blob": "6ce80b10d82c029b59dd094c2114485bd2f61ed0",
@@ -137,8 +137,8 @@
         "bytes": 8582
       },
       "config.json": {
-        "git_blob": "4520b9bdfe8d1bfe94818ccc8419796e4bc572d5",
-        "bytes": 4327
+        "git_blob": "54cacc3c667d020912a858863a03baaaad584741",
+        "bytes": 4487
       },
       "configuration_bailing_moe_v3_vl.py": {
         "git_blob": "a219deabbcaa3edfc272f42c0976571dff336c2e",

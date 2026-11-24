@@ -4,11 +4,11 @@
   "models": {
     "a16": {
       "model_id": "primitive-ai/Ling-3.2-air-NVFP4A16",
-      "revision": "741cdea2fde8a8e5f1b1bda209bc0fef4d60a18a",
-      "revision_short": "741cdea",
+      "revision": "3a78e58506316b5b9b7d06037910c3f4abdd291f",
+      "revision_short": "3a78e58",
       "base_model": "inclusionAI/Ling-3.2-air",
       "card_url": "https://huggingface.co/primitive-ai/Ling-3.2-air-NVFP4A16",
-      "config_url": "https://huggingface.co/primitive-ai/Ling-3.2-air-NVFP4A16/resolve/741cdea2fde8a8e5f1b1bda209bc0fef4d60a18a/config.json",
+      "config_url": "https://huggingface.co/primitive-ai/Ling-3.2-air-NVFP4A16/resolve/3a78e58506316b5b9b7d06037910c3f4abdd291f/config.json",
       "served_model_name": "ling-3.2-air-reference",
       "single_spark": true,
       "expected_config": {
@@ -24,10 +24,10 @@
     },
     "strict": {
       "model_id": "inclusionAI/Ling-3.2-air",
-      "revision": "1613b1a4dcc6aa0d8f346606628cd9a92061a525",
-      "revision_short": "1613b1a",
+      "revision": "ff099487f6f57165e6fa9386ad61fddfafc78b76",
+      "revision_short": "ff09948",
       "card_url": "https://huggingface.co/inclusionAI/Ling-3.2-air",
-      "config_url": "https://huggingface.co/inclusionAI/Ling-3.2-air/resolve/1613b1a4dcc6aa0d8f346606628cd9a92061a525/config.json",
+      "config_url": "https://huggingface.co/inclusionAI/Ling-3.2-air/resolve/ff099487f6f57165e6fa9386ad61fddfafc78b76/config.json",
       "served_model_name": "ling-3.2-air-strict-reference",
       "single_spark": false,
       "reference_tensor_parallel": 4,

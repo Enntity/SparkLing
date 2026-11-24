@@ -158,7 +158,7 @@ def image_reference(
 def build_command(
     manifest: dict[str, Any], mode: str, model_dir: Path, selected_platform: str,
     image: str, gpu: str, port: int, model_name: str, max_model_len: int,
-    gpu_memory_utilization: float, max_num_seqs: int = 8,
+    gpu_memory_utilization: float, max_num_seqs: int = 8, draft_tokens: int | None = None,
 ) -> list[str]:
     spec = manifest["models"][mode]
     command = [
@@ -204,13 +204,15 @@ def build_command(
         "--tool-call-parser",
         "ling3",
     ]
-    if mode == "strict":
+    if draft_tokens is None:
+        draft_tokens = 3 if mode == "strict" else 0
+    if draft_tokens:
         command.extend([
             "--enable-prefix-caching",
             "--mamba-cache-mode",
             "align",
             "--speculative-config",
-            '{"method":"mtp","num_speculative_tokens":3}',
+            json.dumps({"method": "mtp", "num_speculative_tokens": draft_tokens}, separators=(",", ":")),
         ])
     return command
 
@@ -225,6 +227,8 @@ def build_parser() -> argparse.ArgumentParser:
                         help="local checkpoint directory downloaded at the manifest revision")
     parser.add_argument("--platform", choices=PLATFORMS,
                         help="Docker target; defaults to the host architecture")
+    parser.add_argument("--draft-tokens", type=int, choices=(0, 1, 2, 3),
+                        help="native MTP lookahead (default: A16 off, Strict three)")
     parser.add_argument("--gpu-device", default="0", type=gpu_index,
                         help="single GPU index passed to Docker (default: 0)")
     parser.add_argument("--port", type=port_number, default=8897,
@@ -289,6 +293,7 @@ def main(argv: list[str] | None = None) -> int:
             max_model_len,
             utilization,
             args.max_num_seqs,
+            args.draft_tokens,
         )
     except (OSError, KeyError, TypeError, ValueError) as exc:
         parser.error(str(exc))

@@ -21,7 +21,7 @@ by SparkLing's benchmark drivers:
 ```sh
 MODEL_DIR="$PWD/models/Ling-3.2-air-NVFP4A16"
 hf download primitive-ai/Ling-3.2-air-NVFP4A16 \
-  --revision 741cdea2fde8a8e5f1b1bda209bc0fef4d60a18a \
+  --revision 3a78e58506316b5b9b7d06037910c3f4abdd291f \
   --local-dir "$MODEL_DIR"
 
 python3 reference/serve.py \
@@ -51,7 +51,7 @@ command tests the stock TP=1 allocation on the same device as Atlas.
 ```sh
 STRICT_DIR="$PWD/models/Ling-3.2-air"
 hf download inclusionAI/Ling-3.2-air \
-  --revision 1613b1a4dcc6aa0d8f346606628cd9a92061a525 \
+  --revision ff099487f6f57165e6fa9386ad61fddfafc78b76 \
   --local-dir "$STRICT_DIR"
 
 python3 reference/serve.py \
@@ -145,3 +145,5 @@ docker run --rm --gpus device=0 --network host --ipc host \
   --moe-runner-backend flashinfer_mxfp4 --disable-shared-experts-fusion \
   --reasoning-parser ling3 --disable-cuda-graph
 ```
+
+For the short Ling-3.2-air drafting comparison on one Spark, use the A16 checkpoint with `--draft-tokens 3 --max-model-len 4096 --max-num-seqs 1 --served-model-name ling-3.2-air-atlas`. The launcher enables aligned Mamba caching and the requested MTP lookahead. The published 40K A16 RigMark baseline defaults to zero draft tokens.

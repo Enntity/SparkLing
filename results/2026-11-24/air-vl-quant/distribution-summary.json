@@ -1,0 +1,32 @@
+{
+  "free_continuations": 5,
+  "teacher_positions": 68,
+  "mean_shared_top5_tokens_per_position": 3.2941176470588234,
+  "compared": {
+    "mx": {
+      "continuations_equal": 4,
+      "teacher_top1_equal": 56,
+      "mean_coarsened_total_variation": 0.10255633516257917
+    },
+    "nv": {
+      "continuations_equal": 5,
+      "teacher_top1_equal": 56,
+      "mean_coarsened_total_variation": 0.08757973277468514
+    },
+    "nv-fast": {
+      "continuations_equal": 5,
+      "teacher_top1_equal": 56,
+      "mean_coarsened_total_variation": 0.08621597296063414
+    },
+    "mlp4": {
+      "continuations_equal": 5,
+      "teacher_top1_equal": 57,
+      "mean_coarsened_total_variation": 0.09112985716455557
+    },
+    "mlp8": {
+      "continuations_equal": 4,
+      "teacher_top1_equal": 55,
+      "mean_coarsened_total_variation": 0.08410677211024058
+    }
+  }
+}

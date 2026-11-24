@@ -5,7 +5,7 @@
 
 # SparkLing
 
-**SparkLing 0.1.0-dev** serves inclusionAI’s Ling-3.2-air on one NVIDIA DGX Spark. The Atlas engine provides an OpenAI-compatible API for text, images and tool calls. Strict mode serves the original FP8 model. Spark mode uses Primitive AI’s NVFP4A16 checkpoint. [Original model](https://huggingface.co/inclusionAI/Ling-3.2-air) · [Primitive AI checkpoint](https://huggingface.co/primitive-ai/Ling-3.2-air-NVFP4A16)
+**SparkLing 0.1.0-dev** serves inclusionAI’s Ling-3.2-air on one NVIDIA DGX Spark. The Atlas engine provides an OpenAI-compatible API for text, images and tool calls. Strict mode serves the original FP8 model. Video input has yet to pass a SparkLing serving check. Spark mode uses Primitive AI’s NVFP4A16 checkpoint. [Original model](https://huggingface.co/inclusionAI/Ling-3.2-air) · [Primitive AI checkpoint](https://huggingface.co/primitive-ai/Ling-3.2-air-NVFP4A16)
 
 ## RigMark on one Spark
 
@@ -104,7 +104,7 @@ DRAFTER=mtp PROFILE=rigmark-40k PREFILL_PRECISION=nvfp4 DECODE_PRECISION=nvfp4 .
 
 By default, `--mode spark` follows the checkpoint’s activation and attention precision. `PREFILL_PRECISION=nvfp4` quantizes routed expert activations for large prompt batches and uses an 8,192-token prompt chunk in the bundled profiles. Single-token expert decode retains BF16 activations. `DECODE_PRECISION=nvfp4` quantizes the large attention projections at load time. Atlas uses these copies for up to eight rows, including short prompt tails, and the published BF16 weights for larger passes.
 
-The experimental `DECODE_PRECISION=nvfp4-head` also quantizes the vocabulary head. It reached 46.87 tok/s on single-stream prose, but finished only one of two prompts. Keep `DECODE_PRECISION=nvfp4` for the BF16 head used above. Optional disk prefix caches use distinct directories for each precision. The default, saver and max memory profiles are development settings. Strict uses the published sampling settings. Spark uses Atlas sampling defaults unless the request overrides them. The launcher enables the streaming tool guard by default. A filtered response can end with `content_filter`. [Launcher settings](.env.example) · [Experimental head results](results/2026-11-23/one-spark-qualification.json)
+The experimental `DECODE_PRECISION=nvfp4-head` also quantizes the vocabulary head. It reached 46.87 tok/s on single-stream prose, but finished only one of two prompts. Keep `DECODE_PRECISION=nvfp4` for the BF16 head used above. Optional disk prefix caches use distinct directories for each precision. The default, saver and max memory profiles are development settings. Strict uses the published sampling settings. Spark uses Atlas sampling defaults, including min-p 0.08 and top-n-sigma 1.0, unless the request overrides them. The launcher enables the streaming tool guard by default. A filtered response can end with `content_filter`. [Launcher settings](.env.example) · [Experimental head results](results/2026-11-23/one-spark-qualification.json)
 
 ## Reproduce the results
 
@@ -112,4 +112,4 @@ Run the pinned RigMark code and prose suites against each engine in turn on the 
 
 ## Engine and license
 
-SparkLing contains the launcher, profiles and benchmarks. The implementation lives in Atlas. The install manifest pins the exact engine commit and source tree. SparkLing and Atlas use AGPL-3.0-only. Both model publishers license their weights under MIT. [Atlas PR #411](https://github.com/Atlas-Inf/atlas/pull/411) · [Engine pin](install/atlas-source.json) · [License](LICENSE) · [Notices](NOTICE)
+SparkLing contains the launcher, profiles and benchmarks. The implementation lives in Atlas. The install manifest pins the exact engine commit and source tree. The current Ling revisions use inclusionAI’s `ff09948` and Primitive AI’s `3a78e58`. Across both releases only `config.json` changed among the pinned inference files. The measured weights, tokenizers and templates have identical file hashes. SparkLing and Atlas use AGPL-3.0-only. Both model publishers license their weights under MIT. [Atlas PR #411](https://github.com/Atlas-Inf/atlas/pull/411) · [Engine pin](install/atlas-source.json) · [License](LICENSE) · [Notices](NOTICE)
