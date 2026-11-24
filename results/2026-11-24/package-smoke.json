@@ -1,0 +1,13 @@
+{
+  "image_id": "sha256:c79e62c29b2327dbd873f059a71342b1383c394e002039e030c53c07f8fbbe66",
+  "install_tree": "1fe38a1fbb3adfe050572ce80490948b7f828a36",
+  "engine": "15a9b70abfd14b8f8e79383e0e093558e7709a94",
+  "architecture": "arm64",
+  "model": "sante-air-vl",
+  "mode": "spark",
+  "served_name": "lingsante-air-vl",
+  "profile": "default",
+  "max_model_len": 131072,
+  "kv_blocks": 8193,
+  "startup_smoke_answer": "391"
+}

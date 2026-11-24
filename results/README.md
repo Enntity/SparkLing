@@ -1,6 +1,10 @@
 <!-- SPDX-License-Identifier: AGPL-3.0-only -->
 # Results
 
+## One DGX Spark, November 24, 2026
+
+[256K retrieval, original FP8 capacity, and LingSante Air-VL parity and speed](2026-11-24/README.md)
+
 ## One DGX Spark, November 23, 2026
 
 The [decode and prefill rooflines](2026-11-23/roofline.md) compare the parity

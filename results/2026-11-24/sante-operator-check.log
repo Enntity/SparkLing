@@ -1,0 +1,2 @@
+Ling paged attention: 192-wide, 7th pool, shuffled 1/17/37-token rows; max error=0.000484735
+31 prompt rows, 8192 earlier tokens, worst 6.1035156e-05, per-query 4.284 ms, tiled 0.937 ms

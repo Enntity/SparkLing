@@ -1,0 +1,13 @@
+{
+  "checkpoint": "be6dd27338cdb9677e11418ec62b349dfb48fb2d",
+  "bytes": {
+    "trunk": 2912129664,
+    "vision": 868497888,
+    "embedding": 804782080,
+    "routed": 64172851200,
+    "head": 804782080
+  },
+  "estimated_text_bytes_per_decode_token": 4719617664,
+  "peak_weight_only_toks": 57.843668584083,
+  "copy_bandwidth_weight_only_toks": 51.868608312760145
+}

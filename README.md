@@ -46,9 +46,13 @@ Strict shares one BF16 KV pool between requests, leaving unified memory availabl
 | `ling-3.2-air` (default) | inclusionAI dynamic FP8 | Primitive AI NVFP4A16 | 262,144 tokens |
 | `sante-air-vl` | inclusionAI original BF16, 232.55 GiB | inclusionAI MXFP4, 64.79 GiB | 131,072 tokens |
 
-For Ling-3.2-air, the default and max profiles request the checkpoint’s full 256K window. The saver profile uses 8,192 tokens. Use `PROFILE=rigmark-40k` to reproduce the earlier benchmark window. The context pool is shared across clients. The seven full-attention layers use 28.44 GiB of BF16 KV for one 256K sequence. Atlas stores the 64 rotary-key channels shared by all heads once per token. In Spark mode at 256K, the upper routed layers can read their original packed matrices from the model files.
+Ling-3.2-air uses its **262,144-token window** in the default and max profiles. The pool is shared across clients. Seven full-attention layers take 28.44 GiB of BF16 KV for one full sequence. Atlas stores the 64 rotary-key channels shared by the heads once per token. At 256K, Spark mode reads some upper-layer expert weights from the model files. Saver uses 8,192 tokens. `PROFILE=rigmark-40k` reproduces the earlier 40,960-token benchmark setting.
+
+On one Spark, the model recalled a key from the beginning of a 262,132-token prompt with 12 tokens reserved for the answer. It returned `MARIGOLD` in 8m 3s, including prefill. The first 480 prompt tokens came from the short control’s cache. [256K retrieval result](results/2026-11-24/base-window-long.json)
 
 Air-VL has the same 42-layer backbone and vision tower. Its config specifies 128K natively. Its publisher’s extended 256K configuration uses YaRN. Air-VL’s Spark mode reads the publisher’s MXFP4 expert weights and E8M0 scales directly. Strict pages the original BF16 expert matrices from the checkpoint. Both modes use Air-VL’s own tokenizer, chat template, processor and served API name `lingsante-air-vl`. [Medical checkpoint](https://huggingface.co/inclusionAI/LingSante-3.1-air-VL) · [Publisher MXFP4 release](https://huggingface.co/inclusionAI/LingSante-3.1-air-VL-MXFP4)
+
+On the publisher’s MXFP4 checkpoint, Atlas and SGLang both returned `391` for 17 × 23 and identified a blue square. Two matched 64-token decode runs measured **10.47–10.48 tokens/s on Atlas** and **27.59–28.37 on SGLang**. [Air-VL results and reproduction](results/2026-11-24/README.md)
 
 ```sh
 ./start.sh --model sante-air-vl --mode spark up
