@@ -2,8 +2,8 @@
   "schema": "sparkling.atlas-engine-source/v1",
   "repository": "https://github.com/Enntity/atlas.git",
   "branch": "ling/sante-air-vl",
-  "commit": "f2518988f1aaeb068c4c10c73e379af90ce8edd5",
-  "tree": "88df28852f4bf6d2af5ee4632cedd68805b4bf1e",
+  "commit": "144e10776ae1664e545907d34a54fe34d557a8fb",
+  "tree": "cf6b7c8d9a06a3d65c63e72a0dadcceedd1c2866",
   "kernel_target": "ling-3.2-air",
   "model_type": "bailing_moe_v3_vl",
   "license": "AGPL-3.0-only"
