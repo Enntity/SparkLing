@@ -12,6 +12,7 @@ KERNEL_TARGET = 'ling-3.2-air'
 PORT = 8897
 SERVED_MODEL_NAME = 'ling-3.2-air-atlas'
 MODES = ('strict', 'spark')
+DEFAULT_MODE = 'spark'
 SPECULATION_FLAGS = ('--speculative', '--dflash', '--draft-model', '--draft-model-alt', '--dflash-gamma',
                      '--num-drafts', '--self-speculative', '--ngram-speculative')
 MULTI_RANK_FLAGS = ('--world-size', '--tp-size', '--ep-size', '--rank', '--master-addr', '--master-port')
@@ -59,6 +60,12 @@ def _memory_share(environ, args):
     if not re.fullmatch(r'0\.([5-8][0-9]|90)', util):
         raise ValueError('SPARKLING_GPU_MEMORY_UTILIZATION must be 0.50 to 0.90')
     return [f'--gpu-memory-utilization={util}' if a.startswith('--gpu-memory-utilization=') else a for a in args]
+
+
+def default_precision(mode, model_id):
+    """Spark mode on Ling-3.2-air runs the NVFP4 prompt and decode paths that
+    the RigMark table measured. Strict and Air-VL follow their checkpoints."""
+    return 'nvfp4' if mode == 'spark' and model_id == 'ling-3.2-air' else 'checkpoint'
 
 
 def precision_cache_namespace(mode, prefill, decode, model_id='ling-3.2-air', quant='publisher'):
@@ -122,7 +129,7 @@ def launch(environ, profile):
     for flag in SPECULATION_FLAGS:
         if _flag_values(args, flag):
             raise ValueError(f'{flag}: speculation is selected with SPARKLING_DRAFTER, not the profile')
-    mode = environ.get('SPARKLING_MODE', 'strict')
+    mode = environ.get('SPARKLING_MODE', DEFAULT_MODE)
     if mode not in MODES:
         raise ValueError('SPARKLING_MODE must be strict or spark')
     model = environ.get('MODEL_PATH', '')

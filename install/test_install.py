@@ -132,7 +132,7 @@ class InstallTests(unittest.TestCase):
         options = {'MODEL_PATH': '/model', 'SPARKLING_PREFILL_PRECISION': 'nvfp4',
                    'SPARKLING_PREFIX_CACHE_GB': '48'}
         with self.assertRaisesRegex(ValueError, 'spark mode'):
-            serve.launch(options, profile)
+            serve.launch({**options, 'SPARKLING_MODE': 'strict'}, profile)
         args, env = serve.launch({**options, 'SPARKLING_MODE': 'spark'}, profile)
         self.assertIn('--max-prefill-tokens=8192', args)
         self.assertEqual(env['ATLAS_LING_W4A4_PREFILL'], '1')
@@ -143,7 +143,7 @@ class InstallTests(unittest.TestCase):
         options = {'MODEL_PATH': '/model', 'SPARKLING_DECODE_PRECISION': 'nvfp4',
                    'SPARKLING_PREFIX_CACHE_GB': '48'}
         with self.assertRaisesRegex(ValueError, 'spark mode'):
-            serve.launch(options, profile)
+            serve.launch({**options, 'SPARKLING_MODE': 'strict'}, profile)
         _, env = serve.launch({**options, 'SPARKLING_MODE': 'spark'}, profile)
         self.assertEqual(env['ATLAS_LING_NVFP4_DECODE'], '1')
         self.assertEqual(env['ATLAS_KV_NVME_DIR'], '/prefix-cache/spark-kv2-decode-nvfp4-tensor-v2/kv')
@@ -155,11 +155,20 @@ class InstallTests(unittest.TestCase):
         options = {'MODEL_PATH': '/model', 'SPARKLING_DECODE_PRECISION': 'nvfp4-head',
                    'SPARKLING_PREFIX_CACHE_GB': '48'}
         with self.assertRaisesRegex(ValueError, 'spark mode'):
-            serve.launch(options, profile)
+            serve.launch({**options, 'SPARKLING_MODE': 'strict'}, profile)
         args, env = serve.launch({**options, 'SPARKLING_MODE': 'spark'}, profile)
         self.assertIn('--lm-head-dtype=nvfp4', args)
         self.assertEqual(env['ATLAS_LING_EXPERT_UNION'], 'tensor')
         self.assertEqual(env['ATLAS_KV_NVME_DIR'], '/prefix-cache/spark-kv2-decode-nvfp4-head/kv')
+
+    def test_spark_with_the_measured_precision_is_the_default(self):
+        profile = json.loads((HERE/'profiles/default.json').read_text())
+        args, env = serve.launch({'MODEL_PATH': '/model'}, profile)
+        self.assertEqual(env['SPARKLING_MODE'], 'spark')
+        self.assertNotIn('--reference-mode', args)
+        self.assertEqual(serve.default_precision('spark', 'ling-3.2-air'), 'nvfp4')
+        for mode, model_id in [('strict', 'ling-3.2-air'), ('spark', 'sante-air-vl'), ('strict', 'sante-air-vl')]:
+            self.assertEqual(serve.default_precision(mode, model_id), 'checkpoint')
 
     def test_launcher_profiles_preserve_the_mode_and_one_spark(self):
         for path in (HERE/'profiles').glob('*.json'):

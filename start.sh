@@ -4,7 +4,7 @@ set -euo pipefail
 cd "$(dirname "${BASH_SOURCE[0]}")"
 if [[ ${1:-} == --version ]]; then exec python3 install/serve.py --version; fi
 if [[ -f .env ]]; then set -a; source ./.env; set +a; fi
-mode=${MODE:-strict}
+mode=${MODE:-spark}
 model_id=${MODEL:-ling-3.2-air}
 quant=${QUANT:-}
 while [[ ${1:-} == --mode || ${1:-} == --model || ${1:-} == --quant ]]; do
@@ -38,7 +38,7 @@ case "$cmd" in
   logs) exec docker logs -f --tail 100 "$name" ;;
   status) exec docker ps -a --filter "name=^/${name}$" ;;
   build) exec install/build.sh ;;
-  --help|-h) echo './start.sh [--model ling-3.2-air|sante-air-vl] [--mode strict|spark] [--quant publisher|nvfp4] [download|verify|build|up|stop|logs|status]'; exit ;;
+  --help|-h) echo './start.sh [--model ling-3.2-air|sante-air-vl] [--mode spark|strict] [--quant publisher|nvfp4] [download|verify|build|up|stop|logs|status]'; exit ;;
   up|verify|download) ;;
   *) echo "unknown command: $cmd" >&2; exit 2 ;;
 esac
@@ -100,8 +100,9 @@ if [[ -f $profile ]]; then
 elif [[ ! -f install/profiles/$profile.json ]]; then
   echo "unknown profile: $profile" >&2; exit 2
 fi
-precision=${PREFILL_PRECISION:-checkpoint}
-decode_precision=${DECODE_PRECISION:-checkpoint}
+fast=$(python3 -c 'import sys; sys.path.insert(0,"install"); import serve; print(serve.default_precision(*sys.argv[1:]))' "$mode" "$model_id")
+precision=${PREFILL_PRECISION:-$fast}
+decode_precision=${DECODE_PRECISION:-$fast}
 cache_namespace=$(python3 -c 'import sys; sys.path.insert(0,"install"); import serve; print(serve.precision_cache_namespace(*sys.argv[1:]))' "$mode" "$precision" "$decode_precision" "$model_id" "$quant")
 if [[ $drafter != none ]]; then cache_namespace+="-${drafter}1"; fi
 if [[ -n ${PREFIX_CACHE_DIR:-} || -n ${PREFIX_CACHE_GB:-} ]]; then
