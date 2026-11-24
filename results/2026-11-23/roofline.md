@@ -3,7 +3,7 @@
 | NVFP4A16 workload | vLLM parity | 2× target | Preliminary Atlas |
 | --- | ---: | ---: | ---: |
 | Single-stream code decode | 21.53 tokens/s | 43.07 tokens/s | 26.56 tokens/s |
-| Cold 8,192-token prefill | 2,839 tokens/s | 5,678 tokens/s | 885 tokens/s (one matched prompt) |
+| Cold 8,192-token prefill | 2,839 tokens/s | 5,678 tokens/s | 3,350 tokens/s (opt-in NVFP4 activations) |
 
 Both engines exceeded the code completion budget on both runs. Their decode
 rates count generated tokens. The 8K baseline is the median of two runs. On the first identical 8K token
@@ -80,6 +80,27 @@ tokens/s. The arithmetic, vision and forced-tool probes passed. This closes
 part of the prefill gap and leaves the model in development.
 [8K result](blas-8k.json) · [Decode](blas-short.jsonl) ·
 [Vision and tools](blas-modal.jsonl)
+
+### NVFP4 prompt activations and larger tiles
+
+In Spark mode, `PREFILL_PRECISION=nvfp4` uses the same Primitive AI weights
+with dynamically quantized expert activations for large prompt batches.
+Atlas commit `098118206` also uses longer chunks, batched dense
+projections, a register-resident KDA recurrence, and 64-row attention tiles
+scheduled to reuse KV pages across adjacent queries. The reference ran
+vLLM with its checkpoint-default activations.
+
+| Cold prompt | Atlas time to first token | vLLM time to first token | Atlas / vLLM median throughput |
+| --- | --- | --- | --- |
+| 8,192 tokens | 2.485 s, 2.406 s | 3.172 s, 2.646 s | 1.18× |
+| 32,768 tokens | 12.050 s, 12.005 s | 14.660 s, 11.578 s | 1.08× |
+
+All four eight-token continuations matched the reference byte for byte. The
+fixed 64-token decode ran at 27.56 tokens/s against the reference median
+of 21.61. A single eight-client code round reached 40.53 aggregate tokens/s
+against 130.73 on the corresponding reference round. The development
+candidate passed the image, tool-call, arithmetic and retrieval checks.
+[Matched decision receipts](nvfp4-prefill-decision.json)
 
 ## Decision probes
 

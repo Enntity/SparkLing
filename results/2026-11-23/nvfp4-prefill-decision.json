@@ -1,0 +1,433 @@
+{
+  "checkpoint": "primitive-ai/Ling-3.2-air-NVFP4A16@741cdea2fde8a8e5f1b1bda209bc0fef4d60a18a",
+  "configuration": "Spark 03, one GB10, 8192-token chunks, BF16 cache, dynamic NVFP4 routed activations for large prefill, A16 decode, CUTLASS dense prefill, 64-row MLA attention, subwarp KDA recurrence, grouped MLA query tiles",
+  "implementation": "0981182063ad4cf1e31ebd12ac1acf5012f10f81",
+  "reference": "reference-a16-code.json",
+  "cold_prefill": {
+    "8192": [
+      {
+        "atlas": {
+          "prompt_tokens": 8192,
+          "completion_tokens": 8,
+          "ttft_seconds": 2.484992,
+          "time_to_first_visible_seconds": 2.484992,
+          "time_to_last_output_seconds": 2.792279,
+          "decode_seconds": 0.307287,
+          "decode_tokens_per_second": 22.78,
+          "measured_sse_events": 8,
+          "wall_seconds": 2.793984,
+          "response_tail_seconds": 0.001706,
+          "stream_done_marker": true,
+          "finish_reason": "length",
+          "output": ", documentation, and release notes. Each",
+          "output_characters": 40,
+          "output_sha256": "e8f6d2eb78c1e344829ed1b2e941d0ca14d7c42bac0c5cb749cd09f9d2ce6814",
+          "reasoning_characters": 0,
+          "reasoning_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stream_sha256": "e8f6d2eb78c1e344829ed1b2e941d0ca14d7c42bac0c5cb749cd09f9d2ce6814",
+          "requested_prompt_tokens": 8192,
+          "effective_prefill_tokens_per_second": 3296.59
+        },
+        "reference_ttft_seconds": 3.171794,
+        "same_output": true
+      },
+      {
+        "atlas": {
+          "prompt_tokens": 8192,
+          "completion_tokens": 8,
+          "ttft_seconds": 2.406498,
+          "time_to_first_visible_seconds": 2.406498,
+          "time_to_last_output_seconds": 2.710765,
+          "decode_seconds": 0.304267,
+          "decode_tokens_per_second": 23.006,
+          "measured_sse_events": 8,
+          "wall_seconds": 2.712145,
+          "response_tail_seconds": 0.001381,
+          "stream_done_marker": true,
+          "finish_reason": "length",
+          "output": ", tests, documentation, and release notes",
+          "output_characters": 41,
+          "output_sha256": "41067174b9993d03b64fee1322cfb0c1ae84ccd92e980017d0765315051c4900",
+          "reasoning_characters": 0,
+          "reasoning_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stream_sha256": "41067174b9993d03b64fee1322cfb0c1ae84ccd92e980017d0765315051c4900",
+          "requested_prompt_tokens": 8192,
+          "effective_prefill_tokens_per_second": 3404.117
+        },
+        "reference_ttft_seconds": 2.646383,
+        "same_output": true
+      }
+    ],
+    "32768": [
+      {
+        "atlas": {
+          "prompt_tokens": 32768,
+          "completion_tokens": 8,
+          "ttft_seconds": 12.050012,
+          "time_to_first_visible_seconds": 12.050012,
+          "time_to_last_output_seconds": 12.492676,
+          "decode_seconds": 0.442665,
+          "decode_tokens_per_second": 15.813,
+          "measured_sse_events": 8,
+          "wall_seconds": 12.494455,
+          "response_tail_seconds": 0.001779,
+          "stream_done_marker": true,
+          "finish_reason": "length",
+          "output": ", evidence, constraints, and the next",
+          "output_characters": 37,
+          "output_sha256": "f3550221b55f625769be944ebb28e9089be798e469bcacb77e28b60998b2b7ab",
+          "reasoning_characters": 0,
+          "reasoning_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stream_sha256": "f3550221b55f625769be944ebb28e9089be798e469bcacb77e28b60998b2b7ab",
+          "requested_prompt_tokens": 32768,
+          "effective_prefill_tokens_per_second": 2719.333
+        },
+        "reference_ttft_seconds": 14.659711,
+        "same_output": true
+      },
+      {
+        "atlas": {
+          "prompt_tokens": 32768,
+          "completion_tokens": 8,
+          "ttft_seconds": 12.004809,
+          "time_to_first_visible_seconds": 12.004809,
+          "time_to_last_output_seconds": 12.447527,
+          "decode_seconds": 0.442718,
+          "decode_tokens_per_second": 15.811,
+          "measured_sse_events": 8,
+          "wall_seconds": 12.449597,
+          "response_tail_seconds": 0.00207,
+          "stream_done_marker": true,
+          "finish_reason": "length",
+          "output": " records behaviour, evidence, constraints, and",
+          "output_characters": 46,
+          "output_sha256": "f23b3bec4868cd4bb2a9e53fb2c9efd4e5e04b814a4ed7cf5e709584669551b9",
+          "reasoning_characters": 0,
+          "reasoning_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stream_sha256": "f23b3bec4868cd4bb2a9e53fb2c9efd4e5e04b814a4ed7cf5e709584669551b9",
+          "requested_prompt_tokens": 32768,
+          "effective_prefill_tokens_per_second": 2729.573
+        },
+        "reference_ttft_seconds": 11.578081,
+        "same_output": true
+      }
+    ]
+  },
+  "decode": {
+    "rep": 0,
+    "request_sha256": "eca0cf106652c3ab622cdb03cfcff515b3b3fa7b665956c03ad02cd5fbf1b329",
+    "usage": {
+      "prompt_tokens": 39,
+      "completion_tokens": 64,
+      "total_tokens": 103,
+      "prompt_tokens_details": {
+        "cached_tokens": 0,
+        "audio_tokens": 0
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 0,
+        "audio_tokens": 0,
+        "accepted_prediction_tokens": 0,
+        "rejected_prediction_tokens": 0
+      },
+      "time_to_first_token_ms": 448.909916,
+      "response_token/s": 27.5569148643891
+    },
+    "ttft_s": 0.4649532660841942,
+    "decode_tok_s": 27.56126275618923,
+    "text": "1\n2\n3\n4\n5\n6\n7\n8\n9\n10\n11\n12\n13\n14\n15\n16\n17\n18\n19\n20\n21\n22\n23\n24\n2"
+  },
+  "concurrent_output": {
+    "serial": [
+      {
+        "text": "1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 1",
+        "tokens": 32
+      },
+      {
+        "text": "Z Y X W V U T S R Q P O N M L K J I H G F E D C B A",
+        "tokens": 27
+      }
+    ],
+    "concurrent": [
+      {
+        "text": "1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 1",
+        "tokens": 32
+      },
+      {
+        "text": "Z Y X W V U T S R Q P O N M L K J I H G F E D C B A",
+        "tokens": 27
+      }
+    ],
+    "exact_match": [
+      true,
+      true
+    ]
+  },
+  "functional": {
+    "math": "391",
+    "retrieval": "goldfinch",
+    "multimodal_and_tools": [
+      {
+        "probe": "vision",
+        "choice": {
+          "index": 0,
+          "message": {
+            "role": "assistant",
+            "content": "Red"
+          },
+          "finish_reason": "stop",
+          "logprobs": null
+        },
+        "usage": {
+          "prompt_tokens": 44,
+          "completion_tokens": 2,
+          "total_tokens": 46,
+          "prompt_tokens_details": {
+            "cached_tokens": 0,
+            "audio_tokens": 0
+          },
+          "completion_tokens_details": {
+            "reasoning_tokens": 0,
+            "audio_tokens": 0,
+            "accepted_prediction_tokens": 0,
+            "rejected_prediction_tokens": 0
+          },
+          "time_to_first_token_ms": 527.892245,
+          "response_token/s": 24.779673392506034
+        }
+      },
+      {
+        "probe": "tool",
+        "choice": {
+          "index": 0,
+          "message": {
+            "role": "assistant",
+            "content": null,
+            "tool_calls": [
+              {
+                "id": "call_0000000000000000",
+                "type": "function",
+                "function": {
+                  "name": "get_weather",
+                  "arguments": "{\"city\":\"Paris\"}"
+                }
+              }
+            ]
+          },
+          "finish_reason": "tool_calls",
+          "logprobs": null
+        },
+        "usage": {
+          "prompt_tokens": 231,
+          "completion_tokens": 15,
+          "total_tokens": 246,
+          "prompt_tokens_details": {
+            "cached_tokens": 0,
+            "audio_tokens": 0
+          },
+          "completion_tokens_details": {
+            "reasoning_tokens": 0,
+            "audio_tokens": 0,
+            "accepted_prediction_tokens": 0,
+            "rejected_prediction_tokens": 0
+          },
+          "time_to_first_token_ms": 480.26808700000004,
+          "response_token/s": 27.279353197338654
+        }
+      }
+    ]
+  },
+  "concurrent_output_note": "Two-client output check used the preceding 64-row tile revision a43d22abe.",
+  "concurrency_8": {
+    "8": {
+      "rounds": [
+        {
+          "round": 1,
+          "wall_seconds": 50.528236,
+          "completion_tokens": 2048,
+          "aggregate_end_to_end_tokens_per_second": 40.532,
+          "streams": [
+            {
+              "prompt_tokens": 148,
+              "completion_tokens": 256,
+              "ttft_seconds": 1.029668,
+              "time_to_first_visible_seconds": null,
+              "time_to_last_output_seconds": 50.514264,
+              "decode_seconds": 49.484596,
+              "decode_tokens_per_second": 5.153,
+              "measured_sse_events": 256,
+              "wall_seconds": 50.517147,
+              "response_tail_seconds": 0.002883,
+              "stream_done_marker": true,
+              "finish_reason": "length",
+              "output": "",
+              "output_characters": 0,
+              "output_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+              "reasoning_characters": 955,
+              "reasoning_sha256": "b746e48af630d32bd59df884a5f59363fa395cae4400beb49c1659da1b7beed0",
+              "stream_sha256": "b746e48af630d32bd59df884a5f59363fa395cae4400beb49c1659da1b7beed0"
+            },
+            {
+              "prompt_tokens": 150,
+              "completion_tokens": 256,
+              "ttft_seconds": 0.555326,
+              "time_to_first_visible_seconds": null,
+              "time_to_last_output_seconds": 50.328691,
+              "decode_seconds": 49.773365,
+              "decode_tokens_per_second": 5.123,
+              "measured_sse_events": 256,
+              "wall_seconds": 50.330417,
+              "response_tail_seconds": 0.001726,
+              "stream_done_marker": true,
+              "finish_reason": "length",
+              "output": "",
+              "output_characters": 0,
+              "output_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+              "reasoning_characters": 982,
+              "reasoning_sha256": "fdf94d80d44404d9e26e9d6aaf4ff69882fe155a2b3cba436e6ef0ebf74ab689",
+              "stream_sha256": "fdf94d80d44404d9e26e9d6aaf4ff69882fe155a2b3cba436e6ef0ebf74ab689"
+            },
+            {
+              "prompt_tokens": 150,
+              "completion_tokens": 256,
+              "ttft_seconds": 3.225202,
+              "time_to_first_visible_seconds": null,
+              "time_to_last_output_seconds": 50.512911,
+              "decode_seconds": 47.28771,
+              "decode_tokens_per_second": 5.393,
+              "measured_sse_events": 256,
+              "wall_seconds": 50.523315,
+              "response_tail_seconds": 0.010404,
+              "stream_done_marker": true,
+              "finish_reason": "length",
+              "output": "",
+              "output_characters": 0,
+              "output_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+              "reasoning_characters": 990,
+              "reasoning_sha256": "f403d3f46e2ad8e3b15c0e6b0254b57145fb0daa42423b27785811fbb6684855",
+              "stream_sha256": "f403d3f46e2ad8e3b15c0e6b0254b57145fb0daa42423b27785811fbb6684855"
+            },
+            {
+              "prompt_tokens": 152,
+              "completion_tokens": 256,
+              "ttft_seconds": 2.354295,
+              "time_to_first_visible_seconds": null,
+              "time_to_last_output_seconds": 50.513325,
+              "decode_seconds": 48.15903,
+              "decode_tokens_per_second": 5.295,
+              "measured_sse_events": 256,
+              "wall_seconds": 50.521157,
+              "response_tail_seconds": 0.007832,
+              "stream_done_marker": true,
+              "finish_reason": "length",
+              "output": "",
+              "output_characters": 0,
+              "output_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+              "reasoning_characters": 952,
+              "reasoning_sha256": "6609fb1c1c271c5d4f67cc83b714fed912d063f7337b5bc3aa82c09e11976f94",
+              "stream_sha256": "6609fb1c1c271c5d4f67cc83b714fed912d063f7337b5bc3aa82c09e11976f94"
+            },
+            {
+              "prompt_tokens": 153,
+              "completion_tokens": 256,
+              "ttft_seconds": 3.683163,
+              "time_to_first_visible_seconds": null,
+              "time_to_last_output_seconds": 50.512433,
+              "decode_seconds": 46.82927,
+              "decode_tokens_per_second": 5.445,
+              "measured_sse_events": 256,
+              "wall_seconds": 50.514546,
+              "response_tail_seconds": 0.002113,
+              "stream_done_marker": true,
+              "finish_reason": "length",
+              "output": "",
+              "output_characters": 0,
+              "output_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+              "reasoning_characters": 940,
+              "reasoning_sha256": "5e889708dccdb284a8991447b4f9ce6c8b395510076ae9c29020fdac4f64eff6",
+              "stream_sha256": "5e889708dccdb284a8991447b4f9ce6c8b395510076ae9c29020fdac4f64eff6"
+            },
+            {
+              "prompt_tokens": 149,
+              "completion_tokens": 256,
+              "ttft_seconds": 1.903913,
+              "time_to_first_visible_seconds": null,
+              "time_to_last_output_seconds": 50.512332,
+              "decode_seconds": 48.608419,
+              "decode_tokens_per_second": 5.246,
+              "measured_sse_events": 256,
+              "wall_seconds": 50.518079,
+              "response_tail_seconds": 0.005746,
+              "stream_done_marker": true,
+              "finish_reason": "length",
+              "output": "",
+              "output_characters": 0,
+              "output_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+              "reasoning_characters": 960,
+              "reasoning_sha256": "c3d49b7e1200a086b96663a239681b258e41734975996abeb5de3efabc3d25b2",
+              "stream_sha256": "c3d49b7e1200a086b96663a239681b258e41734975996abeb5de3efabc3d25b2"
+            },
+            {
+              "prompt_tokens": 150,
+              "completion_tokens": 256,
+              "ttft_seconds": 1.46604,
+              "time_to_first_visible_seconds": null,
+              "time_to_last_output_seconds": 50.512335,
+              "decode_seconds": 49.046295,
+              "decode_tokens_per_second": 5.199,
+              "measured_sse_events": 256,
+              "wall_seconds": 50.516889,
+              "response_tail_seconds": 0.004554,
+              "stream_done_marker": true,
+              "finish_reason": "length",
+              "output": "",
+              "output_characters": 0,
+              "output_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+              "reasoning_characters": 952,
+              "reasoning_sha256": "008c8e2ed48a28b22c3502a3cf8073da460e9b24c0009ff577a1a68f1215b327",
+              "stream_sha256": "008c8e2ed48a28b22c3502a3cf8073da460e9b24c0009ff577a1a68f1215b327"
+            },
+            {
+              "prompt_tokens": 148,
+              "completion_tokens": 256,
+              "ttft_seconds": 2.787407,
+              "time_to_first_visible_seconds": null,
+              "time_to_last_output_seconds": 50.514117,
+              "decode_seconds": 47.72671,
+              "decode_tokens_per_second": 5.343,
+              "measured_sse_events": 256,
+              "wall_seconds": 50.5238,
+              "response_tail_seconds": 0.009683,
+              "stream_done_marker": true,
+              "finish_reason": "length",
+              "output": "",
+              "output_characters": 0,
+              "output_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+              "reasoning_characters": 876,
+              "reasoning_sha256": "9d675bb30bbb8cff71ea8a0043e57438232cbe948b20f079a575ed0adece0b4e",
+              "stream_sha256": "9d675bb30bbb8cff71ea8a0043e57438232cbe948b20f079a575ed0adece0b4e"
+            }
+          ]
+        }
+      ],
+      "aggregate_end_to_end_tokens_per_second": {
+        "median": 40.532,
+        "minimum": 40.532,
+        "maximum": 40.532,
+        "p90": 40.532
+      },
+      "per_stream_decode_tokens_per_second": {
+        "median": 5.271,
+        "minimum": 5.123,
+        "maximum": 5.445,
+        "p90": 5.393
+      },
+      "per_stream_ttft_seconds": {
+        "median": 2.129,
+        "minimum": 0.555,
+        "maximum": 3.683,
+        "p90": 3.225
+      }
+    }
+  }
+}
