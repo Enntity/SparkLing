@@ -36,7 +36,7 @@ ARG BUILD_JOBS=4
 # BuildKit cache mount for the cargo target directory, so iterating on the
 # engine does not recompile every kernel. Every cargo step mounts the same
 # cache, and the binary is copied out because mounted paths never reach a layer.
-RUN --mount=type=cache,target=/build/target,id=atlas-cargo-target-sparkling,sharing=shared \
+RUN --mount=type=cache,target=/build/target,id=atlas-cargo-target-sparkling,sharing=locked \
     cargo build --locked --release -j "$BUILD_JOBS" -p spark-server && \
     install -D "$CARGO_TARGET_DIR/release/spark" /build/dist/spark
 # License notices of every third-party crate compiled into the binary.
@@ -61,7 +61,7 @@ COPY engine/ /build/
 #   dflash2_selector_abi HIP hash: 1 (Atlas-Inf b75da4a76/#329)
 #   probe_timeout_covers_a_blocked_stdout_read: 1, a write-then-exec race on
 #   a temporary script ("Text file busy") when tests run in parallel
-RUN --mount=type=cache,target=/build/target,id=atlas-cargo-target-sparkling,sharing=shared \
+RUN --mount=type=cache,target=/build/target,id=atlas-cargo-target-sparkling,sharing=locked \
     LD_LIBRARY_PATH=/opt/cuda-stubs:/usr/local/cuda/lib64 \
     cargo test --locked --workspace --release --no-fail-fast -j "$BUILD_JOBS" -- --exact \
       --skip video_decode_ffmpeg::tests::a_capped_clip_selects_actual_frames_at_the_tail \
@@ -77,7 +77,7 @@ RUN --mount=type=cache,target=/build/target,id=atlas-cargo-target-sparkling,shar
       --skip video_decode_ffmpeg::hour_tests::probe_timeout_covers_a_blocked_stdout_read
 
 # Run the workspace lint gate with the same pinned Rust compiler as the image.
-RUN --mount=type=cache,target=/build/target,id=atlas-cargo-target-sparkling,sharing=shared \
+RUN --mount=type=cache,target=/build/target,id=atlas-cargo-target-sparkling,sharing=locked \
     rustup component add clippy --toolchain 1.93.1 && \
     ATLAS_SKIP_BUILD=1 CUDARC_CUDA_VERSION=13000 \
     cargo clippy --locked --workspace --tests -j "$BUILD_JOBS"
