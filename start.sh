@@ -43,7 +43,7 @@ case "$cmd" in
   *) echo "unknown command: $cmd" >&2; exit 2 ;;
 esac
 [[ $mode == strict || $mode == spark ]] || { echo 'MODE must be strict or spark' >&2; exit 2; }
-drafter=${DRAFTER:-none}
+drafter=${DRAFTER:-$(python3 -c 'import sys; sys.path.insert(0,"install"); import serve; print(serve.default_drafter(*sys.argv[1:]))' "$mode" "$model_id")}
 case "$model_id/$quant/$drafter" in
   */*/none|ling-3.2-air/publisher/mtp|sante-air-vl/nvfp4/ling-mtp) ;;
   *) echo 'Use DRAFTER=mtp for Ling, or DRAFTER=ling-mtp for BF16-derived Air-VL NVFP4.' >&2; exit 2 ;;

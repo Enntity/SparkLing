@@ -3,7 +3,8 @@
   "status": "development",
   "environment": {
     "RUST_LOG": "info",
-    "CUDA_CACHE_PATH": "/atlas-cuda-cache"
+    "CUDA_CACHE_PATH": "/atlas-cuda-cache",
+    "ATLAS_MAX_BODY_BYTES": "268435456"
   },
   "server_argv": [
     "serve",
@@ -18,6 +19,7 @@
     "--enable-prefix-caching",
     "--request-timeout=3600",
     "--oom-guard-mb=4096",
+    "--video-allow-ffmpeg",
     "--no-tui"
   ],
   "strict_environment": {

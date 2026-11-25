@@ -62,6 +62,13 @@ def _memory_share(environ, args):
     return [f'--gpu-memory-utilization={util}' if a.startswith('--gpu-memory-utilization=') else a for a in args]
 
 
+def default_drafter(mode, model_id):
+    """Spark mode on Ling-3.2-air drafts with the checkpoint's own predictor:
+    Atlas verifies each draft with serial decode's arithmetic, so greedy text
+    is the same with drafting on or off. DRAFTER=none turns it off."""
+    return 'mtp' if mode == 'spark' and model_id == 'ling-3.2-air' else 'none'
+
+
 def default_precision(mode, model_id):
     """Spark mode on Ling-3.2-air runs the NVFP4 prompt and decode paths that
     the RigMark table measured. Strict and Air-VL follow their checkpoints."""
@@ -168,7 +175,9 @@ def launch(environ, profile):
         else:
             raise ValueError('mtp requires the embedded Ling predictor; ling-mtp requires BF16-derived Air-VL NVFP4')
         args += ['--speculative', '--num-drafts=1', '--mtp-quantization=bf16']
-        env.update(ATLAS_MTP_DRAFTER_PREFILL='1', ATLAS_MTP_CATCHUP='1')
+        # Ling has no multi-sequence verify: from two active requests the
+        # batched plain decode is faster than verifying each one in turn.
+        env.update(ATLAS_MTP_DRAFTER_PREFILL='1', ATLAS_MTP_CATCHUP='1', ATLAS_MTP_MAX_SEQS='1')
         if mode == 'spark':
             env['ATLAS_LING_MTP_QUANT_HEAD'] = '1'
     if decode_precision != 'checkpoint':
