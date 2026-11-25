@@ -170,6 +170,15 @@ class InstallTests(unittest.TestCase):
         for mode, model_id in [('strict', 'ling-3.2-air'), ('spark', 'sante-air-vl'), ('strict', 'sante-air-vl')]:
             self.assertEqual(serve.default_precision(mode, model_id), 'checkpoint')
 
+    def test_every_profile_decodes_video(self):
+        # Ling-3.2-air and Air-VL take video_url input; MP4, WebM and AVI need
+        # the image's ffmpeg, which Atlas only runs with this flag.
+        for path in (HERE/'profiles').glob('*.json'):
+            profile = json.loads(path.read_text())
+            self.assertIn('--video-allow-ffmpeg', profile['server_argv'], path.name)
+            # A 90-second 720p H.264 clip is about 47 MB as a base64 data URI.
+            self.assertGreaterEqual(int(profile['environment']['ATLAS_MAX_BODY_BYTES']), 256 << 20, path.name)
+
     def test_launcher_profiles_preserve_the_mode_and_one_spark(self):
         for path in (HERE/'profiles').glob('*.json'):
             profile = json.loads(path.read_text())
