@@ -62,10 +62,25 @@ def _memory_share(environ, args):
     return [f'--gpu-memory-utilization={util}' if a.startswith('--gpu-memory-utilization=') else a for a in args]
 
 
-def default_precision(mode, model_id):
-    """Spark mode on Ling-3.2-air runs the NVFP4 prompt and decode paths that
-    the RigMark table measured. Strict and Air-VL follow their checkpoints."""
-    return 'nvfp4' if mode == 'spark' and model_id == 'ling-3.2-air' else 'checkpoint'
+def _fast(mode, model_id, quant):
+    """Spark mode on Ling-3.2-air, or on Air-VL's Enntity NVFP4 weights."""
+    return mode == 'spark' and (model_id == 'ling-3.2-air'
+                                or (model_id == 'sante-air-vl' and quant == 'nvfp4'))
+
+
+def default_drafter(mode, model_id, quant='publisher'):
+    """Spark mode drafts with Ling-3.2-air's own predictor (Air-VL borrows it):
+    Atlas verifies each draft with serial decode's arithmetic, so greedy text
+    is the same with drafting on or off. DRAFTER=none turns it off."""
+    if not _fast(mode, model_id, quant):
+        return 'none'
+    return 'mtp' if model_id == 'ling-3.2-air' else 'ling-mtp'
+
+
+def default_precision(mode, model_id, quant='publisher'):
+    """Spark mode runs the NVFP4 prompt and attention decode paths. Strict and
+    the publisher's MXFP4 Air-VL follow their checkpoints."""
+    return 'nvfp4' if _fast(mode, model_id, quant) else 'checkpoint'
 
 
 def precision_cache_namespace(mode, prefill, decode, model_id='ling-3.2-air', quant='publisher'):
@@ -168,7 +183,9 @@ def launch(environ, profile):
         else:
             raise ValueError('mtp requires the embedded Ling predictor; ling-mtp requires BF16-derived Air-VL NVFP4')
         args += ['--speculative', '--num-drafts=1', '--mtp-quantization=bf16']
-        env.update(ATLAS_MTP_DRAFTER_PREFILL='1', ATLAS_MTP_CATCHUP='1')
+        # Ling has no multi-sequence verify: from two active requests the
+        # batched plain decode is faster than verifying each one in turn.
+        env.update(ATLAS_MTP_DRAFTER_PREFILL='1', ATLAS_MTP_CATCHUP='1', ATLAS_MTP_MAX_SEQS='1')
         if mode == 'spark':
             env['ATLAS_LING_MTP_QUANT_HEAD'] = '1'
     if decode_precision != 'checkpoint':

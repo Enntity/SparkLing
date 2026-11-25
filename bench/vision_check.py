@@ -12,12 +12,17 @@ from _common import SERVED_MODEL_NAME, chat_url
 
 HERE = Path(__file__).resolve().parent
 VIDEO_PROMPT = "Name the first and last colors shown in the video, in order. Use two words."
+COUNT_PROMPT = ("A large number is shown in the video and it changes over time. "
+                "List every number you see, in the order they appear, separated by commas.")
 CASES = {
     "invoice": ("images/invoice.png", "image/png",
                 "Transcribe the supplier name, invoice number, and total as printed. Answer concisely."),
     "grid": ("images/grid.png", "image/png", "Read the labelled grid. Give the color of cells A1, B2 and C3."),
     "gif": ("video/red-blue.gif", "image/gif", VIDEO_PROMPT),
     "mp4": ("video/red-blue.mp4", "video/mp4", VIDEO_PROMPT),
+    # Eight one-second frames numbered 1 to 8: temporal order and reading.
+    "gif-count": ("video/count8.gif", "image/gif", COUNT_PROMPT),
+    "mp4-count": ("video/count8.mp4", "video/mp4", COUNT_PROMPT),
 }
 
 
@@ -28,6 +33,8 @@ def correct(case, answer):
     if case == "grid":
         return all(re.search(label + r"[^a-z0-9]{0,12}(?:is\s+)?" + color + r"\b", answer)
                    for label, color in (("a1", "red"), ("b2", "blue"), ("c3", "green")))
+    if case.endswith("-count"):
+        return re.findall(r"\d", answer) == list("12345678")
     return re.findall(r"\b(?:red|blue)\b", answer) == ["red", "blue"]
 
 
@@ -41,7 +48,7 @@ def main():
     for case in args.cases:
         path, mime, prompt = CASES[case]
         data = base64.b64encode((HERE/path).read_bytes()).decode()
-        video = case in ("gif", "mp4")
+        video = mime != "image/png"
         field = "video_url" if video else "image_url"
         media = {"type": field, field: {"url": f"data:{mime};base64,{data}"}}
         content = [media, {"type": "text", "text": prompt}]

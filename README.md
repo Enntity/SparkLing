@@ -1,122 +1,84 @@
 <!-- SPDX-License-Identifier: AGPL-3.0-only -->
 <p align="center">
-  <img src="docs/assets/banner.png" alt="Drafted decode on one DGX Spark, in counting, prose and Python. Ling at 40K: 59.5, 50.8, 54.5 tokens/s. Santé at 128K: 61.1, 57.6, 68.9 tokens/s." width="100%">
+  <img src="docs/assets/banner.png" alt="SparkLing 0.1.0 on one DGX Spark, single-stream decode with exact native drafting. Counting, prose and Python: Ling-3.2-air 56.9, 55.4 and 54.2 tokens/s; LingSante-3.1-air-VL 54.5, 50.7 and 56.2 tokens/s." width="100%">
 </p>
 
 # SparkLing
 
-**SparkLing 0.1.0-dev** serves inclusionAI’s Ling-3.2-air on one NVIDIA DGX Spark. The Atlas engine provides an OpenAI-compatible API for text, images and tool calls. Spark mode, the default, uses Primitive AI’s NVFP4A16 checkpoint. Strict mode serves the original FP8 model. [Original model](https://huggingface.co/inclusionAI/Ling-3.2-air) · [Primitive AI checkpoint](https://huggingface.co/primitive-ai/Ling-3.2-air-NVFP4A16)
-
-The invoice and grid image checks pass. Video input currently fails the animated GIF check, and the default server disables MP4 decoding. [Media checks](results/2026-11-24/packaged/media.jsonl)
-
-## RigMark on one Spark
-
-At 40K context with drafting off on both engines, SparkLing’s fast Spark profile decoded prose at **43.70 tok/s**, 2.02× vLLM. Both engines finished both prompts. The two answers took **38.3 and 30.5 seconds** on SparkLing and **65.8 and 64.3 seconds** on vLLM. SparkLing led with four prose clients. At eight clients vLLM served more tokens per second.
-
-| November 23, 2026 · one GB10 | SparkLing (Spark mode) | vLLM |
-| --- | ---: | ---: |
-| Single-stream prose, tok/s | **43.70** | 21.60 |
-| Single-stream structured output, tok/s | **44.09** | 21.61 |
-| Four prose clients, aggregate tok/s | **83.78** | 78.80 |
-| Eight prose clients, aggregate tok/s | 115.35 | **123.22** |
-| Eight code clients, aggregate tok/s | 132.54 | **134.33** |
-| 8K prompt, time to first token (cold / exact replay) | **2.38 s / 11.7 ms** | 3.17 s / 247.8 ms |
-| 32K prompt, time to first token (cold / exact replay) | **12.00 s / 13.5 ms** | 14.66 s / 287.5 ms |
-| Completed prompts, prose / structured / code | 2 of 2 / 2 of 2 / 0 of 2 | 2 of 2 / 2 of 2 / 0 of 2 |
-
-Both engines used the same physical Spark, Primitive AI checkpoint, 40,960-token context and BF16 KV cache, with speculation off. SparkLing used the fast profile below with its BF16 output head. The stock prose suite supplies the single-stream and concurrent prose results. Eight-client code and the first cold/replay pair at each depth come from matched follow-ups.
-
-With thinking enabled, both engines spent all 4,096 tokens on reasoning for each standard code prompt. With thinking disabled on the same Go task, both produced visible code, at **42.85 tok/s** on SparkLing and **21.55 tok/s** on vLLM. RigMark checks visible completion here. Compilation was outside the test. [Measurements and completion counts](results/2026-11-23/bf16-head-qualification.json) · [Full results](results/README.md) · [Prefill and decode rooflines](results/2026-11-23/roofline.md)
-
-## Strict and Spark modes
-
-Ling-3.2-air is a **124B mixture-of-experts model with 5.5B parameters active per token**. After two dense layers, each of the next 40 layers selects eight of 512 routed experts and also runs a shared expert.
-
-| | Strict | Spark (default) |
-| --- | --- | --- |
-| Checkpoint | inclusionAI’s original dynamic FP8, including its BF16 and FP32 exceptions | Primitive AI’s NVFP4A16 routed experts with BF16 activations |
-| Weight storage | 120.4 GiB in 13 shards. Atlas pages cold experts from disk. | About 72.5 GiB |
-| Measured configuration | Published weights, chat template and sampling defaults | NVFP4 expert activations for large prompt batches, NVFP4 attention for small batches, published BF16 vocabulary head |
-| One-Spark verification | Arithmetic matched SGLang. Atlas also recognized a red image and called the weather tool with Paris. | RigMark results above. Eight concurrent lookup answers matched their serial runs. |
-
-Strict shares one BF16 KV pool between requests, leaving unified memory available to cache expert pages. Its published comparison with SGLang covers serving correctness. [Strict serving receipt](results/gb10-strict-serving.json) · [GB10 kernel checks](results/gb10-operators.json)
-
-## Model selection and context
-
-| Launcher model | Strict | Spark (default) | Default context, prompt and output combined |
-| --- | --- | --- | ---: |
-| `ling-3.2-air` (default) | inclusionAI dynamic FP8 | Primitive AI NVFP4A16 | 262,144 tokens |
-| `sante-air-vl` | inclusionAI original BF16, 232.55 GiB | Enntity NVFP4, 70.88 GiB (default), or inclusionAI MXFP4, 64.79 GiB | 131,072 tokens |
-
-Ling-3.2-air uses its **262,144-token window** in the default and max profiles. The pool is shared across clients. Seven full-attention layers take 28.44 GiB of BF16 KV for one full sequence. Atlas stores the 64 rotary-key channels shared by the heads once per token. At 256K, Spark mode reads some upper-layer expert weights from the model files. Saver uses 8,192 tokens. `PROFILE=rigmark-40k` reproduces the earlier 40,960-token benchmark setting.
-
-On one Spark, the model recalled a key from the beginning of a 262,132-token prompt with 12 tokens reserved for the answer. It returned `MARIGOLD` in 8m 3s, including prefill. The first 480 prompt tokens came from the short control’s cache. [256K retrieval result](results/2026-11-24/base-window-long.json)
-
-Air-VL also has a 42-layer language backbone and a vision tower. Its checkpoint omits the appended native predictor that Ling-3.2-air ships. Its config specifies 128K natively. Its publisher’s extended 256K configuration uses YaRN. Air-VL’s Spark mode downloads Enntity’s NVFP4 by default. Select `--quant publisher` to read inclusionAI’s MXFP4 expert weights and E8M0 scales directly. Strict pages the original BF16 expert matrices from the checkpoint. Both modes use Air-VL’s own tokenizer, chat template, processor and served API name `lingsante-air-vl`. [Medical checkpoint](https://huggingface.co/inclusionAI/LingSante-3.1-air-VL) · [Publisher MXFP4 release](https://huggingface.co/inclusionAI/LingSante-3.1-air-VL-MXFP4)
-
-Atlas now serves the publisher’s MXFP4 at **30.26–30.31 tok/s** on the same 64-token counting probe that previously ran at 10.47–10.48. The pinned SGLang reference measured 27.59–28.37. Both engines returned `391` for 17 × 23 and identified a blue square. Strict passed both checks on the original BF16 checkpoint.
-
-SparkLing downloads **Enntity’s NVFP4 checkpoint**, quantized directly from inclusionAI’s original BF16. The launcher pins the Hub revision, verifies all 70 inference files and reuses an existing verified local conversion. The 70.88 GiB derivative packs the 61,440 routed expert matrices in groups of 16 and retains the original non-expert weights. At runtime, the optional fast settings also quantize attention, shared and dense MLP projections, and the vocabulary head. On the short counting probe the BF16-head fast profile measured **43.94–43.98 tok/s**. With NVFP4 MLPs and vocabulary head it measured **54.07–54.98 tok/s**. These are single-stream, 4K-context decision runs. [Hugging Face weights](https://huggingface.co/Enntity/LingSante-3.1-air-VL-NVFP4) · [Original measurements](results/2026-11-24/README.md) · [Updated Air-VL measurements](results/2026-11-24/air-vl-quant)
-
-The experimental `DRAFTER=ling-mtp` option borrows Ling’s predictor. Santé verifies each proposal using its own weights. On the same NVFP4 target, drafting raised counting from **54.3 to 61.0 tok/s**, prose from **54.3 to 57.7**, and Python from **53.7 to 68.9**. Counting reached **2.05×** the fresh SGLang MXFP4 counting baseline of 29.67 tok/s. Counting and Python matched undrafted Santé byte for byte. Prose diverged. The arithmetic and image checks passed. At the default 128K setting the packaged launcher reproduced all three drafted outputs at **61.1, 57.6 and 68.9 tok/s** on the same short prompts. [Packaged 128K check](results/2026-11-24/packaged) · [Paired decode and parity results](results/2026-11-24/air-vl-quant#borrowed-ling-predictor)
-
-```sh
-# Serve the publisher’s MXFP4 weights
-./start.sh --model sante-air-vl --mode spark --quant publisher up
-# Download the pinned NVFP4 weights and serve the fast NVFP4 profile
-PREFILL_PRECISION=nvfp4 DECODE_PRECISION=nvfp4-mlp-head ./start.sh --model sante-air-vl --mode spark up
-# Add the experimental Ling predictor to the same fast NVFP4 target
-DRAFTER=ling-mtp PREFILL_PRECISION=nvfp4 DECODE_PRECISION=nvfp4-mlp-head ./start.sh --model sante-air-vl --mode spark --quant nvfp4 up
-# Serve the publisher's original BF16
-./start.sh --model sante-air-vl --mode strict up
-```
-
-## Quick start
-
-On a DGX Spark with Docker and NVIDIA GPU access, clone the repo and launch. The first start downloads and verifies the selected checkpoint, then pulls or builds the pinned Atlas image. Spark mode with NVFP4 prefill and decode is the default, at Ling’s full 262,144-token window.
+**SparkLing 0.1.0** serves inclusionAI’s **Ling-3.2-air** and **LingSante-3.1-air-VL** on one NVIDIA DGX Spark. The Atlas engine provides an OpenAI-compatible API for text, images, video and tool calls. In its default Spark mode, SparkLing drafts with each model’s native next-token predictor. Every draft is verified with the same arithmetic as plain decoding, so greedy output is byte-for-byte identical with drafting on or off.
 
 ```sh
 git clone https://github.com/Enntity/SparkLing.git
 cd SparkLing
-./start.sh up
+./start.sh up                          # Ling-3.2-air, Spark mode
+./start.sh --model sante-air-vl up     # LingSante-3.1-air-VL, Spark mode
 ```
 
-To run the **40K profile measured above**, use `PROFILE=rigmark-40k ./start.sh up`. To serve inclusionAI’s original FP8 checkpoint instead, use
+The endpoint is `http://127.0.0.1:8897/v1`. The first start downloads and verifies the pinned checkpoint, then pulls the pinned image `ghcr.io/enntity/atlas-sparkling`.
 
-```sh
-./start.sh --mode strict up
-```
+## Speed on one Spark
 
-The endpoint is `http://127.0.0.1:8897/v1`. For a short text request:
+All engines below ran on the same GB10, one at a time, with nothing else using the GPU. SparkLing’s column is the published `0.1.0` image launched by `./start.sh up`. The client sent the same request bodies to each engine: eight greedy prompts of 256 tokens each, with thinking off. Decode rate is measured after the first token.
 
-```sh
-curl -sS http://127.0.0.1:8897/v1/chat/completions \
-  -H 'Content-Type: application/json' \
-  -d '{"model":"ling-3.2-air-atlas","messages":[{"role":"user","content":"What is 17 times 23?"}],"max_tokens":32,"chat_template_kwargs":{"enable_thinking":false}}'
-```
+| November 25, 2026 · one GB10 · Ling-3.2-air | SparkLing 0.1.0 | vLLM, MTP ×3 | vLLM | llama.cpp, MTP | llama.cpp |
+| --- | ---: | ---: | ---: | ---: | ---: |
+| Single stream, mean of eight prompts, tok/s | **55.2** | 40.2 | 21.8 | 50.2 | 37.3 |
+| Prompts on which the engine is fastest | **5 of 8** | 0 | 0 | 3 of 8 | 0 |
+| Aggregate, 1 client, tok/s | 54.6 | 44.6 | 21.6 | **56.5** | 37.4 |
+| Aggregate, 2 clients, tok/s | 61.1 | 59.2 | 40.2 | **65.1** | 48.0 |
+| Aggregate, 4 clients, tok/s | **77.3** | 68.8 | 62.4 | 62.7 | 67.3 |
+| Aggregate, 8 clients, tok/s | 104.0 | **109.2** | 96.4 | 78.8 | 69.5 |
 
-Use `./start.sh status`, `./start.sh logs` and `./start.sh stop` to manage the server. `./start.sh --version` prints the product version and exact Atlas revision. To stage a checkpoint before launch, run `./start.sh download` and `./start.sh verify`, adding `--mode strict` for the original checkpoint. Each snapshot has its own immutable revision under `MODEL_ROOT` (default `~/models/sparkling`). Allow space for both if you download both.
+SparkLing and vLLM both served Primitive AI’s NVFP4A16 checkpoint. llama.cpp `b12600` served bartowski’s Q4_K_M GGUF, a different quantization, with all layers on the GPU. The aggregate rows count total generated tokens over wall-clock time, starting from the first request, so they include time to first token. The concurrency rows send the counting prompt with a different suffix to each client.
 
-Strict at 256K pages experts to fit one Spark. After startup, a new 39-token counting prompt took **26.56 s to first token** and decoded eight tokens at **1.58 tok/s**. Repeating it warm took **0.637 s to first token** and decoded 64 tokens at **3.37 tok/s**. The earlier 37-token arithmetic smoke took 62.5 s to first token. [Packaged Strict timings](results/2026-11-24/packaged/strict-256k.jsonl) The 256K Spark retrieval control took 41.5 s to first token on a 512-token prompt. The 40K RigMark and 4K drafting runs use different memory profiles. [Strict smoke](results/2026-11-24/strict-base-window-smoke.json) · [Spark retrieval control](results/2026-11-24/base-window-short.json)
+Where SparkLing is not fastest:
 
-## Native drafting on Ling-3.2-air
+- **Highly predictable text.** llama.cpp leads on counting, code and JSON: 58.4, 57.0 and 58.5 tok/s against SparkLing’s 56.9, 54.2 and 45.5. llama.cpp drafts several tokens per step, about 2.8 per step here. SparkLing drafts one, because Ling’s single predictor layer is trained to predict one step ahead. A two-token SparkLing draft stayed exact, but the second draft was accepted only 18–25% of the time and the run was slower overall, at 42.2 tok/s. [Two-draft run](results/2026-11-25/raw/b9-d2.jsonl)
+- **Eight concurrent requests.** vLLM with MTP leads by 5%. Atlas prefills simultaneous prompts one after another rather than in one batch. At eight clients its median time to first token was 1.03 s, against vLLM’s 0.69 s.
 
-Set `DRAFTER=mtp` to use the checkpoint’s one-token predictor. Atlas gives the predictor private attention state and verifies each proposal with the target. In Spark mode only the drafter gets a separate NVFP4 vocabulary head when the target uses its BF16 head. Ordinary decoding is the default. On short greedy requests the batched verifier can choose a different continuation from the single-row target. The 256K retrieval check and 40K RigMark table above used ordinary decode.
+[Measurements, commands and raw streams](results/2026-11-25/README.md)
 
-```sh
-DRAFTER=mtp PROFILE=rigmark-40k ./start.sh up
-```
+## Exact native drafting
 
-## Precision and caching
+Ling-3.2-air ships one MTP layer. Atlas runs that layer to propose the next token and verifies each proposal together with the current token in one two-row pass. Every row of that pass, including its FFN, uses the kernels that single-token decode uses. Drafted greedy text matched plain decode on all eight prompts, at 55.2 tok/s against 44.3. Drafting is on for one active request. From two requests, Atlas switches to batched plain decoding, which is faster here than verifying requests in turn.
 
-For Ling-3.2-air, Spark mode defaults to `PREFILL_PRECISION=nvfp4` and `DECODE_PRECISION=nvfp4`, the fast profile measured above. Set either to `checkpoint` to follow the checkpoint’s activation and attention precision. Air-VL keeps checkpoint precision unless you choose otherwise. `PREFILL_PRECISION=nvfp4` quantizes routed expert activations for large prompt batches and uses an 8,192-token prompt chunk in the bundled profiles. Single-token expert decode retains BF16 activations. `DECODE_PRECISION=nvfp4` quantizes the large attention projections at load time. Atlas uses these copies for up to eight rows, including short prompt tails, and the published BF16 weights for larger passes.
+LingSante-3.1-air-VL has no predictor of its own. In Spark mode it borrows Ling-3.2-air’s layer, downloaded with the model. Its drafted text also matched plain decode on all eight prompts, at 53.9 tok/s against 43.1. `DRAFTER=none` turns drafting off for either model.
 
-The experimental `DECODE_PRECISION=nvfp4-head` also quantizes the vocabulary head. It reached 46.87 tok/s on single-stream prose, but finished only one of two prompts. Keep `DECODE_PRECISION=nvfp4` for the BF16 head used above. Optional disk prefix caches use distinct directories for each precision. The default, saver and max memory profiles are development settings. Strict uses the published sampling settings. Spark uses Atlas sampling defaults, including min-p 0.08 and top-n-sigma 1.0, unless the request overrides them. The launcher enables the streaming tool guard by default. A filtered response can end with `content_filter`. [Launcher settings](.env.example) · [Experimental head results](results/2026-11-23/one-spark-qualification.json)
+## Models and modes
 
-## Reproduce the results
+| `--model` | Spark mode (default) | Strict mode | Default context |
+| --- | --- | --- | ---: |
+| `ling-3.2-air` (default) | Primitive AI NVFP4A16 experts, NVFP4 prefill and attention decode, native drafting | inclusionAI’s original dynamic FP8, checkpoint precision | 131,072 tokens |
+| `sante-air-vl` | Enntity NVFP4 from inclusionAI’s BF16, NVFP4 prefill and attention decode, Ling’s drafter | inclusionAI’s original BF16 | 131,072 tokens |
 
-Run the pinned RigMark code and prose suites against each engine in turn on the same Spark. Match the checkpoint, generation limits, context and cache settings. The reference launcher pins the vLLM image for Spark mode. The Strict comparison uses the original FP8 checkpoint with SGLang. [Benchmark instructions](docs/REPRODUCE.md) · [Suite and functional checks](bench/README.md) · [Reference launchers](reference/README.md)
+Ling-3.2-air is a 124B mixture-of-experts model with 5.5B parameters active per token. It has 35 KDA linear-attention layers, 7 gated-MLA layers and 512 routed experts, of which 8 are active per token. LingSante-3.1-air-VL is inclusionAI’s medical vision-language model on the same backbone. Served names are `ling-3.2-air-atlas` and `lingsante-air-vl`.
+
+**Context.** The default profile serves 131,072 tokens shared across eight requests, with every expert resident in memory. `PROFILE=max` serves Ling’s full 262,144-token window. At that size the BF16 KV cache (28.4 GiB) and the weights do not fit together on one Spark, so Atlas reads some experts from the model files and one stream decodes at about 9–14 tok/s. A key placed at the start of a 262,132-token prompt was recalled at that size. [256K retrieval](results/2026-11-24/base-window-long.json) · [256K and 128K decode](results/2026-11-25/raw/)
+
+**Strict mode** serves the original checkpoints for reference. Ling’s FP8 weights are 120.4 GiB, and Air-VL’s BF16 weights are 232.55 GiB. Neither fits in memory, so Strict pages experts from disk and decodes at a few tokens per second. Use Spark mode for speed. [Strict timings](results/2026-11-24/packaged/strict-256k.jsonl)
+
+## Input
+
+- **Text and tools.** Tool calls use Ling’s template and parser. The tool guard is on by default and blocks calls to metadata addresses and calls that send credentials. A blocked call ends the response with `content_filter`.
+- **Images.** Send `image_url` parts as base64 data URIs.
+- **Video.** Send `video_url` parts. GIF is decoded in process; MP4, MOV, WebM and AVI are decoded by the ffmpeg in the image.
+  - Sampling follows inclusionAI’s processor: at most 2 frames per second and 32 frames, with one frame size chosen from a 4.7-megapixel budget.
+  - Requests may be up to 256 MiB. A 90-second 720p H.264 clip is about 47 MB as a data URI and answered in 6.6 s.
+- **Checks on one Spark.**
+  - A counting clip (the numbers 1 to 8) was read back in order, as GIF and as MP4.
+  - A red-to-blue clip, an invoice and a labelled grid were read correctly.
+  - [Media checks](results/2026-11-25/raw/video3.jsonl)
+
+## Precision, sampling and caching
+
+In Spark mode, `PREFILL_PRECISION=nvfp4` quantizes routed-expert activations for large prompt batches. `DECODE_PRECISION=nvfp4` quantizes the large attention projections at load time, and keeps the published BF16 vocabulary head. Set either to `checkpoint` to follow the checkpoint’s own precision. Strict uses the published sampling settings; Spark uses Atlas’s sampling defaults, including min-p 0.08 and top-n-sigma 1.0, unless the request overrides them. Optional disk prefix caches use a separate directory for each precision. [Launcher settings](.env.example)
+
+Use `./start.sh status`, `./start.sh logs` and `./start.sh stop` to manage the server, and `./start.sh --version` to print the product version and engine revision. `./start.sh download` and `./start.sh verify` stage a checkpoint ahead of time. Each snapshot has its own immutable revision directory under `MODEL_ROOT` (default `~/models/sparkling`).
+
+## Reproduce
+
+[results/2026-11-25](results/2026-11-25/README.md) lists the scripts and commands behind every number above. The reference launchers pin the vLLM and SGLang images. [Benchmark instructions](docs/REPRODUCE.md) · [Functional checks](bench/README.md) · [Reference launchers](reference/README.md) · [Earlier results](results/README.md)
 
 ## Engine and license
 
-SparkLing contains the launcher, profiles and benchmarks. The implementation lives in Atlas. The install manifest pins the exact engine commit and source tree. The current Ling revisions use inclusionAI’s `ff09948` and Primitive AI’s `3a78e58`. Across both releases only `config.json` changed among the pinned inference files. The measured weights, tokenizers and templates have identical file hashes. SparkLing and Atlas use AGPL-3.0-only. Both model publishers license their weights under MIT. [Atlas PR #411](https://github.com/Atlas-Inf/atlas/pull/411) · [Engine pin](install/atlas-source.json) · [License](LICENSE) · [Notices](NOTICE)
+SparkLing contains the launcher, profiles and benchmarks; the implementation lives in Atlas. The install manifest pins the exact engine commit and source tree. SparkLing and Atlas are AGPL-3.0-only. Ling-3.2-air, LingSante-3.1-air-VL, Primitive AI’s NVFP4A16 and Enntity’s NVFP4 weights are MIT. [Engine pin](install/atlas-source.json) · [Upstream Atlas PR](https://github.com/Atlas-Inf/atlas/pull/411) · [License](LICENSE) · [Notices](NOTICE)

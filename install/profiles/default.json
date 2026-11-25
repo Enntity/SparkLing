@@ -3,7 +3,8 @@
   "status": "development",
   "environment": {
     "RUST_LOG": "info",
-    "CUDA_CACHE_PATH": "/atlas-cuda-cache"
+    "CUDA_CACHE_PATH": "/atlas-cuda-cache",
+    "ATLAS_MAX_BODY_BYTES": "268435456"
   },
   "server_argv": [
     "serve",
@@ -13,14 +14,15 @@
     "--gpu-memory-utilization=0.80",
     "--max-num-seqs=8",
     "--max-batch-size=8",
-    "--max-seq-len=262144",
+    "--max-seq-len=131072",
     "--max-prefill-tokens=2048",
     "--enable-prefix-caching",
     "--request-timeout=3600",
     "--oom-guard-mb=4096",
+    "--video-allow-ffmpeg",
     "--no-tui"
   ],
   "strict_environment": {
-    "ATLAS_KV_MAX_BLOCKS": "16385"
+    "ATLAS_KV_MAX_BLOCKS": "8193"
   }
 }

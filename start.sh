@@ -43,7 +43,7 @@ case "$cmd" in
   *) echo "unknown command: $cmd" >&2; exit 2 ;;
 esac
 [[ $mode == strict || $mode == spark ]] || { echo 'MODE must be strict or spark' >&2; exit 2; }
-drafter=${DRAFTER:-none}
+drafter=${DRAFTER:-$(python3 -c 'import sys; sys.path.insert(0,"install"); import serve; print(serve.default_drafter(*sys.argv[1:]))' "$mode" "$model_id" "$quant")}
 case "$model_id/$quant/$drafter" in
   */*/none|ling-3.2-air/publisher/mtp|sante-air-vl/nvfp4/ling-mtp) ;;
   *) echo 'Use DRAFTER=mtp for Ling, or DRAFTER=ling-mtp for BF16-derived Air-VL NVFP4.' >&2; exit 2 ;;
@@ -100,7 +100,7 @@ if [[ -f $profile ]]; then
 elif [[ ! -f install/profiles/$profile.json ]]; then
   echo "unknown profile: $profile" >&2; exit 2
 fi
-fast=$(python3 -c 'import sys; sys.path.insert(0,"install"); import serve; print(serve.default_precision(*sys.argv[1:]))' "$mode" "$model_id")
+fast=$(python3 -c 'import sys; sys.path.insert(0,"install"); import serve; print(serve.default_precision(*sys.argv[1:]))' "$mode" "$model_id" "$quant")
 precision=${PREFILL_PRECISION:-$fast}
 decode_precision=${DECODE_PRECISION:-$fast}
 cache_namespace=$(python3 -c 'import sys; sys.path.insert(0,"install"); import serve; print(serve.precision_cache_namespace(*sys.argv[1:]))' "$mode" "$precision" "$decode_precision" "$model_id" "$quant")

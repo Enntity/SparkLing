@@ -44,3 +44,7 @@ To reproduce the quantization independently, run `python3 install/quantize_sante
 Use `python3 bench/sante_air_vl.py PORT parity` and `speed` for the paired image, text and decode probes. `python3 bench/sante_distributions.py PORT quality` records next-token top-five probabilities. The `prefill` command sends the same cold 512- and 2,048-token inputs to each server. `bench/sante_experts.py --help` gives the offline comparison against the original expert tensors.
 
 For the transferred predictor, set `DRAFTER=ling-mtp` on the Air-VL NVFP4 launch and repeat the same requests. SparkLing fetches only the four donor files needed from the pinned Primitive A16 revision. It prepares a sibling directory that hardlinks Santé’s target files and adds Ling’s final predictor block. Keep that directory on the target filesystem. The `verify` command checks both the target and the draft view. [Donor manifest](../install/checkpoint-sante-draft.json)
+
+## Release comparison (0.1.0)
+
+[results/2026-11-25/harness](../results/2026-11-25/harness) holds the scripts behind the 0.1.0 tables. `probe.py PORT 256` sends the eight greedy prompts. `conc.py PORT MODEL 256 1 2 4 8` runs the concurrency sweep. `summary.py RUN.jsonl REFERENCE.jsonl` reports each prompt's rate and whether its text equals the reference. `release-check.sh` launches the image through `./start.sh up` and runs every probe. `comp-vllm.sh`, `comp-llama.sh` and `comp-sglang.sh` run the same probes against the other engines.
