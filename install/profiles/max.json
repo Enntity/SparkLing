@@ -22,7 +22,5 @@
     "--video-allow-ffmpeg",
     "--no-tui"
   ],
-  "strict_environment": {
-    "ATLAS_KV_MAX_BLOCKS": "16385"
-  }
+  "display_carveout": true
 }

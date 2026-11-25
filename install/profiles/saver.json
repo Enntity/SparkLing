@@ -14,7 +14,7 @@
     "--gpu-memory-utilization=0.70",
     "--max-num-seqs=1",
     "--max-batch-size=1",
-    "--max-seq-len=8192",
+    "--max-seq-len=262144",
     "--max-prefill-tokens=2048",
     "--enable-prefix-caching",
     "--request-timeout=3600",
@@ -22,7 +22,5 @@
     "--video-allow-ffmpeg",
     "--no-tui"
   ],
-  "strict_environment": {
-    "ATLAS_KV_MAX_BLOCKS": "513"
-  }
+  "display_carveout": true
 }

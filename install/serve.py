@@ -109,24 +109,47 @@ def precision_cache_namespace(mode, prefill, decode, model_id='ling-3.2-air', qu
 
 
 def disk_prefix_cache(gb, mode):
-    """Engine settings that keep the KV blocks the prefix cache evicts on the
-    Spark's disk, in the directory start.sh mounts at /prefix-cache, one
-    subdirectory per mode. Recurrent-state snapshots stay in host memory.
-    Empty or 0 leaves the tier off."""
+    """Engine settings that keep the KV blocks and KDA state snapshots the
+    prefix cache evicts on the Spark's disk, in the directory start.sh mounts
+    at /prefix-cache, one subdirectory per mode. The size (GiB) is split
+    evenly between the two; 0 leaves the tier off. Same engine tier and
+    settings as SparkGLM and SparkQwen."""
     if gb in ('', '0'):
         return {}
     if not re.fullmatch(r'[1-9][0-9]{1,2}', gb) or not 16 <= int(gb) <= 100:
         raise ValueError('SPARKLING_PREFIX_CACHE_GB must be a whole number from 16 to 100')
-    return {'ATLAS_KV_NVME_DIR': f'/prefix-cache/{mode}/kv', 'ATLAS_KV_NVME_GB': gb, 'ATLAS_GLM_NVME_FAST': '1'}
+    kv = int(gb) // 2
+    return {'ATLAS_KV_NVME_DIR': f'/prefix-cache/{mode}/kv', 'ATLAS_KV_NVME_GB': str(kv),
+            'ATLAS_GLM_NVME_FAST': '1', 'ATLAS_SSM_TIER': '1', 'ATLAS_SSM_TIER_UNIFIED': '1',
+            'ATLAS_SSM_TIER_SWAP_DIR': f'/prefix-cache/{mode}/ssm', 'ATLAS_SSM_TIER_DISK_GB': str(int(gb) - kv),
+            'ATLAS_SSM_TIER_SLOTS': '2'}
 
 
 def check_prefix_cache_dir(env):
-    """The disk tier's directory must be a mount (start.sh makes it): without
-    one the engine would fill the container's own filesystem."""
-    path = env.get('ATLAS_KV_NVME_DIR', '')
-    if path and not os.path.isdir(path):
-        raise ValueError(f'{path} is missing: mount a directory on a disk at /prefix-cache '
-                         'with <mode>/kv inside (start.sh does), or leave SPARKLING_PREFIX_CACHE_GB unset')
+    """The disk tier's directories must be on a mount (start.sh makes it):
+    without one the engine would fill the container's own filesystem."""
+    for flag in ('ATLAS_KV_NVME_DIR', 'ATLAS_SSM_TIER_SWAP_DIR'):
+        path = env.get(flag, '')
+        if path and not os.path.isdir(path):
+            raise ValueError(f'{path} is missing: mount a directory on a disk at /prefix-cache '
+                             'with <mode>/kv and <mode>/ssm inside (start.sh does), or set SPARKLING_PREFIX_CACHE_GB=0')
+
+
+# Shared by every Spark* launcher on the host: the display heap has one owner.
+DISPLAY_CARVEOUT_LOCK = '/run/lock/sparkglm/display-carveout.lock'
+
+
+def display_carveout(environ, profile, argv):
+    """`argv` under `spark display-carveout`, which lends the GB10's 2 GiB
+    display carveout to the KV cache (SPARKLING_DISPLAY_CARVEOUT, default the
+    profile's `display_carveout`). The engine serves without it, and says
+    why, if another server holds it or the driver cannot lend it."""
+    switch = environ.get('SPARKLING_DISPLAY_CARVEOUT') or ('1' if profile.get('display_carveout') else '0')
+    if switch not in ('0', '1'):
+        raise ValueError('SPARKLING_DISPLAY_CARVEOUT must be 0 or 1')
+    if switch == '0':
+        return argv
+    return [argv[0], 'display-carveout', f'--lock={DISPLAY_CARVEOUT_LOCK}', '--', *argv]
 
 
 def launch(environ, profile):
@@ -152,18 +175,12 @@ def launch(environ, profile):
         raise ValueError('MODEL_PATH must be an absolute path')
     env = _engine_env(environ, profile)
     seq_len = int(_flag_values(args, '--max-seq-len')[0])
-    if seq_len >= 262144 and mode == 'spark' and environ.get('SPARKLING_MODEL', 'ling-3.2-air') == 'ling-3.2-air':
-        env['ATLAS_LING_LONG_KV'] = '1'
-        env['ATLAS_KV_MAX_BLOCKS'] = str((seq_len + 15) // 16 + 1)
     if environ.get('SPARKLING_MODEL') == 'sante-air-vl':
         # This checkpoint declares 128K natively. Its 256K recipe uses YaRN.
-        env['ATLAS_KV_MAX_BLOCKS'] = str((min(131072, seq_len) + 15) // 16 + 1)
         args = [f'--max-seq-len={min(131072, seq_len)}' if a.startswith('--max-seq-len=')
                 else a for a in args]
     if mode == 'strict':
         env.update(profile.get('strict_environment', {}))
-        if environ.get('SPARKLING_MODEL') == 'sante-air-vl' and 'ATLAS_KV_MAX_BLOCKS' in env:
-            env['ATLAS_KV_MAX_BLOCKS'] = str(min(8193, int(env['ATLAS_KV_MAX_BLOCKS'])))
         # Use the checkpoint's own generation settings and template. Atlas's
         # chat defaults otherwise add min-p, top-n-sigma and tool constraints.
         if '--reference-mode' not in args:
@@ -210,7 +227,7 @@ def launch(environ, profile):
         raise ValueError('Invalid SERVED_MODEL_NAME')
     args += ['--bind=127.0.0.1', f'--port={PORT}', f'--model-name={name}']
     args += tool_guard_args(environ, args)
-    return ['/usr/local/bin/spark', *args], env
+    return display_carveout(environ, profile, ['/usr/local/bin/spark', *args]), env
 
 
 def check_model_dir(model, mode, model_id='ling-3.2-air', selection='publisher', drafter='none'):

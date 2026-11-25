@@ -36,9 +36,11 @@ class InstallTests(unittest.TestCase):
             env = {'MODEL_PATH': '/model', 'SPARKLING_MODE': mode, 'SPARKLING_MODEL': 'sante-air-vl',
                    'SPARKLING_PREFIX_CACHE_GB': '48'}
             args, settings = serve.launch(env, json.loads((HERE/'profiles/default.json').read_text()))
+            # Air-VL's native window; the shared pool is sized by memory.
             self.assertIn('--max-seq-len=131072', args)
-            self.assertEqual(settings['ATLAS_KV_MAX_BLOCKS'], '8193')
+            self.assertNotIn('ATLAS_KV_MAX_BLOCKS', settings)
             self.assertIn(f'sante-air-vl-{mode}-kv2', settings['ATLAS_KV_NVME_DIR'])
+            self.assertIn(f'sante-air-vl-{mode}-kv2', settings['ATLAS_SSM_TIER_SWAP_DIR'])
             with self.assertRaisesRegex(ValueError, 'checkpoint precision'):
                 serve.launch({**env, 'SPARKLING_DECODE_PRECISION': 'nvfp4'},
                              json.loads((HERE/'profiles/default.json').read_text()))
@@ -200,10 +202,18 @@ class InstallTests(unittest.TestCase):
                 self.assertEqual(env['SPARKLING_MODE'], mode)
                 self.assertEqual('--reference-mode' in args, mode == 'strict')
                 length = int(next(a.split('=')[1] for a in args if a.startswith('--max-seq-len=')))
-                if mode == 'strict' or length >= 262144:
-                    self.assertEqual(int(env['ATLAS_KV_MAX_BLOCKS']), (length + 15) // 16 + 1)
-                else:
-                    self.assertNotIn('ATLAS_KV_MAX_BLOCKS', env)
+                # Ling's full window everywhere but the benchmark rig, with a
+                # pool sized by memory and no expert paging.
+                self.assertEqual(length, 40960 if path.stem == 'rigmark-40k' else 262144, path.name)
+                self.assertNotIn('ATLAS_KV_MAX_BLOCKS', env)
+                self.assertNotIn('ATLAS_LING_LONG_KV', env)
+                carveout = path.stem != 'rigmark-40k'
+                self.assertEqual(args[1:2] == ['display-carveout'], carveout, path.name)
+                if carveout:
+                    self.assertIn('--lock=/run/lock/sparkglm/display-carveout.lock', args)
+                    off, _ = serve.launch({'MODEL_PATH': '/model', 'SPARKLING_MODE': mode,
+                                           'SPARKLING_DISPLAY_CARVEOUT': '0'}, profile)
+                    self.assertNotIn('display-carveout', off)
             profile['server_argv'].append('--tp-size=2')
             with self.assertRaisesRegex(ValueError, 'one Spark'):
                 serve.launch({'MODEL_PATH': '/model'}, profile)

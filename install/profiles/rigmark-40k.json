@@ -21,8 +21,5 @@
     "--oom-guard-mb=4096",
     "--video-allow-ffmpeg",
     "--no-tui"
-  ],
-  "strict_environment": {
-    "ATLAS_KV_MAX_BLOCKS": "2561"
-  }
+  ]
 }
