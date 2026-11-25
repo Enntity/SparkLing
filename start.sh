@@ -105,13 +105,32 @@ precision=${PREFILL_PRECISION:-$fast}
 decode_precision=${DECODE_PRECISION:-$fast}
 cache_namespace=$(python3 -c 'import sys; sys.path.insert(0,"install"); import serve; print(serve.precision_cache_namespace(*sys.argv[1:]))' "$mode" "$precision" "$decode_precision" "$model_id" "$quant")
 if [[ $drafter != none ]]; then cache_namespace+="-${drafter}1"; fi
-if [[ -n ${PREFIX_CACHE_DIR:-} || -n ${PREFIX_CACHE_GB:-} ]]; then
-  [[ ${PREFIX_CACHE_DIR:-} == /* ]] || { echo 'PREFIX_CACHE_DIR must be absolute' >&2; exit 2; }
-  export PREFIX_CACHE_GB=${PREFIX_CACHE_GB:-48}
+# The prefix cache keeps evicted KV blocks and KDA state on disk, 48 GiB under
+# MODEL_ROOT by default. PREFIX_CACHE_GB=0 turns it off.
+pc_explicit=${PREFIX_CACHE_DIR:-}${PREFIX_CACHE_GB:-}
+PREFIX_CACHE_DIR=${PREFIX_CACHE_DIR:-$MODEL_ROOT/prefix-cache}
+export PREFIX_CACHE_GB=${PREFIX_CACHE_GB:-48}
+if [[ $PREFIX_CACHE_GB != 0 ]]; then
+  [[ $PREFIX_CACHE_DIR == /* ]] || { echo 'PREFIX_CACHE_DIR must be absolute' >&2; exit 2; }
   python3 -c 'import os,sys; sys.path.insert(0,"install"); import serve; serve.disk_prefix_cache(os.environ["PREFIX_CACHE_GB"],sys.argv[1])' "$mode"
-  mkdir -p "$PREFIX_CACHE_DIR/$cache_namespace/kv"
-  mounts+=(--mount "type=bind,src=$(realpath "$PREFIX_CACHE_DIR"),dst=/prefix-cache")
+  mkdir -p "$PREFIX_CACHE_DIR/$cache_namespace/kv" "$PREFIX_CACHE_DIR/$cache_namespace/ssm"
+  PREFIX_CACHE_DIR=$(realpath "$PREFIX_CACHE_DIR")
+  # The tier counts on disk speed, and unlinks its files while they are open.
+  case $(stat -f -c %T "$PREFIX_CACHE_DIR" 2>/dev/null) in
+    tmpfs | ramfs | overlayfs) echo "PREFIX_CACHE_DIR $PREFIX_CACHE_DIR is not on a disk" >&2; exit 2 ;;
+  esac
+  free_gb=$(( $(df -Pk "$PREFIX_CACHE_DIR" | awk 'NR == 2 {print $4}') / 1048576 ))
+  if (( free_gb < PREFIX_CACHE_GB )); then
+    [[ -z $pc_explicit ]] || { echo "PREFIX_CACHE_DIR has $free_gb GiB free; PREFIX_CACHE_GB needs $PREFIX_CACHE_GB" >&2; exit 2; }
+    echo "prefix cache off: $PREFIX_CACHE_DIR has $free_gb GiB free, the default needs $PREFIX_CACHE_GB" >&2
+    PREFIX_CACHE_GB=0
+  else
+    mounts+=(--mount "type=bind,src=$PREFIX_CACHE_DIR,dst=/prefix-cache")
+  fi
 fi
+# Every Spark* server on a host shares one lock for the display carveout.
+lock_dir=/run/lock/sparkglm
+mounts+=(--volume "$lock_dir:$lock_dir")
 image=${IMAGE:-$(install/build.sh --tag)}
 if ! docker image inspect "$image" >/dev/null 2>&1; then
   if [[ ${PULL:-1} != 1 ]] || ! docker pull "$image"; then
@@ -125,7 +144,8 @@ docker run -d --name "$name" --memory 114g --gpus device=0 --ipc host --network 
   "${mounts[@]}" -e MODEL_PATH=/model -e SERVED_MODEL_NAME="$served" \
   -e SPARKLING_MODEL="$model_id" -e SPARKLING_DRAFTER="$drafter" -e SPARKLING_QUANT="$quant" -e SPARKLING_MODE="$mode" -e SPARKLING_DECODE_PRECISION="$decode_precision" -e SPARKLING_PREFILL_PRECISION="$precision" -e SPARKLING_PROFILE="$profile" \
   -e SPARKLING_GPU_MEMORY_UTILIZATION="${GPU_MEMORY_UTILIZATION:-}" \
-  -e SPARKLING_PREFIX_CACHE_GB="${PREFIX_CACHE_GB:-}" -e SPARKLING_TOOL_GUARD="${TOOL_GUARD:-stream}" \
+  -e SPARKLING_PREFIX_CACHE_GB="$PREFIX_CACHE_GB" -e SPARKLING_DISPLAY_CARVEOUT="${DISPLAY_CARVEOUT:-}" \
+  -e SPARKLING_TOOL_GUARD="${TOOL_GUARD:-stream}" \
   -e SPARKLING_TOOL_GUARD_ALLOW_HOSTS="${TOOL_GUARD_ALLOW_HOSTS:-}" -e SPARKLING_TOOL_GUARD_DENY_HOSTS="${TOOL_GUARD_DENY_HOSTS:-}" \
   -e SPARKLING_TOOL_GUARD_MAX_BYTES="${TOOL_GUARD_MAX_BYTES:-1048576}" "$image"
 for ((i=0; i<90; i++)); do

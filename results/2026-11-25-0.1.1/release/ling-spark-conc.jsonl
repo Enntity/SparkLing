@@ -1,0 +1,4 @@
+{"clients": 1, "aggregate_tok_s": 54.57, "median_stream_tok_s": 57.2, "median_ttft_s": 0.233, "tokens": 256, "wall_s": 4.69}
+{"clients": 2, "aggregate_tok_s": 65.73, "median_stream_tok_s": 34.25, "median_ttft_s": 0.342, "tokens": 512, "wall_s": 7.79}
+{"clients": 4, "aggregate_tok_s": 81.07, "median_stream_tok_s": 24.86, "median_ttft_s": 0.579, "tokens": 847, "wall_s": 10.45}
+{"clients": 8, "aggregate_tok_s": 104.38, "median_stream_tok_s": 15.54, "median_ttft_s": 1.037, "tokens": 1772, "wall_s": 16.98}

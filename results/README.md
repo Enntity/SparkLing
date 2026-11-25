@@ -1,9 +1,13 @@
 <!-- SPDX-License-Identifier: AGPL-3.0-only -->
 # Results
 
+## One DGX Spark, November 25, 2026: SparkLing 0.1.1
+
+[The latent MLA cache: eight full 262K windows, the release image, decode at depth, quality against vLLM and BF16, and the 0.1.0 correction](2026-11-25-0.1.1/README.md)
+
 ## One DGX Spark, November 25, 2026: SparkLing 0.1.0
 
-[The release image against vLLM and llama.cpp, exact drafting, the 128K default, video](2026-11-25/README.md)
+[The release image against vLLM and llama.cpp, exact drafting, video](2026-11-25/README.md). Its 131,072-token default did not hold: see the 0.1.1 results.
 
 ## One DGX Spark, November 24, 2026
 

@@ -1,0 +1,52 @@
+Time (%),Total Time (ns),Instances,Avg (ns),Med (ns),Min (ns),Max (ns),StdDev (ns),Name
+33.3,11289619488,136536,82686.0,79584.0,41952,454176,17397.9,moe_expert_gemv_wide
+26.2,8882734144,260961,34038.6,30464.0,5376,1319872,65351.3,skinny_w4a16_t1
+10.3,3499741568,190936,18329.4,16928.0,2784,262784,23962.7,dense_gemv_bf16_batchm
+10.2,3471019936,1071,3240915.0,3228768.0,3201184,3744192,47682.2,dense_gemv_bf16_batch2
+6.2,2087348160,76895,27145.4,28672.0,18432,562304,30066.9,kda_recurrent_bf16
+2.3,781139040,1920,406843.3,388736.0,220352,802560,81231.6,ling_expert_mma
+1.7,584163136,45512,12835.4,12384.0,11328,128384,1502.0,dense_gemv_bf16_batchm_f32out
+1.7,561757600,226590,2479.2,2336.0,1696,132544,1262.3,causal_conv1d_update_prefill_tp
+0.9,299449504,46152,6488.3,6464.0,6304,81984,709.2,ling_grouped_top8
+0.9,291303008,1120,260092.0,115136.0,57120,3324192,626478.5,dense_gemv_bf16
+0.8,261543968,2302,113616.0,113744.0,3552,216608,38790.9,void cutlass::Kernel2<cutlass_80_tensorop_bf16_s16816gemm_relu_bf16_64x64_32x6_tn_align8>(T1::Params)
+0.6,198985984,48406,4110.8,3424.0,2592,94112,1141.6,ling_rms_norm_residual
+0.6,196509504,48406,4059.6,3584.0,3424,46944,1020.2,ling_residual_add_rms_norm
+0.6,191841312,8849,21679.4,20896.0,18400,203488,3553.4,ling_q_absorb
+0.6,188132544,8849,21260.3,21216.0,17952,115328,2244.0,ling_v_up
+0.5,180408640,3222,55992.7,67968.0,29600,174720,19289.2,argmax_bf16
+0.4,143678304,1876,76587.6,96256.0,18080,184064,39185.4,void cutlass::Kernel2<cutlass_80_wmma_tensorop_bf16_s161616gemm_bf16_16x16_128x1_tn_align8>(T1::Params)
+0.3,98695744,8849,11153.3,10880.0,9440,107584,1855.8,ling_latent_decode
+0.3,91111008,92304,987.1,960.0,896,36768,223.4,ling_silu_mul_bf16
+0.3,85542432,39445,2168.7,1664.0,1536,38336,919.2,kda_sigmoid_gated_rms_norm
+0.2,80971424,46152,1754.5,1760.0,1408,30720,465.0,moe_weighted_sum_blend_rows
+0.2,64450080,600,107416.8,112640.0,91744,326240,18867.6,dense_gemm_bf16_f32out
+0.2,58490528,48406,1208.3,1184.0,832,29632,428.1,bf16_residual_add
+0.2,53100704,967,54912.8,31680.0,15040,202720,38306.3,void cutlass::Kernel2<cutlass_80_wmma_tensorop_bf16_s161616gemm_bf16_16x16_128x2_tn_align8>(T1::Params)
+0.1,46674880,13472,3464.6,3296.0,1760,54304,3166.2,ling_rms_norm
+0.1,40909440,38045,1075.3,1024.0,992,33472,422.5,kda_pack_qkv
+0.1,24599072,9001,2732.9,2240.0,1408,24032,1183.5,ling_latent_cache_write
+0.1,19905952,8849,2249.5,2080.0,1536,24768,755.5,ling_latent_decode_merge
+0.1,19282240,9001,2142.2,2016.0,1792,10272,674.4,ling_mrope_rope_bf16
+0.1,18455136,728,25350.5,24416.0,17984,82208,4612.3,void cutlass::Kernel2<cutlass_80_tensorop_s16816gemm_bf16_64x64_32x6_tn_align8>(T1::Params)
+0.1,17753088,640,27739.2,26176.0,24032,64288,4381.5,moe_union_match
+0.0,12816064,4200,3051.4,2656.0,2496,12256,804.0,causal_conv1d_update
+0.0,12208576,8961,1362.4,1056.0,992,14336,577.2,sigmoid_gate_mul_head_broadcast
+0.0,10879616,8961,1214.1,960.0,928,26272,729.7,mla_q_rope_extract_batched
+0.0,8982240,8961,1002.4,960.0,928,37408,422.4,mla_q_rope_writeback_batched
+0.0,7802080,360,21672.4,21616.0,19040,65376,2591.2,void cutlass::Kernel2<cutlass_80_wmma_tensorop_bf16_s161616gemm_bf16_32x32_128x2_tn_align8>(T1::Params)
+0.0,5058688,31,163183.5,162976.0,159616,167232,1689.8,"std::enable_if<!T7, void>::type internal::gemvx::kernel<int, int, __nv_bfloat16, __nv_bfloat16, __nv_bfloat16, float, (bool)0, (bool)1, (bool)1, (bool)0, (int)6, (bool)0, cublasGemvParamsEx<int, cublasGemvTensorStridedBatched<const __nv_bfloat16>, cublasGemvTensorStridedBatched<const __nv_bfloat16>, cublasGemvTensorStridedBatched<__nv_bfloat16>, float>>(T13)"
+0.0,3023808,2254,1341.5,1312.0,1152,17920,465.1,moe_silu_mul
+0.0,2356416,35,67326.2,66496.0,64096,84608,3927.9,ling_kda_subwarp
+0.0,2217152,32,69286.0,69216.0,68896,70304,294.0,argmax_bf16_batch
+0.0,1583680,250,6334.7,4288.0,4128,27808,4453.3,void cutlass::Kernel2<cutlass_80_wmma_tensorop_s161616gemm_bf16_32x32_128x2_tn_align8>(T1::Params)
+0.0,1520544,938,1621.0,1472.0,1376,17984,960.7,"void cublasLt::splitKreduce_kernel<(int)32, (int)16, int, float, __nv_bfloat16, float, __nv_bfloat16, (bool)0, __nv_bfloat16, __nv_bfloat16, __nv_bfloat16, (bool)1, (bool)0, (bool)0, (bool)0>(cublasLt::cublasSplitKParams<T6>, const T4 *, const T10 *, T9 *, T5 *, const T6 *, const T6 *, const T11 *, const T4 *, T11 *, void *, long, T6 *, int *, T6 *, T6 *, const T6 *, const T6 *, const T6 *, const T6 *, const T6 *)"
+0.0,1379136,70,19701.9,16816.0,15168,50240,8409.5,void cutlass::Kernel2<cutlass_80_wmma_tensorop_bf16_s161616gemm_bf16_32x32_64x2_tn_align8>(T1::Params)
+0.0,1040160,112,9287.1,9664.0,6848,17472,1999.6,ling_mla_prefill_64
+0.0,516576,280,1844.9,1408.0,1344,7488,832.8,"void cublasLt::splitKreduce_kernel<(int)32, (int)16, int, __nv_bfloat16, __nv_bfloat16, float, __nv_bfloat16, (bool)0, __nv_bfloat16, __nv_bfloat16, __nv_bfloat16, (bool)1, (bool)0, (bool)0, (bool)0>(cublasLt::cublasSplitKParams<T6>, const T4 *, const T10 *, T9 *, T5 *, const T6 *, const T6 *, const T11 *, const T4 *, T11 *, void *, long, T6 *, int *, T6 *, T6 *, const T6 *, const T6 *, const T6 *, const T6 *, const T6 *)"
+0.0,497056,56,8876.0,8032.0,5664,34784,5215.4,batched_embed
+0.0,309856,112,2766.6,2304.0,1632,31232,2841.8,ling_latent_gather
+0.0,294240,112,2627.1,2432.0,2208,5664,725.6,ling_latent_expand
+0.0,232256,35,6635.9,6304.0,6240,16992,1807.7,kda_preprocess_regresident
+0.0,78016,40,1950.4,1632.0,1600,11040,1504.4,"void cublasLt::splitKreduce_kernel<(int)32, (int)16, int, float, float, float, float, (bool)0, float, float, float, (bool)1, (bool)0, (bool)0, (bool)0>(cublasLt::cublasSplitKParams<T6>, const T4 *, const T10 *, T9 *, T5 *, const T6 *, const T6 *, const T11 *, const T4 *, T11 *, void *, long, T6 *, int *, T6 *, T6 *, const T6 *, const T6 *, const T6 *, const T6 *, const T6 *)"
+0.0,32928,16,2058.0,1600.0,1536,7648,1534.3,fill_slots_from_block_table
