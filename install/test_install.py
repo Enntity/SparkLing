@@ -36,9 +36,10 @@ class InstallTests(unittest.TestCase):
             env = {'MODEL_PATH': '/model', 'SPARKLING_MODE': mode, 'SPARKLING_MODEL': 'sante-air-vl',
                    'SPARKLING_PREFIX_CACHE_GB': '48'}
             args, settings = serve.launch(env, json.loads((HERE/'profiles/default.json').read_text()))
-            # Air-VL's native window; the shared pool is sized by memory.
+            # Air-VL's native window: Spark sizes the pool from memory, Strict
+            # stops at eight whole windows.
             self.assertIn('--max-seq-len=131072', args)
-            self.assertNotIn('ATLAS_KV_MAX_BLOCKS', settings)
+            self.assertEqual(settings.get('ATLAS_KV_MAX_BLOCKS'), '65537' if mode == 'strict' else None)
             self.assertIn(f'sante-air-vl-{mode}-kv2', settings['ATLAS_KV_NVME_DIR'])
             self.assertIn(f'sante-air-vl-{mode}-kv2', settings['ATLAS_SSM_TIER_SWAP_DIR'])
             with self.assertRaisesRegex(ValueError, 'checkpoint precision'):
@@ -205,7 +206,14 @@ class InstallTests(unittest.TestCase):
                 # Ling's full window everywhere but the benchmark rig, with a
                 # pool sized by memory and no expert paging.
                 self.assertEqual(length, 40960 if path.stem == 'rigmark-40k' else 262144, path.name)
-                self.assertNotIn('ATLAS_KV_MAX_BLOCKS', env)
+                # Spark sizes the pool from memory; Strict streams experts
+                # from disk, so its pool stops at whole windows (8 x 262K in
+                # 17 GB of latent rows) and leaves the rest to the page cache.
+                if mode == 'strict':
+                    seqs = min(8, int(next(a.split('=')[1] for a in args if a.startswith('--max-num-seqs='))))
+                    self.assertEqual(int(env['ATLAS_KV_MAX_BLOCKS']), seqs * length // 16 + 1, path.name)
+                else:
+                    self.assertNotIn('ATLAS_KV_MAX_BLOCKS', env)
                 self.assertNotIn('ATLAS_LING_LONG_KV', env)
                 carveout = path.stem != 'rigmark-40k'
                 self.assertEqual(args[1:2] == ['display-carveout'], carveout, path.name)

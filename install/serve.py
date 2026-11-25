@@ -177,9 +177,14 @@ def launch(environ, profile):
     seq_len = int(_flag_values(args, '--max-seq-len')[0])
     if environ.get('SPARKLING_MODEL') == 'sante-air-vl':
         # This checkpoint declares 128K natively. Its 256K recipe uses YaRN.
-        args = [f'--max-seq-len={min(131072, seq_len)}' if a.startswith('--max-seq-len=')
-                else a for a in args]
+        seq_len = min(131072, seq_len)
+        args = [f'--max-seq-len={seq_len}' if a.startswith('--max-seq-len=') else a for a in args]
     if mode == 'strict':
+        # Strict streams its experts from disk, so its latent KV pool stops at
+        # whole windows (at most eight: 17 GB at 262K) and leaves the rest of
+        # memory to the page cache. Spark sizes the pool from memory.
+        seqs = min(8, int(_flag_values(args, '--max-num-seqs')[0]))
+        env['ATLAS_KV_MAX_BLOCKS'] = str(seqs * seq_len // 16 + 1)
         env.update(profile.get('strict_environment', {}))
         # Use the checkpoint's own generation settings and template. Atlas's
         # chat defaults otherwise add min-p, top-n-sigma and tool constraints.
