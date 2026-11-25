@@ -4,7 +4,8 @@
   "environment": {
     "RUST_LOG": "info",
     "CUDA_CACHE_PATH": "/atlas-cuda-cache",
-    "ATLAS_MAX_BODY_BYTES": "268435456"
+    "ATLAS_MAX_BODY_BYTES": "268435456",
+    "ATLAS_SSM_DECODE_RING": "0"
   },
   "server_argv": [
     "serve",

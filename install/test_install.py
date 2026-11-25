@@ -190,6 +190,9 @@ class InstallTests(unittest.TestCase):
         for path in (HERE/'profiles').glob('*.json'):
             profile = json.loads(path.read_text())
             self.assertIn('--video-allow-ffmpeg', profile['server_argv'], path.name)
+            # Ling turns its loop watchdog off (MODEL.toml), so the plain-decode
+            # rollback ring (5.1 GB at eight requests) would never be read.
+            self.assertEqual(profile['environment']['ATLAS_SSM_DECODE_RING'], '0', path.name)
             # A 90-second 720p H.264 clip is about 47 MB as a base64 data URI.
             self.assertGreaterEqual(int(profile['environment']['ATLAS_MAX_BODY_BYTES']), 256 << 20, path.name)
 
