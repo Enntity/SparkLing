@@ -45,6 +45,10 @@ Use `python3 bench/sante_air_vl.py PORT parity` and `speed` for the paired image
 
 For the transferred predictor, set `DRAFTER=ling-mtp` on the Air-VL NVFP4 launch and repeat the same requests. SparkLing fetches only the four donor files needed from the pinned Primitive A16 revision. It prepares a sibling directory that hardlinks Santé’s target files and adds Ling’s final predictor block. Keep that directory on the target filesystem. The `verify` command checks both the target and the draft view. [Donor manifest](../install/checkpoint-sante-draft.json)
 
+## Release checks and quality (0.1.1)
+
+[results/2026-11-25-0.1.1/harness](../results/2026-11-25-0.1.1/harness) holds the scripts behind the 0.1.1 tables. `rel11.sh` launches the image through `./start.sh up` and runs the speed, concurrency, media and task probes. `conc_long.py N WINDOW` sends N simultaneous recall prompts with distinct content. `deep_decode.py WINDOW 256` measures decode after a prompt of that length. `gsm8k_eval.py` scores the first 200 GSM8K test problems. `dist_ling.py`, `dist_decode2.py` and their scorers compare next-token distributions with a reference engine; `dist.sh` and `dist3.sh` run them against vLLM on the same checkpoint. `prof.sh` records one drafted probe under Nsight Systems. The GPU check of the latent cache kernels is `tests/ling/mla_latent.cu` in the pinned Atlas tree.
+
 ## Release comparison (0.1.0)
 
 [results/2026-11-25/harness](../results/2026-11-25/harness) holds the scripts behind the 0.1.0 tables. `probe.py PORT 256` sends the eight greedy prompts. `conc.py PORT MODEL 256 1 2 4 8` runs the concurrency sweep. `summary.py RUN.jsonl REFERENCE.jsonl` reports each prompt's rate and whether its text equals the reference. `release-check.sh` launches the image through `./start.sh up` and runs every probe. `comp-vllm.sh`, `comp-llama.sh` and `comp-sglang.sh` run the same probes against the other engines.

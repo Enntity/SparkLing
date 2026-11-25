@@ -1,0 +1,10 @@
+2026-11-25T19:20:52.065271Z  INFO spark::display_carveout: display carveout: driver 580.178.04, 2044 of 2046 MiB of DISPLAY_FRM free (the display holds the rest)
+2026-11-25T19:20:52.065395Z  INFO spark::display_carveout: display carveout: 2044 MiB exported as fd 6, lock /run/lock/sparkglm/display-carveout.lock
+2026-11-25T19:21:41.985254Z  INFO spark_runtime::fast_weights: Fast-load pre-flight: 72.51 GB on-disk, 1.1x overhead = 76.14 GB peak, 116.14 GB free, 4.0 GB reserve (FP8: false)
+2026-11-25T19:21:59.434871Z  INFO spark_runtime::kv_cache::paged_impl: KV cache: 16385 blocks × 1 layers = 0.3 GB total (V aliases K)
+2026-11-25T19:21:59.640335Z  INFO spark_model::factory::build: MLA absorbed KV cache: 1 head × 576 dims (512+64) per token (vs 32 heads × 128)
+2026-11-25T19:21:59.865235Z  INFO spark_model::model::ssm_tier::unified: unified SSM tier (marconi-host): O_DIRECT swap file in /prefix-cache/spark-kv2-prefill-nvfp4-decode-nvfp4-tensor-v2-mtp1/ssm
+2026-11-25T19:21:59.883161Z  INFO spark_model::factory::build::kv_nvme: NVMe spill tiers: reserving 285.7 MiB of host memory out of the KV budget (staging + on-disk index at a full ATLAS_KV_NVME_GB + 229.7 MiB SSM tier arena/staging)
+2026-11-25T19:21:59.897202Z  INFO spark_model::factory::build: KV cache: 121.7 GB total × 89% util = 108.3 GB budget; 87.2 GB pre-KV + 4.6 GB reserve → 16.5 GB for KV → 137519 blocks × 16 tok/block = 2200304 max KV tokens
+2026-11-25T19:22:00.533676Z  INFO spark_runtime::kv_cache::paged_impl: KV cache: 137519 blocks × 7 layers = 16.5 GB total (V aliases K)
+2026-11-25T19:22:01.109373Z  INFO spark_model::factory::build::kv_nvme: prefix cache NVMe spill tier ON (rank 0): /prefix-cache/spark-kv2-prefill-nvfp4-decode-nvfp4-tensor-v2-mtp1/kv (ATLAS_KV_NVME_DIR, O_DIRECT, unlinked), 131072 B/block record (8192 B/token: latent + pooled index, no raw tails), budget 8.0 GiB = 65536 blocks = 1048576 tokens; fast I/O (ATLAS_GLM_NVME_FAST), restored records released (ATLAS_GLM_NVME_KEEP), 16.0 MiB pinned staging, up to 40.0 MiB host index

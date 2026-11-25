@@ -1,0 +1,4 @@
+2026-11-25T08:18:20.373965Z  INFO spark_runtime::kv_cache::paged_impl: KV cache: 8193 blocks × 1 layers = 2.0 GB total
+2026-11-25T08:18:20.755893Z  INFO spark_model::factory::build: KV cache: 121.7 GB total × 80% util = 97.4 GB budget; 86.9 GB pre-KV + 4.3 GB reserve → 6.1 GB for KV → 3522 blocks × 16 tok/block = 56352 max KV tokens
+2026-11-25T08:18:20.755902Z  WARN spark_model::factory::build: KV OVERCOMMIT: pool fits 0 seq(s) at full --max-seq-len=131072 but --max-batch-size=8 requested (8192 block(s)/seq, 3522 block(s) total). Paged KV allocates on demand; long-context bursts are back-pressured at the block allocator, not refused at boot.
+2026-11-25T08:18:20.966117Z  INFO spark_runtime::kv_cache::paged_impl: KV cache: 3522 blocks × 7 layers = 6.1 GB total

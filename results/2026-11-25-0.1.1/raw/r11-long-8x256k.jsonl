@@ -1,0 +1,9 @@
+{"i": 0, "prompt_tokens": 262132, "answer": "MARIGOLD", "ok": true, "seconds": 2692.1}
+{"i": 1, "prompt_tokens": 262132, "answer": "JUNIPER", "ok": true, "seconds": 2629.8}
+{"i": 2, "prompt_tokens": 262132, "answer": "OBSIDIAN", "ok": true, "seconds": 2692.1}
+{"i": 3, "prompt_tokens": 262132, "answer": "LANTERN", "ok": true, "seconds": 2692.0}
+{"i": 4, "prompt_tokens": 262132, "answer": "SAFFRON", "ok": true, "seconds": 2692.0}
+{"i": 5, "prompt_tokens": 262132, "answer": "HARBOR", "ok": true, "seconds": 1840.7}
+{"i": 6, "prompt_tokens": 262132, "answer": "CINDER", "ok": true, "seconds": 2391.5}
+{"i": 7, "prompt_tokens": 262132, "answer": "TUNDRA", "ok": true, "seconds": 2430.8}
+{"requests": 8, "window": 262144, "correct": 8, "total_prompt_tokens": 2097056, "wall_s": 2694.2}

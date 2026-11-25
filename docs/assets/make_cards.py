@@ -132,8 +132,8 @@ PINK = (255, 70, 120)
 def scores(card, x0, y, k, ky, data):
     """Show packaged single-stream decode rates for both models."""
     head, small, label, num = int(21 * k), int(13 * k), int(23 * k), int(31 * k)
-    cols = [("LING", "128K default", x0 + int(800 * k)),
-            ("SANTÉ", "128K default", x0 + int(1200 * k))]
+    cols = [("LING", "8 x 256K", x0 + int(800 * k)),
+            ("SANTÉ", "8 x 128K", x0 + int(1200 * k))]
     workloads = [("COUNTING", "count"), ("PROSE", "prose"), ("PYTHON", "code")]
 
     def right(xr, yy, s, size, color, glow=None):
@@ -157,7 +157,7 @@ def scores(card, x0, y, k, ky, data):
 LINES = (["Exact native MTP", "same text drafted or not"],
          ["Text", "images", "video", "tools"],
          ["Single stream", "256 greedy tokens per prompt"])
-SOURCE = ["0.1.0", "25 NOV 2026"]
+SOURCE = ["0.1.1", "25 NOV 2026"]
 URL = "github.com/Enntity/SparkLing"
 
 
@@ -204,7 +204,7 @@ def social(base, font, out, data):
 
 if __name__ == "__main__":
     base, font, out = Path(sys.argv[1]), sys.argv[2], Path(sys.argv[3])
-    results = Path(__file__).resolve().parents[2] / "results/2026-11-25/release"
+    results = Path(__file__).resolve().parents[2] / "results/2026-11-25-0.1.1/release"
     data = []
     for filename in ("ling-spark-probe.jsonl", "sante-spark-probe.jsonl"):
         records = map(json.loads, (results / filename).read_text().splitlines())

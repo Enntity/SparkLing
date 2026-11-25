@@ -1,0 +1,4 @@
+{"prompt": 1754, "cached": 0, "out": 256, "ttft_s": 0.74, "decode_tok_s": 44.4, "text": "pressure reading.\nLog 115: The store opened.\n555 days after Log 115, what is the archive key?\n\nThe archive key for the q"}
+{"prompt": 32474, "cached": 1744, "out": 256, "ttft_s": 12.29, "decode_tok_s": 40.6, "text": ".\nLog 1974: The weather station recorded a stable pressure reading.\nLog 1975: The weather station recorded a stable pres"}
+{"prompt": 130778, "cached": 32464, "out": 256, "ttft_s": 94.86, "decode_tok_s": 34.9, "text": "weather station recorded a stable pressure reading.\nLog 7757: The weather station recorded a stable pressure reading.\nLo"}
+{"prompt": 261850, "cached": 130768, "out": 256, "ttft_s": 259.37, "decode_tok_s": 27.9, "text": ".\nLog 15163: The weather station recorded a stable pressure reading.\nLog 15164: The weather station recorded a stable pr"}
