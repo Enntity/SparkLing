@@ -57,7 +57,8 @@ class InstallTests(unittest.TestCase):
             hf.write_text('#!/bin/sh\nprintf "%s\\n" "$@" > "$MODEL_ROOT/hf-args"\nexit 42\n')
             hf.chmod(0o755)
             models = root / 'models'
-            env = {'PATH': f"{root}:{os.environ['PATH']}", 'HOME': tmp, 'MODEL_ROOT': str(models)}
+            # The weights alone: the default drafter would also fetch Ling's predictor.
+            env = {'PATH': f"{root}:{os.environ['PATH']}", 'HOME': tmp, 'MODEL_ROOT': str(models), 'DRAFTER': 'none'}
             args = [str(launcher), '--model', 'sante-air-vl', '--mode', 'spark', 'download']
             self.assertEqual(subprocess.run(args, env=env).returncode, 42)
             cache = models / snapshot['cache_directory']
@@ -168,8 +169,12 @@ class InstallTests(unittest.TestCase):
         self.assertNotIn('--reference-mode', args)
         self.assertEqual(serve.default_precision('spark', 'ling-3.2-air'), 'nvfp4')
         self.assertEqual(serve.default_drafter('spark', 'ling-3.2-air'), 'mtp')
-        for mode, model_id in [('strict', 'ling-3.2-air'), ('spark', 'sante-air-vl')]:
-            self.assertEqual(serve.default_drafter(mode, model_id), 'none')
+        self.assertEqual(serve.default_precision('spark', 'sante-air-vl', 'nvfp4'), 'nvfp4')
+        self.assertEqual(serve.default_drafter('spark', 'sante-air-vl', 'nvfp4'), 'ling-mtp')
+        for mode, model_id, quant in [('strict', 'ling-3.2-air', 'publisher'), ('spark', 'sante-air-vl', 'publisher'),
+                                      ('strict', 'sante-air-vl', 'publisher')]:
+            self.assertEqual(serve.default_drafter(mode, model_id, quant), 'none')
+            self.assertEqual(serve.default_precision(mode, model_id, quant), 'checkpoint')
         args, env = serve.launch({'MODEL_PATH': '/model', 'SPARKLING_DRAFTER': 'mtp'}, profile)
         self.assertIn('--speculative', args)
         self.assertEqual(env['ATLAS_MTP_MAX_SEQS'], '1')
