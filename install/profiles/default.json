@@ -12,7 +12,7 @@
     "--model-from-path=${model}",
     "--kernel-target=ling-3.2-air",
     "--kv-cache-dtype=bf16",
-    "--gpu-memory-utilization=0.80",
+    "--gpu-memory-utilization=0.89",
     "--max-num-seqs=8",
     "--max-batch-size=8",
     "--max-seq-len=262144",
