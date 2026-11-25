@@ -1,5 +1,5 @@
 fbec620f7918892719b1b030774bf84a31277c0eca7dfe0b7a44994978cbdb47  ./harness/comp-llama.sh
-e012c745bd7f23a2559ac60448a736321d3ea95c4aa98add1df6080a206f8d1c  ./harness/comp-sglang.sh
+1cae2b299dc60a93c66bacac81d5496e666f9725b2bb4fb5ead4ac18ed9db4c1  ./harness/comp-sglang.sh
 a85c2311bc5dc7de41d6b8bd684ae41cc44cf465b3573cae42c915570c6f7abe  ./harness/comp-vllm.sh
 d26f6e37f7ae93b1cc0e0d102841ac2e8a60f0f075bc26761deed0add8297736  ./harness/conc.py
 b69036596201984cf7792418d15d168b0b0a92f1df94a7b5cb2153090b9a825a  ./harness/llama-build.sh

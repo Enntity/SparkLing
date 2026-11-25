@@ -11,7 +11,7 @@ docker run -d --name "$name" --gpus device=0 --network host --ipc host --shm-siz
   -e HF_HUB_OFFLINE=1 -e OMP_NUM_THREADS=1 --entrypoint python3 \
   lmsysorg/sglang@sha256:7d0d06441b8220e537ae6bb287294cab26f3c877ded3bc6803a148c294b2cce6 \
   -m sglang.launch_server --model-path /model --served-model-name ling-3.2-air-atlas --host 127.0.0.1 --port 8897 \
-  --tp-size 1 --trust-remote-code --context-length 8192 --mem-fraction-static 0.85 --max-running-requests 8 \
+  --tp-size 1 --trust-remote-code --context-length 8192 --mem-fraction-static ${MEM:-0.85} --max-running-requests 8 \
   --reasoning-parser ling3 --tool-call-parser ling3 "$@" >/dev/null
 for i in $(seq 1 900); do
   curl -fsS --max-time 2 localhost:8897/health >/dev/null 2>&1 && break
