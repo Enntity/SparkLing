@@ -1,6 +1,10 @@
 <!-- SPDX-License-Identifier: AGPL-3.0-only -->
 # Results
 
+## One DGX Spark, November 25, 2026: SparkLing 0.1.0
+
+[The release image against vLLM and llama.cpp, exact drafting, the 128K default, video](2026-11-25/README.md)
+
 ## One DGX Spark, November 24, 2026
 
 [256K retrieval, original FP8 capacity, and LingSante Air-VL parity and speed](2026-11-24/README.md)

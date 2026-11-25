@@ -132,8 +132,8 @@ PINK = (255, 70, 120)
 def scores(card, x0, y, k, ky, data):
     """Show packaged single-stream decode rates for both models."""
     head, small, label, num = int(21 * k), int(13 * k), int(23 * k), int(31 * k)
-    cols = [("LING", "40K profile", x0 + int(800 * k)),
-            ("SANTÉ", "128K profile", x0 + int(1200 * k))]
+    cols = [("LING", "128K default", x0 + int(800 * k)),
+            ("SANTÉ", "128K default", x0 + int(1200 * k))]
     workloads = [("COUNTING", "count"), ("PROSE", "prose"), ("PYTHON", "code")]
 
     def right(xr, yy, s, size, color, glow=None):
@@ -154,10 +154,10 @@ def scores(card, x0, y, k, ky, data):
             right(xr, yy, f"{rates[probe]:.1f}", num, YELLOW, glow=ORANGE)
 
 
-LINES = (["Ling", "native MTP", "NVFP4A16"],
-         ["Santé Air-VL", "borrowed MTP", "NVFP4"],
-         ["Single stream", "64 output tokens per prompt"])
-SOURCE = ["0.1.0-dev", "24 NOV 2026"]
+LINES = (["Exact native MTP", "same text drafted or not"],
+         ["Text", "images", "video", "tools"],
+         ["Single stream", "256 greedy tokens per prompt"])
+SOURCE = ["0.1.0", "25 NOV 2026"]
 URL = "github.com/Enntity/SparkLing"
 
 
@@ -204,10 +204,10 @@ def social(base, font, out, data):
 
 if __name__ == "__main__":
     base, font, out = Path(sys.argv[1]), sys.argv[2], Path(sys.argv[3])
-    results = Path(__file__).resolve().parents[2] / "results/2026-11-24/packaged"
+    results = Path(__file__).resolve().parents[2] / "results/2026-11-25/release"
     data = []
-    for filename in ("ling-streams.jsonl", "sante-128k-drafted.jsonl"):
+    for filename in ("ling-spark-probe.jsonl", "sante-spark-probe.jsonl"):
         records = map(json.loads, (results / filename).read_text().splitlines())
-        data.append({row["probe"]: row["decode_tok_s"] for row in records})
+        data.append({row["probe"]: row["tok_s"] for row in records})
     banner(base / "banner.png", font, out / "banner.png", data)
     social(base / "social-preview.png", font, out / "social-preview.png", data)

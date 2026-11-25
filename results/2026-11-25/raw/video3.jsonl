@@ -1,0 +1,7 @@
+{"case": "gif-red-blue", "answer": "Red Blue", "prompt_tokens": 269, "seconds": 0.71, "passed": false}
+{"case": "mp4-red-blue", "answer": "Red Blue", "prompt_tokens": 329, "seconds": 0.85, "passed": false}
+{"case": "mp4-count8", "answer": "1, 2, 3, 4, 5, 6, 7, 8", "prompt_tokens": 1877, "seconds": 2.78, "passed": true}
+{"case": "gif-count8", "answer": "1, 2, 3, 4, 5, 6, 7, 8", "prompt_tokens": 597, "seconds": 1.26, "passed": true}
+{"case": "mp4-long90", "answer": "Against a background of six vertical color bars, two rainbow-gradient lines drift and intersect across the frame while a gray crosshair and checkerboard patches pulse and shift in size.", "prompt_tokens": 4408, "seconds": 6.64, "passed": true}
+{"case": "invoice", "answer": "Supplier: Harbor Street Bakery; Invoice: 48213; Total: 66.15", "prompt_tokens": 257, "seconds": 1.0, "passed": true}
+{"case": "grid", "answer": "Based on the grid provided:\n\n*   **A1** is **Red**.\n*   **B2** is **Blue**.\n*   **C3** is **Green**.", "prompt_tokens": 1242, "seconds": 3.47, "passed": true}
