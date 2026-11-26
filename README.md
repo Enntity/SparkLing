@@ -1,6 +1,6 @@
 <!-- SPDX-License-Identifier: AGPL-3.0-only -->
 <p align="center">
-  <img src="docs/assets/banner.png" alt="SparkLing 0.1.1 on one DGX Spark, single-stream decode with exact native drafting at eight full context windows. Counting, prose and Python: Ling-3.2-air 56.7, 55.2 and 53.3 tokens/s; LingSante-3.1-air-VL 55.2, 50.9 and 54.6 tokens/s." width="100%">
+  <img src="docs/assets/banner.png" alt="SparkLing 0.1.1 on one DGX Spark at eight full context windows. One stream with exact native drafting, mean of eight prompts: Ling-3.2-air 54.8 and LingSante-3.1-air-VL 54.2 tokens/s. Eight streams together: 104.4 and 104.0 tokens/s. Shared cache: 2.20 and 2.38 million tokens." width="100%">
 </p>
 
 # SparkLing
