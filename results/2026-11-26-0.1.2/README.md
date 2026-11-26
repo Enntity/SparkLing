@@ -26,6 +26,24 @@ The acceptance shares come from the engine's `atlas_spec_decode_verify_total` co
 
 LingSante is now served as `lingsante-3.1-air-vl-atlas` by `./start.sh` as well as by LLooM; 0.1.1's `./start.sh` served it as `lingsante-air-vl`.
 
+## RigMark
+
+[RigMark](https://github.com/alexellis/rigmark) `40fabcaf6e96`, protocol 1.1.0, the code and prose suites as SparkInkling runs them (two decode runs per workload, two cold prefills per depth, two rounds per concurrency), with `chat_template_kwargs.enable_thinking=false`: Ling's template has no effort levels, and with thinking on the code prompts spent RigMark's whole 4,096-token budget reasoning ([November 23](../2026-11-23/README.md)). SparkLing ran through `./start.sh` with the default profile and drafter; vLLM through `reference/serve.py --mode a16` at `--draft-tokens 3` and `0`, with a 40,960-token window. Medians:
+
+| | Ling-3.2-air | LingSante-3.1-air-VL | vLLM, MTP ×3 | vLLM |
+|---|---:|---:|---:|---:|
+| Code decode, tok/s | 62.9 | 62.5 | 45.4 | 21.6 |
+| Prose decode | 54.7 | 49.7 | 32.9 | 21.7 |
+| Structured decode | 64.9 | 63.7 | 44.9 | 21.7 |
+| 32K cold prefill | 2,582 | 2,573 | 2,474 | 2,120 |
+| 8K cold prefill | 3,400 | 3,412 | 2,908 | 2,355 |
+| Short code, aggregate C1 / C2 / C4 / C8 | 58.3 / 66.1 / 98.8 / 142.3 | 56.5 / 66.5 / 96.6 / 136.2 | 37.3 / 67.3 / 112.4 / 167.5 | 20.9 / 45.2 / 79.7 / 129.4 |
+| Short prose, aggregate C1 / C4 / C8 | 50.6 / 86.6 / 115.1 | 47.0 / 86.8 / 116.5 | 29.2 / 82.2 / 125.8 | 21.3 / 75.7 / 119.6 |
+| 32K / 8K prompt sent again, time to first token | 0.02 s / 0.01 s | 0.02 s / 0.01 s | 1.15 s / 0.72 s | 0.89 s / 0.25 s |
+| Basic output gates | 6/6 | 6/6 | 6/6 | 6/6 |
+
+SparkLing drafts for one live request and decodes plainly from two; vLLM keeps its drafter on in a batch, and leads from four short requests. [Cards](rigmark/) (`*.card.txt`) · [JSON receipts](rigmark/) · [run script](rigmark/rig012.sh) · [metadata](rigmark/meta012.py)
+
 ## What changed: the predictor's input
 
 0.1.1's drafted streams were faster than plain decoding on every prompt, but counting, prose and code all ran at about the same speed. A one-token drafter should run near its ceiling on counting, where the next word is nearly certain. Atlas's per-request telemetry (`ATLAS_MTP_ACCEPT_DEBUG=1`) showed why: the first draft was accepted 65–74% of the time on every prompt, including counting (73.5%) and Python (65.2%). vLLM, serving the same NVFP4A16 checkpoint with the same predictor layer, accepted 100% of its first drafts on both.

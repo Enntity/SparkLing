@@ -1,0 +1,24 @@
+╭──────────────────────────────────────────────────────────────────────────────────────────╮
+│  R I G M A R K   //   AGENT WORKLOAD RECEIPT                                             │
+│  BENCHMARKS LOCAL AI HOW CODING AGENTS ACTUALLY USE IT                                   │
+│  ●  6/6 BASIC OUTPUT GATES PASSED                                                        │
+├─ SYSTEM ─────────────────────────────────────────────────────────────────────────────────┤
+│  MODEL      ling-3.2-air-atlas                                                           │
+│  APPLIANCE  1x NVIDIA DGX Spark (GB10, 128 GB)                                           │
+│  RUN        reasoning=unspecified  •  protocol=1.1.0                                     │
+│  SOURCE     git:40fabcaf6e96  •  clean                                                   │
+├─ REAL OUTPUT ────────────────────────────────────────────────────────────────────────────┤
+│  WORKLOAD       DECODE EST.      LAST OUTPUT          RANGE          BASIC GATE          │
+│  CODE              62.9 tok/s      40.9s last     62.3–63.4     ✓ 2/2                    │
+│  PROSE             54.4 tok/s      17.3s last     54.3–54.6     ✓ 2/2                    │
+│  STRUCTURED*       64.8 tok/s       9.7s last     64.7–64.9     ✓ 2/2                    │
+│  * predictable-output ceiling; not a proxy for agent speed                               │
+├─ CAPPED CONCURRENT GENERATION ───────────────────────────────────────────────────────────┤
+│  SHORT PROSE • END-TO-END • 256-TOKEN CAP PER AGENT                                      │
+│  AGGREGATE   C1 50.6  •  C4 86.6  •  C8 115.1 tok/s                                      │
+│  C8 OUTPUT STATE   normal stop 0/16  •  visible 16/16  •  reasoning may be included      │
+├─ RECEIPT ────────────────────────────────────────────────────────────────────────────────┤
+│  JSON       sha256:26a9000593bede07…                                                     │
+│  SHARE THE CARD • LINK THE JSON RECEIPT • #RIGMARK                                       │
+│  github.com/alexellis/rigmark                                                            │
+╰──────────────────────────────────────────────────────────────────────────────────────────╯

@@ -19,7 +19,9 @@ out=$(realpath "${3:-.}")
 url=${SPARKLING_URL:-http://127.0.0.1:${SPARKLING_PORT:-8897}}
 model=${SERVED_MODEL_NAME:-ling-3.2-air-atlas}
 comparison_id=${SPARKLING_COMPARISON_ID:-sparkling-atlas}
-extra='{"chat_template_kwargs":{"enable_thinking":true}}'
+# Thinking off: Ling's template has no effort levels, and with thinking on it spends RigMark's
+# whole 4,096-token budget reasoning on the code prompts (results/2026-11-23).
+extra='{"chat_template_kwargs":{"enable_thinking":false}}'
 curl -sf "$url/health" >/dev/null || { echo "no server at $url; run ./start.sh first" >&2; exit 1; }
 cd "$RIGMARK"
 # code suite: decode, cold and replayed prefill, 1/2/4/8 concurrent requests

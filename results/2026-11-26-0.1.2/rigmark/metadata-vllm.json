@@ -1,0 +1,16 @@
+{
+ "hardware": "1x NVIDIA DGX Spark (GB10, 128 GB)",
+ "topology": "TP1, single Spark",
+ "negotiated_link_speed": "not applicable",
+ "competing_traffic": "none",
+ "reasoning": "thinking off (chat_template_kwargs.enable_thinking=false); Ling's template has no effort levels",
+ "model": "primitive-ai/Ling-3.2-air-NVFP4A16",
+ "model_revision": "3a78e58506316b5b9b7d06037910c3f4abdd291f",
+ "quantisation": "NVFP4A16 (Marlin weight-only FP4 on GB10)",
+ "kv_cache_dtype": "auto",
+ "serving_engine": "vLLM nightly a2bcb5657 (SparkLing reference/serve.py --mode a16)",
+ "serving_image": "vllm/vllm-openai:cu134-nightly-a2bcb5657 @ sha256:24541db8",
+ "drafter": "none",
+ "context_limit": 40960,
+ "scheduler": "max-num-seqs 8, reference launcher defaults"
+}
