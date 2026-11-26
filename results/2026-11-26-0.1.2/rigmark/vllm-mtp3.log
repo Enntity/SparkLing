@@ -25,8 +25,8 @@ concurrency/4: 2 rounds of code
 concurrency/8: 2 rounds of code
   1: aggregate 171.3 tok/s, median stream 22.9 tok/s
   2: aggregate 163.6 tok/s, median stream 22.5 tok/s
-result: /home/enntitysparkadmin/models/sparkling/claude-runs/rig012/vllm-mtp3-code.json
-card: /home/enntitysparkadmin/models/sparkling/claude-runs/rig012/vllm-mtp3-code.card.txt
+result: ~/models/sparkling/claude-runs/rig012/vllm-mtp3-code.json
+card: ~/models/sparkling/claude-runs/rig012/vllm-mtp3-code.card.txt
 
 ╭──────────────────────────────────────────────────────────────────────────────────────────╮
 │  R I G M A R K   //   AGENT WORKLOAD RECEIPT                                             │
@@ -72,8 +72,8 @@ concurrency/4: 2 rounds of prose
 concurrency/8: 2 rounds of prose
   1: aggregate 126.4 tok/s, median stream 16.6 tok/s
   2: aggregate 125.2 tok/s, median stream 16.9 tok/s
-result: /home/enntitysparkadmin/models/sparkling/claude-runs/rig012/vllm-mtp3-prose.json
-card: /home/enntitysparkadmin/models/sparkling/claude-runs/rig012/vllm-mtp3-prose.card.txt
+result: ~/models/sparkling/claude-runs/rig012/vllm-mtp3-prose.json
+card: ~/models/sparkling/claude-runs/rig012/vllm-mtp3-prose.card.txt
 
 ╭──────────────────────────────────────────────────────────────────────────────────────────╮
 │  R I G M A R K   //   AGENT WORKLOAD RECEIPT                                             │

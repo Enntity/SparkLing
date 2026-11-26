@@ -2,11 +2,11 @@
 
 A one-page demo of LingSante-3.1-air-VL served by SparkLing on one DGX Spark. Each of its three scenes makes live calls to the model, and the page shows how long each call took. [Recorded run](run-results.json)
 
-| Scene | What the model does | Recorded on November 26, 2026, SparkLing 0.1.2 |
+| Scene | What the model does | Recorded on November 26, 2026, SparkLing 0.1.3 |
 | --- | --- | --- |
-| Chart review | Reads a six-year chart for one synthetic patient (581 documents, 51,349 tokens) and lists missed follow-ups, renal dosing problems, dangerous combinations and lab trends | First token after 25.4 s (2,026 tokens/s), then 51.5 tokens/s. A follow-up question about the cached chart got its first token in 1.4 s. |
-| Film and labs | Reads a chest radiograph, then reads the radiograph and a lab report together and files a structured note through a forced tool call | Radiograph read in 3.4 s; 517-token note in 11.5 s |
-| Triage | Triages eight emergency patients, all sent at once | All eight answered in 6.6 s |
+| Chart review | Reads a six-year chart for one synthetic patient (581 documents, 51,349 tokens) and lists missed follow-ups, renal dosing problems, dangerous combinations and lab trends | First token after 25.4 s (2,025 tokens/s), then 52.2 tokens/s. A follow-up question about the cached chart got its first token in 1.9 s. |
+| Film and labs | Reads a chest radiograph, then reads the radiograph and a lab report together and files a structured note through a forced tool call | Radiograph read in 3.5 s; note in 11.7 s |
+| Triage | Triages eight emergency patients, all sent at once | All eight answered in 6.8 s |
 
 The chart hides four problems: a lung nodule never followed up, NSAID + ACE inhibitor + spironolactone, kidney function falling with potassium rising, and metformin at eGFR 27. The model found all four in the recorded run. In earlier runs it missed a penicillin allergy against a later amoxicillin-clavulanate prescription, so that problem is not in this chart. Thinking is off in every scene. With thinking on, the chart review spent its whole 4,000-token budget reasoning, which took 127 s.
 

@@ -158,7 +158,7 @@ def scores(card, x0, y, k, ky, data):
 LINES = (["Exact native MTP", "same text drafted or not"],
          ["Text", "images", "video", "tools"],
          ["./start.sh up", "lloom setup"])
-SOURCE = ["0.1.2 benchmarks", "RigMark 1.1.0", "thinking off"]
+SOURCE = ["0.1.3 benchmarks", "RigMark 1.1.0", "thinking off"]
 URL = "github.com/Enntity/SparkLing"
 
 
@@ -205,7 +205,7 @@ def social(base, font, out, data):
 
 if __name__ == "__main__":
     base, font, out = Path(sys.argv[1]), sys.argv[2], Path(sys.argv[3])
-    results = Path(__file__).resolve().parents[2] / "results/2026-11-26-0.1.2/rigmark"
+    results = Path(__file__).resolve().parents[2] / "results/2026-11-26-0.1.3/rigmark"
     data = []
     for model in ("ling", "sante"):
         run = json.loads((results / f"sparkling-{model}-code.json").read_text())

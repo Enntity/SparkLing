@@ -1,11 +1,11 @@
 <!-- SPDX-License-Identifier: AGPL-3.0-only -->
 <p align="center">
-  <img src="docs/assets/banner.png" alt="SparkLing 0.1.2 on one DGX Spark, RigMark 1.1.0 with thinking off, tokens per second. Ling-3.2-air: code 62.9, structured 64.9, eight requests 142.3. LingSante-3.1-air-VL: code 62.5, structured 63.7, eight requests 136.2." width="100%">
+  <img src="docs/assets/banner.png" alt="SparkLing 0.1.3 on one DGX Spark, RigMark 1.1.0 with thinking off, tokens per second. Ling-3.2-air: code 63.0, structured 64.7, eight requests 145.2. LingSante-3.1-air-VL: code 62.4, structured 63.4, eight requests 139.6." width="100%">
 </p>
 
 # SparkLing
 
-**SparkLing 0.1.2** serves inclusionAI’s **Ling-3.2-air** and **LingSante-3.1-air-VL** on one NVIDIA DGX Spark, each at its full native context: 262,144 tokens for Ling-3.2-air and 131,072 for LingSante-3.1-air-VL, eight requests at a time from one shared cache. The Atlas engine provides an OpenAI-compatible API for text, images, video and tool calls. In its default Spark mode, SparkLing drafts with each model’s native next-token predictor. Every draft is verified with the same arithmetic as plain decoding, so greedy output is byte-for-byte identical with drafting on or off.
+**SparkLing 0.1.3** serves inclusionAI’s **Ling-3.2-air** and **LingSante-3.1-air-VL** on one NVIDIA DGX Spark, each at its full native context: 262,144 tokens for Ling-3.2-air and 131,072 for LingSante-3.1-air-VL, eight requests at a time from one shared cache. The Atlas engine provides an OpenAI-compatible API for text, images, video and tool calls. In its default Spark mode, SparkLing drafts with each model’s native next-token predictor, for up to four requests at once. Every draft is verified with the same arithmetic as plain decoding, so one request’s greedy output is byte-for-byte identical with drafting on or off.
 
 ```sh
 git clone https://github.com/Enntity/SparkLing.git
@@ -28,13 +28,15 @@ Both recipes were installed and started this way on a DGX Spark on November 25, 
 
 ## LingSante demo
 
-[demo/lingsante](demo/lingsante/README.md) is a one-page demo that calls LingSante live; every patient in it is synthetic. In the recorded run on one Spark:
+[demo/lingsante](demo/lingsante/README.md) is a one-page demo that calls LingSante live; every patient in it is synthetic. In the run recorded on SparkLing 0.1.3, on one Spark:
 
-- **Chart review.** It read a six-year chart of 51,349 tokens in 25.4 s and named all four planted problems, including a lung nodule never followed up and metformin continued at eGFR 27. A follow-up question about the same chart started answering after 1.4 s, because the chart was still in the cache.
-- **Film and labs.** It described a chest radiograph in 3.4 s. Given the radiograph and a lab report together, it filed a structured encounter note as a tool call in 11.5 s.
-- **Triage.** It triaged eight emergency patients sent at once, all within 6.6 s.
+- **Chart review.** It read a six-year chart of 51,349 tokens in 25.4 s and named all four planted problems, including a lung nodule never followed up and metformin continued at eGFR 27. A follow-up question about the same chart started answering after 1.9 s, because the chart was still in the cache.
+- **Film and labs.** It described a chest radiograph in 3.5 s. Given the radiograph and a lab report together, it filed a structured encounter note as a tool call in 11.7 s.
+- **Triage.** It triaged eight emergency patients sent at once, all within 6.8 s.
 
 It is a research demonstration, not medical advice.
+
+> **0.1.3 drafts for several requests at once.** Up to 0.1.2, SparkLing drafted only while a single request was running. 0.1.3 verifies up to four requests’ drafts in one batched pass and drafts them in one predictor pass. On RigMark, short code runs 28% faster at two requests and 24% faster at four for Ling-3.2-air, and 29% and 22% faster for LingSante-3.1-air-VL. One request’s output is byte-identical to 0.1.2. [What changed](results/2026-11-26-0.1.3/README.md#what-changed-several-requests-draft-together)
 
 > **0.1.2 fixes drafting.** In 0.1.1 the drafter got the wrong input: Ling's predictor layer expects the model's last hidden state after its final normalization, and Atlas passed it before. Verify kept the output exact, but only about 70% of drafts were accepted on every prompt, even counting, where vLLM with the same predictor accepts all of them. 0.1.2 accepts 100% on counting, and single-stream decode rises from 54.8 to 61.0 tok/s for Ling-3.2-air and from 54.2 to 57.5 for LingSante-3.1-air-VL. Output is byte-identical to 0.1.1. [What changed](results/2026-11-26-0.1.2/README.md#what-changed-the-predictors-input)
 
@@ -42,26 +44,33 @@ It is a research demonstration, not medical advice.
 
 ## Performance
 
-Measured on the 0.1.2 image with [RigMark](https://github.com/alexellis/rigmark) `40fabcaf6e96`, protocol 1.1.0, thinking off (Ling's template has no effort levels), on one Spark with the default profile and drafter, against the pinned vLLM image with and without its MTP drafter on the same Spark: [the result, with every receipt](results/2026-11-26-0.1.2/README.md#rigmark).
+Measured on the 0.1.3 image with [RigMark](https://github.com/alexellis/rigmark) `40fabcaf6e96`, protocol 1.1.0, thinking off (Ling's template has no effort levels), on one Spark with the default profile and drafter, against the pinned vLLM image with and without its MTP drafter on the same Spark: [the result, with every receipt](results/2026-11-26-0.1.3/README.md#rigmark).
 
 | | Ling-3.2-air | LingSante-3.1-air-VL | vLLM, MTP ×3 | vLLM |
 |---|---:|---:|---:|---:|
-| Code decode, tok/s | **62.9** | 62.5 | 45.4 | 21.6 |
-| Prose decode | **54.7** | 49.7 | 32.9 | 21.7 |
-| Structured decode | **64.9** | 63.7 | 44.9 | 21.7 |
-| 32K cold prefill, tok/s | **2,582** | 2,573 | 2,474 | 2,120 |
-| 8K cold prefill | **3,400** | 3,412 | 2,908 | 2,355 |
-| Short code, C1 / C2 / C4 / C8 aggregate | **58.3** / 66.1 / 98.8 / 142.3 | 56.5 / 66.5 / 96.6 / 136.2 | 37.3 / **67.3 / 112.4 / 167.5** | 20.9 / 45.2 / 79.7 / 129.4 |
-| Short prose, C1 / C4 / C8 aggregate | **50.6 / 86.6** / 115.1 | 47.0 / 86.8 / 116.5 | 29.2 / 82.2 / **125.8** | 21.3 / 75.7 / 119.6 |
+| Code decode, tok/s | **63.0** | 62.4 | 45.4 | 21.6 |
+| Prose decode | **54.7** | 49.8 | 32.9 | 21.7 |
+| Structured decode | **64.7** | 63.4 | 44.9 | 21.7 |
+| 32K cold prefill, tok/s | **2,577** | 2,576 | 2,474 | 2,120 |
+| 8K cold prefill | 3,404 | **3,405** | 2,908 | 2,355 |
+| Short code, C1 / C2 / C4 / C8 aggregate | **58.1** / 84.9 / **122.6** / 145.2 | 56.0 / **86.0** / 117.8 / 139.6 | 37.3 / 67.3 / 112.4 / **167.5** | 20.9 / 45.2 / 79.7 / 129.4 |
+| Short prose, C1 / C4 / C8 aggregate | **50.5 / 95.9** / 114.9 | 47.0 / 91.1 / 115.5 | 29.2 / 82.2 / **125.8** | 21.3 / 75.7 / 119.6 |
 | 32K prompt sent again, time to first token | **0.02 s** | 0.02 s | 1.15 s | 0.89 s |
 | Longest request | 262,144 | 131,072 | 40,960 as configured | 40,960 as configured |
 | Basic output gates | 6/6 | 6/6 | 6/6 | 6/6 |
 
-On Ling-3.2-air, SparkLing leads vLLM with its drafter on code (1.39x), prose (1.66x), structured output (1.45x), cold prefill (1.04x at 32K, 1.17x at 8K), one request (1.56x) and a repeated 32K prompt. It ties at two short-code requests (0.98x) and trails at four and eight (0.88x, 0.85x) and at eight prose requests (0.91x). SparkLing drafts for one live request and decodes plainly from two, because its two-row verify does not yet batch across requests; vLLM keeps drafting in a batch. The vLLM columns serve the same NVFP4A16 checkpoint with a 40,960-token window.
+On Ling-3.2-air, SparkLing leads vLLM with its drafter on:
+- code (1.39x), prose (1.66x) and structured output (1.44x);
+- cold prefill (1.04x at 32K, 1.17x at 8K);
+- one, two and four short-code requests (1.56x, 1.26x, 1.09x);
+- four prose requests (1.17x);
+- a repeated 32K prompt.
+
+vLLM leads at eight requests: 1.15x on code and 1.09x on prose. SparkLing drafts for up to four live requests and decodes from five plainly. Ling routes each token to 8 of 512 experts, so a verify of eight requests reads nearly twice the expert weights of a plain step for about 1.8 tokens per request, which does not pay on a GB10. The vLLM columns are 0.1.2's runs on the same Spark, serving the same NVFP4A16 checkpoint with a 40,960-token window.
 
 ### Eight short prompts, with llama.cpp
 
-SparkLing’s own probe adds llama.cpp and shows each prompt. All engines ran on the same GB10, one at a time, with nothing else using the GPU. SparkLing’s column is the published `0.1.2` image launched by `./start.sh up` with its 262,144-token window. The other engines ran with an 8,192-token window. The client sent the same request bodies to each engine: eight greedy prompts of 256 tokens each, with thinking off. Decode rate is measured after the first token.
+SparkLing’s own probe adds llama.cpp and shows each prompt. This table was measured on 0.1.2. 0.1.3 decodes one request with byte-identical text, and on its release run the same probe measured 60.4 tok/s single stream and 60.0 / 78.0 / 85.6 / 104.2 tok/s at 1 / 2 / 4 / 8 clients. All engines ran on the same GB10, one at a time, with nothing else using the GPU. SparkLing’s column is the published `0.1.2` image launched by `./start.sh up` with its 262,144-token window. The other engines ran with an 8,192-token window. The client sent the same request bodies to each engine: eight greedy prompts of 256 tokens each, with thinking off. Decode rate is measured after the first token.
 
 | One GB10 · Ling-3.2-air | SparkLing 0.1.2 | vLLM, MTP ×3 | vLLM | llama.cpp, MTP | llama.cpp |
 | --- | ---: | ---: | ---: | ---: | ---: |
@@ -78,14 +87,14 @@ SparkLing is fastest on all eight prompts, including the predictable ones where 
 
 On this probe too, vLLM with MTP leads at eight concurrent requests, by 4%. Atlas also prefills simultaneous prompts one after another rather than in one batch: at eight clients its median time to first token was 1.04 s, against vLLM’s 0.69 s.
 
-[Measurements, commands and raw streams](results/2026-11-26-0.1.2/README.md) · [0.1.0 comparison runs](results/2026-11-25/README.md)
+[Measurements, commands and raw streams](results/2026-11-26-0.1.2/README.md) · [0.1.3 release run](results/2026-11-26-0.1.3/README.md#release-image) · [0.1.0 comparison runs](results/2026-11-25/README.md)
 
 ## Full context, eight at a time
 
 | Default profile, Spark mode | Ling-3.2-air | LingSante-3.1-air-VL |
 | --- | ---: | ---: |
 | Context window, tokens | 262,144 | 131,072 |
-| Shared KV pool, tokens | 2,221,344 (8.5 windows) | 2,370,704 (18 windows) |
+| Shared KV pool, tokens | 2,148,608 (8.2 windows) | 2,374,592 (18 windows) |
 
 - **Eight full windows.** Eight simultaneous 262,132-token prompts, each with different content and its own key word to recall, all returned the right word. They held 2,097,056 prompt tokens together and finished in 45 minutes. Eight 65,524-token prompts took 279 seconds. [8 × 256K](results/2026-11-25-0.1.1/release/r11-long-8x256k.jsonl) · [8 × 64K](results/2026-11-25-0.1.1/release/r11-long-8x64k.jsonl)
 - **Decode at depth.** Measured on 0.1.1 with drafting on, 256 tokens after a prompt of 2K, 32K, 128K and 262K tokens decoded at 44.4, 40.6, 34.9 and 27.9 tok/s. 0.1.0 decoded at 3.2 tok/s at 256K, because the old cache forced it to read some experts from disk. [Depth runs](results/2026-11-25-0.1.1/release/ling-spark-depth.jsonl)
@@ -99,15 +108,17 @@ Every Spark* memory lever SparkGLM and SparkQwen use is on by default:
 
 ## Exact native drafting
 
-Ling-3.2-air ships one MTP layer. Atlas runs that layer to propose the next token and verifies each proposal together with the current token in one two-row pass. Every row of that pass, including attention over the compressed cache and the FFN, uses the arithmetic single-token decode uses. Drafted greedy text matched plain decode on all eight prompts, at 61.0 tok/s against 44.8. The predictor’s first draft was accepted on 100% of counting steps, 98% for Python and 72–95% elsewhere. Drafting is on for one active request. From two requests, Atlas switches to batched plain decoding, which is faster here than verifying requests in turn.
+Ling-3.2-air ships one MTP layer. Atlas runs that layer to propose the next token and verifies each proposal together with the current token in one two-row pass. Every row of that pass, including attention over the compressed cache and the FFN, uses the arithmetic single-token decode uses. Drafted greedy text matched plain decode on all eight prompts, at 60.4 tok/s against 44.7. The predictor’s first draft was accepted on 100% of counting steps, 98% for Python and 72–95% elsewhere.
 
-LingSante-3.1-air-VL has no predictor of its own. In Spark mode it borrows Ling-3.2-air’s layer, downloaded with the model. Its drafted text also matched plain decode on all eight prompts, at 57.5 tok/s against 44.3. `DRAFTER=none` turns drafting off for either model.
+Drafting is on for up to four active requests. Atlas verifies their drafts in one batched pass, each request’s rows against its own cache and recurrent state, and the predictor drafts for all of them in one pass. From five requests Atlas decodes plainly: with 512 routed experts, a verify of eight requests costs about as much as the tokens it gains.
+
+LingSante-3.1-air-VL has no predictor of its own. In Spark mode it borrows Ling-3.2-air’s layer, downloaded with the model. Its drafted text also matched plain decode on all eight prompts, at 57.4 tok/s against 44.2. `DRAFTER=none` turns drafting off for either model.
 
 SparkLing drafts one token per step. A second draft would add a verify row, and a three-row verify costs about 44 ms against 30 ms for two. It would pay off only if the second draft were accepted more than about 90% of the time. On counting, vLLM accepted its second draft from the same predictor 71% of the time. `bench/draft_decode.py --min-count-accept 0.95` checks that a build’s drafter still accepts at least 95% on counting.
 
 ## Quality
 
-The compressed cache changes how attention is computed, so 0.1.1 was checked against 0.1.0 and against independent references. 0.1.2 changes only what the draft predictor sees: its output is byte-identical to 0.1.1 and to plain decoding on all sixteen probe prompts, so these results hold for 0.1.2.
+The compressed cache changes how attention is computed, so 0.1.1 was checked against 0.1.0 and against independent references. 0.1.2 changes only what the draft predictor sees, and 0.1.3 only how several requests draft together. One request’s output from either is byte-identical to 0.1.1 and to plain decoding on all sixteen probe prompts, so these results hold for both.
 
 | GSM8K, first 200 test problems, greedy, thinking off | Ling-3.2-air | LingSante-3.1-air-VL |
 | --- | ---: | ---: |
@@ -158,7 +169,7 @@ Use `./start.sh status`, `./start.sh logs` and `./start.sh stop` to manage the s
 
 ## Reproduce
 
-[results/2026-11-26-0.1.2](results/2026-11-26-0.1.2/README.md) and [results/2026-11-25-0.1.1](results/2026-11-25-0.1.1/README.md) list the scripts and commands behind every number above. The reference launchers pin the vLLM and SGLang images. [Benchmark instructions](docs/REPRODUCE.md) · [Functional checks](bench/README.md) · [Reference launchers](reference/README.md) · [Earlier results](results/README.md)
+[results/2026-11-26-0.1.3](results/2026-11-26-0.1.3/README.md), [results/2026-11-26-0.1.2](results/2026-11-26-0.1.2/README.md) and [results/2026-11-25-0.1.1](results/2026-11-25-0.1.1/README.md) list the scripts and commands behind every number above. The reference launchers pin the vLLM and SGLang images. [Benchmark instructions](docs/REPRODUCE.md) · [Functional checks](bench/README.md) · [Reference launchers](reference/README.md) · [Earlier results](results/README.md)
 
 ## Engine and license
 
