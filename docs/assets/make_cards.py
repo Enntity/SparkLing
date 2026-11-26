@@ -130,7 +130,7 @@ class Card:
 
 PINK = (255, 70, 120)
 def scores(card, x0, y, k, ky, data):
-    """Show RigMark 1.1.0 medians for both models: code and structured decode, eight short-code requests."""
+    """Show SparkModelBench medians for both models: code and structured decode, eight short-code requests."""
     head, small, label, num = int(21 * k), int(13 * k), int(23 * k), int(31 * k)
     cols = [("LING", "8 x 256K", x0 + int(800 * k)),
             ("LINGSANTE", "8 x 128K", x0 + int(1200 * k))]
@@ -158,7 +158,7 @@ def scores(card, x0, y, k, ky, data):
 LINES = (["Exact native MTP", "same text drafted or not"],
          ["Text", "images", "video", "tools"],
          ["./start.sh up", "lloom setup"])
-SOURCE = ["0.1.3 benchmarks", "RigMark 1.1.0", "thinking off"]
+SOURCE = ["0.1.3 benchmarks", "SparkModelBench", "thinking on"]
 URL = "github.com/Enntity/SparkLing"
 
 
@@ -205,12 +205,12 @@ def social(base, font, out, data):
 
 if __name__ == "__main__":
     base, font, out = Path(sys.argv[1]), sys.argv[2], Path(sys.argv[3])
-    results = Path(__file__).resolve().parents[2] / "results/2026-11-26-0.1.3/rigmark"
+    results = Path(__file__).resolve().parents[2] / "results/sparkmodelbench-v0.1.3"
     data = []
-    for model in ("ling", "sante"):
-        run = json.loads((results / f"sparkling-{model}-code.json").read_text())
-        median = lambda section: section["decode_tokens_per_second"]["median"]
-        data.append({"code": median(run["decode"]["code"]), "structured": median(run["decode"]["structured"]),
-                     "eight": run["concurrency"]["8"]["aggregate_end_to_end_tokens_per_second"]["median"]})
+    for model in ("ling", "lingsante"):
+        decode = json.loads((results / f"{model}.json").read_text())["lanes"]["decode"]
+        sweep = json.loads((results / f"{model}-concurrency.json").read_text())["lanes"]["concurrency"]
+        data.append({"code": decode["code"]["tokens_s"], "structured": decode["structured"]["tokens_s"],
+                     "eight": sweep["8"]["aggregate_tokens_s"]})
     banner(base / "banner.png", font, out / "banner.png", data)
     social(base / "social-preview.png", font, out / "social-preview.png", data)
