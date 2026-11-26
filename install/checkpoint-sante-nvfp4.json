@@ -1,5 +1,5 @@
 {
-  "served_model_name": "lingsante-air-vl",
+  "served_model_name": "lingsante-3.1-air-vl-atlas",
   "source_revision": "1f398c937d6069994a156689636832c47d8c09be",
   "format": "NVFP4 E2M1 group 16, per-expert E4M3 scales, BF16 trunk",
   "spark": {

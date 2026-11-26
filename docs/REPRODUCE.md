@@ -35,7 +35,7 @@ arithmetic and image answers. Replace `parity` with `speed` to time two
 
 ## Native drafting and Air-VL NVFP4
 
-`bench/draft_decode.py PORT` sends three greedy 64-token requests. Run it against the same profile with `DRAFTER=none` and `DRAFTER=mtp`. Compare the output strings and tokens per second after the first token. With drafting on, each record also has `draft_accept`, the share of drafts the verify accepted. `--min-count-accept 0.95` fails the run if counting accepts less: the predictor almost never misses on counting, so a lower share means the drafter is broken even though the output stays exact. For Air-VL, pass `--model lingsante-air-vl`.
+`bench/draft_decode.py PORT` sends three greedy 64-token requests. Run it against the same profile with `DRAFTER=none` and `DRAFTER=mtp`. Compare the output strings and tokens per second after the first token. With drafting on, each record also has `draft_accept`, the share of drafts the verify accepted. `--min-count-accept 0.95` fails the run if counting accepts less: the predictor almost never misses on counting, so a lower share means the drafter is broken even though the output stays exact. For Air-VL, pass `--model lingsante-3.1-air-vl-atlas`.
 
 Download the 70.88 GiB Air-VL checkpoint with `./start.sh --model lingsante-3.1-air-vl --mode spark --quant nvfp4 download`. The launcher fetches Enntity’s pinned Hub revision, checks SHA-256 for all 70 inference files, and shares the cache directory with the previous byte-identical local conversion. An existing verified copy also works offline. The same command with `verify` repeats the hashes. Strict BF16 and publisher MXFP4 have their own checkpoint directories. [Published weights](https://huggingface.co/Enntity/LingSante-3.1-air-VL-NVFP4)
 

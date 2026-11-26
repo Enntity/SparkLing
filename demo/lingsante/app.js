@@ -1,6 +1,6 @@
 // SPDX-License-Identifier: AGPL-3.0-only
 // LingSante demo director: three live scenes against the local SparkLing engine.
-const MODEL = new URLSearchParams(location.search).get("model") || "lingsante-air-vl";
+const MODEL = new URLSearchParams(location.search).get("model") || "lingsante-3.1-air-vl-atlas";
 const $ = (id) => document.getElementById(id);
 const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
 const results = {};
