@@ -5,7 +5,7 @@ cd "$(dirname "${BASH_SOURCE[0]}")"
 if [[ ${1:-} == --version ]]; then exec python3 install/serve.py --version; fi
 if [[ -f .env ]]; then set -a; source ./.env; set +a; fi
 mode=${MODE:-spark}
-model_id=${MODEL:-ling-3.2-air}
+model_id=${SPARKLING_MODEL:-${MODEL:-ling-3.2-air}}
 quant=${QUANT:-}
 while [[ ${1:-} == --mode || ${1:-} == --model || ${1:-} == --quant ]]; do
   [[ $# -ge 2 ]] || { echo "$1 requires a value" >&2; exit 2; }
@@ -18,15 +18,16 @@ while [[ ${1:-} == --mode || ${1:-} == --model || ${1:-} == --quant ]]; do
 done
 case "$model_id" in
   ling-3.2-air) manifest=install/checkpoint.json ;;
-  sante-air-vl) manifest=install/checkpoint-sante-air-vl.json ;;
-  *) echo "unknown SparkLing model: $model_id" >&2; exit 2 ;;
+  # sante-air-vl, its earlier name, stays the id the image and its caches use.
+  lingsante-3.1-air-vl|sante-air-vl) model_id=sante-air-vl manifest=install/checkpoint-sante-air-vl.json ;;
+  *) echo '--model (SPARKLING_MODEL) must be ling-3.2-air or lingsante-3.1-air-vl' >&2; exit 2 ;;
 esac
 if [[ -z $quant ]]; then
   quant=publisher
   if [[ $model_id == sante-air-vl && $mode == spark ]]; then quant=nvfp4; fi
 fi
 if [[ $quant != publisher && ( $quant != nvfp4 || $model_id != sante-air-vl || $mode != spark ) ]]; then
-  echo '--quant nvfp4 requires --model sante-air-vl --mode spark' >&2
+  echo '--quant nvfp4 requires --model lingsante-3.1-air-vl --mode spark' >&2
   exit 2
 fi
 cmd=${1:-up}
@@ -38,7 +39,7 @@ case "$cmd" in
   logs) exec docker logs -f --tail 100 "$name" ;;
   status) exec docker ps -a --filter "name=^/${name}$" ;;
   build) exec install/build.sh ;;
-  --help|-h) echo './start.sh [--model ling-3.2-air|sante-air-vl] [--mode spark|strict] [--quant publisher|nvfp4] [download|verify|build|up|stop|logs|status]'; exit ;;
+  --help|-h) echo './start.sh [--model ling-3.2-air|lingsante-3.1-air-vl] [--mode spark|strict] [--quant publisher|nvfp4] [download|verify|build|up|stop|logs|status]'; exit ;;
   up|verify|download) ;;
   *) echo "unknown command: $cmd" >&2; exit 2 ;;
 esac
