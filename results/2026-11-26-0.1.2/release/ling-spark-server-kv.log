@@ -1,0 +1,24 @@
+2026-11-26T03:35:55.477340Z  INFO spark::display_carveout: display carveout: driver 580.178.04, 2044 of 2046 MiB of DISPLAY_FRM free (the display holds the rest)
+2026-11-26T03:35:55.477360Z  INFO spark::display_carveout: display carveout: 2044 MiB exported as fd 6, lock /run/lock/sparkglm/display-carveout.lock
+2026-11-26T03:37:03.105873Z  INFO spark_model::factory::build: KV cache: 121.7 GB total × 89% util = 108.3 GB budget; 87.0 GB pre-KV + 4.6 GB reserve → 16.7 GB for KV → 138834 blocks × 16 tok/block = 2221344 max KV tokens
+2026-11-26T03:37:03.861140Z  INFO spark_model::factory::build::kv_nvme: prefix cache NVMe spill tier ON (rank 0): /prefix-cache/spark-kv2-prefill-nvfp4-decode-nvfp4-tensor-v2-mtp1/kv (ATLAS_KV_NVME_DIR, O_DIRECT, unlinked), 131072 B/block record (8192 B/token: latent + pooled index, no raw tails), budget 8.0 GiB = 65536 blocks = 1048576 tokens; fast I/O (ATLAS_GLM_NVME_FAST), restored records released (ATLAS_GLM_NVME_KEEP), 16.0 MiB pinned staging, up to 40.0 MiB host index
+2026-11-26T03:37:09.251171Z  INFO spark::scheduler::verify_k2_step: K2 summary: 100 accept / 0 reject in last 100 steps (100.0% accept) seq_len=238
+2026-11-26T03:37:12.543598Z  INFO spark::scheduler::verify_k2_step: K2 summary: 79 accept / 21 reject in last 100 steps (79.0% accept) seq_len=170
+2026-11-26T03:37:16.121088Z  INFO spark::scheduler::verify_k2_step: K2 summary: 87 accept / 13 reject in last 100 steps (87.0% accept) seq_len=71
+2026-11-26T03:37:19.095430Z  INFO spark::scheduler::verify_k2_step: K2 summary: 77 accept / 23 reject in last 100 steps (77.0% accept) seq_len=248
+2026-11-26T03:37:22.362519Z  INFO spark::scheduler::verify_k2_step: K2 summary: 71 accept / 29 reject in last 100 steps (71.0% accept) seq_len=167
+2026-11-26T03:37:26.128018Z  INFO spark::scheduler::verify_k2_step: K2 summary: 92 accept / 8 reject in last 100 steps (92.0% accept) seq_len=131
+2026-11-26T03:37:29.439649Z  INFO spark::scheduler::verify_k2_step: K2 summary: 86 accept / 14 reject in last 100 steps (86.0% accept) seq_len=93
+2026-11-26T03:37:32.423793Z  INFO spark::scheduler::verify_k2_step: K2 summary: 94 accept / 6 reject in last 100 steps (94.0% accept) seq_len=287
+2026-11-26T03:37:35.676655Z  INFO spark::scheduler::verify_k2_step: K2 summary: 75 accept / 25 reject in last 100 steps (75.0% accept) seq_len=199
+2026-11-26T03:37:39.307425Z  INFO spark::scheduler::verify_k2_step: K2 summary: 80 accept / 20 reject in last 100 steps (80.0% accept) seq_len=75
+2026-11-26T03:37:43.320829Z  INFO spark::scheduler::verify_k2_step: K2 summary: 92 accept / 8 reject in last 100 steps (92.0% accept) seq_len=162
+2026-11-26T03:38:20.794294Z  INFO spark_model::model::vision_cache: Vision prefix cache: 0 of 4 items cached (0 rows), encoded 196 rows for positions from 0
+2026-11-26T03:38:21.848932Z  INFO spark_model::model::vision_cache: Vision prefix cache: 0 of 4 items cached (0 rows), encoded 256 rows for positions from 0
+2026-11-26T03:38:23.785120Z  INFO spark_model::model::vision_cache: Vision prefix cache: 0 of 8 items cached (0 rows), encoded 1760 rows for positions from 0
+2026-11-26T03:38:25.344425Z  INFO spark_model::model::vision_cache: Vision prefix cache: 0 of 8 items cached (0 rows), encoded 480 rows for positions from 0
+2026-11-26T03:38:30.750620Z  INFO spark_model::model::vision_cache: Vision prefix cache: 0 of 16 items cached (0 rows), encoded 4224 rows for positions from 0
+2026-11-26T03:38:33.290092Z  INFO spark::scheduler::verify_k2_step: K2 summary: 92 accept / 8 reject in last 100 steps (92.0% accept) seq_len=4459
+2026-11-26T03:38:33.769143Z  INFO spark_model::model::vision_cache: Vision prefix cache: 0 of 1 items cached (0 rows), encoded 216 rows for positions from 0
+2026-11-26T03:38:36.553636Z  INFO spark_model::model::vision_cache: Vision prefix cache: 0 of 1 items cached (0 rows), encoded 1200 rows for positions from 0
+2026-11-26T03:39:51.972510Z  INFO spark::scheduler::verify_k2_step: K2 summary: 80 accept / 20 reject in last 100 steps (80.0% accept) seq_len=333

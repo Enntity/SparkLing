@@ -1,5 +1,5 @@
 {
-  "served_model_name": "lingsante-air-vl",
+  "served_model_name": "lingsante-3.1-air-vl-atlas",
   "model_type": "bailing_moe_v3_vl",
   "strict": {
     "repository": "inclusionAI/LingSante-3.1-air-VL",

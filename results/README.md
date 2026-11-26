@@ -1,6 +1,10 @@
 <!-- SPDX-License-Identifier: AGPL-3.0-only -->
 # Results
 
+## One DGX Spark, November 26, 2026: SparkLing 0.1.2
+
+[The drafter fix: what Ling's predictor was fed, acceptance before and after against vLLM, and the release image](2026-11-26-0.1.2/README.md)
+
 ## One DGX Spark, November 25, 2026: SparkLing 0.1.1
 
 [The latent MLA cache: eight full 262K windows, the release image, decode at depth, quality against vLLM and BF16, and the 0.1.0 correction](2026-11-25-0.1.1/README.md)

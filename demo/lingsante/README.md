@@ -14,13 +14,13 @@ This is a research demonstration, not medical advice. Every patient, chart and l
 
 ## Run it
 
-Start LingSante with `./start.sh --model sante-air-vl up`, then, from this directory:
+Start LingSante with `./start.sh --model lingsante-3.1-air-vl up`, then, from this directory:
 
 ```sh
 python3 server.py            # serves the page on 127.0.0.1:8700, proxies /v1 to 127.0.0.1:8897
 ```
 
-Open `http://127.0.0.1:8700/?autoplay=1`, or open the page without `autoplay` and press the space bar. Under LLooM, add `&model=lingsante-3.1-air-vl-atlas` and point `server.py` at the engine port (`python3 server.py 8700 PORT`). `server.py` also sends the eight triage requests to the engine together, because a browser opens at most six connections to one host. `record.py` captures the page at 1920 × 1080 with Playwright. Playwright starts recording on a blank white page, so cut the first 1.5 s (`ffmpeg -i in.webm -ss 1.5 …`) to open on the title card.
+Open `http://127.0.0.1:8700/?autoplay=1`, or open the page without `autoplay` and press the space bar. Under LLooM, point `server.py` at the engine port (`python3 server.py 8700 PORT`). `server.py` also sends the eight triage requests to the engine together, because a browser opens at most six connections to one host. `record.py` captures the page at 1920 × 1080 with Playwright. Playwright starts recording on a blank white page, so cut the first 1.5 s (`ffmpeg -i in.webm -ss 1.5 …`) to open on the title card.
 
 `python3 make_chart.py data/chart.txt` and `python3 make_labs.py data/labs-1182.png` rebuild the synthetic chart and lab report. The chart comes out identical on every run; the lab report needs Pillow.
 

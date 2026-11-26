@@ -26,7 +26,7 @@ PASSAGE = ("Synthetic accession log. A technician received two tubes on Tuesday.
 
 
 def measure(port, prompt, scores=False, echo=False):
-    body = dict(model="lingsante-air-vl", prompt=prompt, max_tokens=1, temperature=0, seed=31)
+    body = dict(model="lingsante-3.1-air-vl-atlas", prompt=prompt, max_tokens=1, temperature=0, seed=31)
     if scores:
         body["logprobs"] = 5
     if echo:

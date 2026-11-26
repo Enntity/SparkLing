@@ -82,6 +82,6 @@ every decode, concurrency and cold or warm-replay prefill metric. It then
 prints candidate/reference ratios and a separate `winner` field for each
 metric. It does not hide failed completion gates or mismatched settings.
 
-For Air-VL set `SERVED_MODEL_NAME=lingsante-air-vl` when running these drivers against either engine. The SparkLing launcher uses that API name for both Air-VL precisions.
+For Air-VL set `SERVED_MODEL_NAME=lingsante-3.1-air-vl-atlas` when running these drivers against either engine. The SparkLing launcher uses that API name for both Air-VL precisions.
 
 `python3 vision_check.py 8897 invoice grid gif mp4 gif-count mp4-count` checks three invoice fields, three grid cells, the temporal order of a red-to-blue synthetic clip and the eight numbers of a counting clip, each clip as GIF and MP4. Each requested case emits one JSON record. The command returns a failure if any answer misses its expected fields or the server rejects that input. Pass individual case names to run a shorter check.

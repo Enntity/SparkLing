@@ -138,7 +138,7 @@ docker run --rm --gpus device=0 --network host --ipc host \
   -v "${MODEL_ROOT:-$HOME/models/sparkling}/$rev:/model:ro" \
   -e HF_HUB_OFFLINE=1 -e OMP_NUM_THREADS=1 -e MKL_NUM_THREADS=1 \
   --entrypoint python3 lmsysorg/sglang@sha256:7d0d06441b8220e537ae6bb287294cab26f3c877ded3bc6803a148c294b2cce6 \
-  -m sglang.launch_server --model-path /model --served-model-name lingsante-air-vl \
+  -m sglang.launch_server --model-path /model --served-model-name lingsante-3.1-air-vl-atlas \
   --host 127.0.0.1 --port 8898 --tp-size 1 --trust-remote-code --context-length 4096 \
   --dtype bfloat16 --mem-fraction-static 0.85 --max-running-requests 1 \
   --attention-backend flashinfer --mm-attention-backend triton_attn \

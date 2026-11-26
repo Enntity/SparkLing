@@ -24,7 +24,7 @@ def blue_square():
 
 
 def request(content, limit, stream=False):
-    body = dict(model="lingsante-air-vl", messages=[dict(role="user", content=content)],
+    body = dict(model="lingsante-3.1-air-vl-atlas", messages=[dict(role="user", content=content)],
                 max_tokens=limit, temperature=0, seed=31, stream=stream,
                 chat_template_kwargs={"enable_thinking": False})
     if stream:

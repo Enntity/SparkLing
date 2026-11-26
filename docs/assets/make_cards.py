@@ -14,6 +14,7 @@ make_cards.py. Needs Pillow. The JPEG is a format export of the social card.
 """
 import json
 import random
+import re
 import sys
 from pathlib import Path
 
@@ -130,34 +131,34 @@ class Card:
 
 PINK = (255, 70, 120)
 def scores(card, x0, y, k, ky, data):
-    """Show packaged single-stream decode rates for both models."""
+    """Show the 0.1.1 release's one-stream and eight-stream decode and its shared cache for both models."""
     head, small, label, num = int(21 * k), int(13 * k), int(23 * k), int(31 * k)
     cols = [("LING", "8 x 256K", x0 + int(800 * k)),
             ("LINGSANTE", "8 x 128K", x0 + int(1200 * k))]
-    workloads = [("COUNTING", "count"), ("PROSE", "prose"), ("PYTHON", "code")]
+    workloads = [("1 STREAM TOK/S", "one", "{:.1f}"), ("8 STREAMS TOK/S", "eight", "{:.1f}"),
+                 ("CACHE TOKENS", "cache", "{:.2f}M")]
 
     def right(xr, yy, s, size, color, glow=None):
         card.text((xr - int(card.font(size).getlength(s)), yy), [s], size, color, glow=glow)
 
-    end = card.text((x0, y), ["HIGH SCORES"], head, PINK, glow=(150, 20, 70))
-    card.text((end + int(18 * k), y), ["TOK/S"], head, YELLOW)
+    card.text((x0, y), ["HIGH SCORES"], head, PINK, glow=(150, 20, 70))
     for name, cmd, xr in cols:
         right(xr, y, name, head, WHITE)
         right(xr, y + int(30 * ky), cmd, small, VIOLET)
     line = y + int(54 * ky)
     card.draw.rectangle((x0, line, cols[-1][2], line + 2), fill=(170, 60, 230))
     card.inked.append((x0, line, cols[-1][2], line + 2))
-    for row, (name, probe) in enumerate(workloads):
+    for row, (name, key, form) in enumerate(workloads):
         yy = y + int(72 * ky) + row * int(42 * ky)
         card.text((x0, yy + (num - label) // 2), [name], label, WHITE)
         for rates, (_, _, xr) in zip(data, cols):
-            right(xr, yy, f"{rates[probe]:.1f}", num, YELLOW, glow=ORANGE)
+            right(xr, yy, form.format(rates[key]), num, YELLOW, glow=ORANGE)
 
 
 LINES = (["Exact native MTP", "same text drafted or not"],
          ["Text", "images", "video", "tools"],
          ["./start.sh up", "lloom setup"])
-SOURCE = ["0.1.1", "single stream", "256 greedy tokens", "25 NOV 2026"]
+SOURCE = ["0.1.2", "256 greedy tokens per stream", "26 NOV 2026"]
 URL = "github.com/Enntity/SparkLing"
 
 
@@ -204,10 +205,16 @@ def social(base, font, out, data):
 
 if __name__ == "__main__":
     base, font, out = Path(sys.argv[1]), sys.argv[2], Path(sys.argv[3])
-    results = Path(__file__).resolve().parents[2] / "results/2026-11-25-0.1.1/release"
+    results = Path(__file__).resolve().parents[2] / "results/2026-11-26-0.1.2/release"
     data = []
-    for filename in ("ling-spark-probe.jsonl", "sante-spark-probe.jsonl"):
-        records = map(json.loads, (results / filename).read_text().splitlines())
-        data.append({row["probe"]: row["tok_s"] for row in records})
+    for model in ("ling", "sante"):
+        rows = lambda name: [json.loads(l) for l in (results / f"{model}-spark-{name}.jsonl").read_text().splitlines()]
+        probes = rows("probe")
+        kv = re.search(r"= (\d+) max KV tokens", (results / f"{model}-spark-server-kv.log").read_text())
+        data.append({
+            "one": sum(r["tok_s"] for r in probes) / len(probes),  # mean of the eight probe prompts
+            "eight": next(r["aggregate_tok_s"] for r in rows("conc") if r["clients"] == 8),
+            "cache": int(kv.group(1)) / 1e6,
+        })
     banner(base / "banner.png", font, out / "banner.png", data)
     social(base / "social-preview.png", font, out / "social-preview.png", data)
