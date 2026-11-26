@@ -30,9 +30,10 @@ The vLLM column ran 0.1.2's reference command
 `bench/sparkmodelbench/run.py --base-url http://127.0.0.1:8897 --model ling-3.2-air-atlas`.
 
 The eight-request rows come from SparkModelBench's optional concurrency lane,
-RigMark's own 1/2/4/8 sweep. It is proposed in Enntity/sparkmodelbench#1 and
-is not in the pinned revision yet. To run it, use a separate SparkModelBench
-clone at `ebc29c4` and add `--lanes concurrency` to the same `run.py` command.
+RigMark's own 1/2/4/8 sweep, which runs only when named:
+`bench/run.sh --metadata ... --out ... --lanes concurrency`. It was measured at
+`ebc29c4`, the commit that added it (Enntity/sparkmodelbench#1); the pinned
+merge leaves the four default lanes as they were.
 The [scorecard](../results/sparkmodelbench-v0.1.3/CARD.md) combines those
 summaries; its `SHA256SUMS` covers every published file.
 

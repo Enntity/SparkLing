@@ -27,7 +27,9 @@ Set `SERVED_MODEL_NAME=lingsante-3.1-air-vl-atlas` for LingSante and
 `SPARKLING_PORT` for another port. Use a new result directory for each run.
 The suite asks for `reasoning_effort: low`; Ling's template has no effort
 levels, so thinking stays on, as it is by default. The staggered field guide
-turns thinking off. Each result holds `CARD.md`, the raw JSON and `SHA256SUMS`.
+turns thinking off. Add `--lanes concurrency` for RigMark's optional 1/2/4/8
+request sweep; it is not part of the default run. Each result holds `CARD.md`,
+the raw JSON and `SHA256SUMS`.
 
 `rigmark.sh` runs the earlier RigMark 1.1.0 code and prose suites (thinking
 off, 1/2/4/8 concurrent requests) behind the 0.1.2 and 0.1.3 release
