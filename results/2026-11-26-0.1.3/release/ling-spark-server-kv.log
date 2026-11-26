@@ -1,0 +1,14 @@
+2026-11-26T11:15:59.301001Z  INFO spark::main_modules::serve_phases::kv_cache: Prefill config: ssm_prefill_chunk=8192, args.max_prefill_tokens=8192, prefill_budget=8192, max_batch_tokens=8200
+2026-11-26T11:16:16.101287Z  INFO spark_runtime::kv_cache::paged_impl: KV cache: 16385 blocks × 1 layers = 0.3 GB total (V aliases K)
+2026-11-26T11:16:16.307932Z  INFO spark_model::factory::build: MLA absorbed KV cache: 1 head × 576 dims (512+64) per token (vs 32 heads × 128)
+2026-11-26T11:16:16.550053Z  INFO spark_model::factory::build: KV cache: 121.7 GB total × 89% util = 108.3 GB budget; 87.6 GB pre-KV + 4.6 GB reserve → 16.1 GB for KV → 134288 blocks × 16 tok/block = 2148608 max KV tokens
+2026-11-26T11:16:17.140311Z  INFO spark_runtime::kv_cache::paged_impl: KV cache: 134288 blocks × 7 layers = 16.1 GB total (V aliases K)
+2026-11-26T11:16:17.179870Z  INFO spark_model::factory::build::kv_nvme: prefix cache NVMe spill tier ON (rank 0): /prefix-cache/spark-kv2-prefill-nvfp4-decode-nvfp4-tensor-v2-mtp1/kv (ATLAS_KV_NVME_DIR, O_DIRECT, unlinked), 131072 B/block record (8192 B/token: latent + pooled index, no raw tails), budget 8.0 GiB = 65536 blocks = 1048576 tokens; fast I/O (ATLAS_GLM_NVME_FAST), restored records released (ATLAS_GLM_NVME_KEEP), 16.0 MiB pinned staging, up to 40.0 MiB host index
+│ kv_cache                           671ff8649e90   -                    N
+2026-11-26T11:17:32.484129Z  INFO spark_model::model::vision_cache: Vision prefix cache: 0 of 4 items cached (0 rows), encoded 196 rows for positions from 0
+2026-11-26T11:17:33.407218Z  INFO spark_model::model::vision_cache: Vision prefix cache: 0 of 4 items cached (0 rows), encoded 256 rows for positions from 0
+2026-11-26T11:17:35.368955Z  INFO spark_model::model::vision_cache: Vision prefix cache: 0 of 8 items cached (0 rows), encoded 1760 rows for positions from 0
+2026-11-26T11:17:36.945462Z  INFO spark_model::model::vision_cache: Vision prefix cache: 0 of 8 items cached (0 rows), encoded 480 rows for positions from 0
+2026-11-26T11:17:42.308860Z  INFO spark_model::model::vision_cache: Vision prefix cache: 0 of 16 items cached (0 rows), encoded 4224 rows for positions from 0
+2026-11-26T11:17:45.268630Z  INFO spark_model::model::vision_cache: Vision prefix cache: 0 of 1 items cached (0 rows), encoded 216 rows for positions from 0
+2026-11-26T11:17:48.042132Z  INFO spark_model::model::vision_cache: Vision prefix cache: 0 of 1 items cached (0 rows), encoded 1200 rows for positions from 0

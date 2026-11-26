@@ -1,0 +1,944 @@
+{
+  "concurrency": {
+    "1": {
+      "aggregate_end_to_end_tokens_per_second": {
+        "maximum": 51.737,
+        "median": 50.948,
+        "minimum": 50.158,
+        "p90": 51.737
+      },
+      "per_stream_decode_tokens_per_second": {
+        "maximum": 57.233,
+        "median": 56.263,
+        "minimum": 55.292,
+        "p90": 57.233
+      },
+      "per_stream_ttft_seconds": {
+        "maximum": 0.489,
+        "median": 0.489,
+        "minimum": 0.489,
+        "p90": 0.489
+      },
+      "rounds": [
+        {
+          "aggregate_end_to_end_tokens_per_second": 51.737,
+          "completion_tokens": 256,
+          "round": 1,
+          "streams": [
+            {
+              "completion_tokens": 256,
+              "decode_seconds": 4.455441,
+              "decode_tokens_per_second": 57.233,
+              "finish_reason": "length",
+              "measured_sse_events": 256,
+              "output": "To: Engineering Leadership\nFrom: [Your Name]\nSubject: Recommendation on AI Hardware Investment vs. Utilisation Improvement\n\nWe are at a decision point that many small teams face: whether to purchase additional local AI hardware or to invest our limited time and attention into improving the utilisation of the systems we already own. This is not merely a capital expenditure question; it is a question about how we allocate our most constrained resource, which is our collective engineering focus. I want to walk through the trade-offs in a way that feels less like a pros-and-cons list and more like a conversation about the future we are trying to build.\n\nThe most immediate argument for buying more hardware is the promise of simplicity. If we add capacity, we can run more experiments in parallel, reduce queue times, and perhaps remove the need for complex scheduling or model optimisation. The latency of a single job would likely drop, and the relief of not having to think about resource contention is a real, if modest, benefit. However, this simplicity is purchased with a significant and permanent increase in our fixed costs. Hardware is not just the sticker price; it is the ongoing electricity, cooling, maintenance, and the silent opportunity cost of capital that could be spent on, for example, better data infrastructure",
+              "output_characters": 1337,
+              "output_sha256": "b02ad4bae92e34eb336341ecfd45323cd1c1376d58505ff924145e1c726dead2",
+              "prompt_tokens": 140,
+              "reasoning_characters": 0,
+              "reasoning_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+              "response_tail_seconds": 0.002153,
+              "stream_done_marker": true,
+              "stream_sha256": "b02ad4bae92e34eb336341ecfd45323cd1c1376d58505ff924145e1c726dead2",
+              "time_to_first_visible_seconds": 0.488923,
+              "time_to_last_output_seconds": 4.944364,
+              "ttft_seconds": 0.488923,
+              "wall_seconds": 4.946517
+            }
+          ],
+          "wall_seconds": 4.948112
+        },
+        {
+          "aggregate_end_to_end_tokens_per_second": 50.158,
+          "completion_tokens": 256,
+          "round": 2,
+          "streams": [
+            {
+              "completion_tokens": 256,
+              "decode_seconds": 4.611874,
+              "decode_tokens_per_second": 55.292,
+              "finish_reason": "length",
+              "measured_sse_events": 256,
+              "output": "To the engineering team,\n\nWe are at a familiar inflection point. The queue is growing, the dashboards are warm, and the question is whether we should buy more local AI hardware or make better use of what we already own. This memo lays out how I see the trade-offs and offers a recommendation, though I want to be explicit that the numbers here are directional and the situation will evolve.\n\nThe most obvious argument for buying hardware is that it converts an uncertain operational problem into a concrete, one-time capital expense. If we know the workload is rising and the pattern is stable, adding capacity can feel like the simplest way to buy headroom. Yet cost is more than the sticker price. There is power, cooling, rack space, spares, and the quiet drain of engineering time spent on fleet management. If we are already stretched thin, each new box is a new responsibility, and the total cost of ownership can quietly outpace the purchase order.\n\nLatency is where the decision gets subtle. Adding hardware can reduce queueing delay, but only if the bottleneck is truly compute. If we are already saturating memory bandwidth, storage, or the network fabric, more of the same will not move the needle. Before we spend, we need to know",
+              "output_characters": 1242,
+              "output_sha256": "93e91db15e0cffb29f58aefa34b64a9b21745165566c9ea5cb915968c9f12bfa",
+              "prompt_tokens": 140,
+              "reasoning_characters": 0,
+              "reasoning_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+              "response_tail_seconds": 0.002173,
+              "stream_done_marker": true,
+              "stream_sha256": "93e91db15e0cffb29f58aefa34b64a9b21745165566c9ea5cb915968c9f12bfa",
+              "time_to_first_visible_seconds": 0.489202,
+              "time_to_last_output_seconds": 5.101076,
+              "ttft_seconds": 0.489202,
+              "wall_seconds": 5.103248
+            }
+          ],
+          "wall_seconds": 5.103894
+        }
+      ]
+    },
+    "4": {
+      "aggregate_end_to_end_tokens_per_second": {
+        "maximum": 97.672,
+        "median": 97.112,
+        "minimum": 96.553,
+        "p90": 97.672
+      },
+      "per_stream_decode_tokens_per_second": {
+        "maximum": 30.581,
+        "median": 27.627,
+        "minimum": 25.626,
+        "p90": 30.386
+      },
+      "per_stream_ttft_seconds": {
+        "maximum": 2.037,
+        "median": 1.231,
+        "minimum": 0.49,
+        "p90": 1.99
+      },
+      "rounds": [
+        {
+          "aggregate_end_to_end_tokens_per_second": 96.553,
+          "completion_tokens": 1024,
+          "round": 1,
+          "streams": [
+            {
+              "completion_tokens": 256,
+              "decode_seconds": 9.433466,
+              "decode_tokens_per_second": 27.031,
+              "finish_reason": "length",
+              "measured_sse_events": 256,
+              "output": "To: Engineering Leadership\nFrom: Platform Team\nSubject: Local AI Hardware: Expand or Optimise?\n\nWe are at a decision point. The team must choose between purchasing additional local AI hardware or investing our limited engineering time into improving the utilisation of the systems we already own. This is not merely a capital expenditure question; it is a statement about how we value our engineering resources and our tolerance for operational risk. The choice involves trade-offs across cost, latency, reliability, opportunity cost, and reversibility, and I want to walk through them in a connected way.\n\nThe most immediate factor is cost. Buying more hardware requires a significant upfront capital outlay, followed by ongoing expenses for power, cooling, and maintenance. These are predictable, but they are also sunk; once the money is spent, it is gone. Improving utilisation, by contrast, costs almost nothing in direct financial terms. The expense is measured in engineering hours, which are far more scarce and, in many ways, more valuable than hardware. If we can coax more performance from our existing fleet through better scheduling, model quantisation, or caching, we defer or entirely avoid the capital purchase. That is a strong argument for the optimisation path.\n\nLatency is where the calculus becomes less clear",
+              "output_characters": 1330,
+              "output_sha256": "2aecb0525770379f0240fe1f3826c96085bfd66e298099838889ee8ae1d0d5f2",
+              "prompt_tokens": 144,
+              "reasoning_characters": 0,
+              "reasoning_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+              "response_tail_seconds": 0.004638,
+              "stream_done_marker": true,
+              "stream_sha256": "2aecb0525770379f0240fe1f3826c96085bfd66e298099838889ee8ae1d0d5f2",
+              "time_to_first_visible_seconds": 0.961546,
+              "time_to_last_output_seconds": 10.395012,
+              "ttft_seconds": 0.961546,
+              "wall_seconds": 10.39965
+            },
+            {
+              "completion_tokens": 256,
+              "decode_seconds": 8.338439,
+              "decode_tokens_per_second": 30.581,
+              "finish_reason": "length",
+              "measured_sse_events": 256,
+              "output": "To: Engineering Leadership\nFrom: [Your Name]\nSubject: Recommendation on AI Hardware: Purchase vs. Optimisation\nDate: [Date]\n\nWe are at a decision point regarding our AI compute capacity. The immediate question is whether to purchase additional local hardware or to focus our efforts on improving the utilisation of the equipment we already own. This memo outlines the trade-offs involved and offers a clear recommendation.\n\nThe core of the problem is that our current infrastructure is not being used efficiently. We are seeing periods of significant idle time, which suggests our existing hardware could likely absorb the workload we are projecting for the near future. This path is financially conservative and avoids the substantial capital expenditure of new systems. However, the cost here is not purely financial. It is the opportunity cost of our engineers' time. Improving utilisation will require deep, focused work on scheduling, model optimisation, and potentially refactoring our inference pipelines. This is a significant investment of intellectual capital that could otherwise be spent on feature development. There is also a hidden reliability risk; by pushing our current hardware closer to its limits, we may be increasing the probability of performance degradation or failure under peak load, which could impact our service level agreements.\n\nThe alternative is to purchase more hardware. This approach",
+              "output_characters": 1420,
+              "output_sha256": "57190a58a4b4baf740f206c18ae8d74f127964fd0eb241a195aa64c38f4fdb44",
+              "prompt_tokens": 139,
+              "reasoning_characters": 0,
+              "reasoning_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+              "response_tail_seconds": 0.006602,
+              "stream_done_marker": true,
+              "stream_sha256": "57190a58a4b4baf740f206c18ae8d74f127964fd0eb241a195aa64c38f4fdb44",
+              "time_to_first_visible_seconds": 1.990386,
+              "time_to_last_output_seconds": 10.328825,
+              "ttft_seconds": 1.990386,
+              "wall_seconds": 10.335427
+            },
+            {
+              "completion_tokens": 256,
+              "decode_seconds": 9.098474,
+              "decode_tokens_per_second": 28.027,
+              "finish_reason": "length",
+              "measured_sse_events": 256,
+              "output": "To: Engineering Leadership\nFrom: [Your Name]\nSubject: Recommendation on AI Hardware: Purchase vs. Utilisation\nDate: [Date]\n\nWe are at a decision point regarding our AI compute capacity. The proposal on the table is to purchase additional local hardware to meet growing demand. Before we commit capital, I want to lay out a framework for thinking about this that goes beyond the simple question of whether we can afford it. The core tension is between buying more hardware and improving the utilisation of what we already own. My recommendation is to prioritise a deep dive into utilisation and efficiency first, treating any hardware purchase as a secondary, reversible step.\n\nThe most immediate and quantifiable factor is cost. The upfront capital expenditure for new hardware is significant, but it is the ongoing operational costs that often surprise teams. We must consider not just the purchase price, but the power consumption, cooling requirements, physical space, and the hidden cost of engineering time spent on maintenance and infrastructure management. Every dollar spent on idle or underutilised hardware is a dollar not spent on product development, research, or other critical engineering priorities. This leads directly to the concept of opportunity cost. If our current hardware is, say, only running at 30% average utilisation,",
+              "output_characters": 1344,
+              "output_sha256": "d2ed187e84df9c937f928100a8cf3ac1b6ea2b2daca4927df809c0e52073d32e",
+              "prompt_tokens": 142,
+              "reasoning_characters": 0,
+              "reasoning_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+              "response_tail_seconds": 0.001851,
+              "stream_done_marker": true,
+              "stream_sha256": "d2ed187e84df9c937f928100a8cf3ac1b6ea2b2daca4927df809c0e52073d32e",
+              "time_to_first_visible_seconds": 1.503002,
+              "time_to_last_output_seconds": 10.601476,
+              "ttft_seconds": 1.503002,
+              "wall_seconds": 10.603327
+            },
+            {
+              "completion_tokens": 256,
+              "decode_seconds": 9.950983,
+              "decode_tokens_per_second": 25.626,
+              "finish_reason": "length",
+              "measured_sse_events": 256,
+              "output": "To: Engineering Leadership\nFrom: Platform Team\nSubject: Local AI Hardware: Expand or Optimise?\n\nWe are at a decision point. The team must choose between purchasing additional local AI hardware or investing our limited engineering time in improving the utilisation of the systems we already own. This is not merely a procurement question; it is a statement about how we want to grow our technical capability. I want to walk through the trade-offs in cost, latency, reliability, opportunity cost, and reversibility before offering a recommendation.\n\nThe most immediate factor is cost. Buying more hardware requires a significant upfront capital expenditure. We would be committing a large sum of money to physical assets that will depreciate over time. In contrast, improving utilisation is primarily an investment of engineering time. While that time has a cost, it is more flexible and can be spread over weeks or months. The financial risk of a hardware purchase is concentrated and immediate, whereas the cost of optimisation is diffuse and ongoing.\n\nLatency is a second consideration. Adding hardware, particularly if we can place it closer to where it is needed, can reduce network round-trips and provide more parallelism, which can lower response times for individual requests. However, this is not guaranteed. If our current bottleneck is not",
+              "output_characters": 1349,
+              "output_sha256": "19a7a386bed0ce23a1c404853af547b78b3cf87c9f47bf84a48d923b0a2c097d",
+              "prompt_tokens": 140,
+              "reasoning_characters": 0,
+              "reasoning_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+              "response_tail_seconds": 0.003874,
+              "stream_done_marker": true,
+              "stream_sha256": "19a7a386bed0ce23a1c404853af547b78b3cf87c9f47bf84a48d923b0a2c097d",
+              "time_to_first_visible_seconds": 0.490476,
+              "time_to_last_output_seconds": 10.441459,
+              "ttft_seconds": 0.490476,
+              "wall_seconds": 10.445333
+            }
+          ],
+          "wall_seconds": 10.605578
+        },
+        {
+          "aggregate_end_to_end_tokens_per_second": 97.672,
+          "completion_tokens": 1024,
+          "round": 2,
+          "streams": [
+            {
+              "completion_tokens": 256,
+              "decode_seconds": 9.366168,
+              "decode_tokens_per_second": 27.226,
+              "finish_reason": "length",
+              "measured_sse_events": 256,
+              "output": "To: Engineering Leadership\nFrom: [Your Name]\nSubject: Recommendation on AI Hardware: Purchase vs. Utilisation\nDate: [Date]\n\nWe are at a familiar inflection point. The queue of experiments we want to run has grown faster than our current hardware can comfortably accommodate, and the question before us is whether to buy more local AI hardware or to improve the utilisation of what we already own. This is not merely a capital expenditure decision; it is a statement about how we intend to work. After weighing cost, latency, reliability, opportunity cost, and reversibility, I recommend a focused effort on utilisation first, with a small, pre-approved reserve for hardware if specific thresholds are met.\n\nThe most immediate argument for buying hardware is the reduction in queue time. When researchers and engineers can spin up a GPU in minutes, the friction between an idea and a test evaporates. However, this convenience comes at a steep and inflexible cost. The upfront capital is significant, and it is immediately consumed by depreciation. A new card is a fixed monthly expense from the moment it is racked, whether it is running a training run at 3 a.m. or sitting idle in a server room. This leads to the core problem with a purchase",
+              "output_characters": 1243,
+              "output_sha256": "311a8ea0fc7bbfd6dff68c9f9a5ebd1aca80d5b27316a63e9d7aca69c8f2fdbf",
+              "prompt_tokens": 140,
+              "reasoning_characters": 0,
+              "reasoning_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+              "response_tail_seconds": 0.003841,
+              "stream_done_marker": true,
+              "stream_sha256": "311a8ea0fc7bbfd6dff68c9f9a5ebd1aca80d5b27316a63e9d7aca69c8f2fdbf",
+              "time_to_first_visible_seconds": 0.987753,
+              "time_to_last_output_seconds": 10.353921,
+              "ttft_seconds": 0.987753,
+              "wall_seconds": 10.357762
+            },
+            {
+              "completion_tokens": 256,
+              "decode_seconds": 9.771023,
+              "decode_tokens_per_second": 26.098,
+              "finish_reason": "length",
+              "measured_sse_events": 256,
+              "output": "To: Engineering Leadership\nFrom: [Your Name]\nSubject: Recommendation on AI Hardware: Purchase vs. Utilisation\nDate: [Date]\n\nWe are at a decision point regarding our AI compute infrastructure. The immediate question is whether to purchase additional local hardware to expand our capacity or to focus our efforts on improving the utilisation of the equipment we already own. This is not merely a technical choice; it is a strategic one that touches on our financial health, our operational resilience, and our ability to deliver value. After careful consideration, I recommend we prioritise a deep dive into utilisation and efficiency before committing significant capital to new acquisitions.\n\nThe most straightforward argument for buying more hardware is the promise of immediate relief. If our current systems are saturated, leading to queues for training jobs or inference requests, then new capacity would seemingly clear the backlog. However, this line of thinking often conflates symptoms with causes. A bottleneck in our pipeline might not be a lack of raw compute power but rather a poorly optimised data loading process, an inefficient model architecture, or a scheduling problem that starves our GPUs of work. Throwing money at a problem we do not fully understand is a classic example of opportunity cost. The capital spent on new hardware could be far more effectively used",
+              "output_characters": 1384,
+              "output_sha256": "9f1b58c889585a61f9b10e0229b0457cca997762cc798a54ddad7899166a3897",
+              "prompt_tokens": 141,
+              "reasoning_characters": 0,
+              "reasoning_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+              "response_tail_seconds": 0.00479,
+              "stream_done_marker": true,
+              "stream_sha256": "9f1b58c889585a61f9b10e0229b0457cca997762cc798a54ddad7899166a3897",
+              "time_to_first_visible_seconds": 0.496999,
+              "time_to_last_output_seconds": 10.268022,
+              "ttft_seconds": 0.496999,
+              "wall_seconds": 10.272812
+            },
+            {
+              "completion_tokens": 256,
+              "decode_seconds": 8.391902,
+              "decode_tokens_per_second": 30.386,
+              "finish_reason": "length",
+              "measured_sse_events": 256,
+              "output": "To: Engineering Leadership\nFrom: Platform Team\nSubject: Local AI Hardware: Expand or Optimise?\n\nWe are at a decision point. The team must choose between purchasing additional local AI hardware or investing our limited time and attention into improving the utilisation of the systems we already own. This is not merely a procurement question; it is a statement about how we want to grow our technical capability. I want to walk through the trade-offs in a connected way, considering cost, latency, reliability, opportunity cost, and reversibility, before offering a recommendation.\n\nThe most immediate factor is cost. Buying more hardware requires a significant upfront capital expenditure. We would be committing a large sum of money to physical assets that will depreciate over time. This is a clear, quantifiable cost, but it is not the only one. The alternative path\u2014improving utilisation\u2014requires an investment of engineering time. That time has a cost, but it is an operational expense, not a capital one. We can stop that investment if it does not yield results, and the money we would have spent on hardware remains in our budget for other needs. The question is whether the engineering time required to achieve meaningful utilisation gains is less than the cost of the hardware we would avoid buying.",
+              "output_characters": 1308,
+              "output_sha256": "9ee6e5f4971937a488013bb0363809ff6ba24baece34793ef2b42725d32c9159",
+              "prompt_tokens": 139,
+              "reasoning_characters": 0,
+              "reasoning_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+              "response_tail_seconds": 0.005179,
+              "stream_done_marker": true,
+              "stream_sha256": "9ee6e5f4971937a488013bb0363809ff6ba24baece34793ef2b42725d32c9159",
+              "time_to_first_visible_seconds": 1.474528,
+              "time_to_last_output_seconds": 9.86643,
+              "ttft_seconds": 1.474528,
+              "wall_seconds": 9.871609
+            },
+            {
+              "completion_tokens": 256,
+              "decode_seconds": 8.44415,
+              "decode_tokens_per_second": 30.198,
+              "finish_reason": "length",
+              "measured_sse_events": 256,
+              "output": "To: Engineering Leadership\nFrom: Platform Team\nSubject: Local AI hardware: expand or optimise?\n\nWe are at a decision point. The team must choose between purchasing additional local AI hardware or improving the utilisation of the systems we already own. This is not simply a procurement question; it is a question about how we want to manage risk, cash flow, and engineering focus over the next year.\n\nThe case for buying more hardware is straightforward. We have seen queueing delays during peak hours, and some experiments are waiting for GPU time. Adding capacity would reduce latency for users and researchers, and it would signal that we are serious about supporting local AI work. However, that simplicity disappears once we look at the full cost. The sticker price of the hardware is only the beginning. There is power, cooling, networking, spares, and the hidden cost of engineering time spent on deployment, monitoring, and maintenance. These are real, recurring expenses that do not appear in a purchase order.\n\nReliability is another factor that is easy to underestimate. New hardware introduces new failure modes. We would need to build redundancy, plan for maintenance windows, and create runbooks for when something breaks. If a single node goes down, does the system degrade gracefully or does",
+              "output_characters": 1307,
+              "output_sha256": "7ec0291fcf38db186945b217909ba7de90c9483e523b7d1579dde0c419aa6566",
+              "prompt_tokens": 135,
+              "reasoning_characters": 0,
+              "reasoning_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+              "response_tail_seconds": 0.001651,
+              "stream_done_marker": true,
+              "stream_sha256": "7ec0291fcf38db186945b217909ba7de90c9483e523b7d1579dde0c419aa6566",
+              "time_to_first_visible_seconds": 2.036693,
+              "time_to_last_output_seconds": 10.480844,
+              "ttft_seconds": 2.036693,
+              "wall_seconds": 10.482494
+            }
+          ],
+          "wall_seconds": 10.484069
+        }
+      ]
+    },
+    "8": {
+      "aggregate_end_to_end_tokens_per_second": {
+        "maximum": 110.851,
+        "median": 110.614,
+        "minimum": 110.378,
+        "p90": 110.851
+      },
+      "per_stream_decode_tokens_per_second": {
+        "maximum": 17.794,
+        "median": 15.75,
+        "minimum": 14.181,
+        "p90": 17.652
+      },
+      "per_stream_ttft_seconds": {
+        "maximum": 4.059,
+        "median": 2.211,
+        "minimum": 0.487,
+        "p90": 3.942
+      },
+      "rounds": [
+        {
+          "aggregate_end_to_end_tokens_per_second": 110.378,
+          "completion_tokens": 2048,
+          "round": 1,
+          "streams": [
+            {
+              "completion_tokens": 256,
+              "decode_seconds": 16.395461,
+              "decode_tokens_per_second": 15.553,
+              "finish_reason": "length",
+              "measured_sse_events": 256,
+              "output": "To: Engineering Leadership\nFrom: Platform Team\nSubject: Local AI Hardware: Expand or Optimise?\n\nWe are at a decision point. The team must choose between purchasing additional local AI hardware or improving the utilisation of the systems we already own. This is not merely a procurement question; it is a statement about how we value our engineering time, our financial resources, and our architectural future. The following memo outlines the considerations and offers a clear recommendation.\n\nThe most immediate factor is, of course, cost. Acquiring new hardware requires a significant upfront capital expenditure. This is a fixed, known cost, but it is also a sunk cost the moment it leaves our accounts. Beyond the sticker price, we must account for the hidden costs of integration, power, cooling, and the eventual decommissioning of old equipment. In contrast, improving utilisation is primarily an investment of engineering time. While this has an opportunity cost\u2014time not spent on feature development or other critical projects\u2014the financial outlay is minimal. We are trading human effort for compute efficiency, a trade that can be measured and adjusted.\n\nLatency and reliability are the twin engines of user experience. Our current hardware, while perhaps not optimally provisioned, is a known quantity. We understand its failure modes",
+              "output_characters": 1344,
+              "output_sha256": "4e40459f81812f5a189ba43826aee8cdf9b6bd7f314c4c6db221797526111d6b",
+              "prompt_tokens": 139,
+              "reasoning_characters": 0,
+              "reasoning_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+              "response_tail_seconds": 0.003766,
+              "stream_done_marker": true,
+              "stream_sha256": "4e40459f81812f5a189ba43826aee8cdf9b6bd7f314c4c6db221797526111d6b",
+              "time_to_first_visible_seconds": 1.991906,
+              "time_to_last_output_seconds": 18.387367,
+              "ttft_seconds": 1.991906,
+              "wall_seconds": 18.391133
+            },
+            {
+              "completion_tokens": 256,
+              "decode_seconds": 15.550903,
+              "decode_tokens_per_second": 16.398,
+              "finish_reason": "length",
+              "measured_sse_events": 256,
+              "output": "To: Engineering Leadership\nFrom: Platform Team\nSubject: Local AI hardware acquisition vs. utilisation improvements\n\nWe are at a decision point on whether to purchase additional local AI hardware or to invest engineering effort in improving the utilisation of the capacity we already own. This is not simply a capital expenditure question. It is a question about how we want to structure our compute operations for the next one to two years, and it is worth thinking through the trade-offs carefully before committing.\n\nThe most obvious argument for buying more hardware is that it removes a constraint. If our current GPUs are saturated and queues are growing, additional capacity would shorten job turnaround times and reduce the risk of researchers and product teams hitting walls when they need experimental runs. However, the cost of ownership extends well beyond the sticker price. We must account for power, cooling, physical space, maintenance contracts, and the engineering time required to integrate, monitor, and manage new systems. These are real, recurring expenses that often surprise teams when they build their business cases.\n\nLatency is another factor that is easy to underestimate. Adding hardware can reduce queueing delay, but it does not automatically improve the latency of individual jobs. If our scheduling layer, data pipelines, or model serving infrastructure are not tuned, new hardware",
+              "output_characters": 1413,
+              "output_sha256": "7e1567731b40b86c659be4cd11c2fd06ecd07095cb3170d338a03bf7667d6108",
+              "prompt_tokens": 141,
+              "reasoning_characters": 0,
+              "reasoning_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+              "response_tail_seconds": 0.003077,
+              "stream_done_marker": true,
+              "stream_sha256": "7e1567731b40b86c659be4cd11c2fd06ecd07095cb3170d338a03bf7667d6108",
+              "time_to_first_visible_seconds": 2.96554,
+              "time_to_last_output_seconds": 18.516443,
+              "ttft_seconds": 2.96554,
+              "wall_seconds": 18.51952
+            },
+            {
+              "completion_tokens": 256,
+              "decode_seconds": 14.446041,
+              "decode_tokens_per_second": 17.652,
+              "finish_reason": "length",
+              "measured_sse_events": 256,
+              "output": "To: Engineering Leadership\nFrom: Infrastructure Working Group\nSubject: Local AI hardware: expand or optimise?\n\nWe are at a familiar inflection point. The models we want to run are growing, the queues are lengthening, and the question in front of us is whether to buy more local AI hardware or to improve utilisation of what we already own. This memo lays out our reasoning and offers a recommendation, while being honest about the uncertainties that remain.\n\nThe case for buying hardware is straightforward. More capacity means shorter queues, lower latency for interactive workloads, and room to experiment with larger models that we currently cannot fit. If our growth is predictable and our budgets are stable, capital expenditure on GPUs can be cheaper over time than cloud consumption, and it keeps sensitive data on-premises. Yet hardware is a bet on the future. We would be committing capital to a specific generation of silicon, networking, and cooling, and we would inherit the operational burden of running it: power, maintenance, spares, and the expertise to keep it healthy. If our workloads shift, or if a more efficient architecture arrives, that capacity could become stranded.\n\nThe case for improving utilisation is subtler but often more powerful. In many teams, the first problem is not insufficient",
+              "output_characters": 1317,
+              "output_sha256": "ea3fbb5830630ce2e8013de4d2febcf213c1b07155b3ee1b5c7df985403f6c10",
+              "prompt_tokens": 141,
+              "reasoning_characters": 0,
+              "reasoning_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+              "response_tail_seconds": 0.001382,
+              "stream_done_marker": true,
+              "stream_sha256": "ea3fbb5830630ce2e8013de4d2febcf213c1b07155b3ee1b5c7df985403f6c10",
+              "time_to_first_visible_seconds": 3.941746,
+              "time_to_last_output_seconds": 18.387787,
+              "ttft_seconds": 3.941746,
+              "wall_seconds": 18.389169
+            },
+            {
+              "completion_tokens": 256,
+              "decode_seconds": 17.307966,
+              "decode_tokens_per_second": 14.733,
+              "finish_reason": "length",
+              "measured_sse_events": 256,
+              "output": "To: Engineering Leadership\nFrom: Platform Team\nSubject: Local AI Hardware Acquisition vs. Utilisation Improvement\n\nWe are at a decision point. The team must choose between purchasing additional local AI hardware or investing our limited time and attention into improving the utilisation of the systems we already own. This is not merely a procurement question; it is a statement about how we value our engineering capacity, our tolerance for risk, and the kind of culture we want to build. I want to walk through the trade-offs in a connected way, touching on cost, latency, reliability, opportunity cost, and reversibility, before offering a recommendation.\n\nThe most immediate factor is cost. Buying new hardware requires a significant upfront capital expenditure, followed by ongoing operational costs for power, cooling, and maintenance. It also introduces a hidden cost: the time engineers spend integrating, benchmarking, and tuning the new systems. On the other hand, improving utilisation is primarily a time investment. We would be paying ourselves, in the form of engineering hours, to squeeze more performance from assets we have already sunk money into. The direct financial outlay is lower, but the opportunity cost is high because those hours could be spent on feature work or other technical debt. The question is whether the return on that time investment",
+              "output_characters": 1371,
+              "output_sha256": "ce7000e522737c84595430b1399d02c81d8f554999fba5f93d1efdf0ddd0850c",
+              "prompt_tokens": 140,
+              "reasoning_characters": 0,
+              "reasoning_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+              "response_tail_seconds": 0.002899,
+              "stream_done_marker": true,
+              "stream_sha256": "ce7000e522737c84595430b1399d02c81d8f554999fba5f93d1efdf0ddd0850c",
+              "time_to_first_visible_seconds": 1.017533,
+              "time_to_last_output_seconds": 18.325499,
+              "ttft_seconds": 1.017533,
+              "wall_seconds": 18.328398
+            },
+            {
+              "completion_tokens": 256,
+              "decode_seconds": 16.042308,
+              "decode_tokens_per_second": 15.895,
+              "finish_reason": "length",
+              "measured_sse_events": 256,
+              "output": "To: Engineering Leadership\nFrom: Platform Team\nSubject: Local AI hardware expansion vs. improving utilisation\n\nWe are at a decision point about whether to purchase additional local AI hardware or to invest our limited engineering time in improving the utilisation of the systems we already own. This is not simply a question of money, although money matters. It is a question about how we want to manage risk, how quickly we can respond to demand, and what kind of technical culture we want to build. I want to walk through the trade-offs in a way that feels honest about uncertainty and still lands on a clear recommendation.\n\nThe most obvious argument for buying more hardware is that it removes a constraint. If our current systems are saturated, adding capacity can reduce queueing, lower latency, and give us headroom for experiments. It also feels concrete. We can point to a purchase order, a rack, and a set of GPUs. The problem is that hardware is expensive, slow to deliver, and difficult to reverse. Once we commit capital, we are locked into a particular generation of silicon, a particular power and cooling profile, and a particular maintenance contract. If demand does not materialise as we expect, we are left with underused assets that still consume electricity, floor space,",
+              "output_characters": 1292,
+              "output_sha256": "88d3a45a4e29b3e49ef7a0e4cc8a41b11273a0daaeb7e7560ccd477e1fdefb07",
+              "prompt_tokens": 137,
+              "reasoning_characters": 0,
+              "reasoning_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+              "response_tail_seconds": 0.001774,
+              "stream_done_marker": true,
+              "stream_sha256": "88d3a45a4e29b3e49ef7a0e4cc8a41b11273a0daaeb7e7560ccd477e1fdefb07",
+              "time_to_first_visible_seconds": 2.474419,
+              "time_to_last_output_seconds": 18.516727,
+              "ttft_seconds": 2.474419,
+              "wall_seconds": 18.518502
+            },
+            {
+              "completion_tokens": 256,
+              "decode_seconds": 15.093007,
+              "decode_tokens_per_second": 16.895,
+              "finish_reason": "length",
+              "measured_sse_events": 256,
+              "output": "To the engineering leadership group,\n\nWe are at a familiar inflection point. The queue is growing, the dashboards are warm, and the question in front of us is whether to buy more local AI hardware or to improve utilisation of what we already own. The temptation to treat this as a procurement decision is understandable, but it obscures the more important question: what kind of capability are we trying to build, and which path gets us there with the least regret?\n\nLet me start with cost, because it is the most visible and the least informative. The sticker price of a new accelerator is only the beginning. There is rack space, power, cooling, networking, spares, and the unglamorous but real cost of operational toil. If we buy, we convert a variable, pay-as-you-go expense into a fixed, capital-intensive one. That trade can make sense when utilisation is high and predictable, but it is a poor hedge against uncertainty. If our workload is lumpy, we will pay for idle capacity in the quiet months and scramble for more in the busy ones. The alternative, improving utilisation, attacks the same problem from the other end. It does not add capacity, but it reduces the demand we need to satisfy. The savings are real",
+              "output_characters": 1221,
+              "output_sha256": "37334a9f70f1e1e84f88ce849e94a58bbf6acee88378faa70a248a6beabdfe78",
+              "prompt_tokens": 139,
+              "reasoning_characters": 0,
+              "reasoning_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+              "response_tail_seconds": 0.001248,
+              "stream_done_marker": true,
+              "stream_sha256": "37334a9f70f1e1e84f88ce849e94a58bbf6acee88378faa70a248a6beabdfe78",
+              "time_to_first_visible_seconds": 3.45467,
+              "time_to_last_output_seconds": 18.547677,
+              "ttft_seconds": 3.45467,
+              "wall_seconds": 18.548925
+            },
+            {
+              "completion_tokens": 256,
+              "decode_seconds": 17.935806,
+              "decode_tokens_per_second": 14.217,
+              "finish_reason": "length",
+              "measured_sse_events": 256,
+              "output": "To: Engineering Leadership\nFrom: Infrastructure Working Group\nSubject: Local AI hardware expansion vs. improving utilisation\n\nWe are at a decision point about whether to purchase additional local AI hardware or to invest engineering effort in improving the utilisation of the capacity we already own. This memo lays out the trade-offs and offers a recommendation.\n\nThe case for buying more hardware is straightforward. Newer accelerators would increase aggregate throughput, shorten queues, and give us headroom for experimental workloads that currently wait for cycles. If our forecasts for demand are correct, the purchase would prevent a crunch in the next two quarters. The cost is immediate and largely fixed: capital outlay, integration time, and the ongoing burden of power, cooling, and maintenance. There is also a latency dimension. Adding capacity can reduce queuing delay, but only if the bottleneck is truly compute saturation. If our current pain comes from inefficient batching, poor scheduling, or cold-start overhead, more hardware will not help much and may simply spread the same inefficiency across a larger fleet.\n\nThe case for improving utilisation is less obvious but often more powerful. Before we spend money, we should ask what is actually limiting us. In many teams, utilisation is low not because there are too few accelerators, but",
+              "output_characters": 1360,
+              "output_sha256": "7d3111a85d5a1e0787553467de451787ad76b831c079af1219f24115546733c0",
+              "prompt_tokens": 142,
+              "reasoning_characters": 0,
+              "reasoning_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+              "response_tail_seconds": 0.002886,
+              "stream_done_marker": true,
+              "stream_sha256": "7d3111a85d5a1e0787553467de451787ad76b831c079af1219f24115546733c0",
+              "time_to_first_visible_seconds": 0.503987,
+              "time_to_last_output_seconds": 18.439793,
+              "ttft_seconds": 0.503987,
+              "wall_seconds": 18.442679
+            },
+            {
+              "completion_tokens": 256,
+              "decode_seconds": 16.818045,
+              "decode_tokens_per_second": 15.162,
+              "finish_reason": "length",
+              "measured_sse_events": 256,
+              "output": "To the engineering team,\n\nWe need to decide whether to purchase additional local AI hardware or to improve the utilisation of the equipment we already own. This is a classic capital versus operational efficiency question, but it has specific technical and business nuances that deserve careful thought. The goal of this memo is not to provide a definitive answer, as the future is inherently uncertain, but to frame the decision in a way that clarifies the trade-offs and points toward a sensible path.\n\nThe most immediate factor is cost. Buying new hardware requires a significant upfront capital expenditure. We would be committing a large sum of money to a physical asset that will depreciate over time. This is a clear, one-time hit to our budget, but it also represents a fixed cost that we must justify against future revenue or productivity gains. In contrast, improving utilisation is primarily an operational expense. It involves the time of our engineers to write better scheduling code, to optimise our models, and to implement more efficient batching strategies. This cost is lower and spread out over time, but it is also less predictable. The opportunity cost of our engineers' time is a real and significant factor. If we spend three months optimising software, we are not spending that time on new features or on building the next generation",
+              "output_characters": 1357,
+              "output_sha256": "c7cd5e55117197fcd61cb4978f9a1b0d3f7dfffa9fcfdcc09c1aa1b6661ae099",
+              "prompt_tokens": 140,
+              "reasoning_characters": 0,
+              "reasoning_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+              "response_tail_seconds": 0.004323,
+              "stream_done_marker": true,
+              "stream_sha256": "c7cd5e55117197fcd61cb4978f9a1b0d3f7dfffa9fcfdcc09c1aa1b6661ae099",
+              "time_to_first_visible_seconds": 1.508385,
+              "time_to_last_output_seconds": 18.32643,
+              "ttft_seconds": 1.508385,
+              "wall_seconds": 18.330753
+            }
+          ],
+          "wall_seconds": 18.554456
+        },
+        {
+          "aggregate_end_to_end_tokens_per_second": 110.851,
+          "completion_tokens": 2048,
+          "round": 2,
+          "streams": [
+            {
+              "completion_tokens": 256,
+              "decode_seconds": 16.341236,
+              "decode_tokens_per_second": 15.605,
+              "finish_reason": "length",
+              "measured_sse_events": 256,
+              "output": "To: Engineering Leadership\nFrom: Infrastructure Working Group\nSubject: Local AI Hardware Acquisition vs. Utilisation Improvement\n\nWe are at a decision point that many teams encounter before they are ready: whether to buy more local AI hardware or to improve the utilisation of what we already own. The question seems technical, but it is really about how we manage scarcity, uncertainty, and organisational learning. This memo lays out the tradeoffs in plain terms and offers a recommendation.\n\nThe most obvious factor is cost. Purchasing additional hardware requires a significant upfront capital outlay, followed by ongoing expenses for power, cooling, maintenance, and eventual replacement. These costs are largely fixed once the equipment is in the building. By contrast, improving utilisation is primarily an investment of engineering time and attention. We can often defer or phase that work, and we can stop it if the results are not worth the effort. The cost profile is therefore more flexible, and the financial risk is lower.\n\nLatency is where the analysis becomes less straightforward. If our current systems are already saturated, adding capacity can reduce queueing delays and make response times more predictable. However, if the bottleneck is not compute but rather data movement, model loading, or inefficient batching, more hardware will not help much. In some",
+              "output_characters": 1378,
+              "output_sha256": "08332ab1d4a2a711b9328c93e79014eecbb736be489cd1d32d8ccd9129d1ea0b",
+              "prompt_tokens": 139,
+              "reasoning_characters": 0,
+              "reasoning_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+              "response_tail_seconds": 0.00375,
+              "stream_done_marker": true,
+              "stream_sha256": "08332ab1d4a2a711b9328c93e79014eecbb736be489cd1d32d8ccd9129d1ea0b",
+              "time_to_first_visible_seconds": 1.935833,
+              "time_to_last_output_seconds": 18.277069,
+              "ttft_seconds": 1.935833,
+              "wall_seconds": 18.280819
+            },
+            {
+              "completion_tokens": 256,
+              "decode_seconds": 14.331003,
+              "decode_tokens_per_second": 17.794,
+              "finish_reason": "length",
+              "measured_sse_events": 256,
+              "output": "To: Engineering Leadership\nFrom: Platform Team\nSubject: Local AI Hardware Acquisition vs. Utilisation Improvement\n\nWe are at a decision point regarding our local AI infrastructure. The question before us is whether to purchase additional hardware to expand capacity or to focus our efforts on improving the utilisation of the systems we already own. This is not merely a technical choice; it is a financial and strategic one that touches on how we manage resources, plan for growth, and balance immediate needs against long-term goals. The following memo outlines the considerations and offers a recommendation.\n\nThe most immediate and quantifiable factor is cost. Purchasing new hardware requires a significant capital outlay. We must consider not only the sticker price of the accelerators and servers but also the hidden costs of integration, networking, power, cooling, and the physical space they occupy. This is a large, upfront investment that will depreciate over time. In contrast, improving utilisation is primarily an investment of engineering time. While this has an opportunity cost\u2014our engineers could be working on product features\u2014this path avoids the large capital expenditure and the ongoing operational expenses that come with more hardware. The financial risk is lower, but the return is less certain and harder to measure in the short term.\n\nLatency and reliability are",
+              "output_characters": 1390,
+              "output_sha256": "94358436c7d0e12221b953f886f24a488c7bb4d30d8008aeb9ea6fb0e66bb67d",
+              "prompt_tokens": 138,
+              "reasoning_characters": 0,
+              "reasoning_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+              "response_tail_seconds": 0.003458,
+              "stream_done_marker": true,
+              "stream_sha256": "94358436c7d0e12221b953f886f24a488c7bb4d30d8008aeb9ea6fb0e66bb67d",
+              "time_to_first_visible_seconds": 4.059098,
+              "time_to_last_output_seconds": 18.390101,
+              "ttft_seconds": 4.059098,
+              "wall_seconds": 18.393559
+            },
+            {
+              "completion_tokens": 256,
+              "decode_seconds": 15.510558,
+              "decode_tokens_per_second": 16.44,
+              "finish_reason": "length",
+              "measured_sse_events": 256,
+              "output": "To: Engineering Leadership\nFrom: Platform Team\nSubject: AI hardware: buy more or use what we have better?\n\nWe are at a familiar crossroads. The cluster is busy, the queue is long, and the temptation is to add machines. Before we commit capital, it is worth walking through what the decision actually trades off, because the obvious move is not always the best one.\n\nStart with cost. New hardware is a large, upfront expense that then depreciates, while also bringing power, cooling, and maintenance. Improving utilisation, on the other hand, is mostly an investment of engineering time and a modest amount of tooling. The first is a bet on future demand; the second is a bet on our own discipline. If our growth is steady and predictable, buying makes sense. If our demand is lumpy, we are likely to overprovision for peaks and underuse the fleet the rest of the time, which is the classic way to turn capital into a liability.\n\nLatency gives the same choice a different flavour. More hardware can mean shorter queues and faster responses, but only if the work is actually parallel and the system can spread it out. Often the latency we feel is not a compute problem at all, but a scheduling or memory",
+              "output_characters": 1201,
+              "output_sha256": "40ebd1672e97a6480553097226984fb693607a949b3de95fecf046e0b7f828d9",
+              "prompt_tokens": 141,
+              "reasoning_characters": 0,
+              "reasoning_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+              "response_tail_seconds": 0.000842,
+              "stream_done_marker": true,
+              "stream_sha256": "40ebd1672e97a6480553097226984fb693607a949b3de95fecf046e0b7f828d9",
+              "time_to_first_visible_seconds": 2.921586,
+              "time_to_last_output_seconds": 18.432143,
+              "ttft_seconds": 2.921586,
+              "wall_seconds": 18.432985
+            },
+            {
+              "completion_tokens": 256,
+              "decode_seconds": 15.910948,
+              "decode_tokens_per_second": 16.027,
+              "finish_reason": "length",
+              "measured_sse_events": 256,
+              "output": "To: Engineering Leadership\nFrom: Infrastructure Working Group\nSubject: Local AI Hardware Acquisition vs. Utilisation Improvement\n\nWe are at a decision point. The team can either purchase additional local AI hardware or invest effort in improving the utilisation of the systems we already own. This memo lays out the considerations and offers a recommendation.\n\nThe most immediate factor is cost. New hardware requires a significant upfront capital expenditure, and that money is then tied up in depreciating assets. There are also ongoing costs for power, cooling, and maintenance. By contrast, improving utilisation is primarily an investment of engineering time. While that time has a cost, it does not require the same large, immediate cash outlay, and the benefits accrue without adding to our fixed asset base.\n\nLatency is a second consideration. Adding hardware could increase our aggregate throughput, but only if the new systems are well integrated. Poorly managed, they might introduce scheduling complexity or network bottlenecks that negate the gains. Improving utilisation of existing hardware, on the other hand, often involves better workload scheduling and more efficient batching. These changes can reduce queueing delays and make better use of the capacity we already have, potentially improving latency for individual requests without any new physical systems.\n\nReliability is a",
+              "output_characters": 1396,
+              "output_sha256": "795198e9e2d48a7d27d4c6e9b4ff8faf87925870fd56b260efcd514295f38f71",
+              "prompt_tokens": 143,
+              "reasoning_characters": 0,
+              "reasoning_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+              "response_tail_seconds": 0.001804,
+              "stream_done_marker": true,
+              "stream_sha256": "795198e9e2d48a7d27d4c6e9b4ff8faf87925870fd56b260efcd514295f38f71",
+              "time_to_first_visible_seconds": 2.429465,
+              "time_to_last_output_seconds": 18.340413,
+              "ttft_seconds": 2.429465,
+              "wall_seconds": 18.342216
+            },
+            {
+              "completion_tokens": 256,
+              "decode_seconds": 14.899246,
+              "decode_tokens_per_second": 17.115,
+              "finish_reason": "length",
+              "measured_sse_events": 256,
+              "output": "To: Engineering Leadership\nFrom: Platform Team\nSubject: Local AI Hardware Acquisition vs. Utilisation Improvement\n\nWe are at a decision point. The team must choose between purchasing additional local AI hardware or investing effort into improving the utilisation of the equipment we already own. This is not merely a capital expenditure question; it is a question about how we want to structure our engineering culture and our long-term technical risk. I want to walk through the trade-offs in cost, latency, reliability, opportunity cost, and reversibility before offering a recommendation.\n\nThe most immediate argument for buying more hardware is the promise of simplicity. New capacity would absorb current load spikes, reduce queueing delays, and give every project team a sense of headroom. However, that simplicity is purchased at a high and recurring price. The upfront cost is only the beginning. We must account for power, cooling, physical space, and the hidden engineering time required to integrate, monitor, and maintain additional machines. Each new unit adds a node to our failure domain. More hardware means more firmware to patch, more drives that can fail, and more complex networking. While modern systems are reliable, a larger fleet statistically guarantees more incidents. The latency benefit is real but narrow: it helps only if the new capacity",
+              "output_characters": 1368,
+              "output_sha256": "83bed055d7ba5360bad8ff13adfc49333d7ca9c4662b2b5a3fe8e824f4efb6a6",
+              "prompt_tokens": 141,
+              "reasoning_characters": 0,
+              "reasoning_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+              "response_tail_seconds": 0.003084,
+              "stream_done_marker": true,
+              "stream_sha256": "83bed055d7ba5360bad8ff13adfc49333d7ca9c4662b2b5a3fe8e824f4efb6a6",
+              "time_to_first_visible_seconds": 3.569208,
+              "time_to_last_output_seconds": 18.468454,
+              "ttft_seconds": 3.569208,
+              "wall_seconds": 18.471539
+            },
+            {
+              "completion_tokens": 256,
+              "decode_seconds": 17.421951,
+              "decode_tokens_per_second": 14.637,
+              "finish_reason": "length",
+              "measured_sse_events": 256,
+              "output": "The question in front of us is deceptively simple: should we buy more local AI hardware, or should we squeeze more out of what we already own? On the surface, the first option feels like a concrete, solvable problem. We identify a gap in capacity, we write a cheque, and the gap closes. The second option sounds like a vague, ongoing discipline, the kind of thing that sounds good in a slide deck but is hard to pin down. The reality, as is so often the case, is more nuanced, and the decision hinges on a web of interrelated factors that extend well beyond the sticker price of a new server.\n\nLet\u2019s start with the most obvious dimension: direct cost. Purchasing new hardware is a significant, discrete capital expenditure. We know precisely what we\u2019re spending, and we can model the return on investment with reasonable confidence. The cost of improving utilisation, however, is more insidious. It\u2019s not a single line item but a series of smaller, recurring investments in engineering time, tooling, and process changes. While the upfront cost is lower, the total cost of ownership can be surprisingly high when you account for the engineering hours spent on profiling, optimising, and refactoring. The question is not just whether we can",
+              "output_characters": 1239,
+              "output_sha256": "9954c8138f6df70cdbe8d57e412aee4c9fe03a6d07233faa4a126c20d26e2dea",
+              "prompt_tokens": 137,
+              "reasoning_characters": 0,
+              "reasoning_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+              "response_tail_seconds": 0.002292,
+              "stream_done_marker": true,
+              "stream_sha256": "9954c8138f6df70cdbe8d57e412aee4c9fe03a6d07233faa4a126c20d26e2dea",
+              "time_to_first_visible_seconds": 0.968165,
+              "time_to_last_output_seconds": 18.390116,
+              "ttft_seconds": 0.968165,
+              "wall_seconds": 18.392408
+            },
+            {
+              "completion_tokens": 256,
+              "decode_seconds": 17.982219,
+              "decode_tokens_per_second": 14.181,
+              "finish_reason": "length",
+              "measured_sse_events": 256,
+              "output": "To: Engineering Leadership\nFrom: Infrastructure Working Group\nSubject: Local AI Hardware Acquisition vs. Utilisation Improvement\n\nWe are at a decision point that many teams encounter before we have fully learned to live with the hardware we already own. The question in front of us is whether to purchase additional local AI capacity or to invest our limited engineering attention in improving utilisation of the fleet we have. This memo lays out the trade-offs as we understand them today and offers a recommendation, though we want to be explicit that our confidence is bounded by how little we have yet observed in production.\n\nThe most obvious argument for buying more hardware is that it converts an engineering problem into a procurement problem. If we are constrained by compute, adding capacity can relieve pressure quickly, and the path forward feels linear. Yet that simplicity is deceptive. The true cost of a purchase is not the sticker price but the total cost of ownership over the asset\u2019s life, including power, cooling, maintenance, spare parts, and the engineering time required to keep it healthy. Those costs are recurring and often underestimated. They also compete directly with other engineering priorities, so the opportunity cost of owning more hardware is not zero. Every hour spent babysitting a GPU cluster is an hour not spent improving the product, and that",
+              "output_characters": 1386,
+              "output_sha256": "0b0f31b3b455f465422fb20ba7725c14ddbe295546ad2542fe7a901e74d10e8d",
+              "prompt_tokens": 139,
+              "reasoning_characters": 0,
+              "reasoning_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+              "response_tail_seconds": 0.00251,
+              "stream_done_marker": true,
+              "stream_sha256": "0b0f31b3b455f465422fb20ba7725c14ddbe295546ad2542fe7a901e74d10e8d",
+              "time_to_first_visible_seconds": 0.487283,
+              "time_to_last_output_seconds": 18.469502,
+              "ttft_seconds": 0.487283,
+              "wall_seconds": 18.472012
+            },
+            {
+              "completion_tokens": 256,
+              "decode_seconds": 16.825596,
+              "decode_tokens_per_second": 15.155,
+              "finish_reason": "length",
+              "measured_sse_events": 256,
+              "output": "To: Engineering Leadership\nFrom: Platform Team\nSubject: Local AI Hardware: Expand or Optimise?\n\nWe are at a decision point. The team must choose between purchasing additional local AI hardware or improving the utilisation of the systems we already own. This is not merely a capital expenditure question; it is a choice about our operational philosophy, our risk profile, and the kind of engineering culture we want to foster. I have weighed the factors of cost, latency, reliability, opportunity cost, and reversibility, and I wish to offer a clear recommendation, though I will be transparent about the uncertainties that remain.\n\nThe most immediate argument for buying more hardware is the promise of latency relief. Our current queue depths are growing, and during peak periods, inference times become unpredictable. For a team whose products depend on real-time responsiveness, this is a tangible, measurable pain. New hardware would offer a direct, almost mechanical solution: more compute, shorter queues, lower latency. The cost is obvious\u2014a significant upfront capital outlay, followed by ongoing maintenance, power, and cooling expenses. We would also incur a hidden, often underestimated cost: the cognitive load of managing a larger fleet. Each new machine is a new potential point of failure, a new configuration to track, a",
+              "output_characters": 1336,
+              "output_sha256": "2282f3e6ba220d78045efde9fd6d1afb0599b4353c51aa75a19e0b773c09805f",
+              "prompt_tokens": 139,
+              "reasoning_characters": 0,
+              "reasoning_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+              "response_tail_seconds": 0.002729,
+              "stream_done_marker": true,
+              "stream_sha256": "2282f3e6ba220d78045efde9fd6d1afb0599b4353c51aa75a19e0b773c09805f",
+              "time_to_first_visible_seconds": 1.451503,
+              "time_to_last_output_seconds": 18.277099,
+              "ttft_seconds": 1.451503,
+              "wall_seconds": 18.279828
+            }
+          ],
+          "wall_seconds": 18.47526
+        }
+      ]
+    }
+  },
+  "decode": {
+    "code": {
+      "completion_gate": {
+        "passed": 2,
+        "total": 2
+      },
+      "decode_tokens_per_second": {
+        "maximum": 63.629,
+        "median": 63.487,
+        "minimum": 63.346,
+        "p90": 63.629
+      },
+      "runs": [
+        {
+          "completion_tokens": 2819,
+          "completion_validation": {
+            "valid": true
+          },
+          "decode_seconds": 44.485755,
+          "decode_tokens_per_second": 63.346,
+          "finish_reason": "stop",
+          "measured_sse_events": 2818,
+          "output": "```go\n// ratelimit/ratelimit.go\npackage ratelimit\n\nimport (\n\t\"errors\"\n\t\"math\"\n\t\"sync\"\n\t\"time\"\n)\n\n// Clock abstracts time so tests can drive it deterministically.\ntype Clock interface {\n\tNow() time.Time\n}\n\n// RealClock returns the system clock.\ntype RealClock struct{}\n\nfunc (RealClock) Now() time.Time { return time.Now() }\n\n// Bucket is a concurrency-safe token-bucket rate limiter.\n//\n// The bucket holds at most capacity tokens. Tokens are refilled at rate\n// tokens per second, up to capacity. AllowN consumes n tokens if and only if\n// n tokens are currently available; otherwise it returns false and consumes\n// nothing.\ntype Bucket struct {\n\tmu       sync.Mutex\n\tclock    Clock\n\tcapacity float64\n\trate     float64\n\ttokens   float64\n\tlast     time.Time\n}\n\n// NewBucket validates and returns a Bucket.\n//\n// capacity must be finite and > 0. rate must be finite and > 0. clock may be\n// nil, in which case RealClock is used.\nfunc NewBucket(capacity float64, rate float64, clock Clock) (*Bucket, error) {\n\tif math.IsNaN(capacity) || math.IsInf(capacity, 0) || capacity <= 0 {\n\t\treturn nil, errors.New(\"ratelimit: capacity must be finite and > 0\")\n\t}\n\tif math.IsNaN(rate) || math.IsInf(rate, 0) || rate <= 0 {\n\t\treturn nil, errors.New(\"ratelimit: rate must be finite and > 0\")\n\t}\n\tif clock == nil {\n\t\tclock = RealClock{}\n\t}\n\tnow := clock.Now()\n\treturn &Bucket{\n\t\tclock:    clock,\n\t\tcapacity: capacity,\n\t\trate:     rate,\n\t\ttokens:   capacity,\n\t\tlast:     now,\n\t}, nil\n}\n\n// AllowN reports whether n tokens can be consumed at the current instant.\n// It is safe for concurrent use.\nfunc (b *Bucket) AllowN(n int) bool {\n\tif n < 0 {\n\t\treturn false\n\t}\n\tb.mu.Lock()\n\tdefer b.mu.Unlock()\n\n\tnow := b.clock.Now()\n\tb.tokens = b.refillLocked(now)\n\tif float64(n) <= b.tokens {\n\t\tb.tokens -= float64(n)\n\t\treturn true\n\t}\n\treturn false\n}\n\n// refillLocked advances the bucket to now and returns the available tokens.\n// Callers must hold b.mu.\nfunc (b *Bucket) refillLocked(now time.Time) float64 {\n\telapsed := now.Sub(b.last)\n\tif elapsed > 0 {\n\t\tb.tokens += float64(elapsed) * (b.rate / float64(time.Second))\n\t\tif b.tokens > b.capacity {\n\t\t\tb.tokens = b.capacity\n\t\t}\n\t\tb.last = now\n\t}\n\treturn b.tokens\n}\n```\n\n```go\n// ratelimit/ratelimit_test.go\npackage ratelimit\n\nimport (\n\t\"errors\"\n\t\"testing\"\n\t\"time\"\n)\n\ntype fakeClock struct {\n\tmu  chan struct{}\n\tnow time.Time\n}\n\nfunc newFakeClock(t time.Time) *fakeClock {\n\treturn &fakeClock{mu: make(chan struct{}, 1), now: t}\n}\n\nfunc (f *fakeClock) Now() time.Time {\n\t<-f.mu\n\tt := f.now\n\tf.mu <- struct{}{}\n\treturn t\n}\n\nfunc (f *fakeClock) Advance(d time.Duration) {\n\t<-f.mu\n\tf.now = f.now.Add(d)\n\tf.mu <- struct{}{}\n}\n\nfunc TestNewBucketValidation(t *testing.T) {\n\tbase := time.Date(2025, 1, 1, 0, 0, 0, 0, time.UTC)\n\ttests := []struct {\n\t\tname     string\n\t\tcapacity float64\n\t\trate     float64\n\t\tclock    Clock\n\t\twantErr  bool\n\t}{\n\t\t{\"ok\", 10, 1, newFakeClock(base), false},\n\t\t{\"nil clock uses real\", 10, 1, nil, false},\n\t\t{\"zero capacity\", 0, 1, newFakeClock(base), true},\n\t\t{\"negative capacity\", -1, 1, newFakeClock(base), true},\n\t\t{\"nan capacity\", nan(), 1, newFakeClock(base), true},\n\t\t{\"inf capacity\", inf(1), 1, newFakeClock(base), true},\n\t\t{\"zero rate\", 10, 0, newFakeClock(base), true},\n\t\t{\"negative rate\", 10, -1, newFakeClock(base), true},\n\t\t{\"nan rate\", 10, nan(), newFakeClock(base), true},\n\t\t{\"inf rate\", 10, inf(1), newFakeClock(base), true},\n\t}\n\tfor _, tc := range tests {\n\t\tt.Run(tc.name, func(t *testing.T) {\n\t\t\tb, err := NewBucket(tc.capacity, tc.rate, tc.clock)\n\t\t\tif tc.wantErr {\n\t\t\t\tif err == nil {\n\t\t\t\t\tt.Fatalf(\"NewBucket(%v, %v) = nil error, want error\", tc.capacity, tc.rate)\n\t\t\t\t}\n\t\t\t\treturn\n\t\t\t}\n\t\t\tif err != nil {\n\t\t\t\tt.Fatalf(\"NewBucket(%v, %v) unexpected error: %v\", tc.capacity, tc.rate, err)\n\t\t\t}\n\t\t\tif b == nil {\n\t\t\t\tt.Fatal(\"NewBucket returned nil bucket with nil error\")\n\t\t\t}\n\t\t})\n\t}\n}\n\nfunc TestAllowN(t *testing.T) {\n\tbase := time.Date(2025, 1, 1, 0, 0, 0, 0, time.UTC)\n\ttests := []struct {\n\t\tname     string\n\t\tcapacity float64\n\t\trate     float64\n\t\tsteps    []step\n\t\twant     []bool\n\t}{\n\t\t{\n\t\t\tname:     \"full bucket allows up to capacity\",\n\t\t\tcapacity: 5, rate: 0,\n\t\t\tsteps: []step{{n: 5}, {n: 1}},\n\t\t\twant:  []bool{true, false},\n\t\t},\n\t\t{\n\t\t\tname:     \"partial consumption leaves remainder\",\n\t\t\tcapacity: 5, rate: 0,\n\t\t\tsteps: []step{{n: 3}, {n: 2}, {n: 1}},\n\t\t\twant:  []bool{true, true, false},\n\t\t},\n\t\t{\n\t\t\tname:     \"negative n always denied\",\n\t\t\tcapacity: 5, rate: 0,\n\t\t\tsteps: []step{{n: -1}, {n: 0}},\n\t\t\twant:  []bool{false, true},\n\t\t},\n\t\t{\n\t\t\tname:     \"refill over time\",\n\t\t\tcapacity: 2, rate: 1,\n\t\t\tsteps: []step{{n: 2}, {d: 500 * time.Millisecond}, {n: 1}, {d: 600 * time.Millisecond}, {n: 2}},\n\t\t\twant:  []bool{true, false, true},\n\t\t},\n\t\t{\n\t\t\tname:     \"refill capped at capacity\",\n\t\t\tcapacity: 3, rate: 1,\n\t\t\tsteps: []step{{n: 3}, {d: 10 * time.Second}, {n: 3}},\n\t\t\twant:  []bool{true, true},\n\t\t},\n\t\t{\n\t\t\tname:     \"no refill when clock does not advance\",\n\t\t\tcapacity: 1, rate: 100,\n\t\t\tsteps: []step{{n: 1}, {n: 1}},\n\t\t\twant:  []bool{true, false},\n\t\t},\n\t}\n\tfor _, tc := range tests {\n\t\tt.Run(tc.name, func(t *testing.T) {\n\t\t\tfc := newFakeClock(base)\n\t\t\tb, err := NewBucket(tc.capacity, tc.rate, fc)\n\t\t\tif err != nil {\n\t\t\t\tt.Fatalf(\"NewBucket: %v\", err)\n\t\t\t}\n\t\t\tsi := 0\n\t\t\tfor _, s := range tc.steps {\n\t\t\t\tif s.d > 0 {\n\t\t\t\t\tfc.Advance(s.d)\n\t\t\t\t\tcontinue\n\t\t\t\t}\n\t\t\t\tgot := b.AllowN(s.n)\n\t\t\t\tif got != tc.want[si] {\n\t\t\t\t\tt.Fatalf(\"step %d: AllowN(%d) = %v, want %v\", si, s.n, got, tc.want[si])\n\t\t\t\t}\n\t\t\t\tsi++\n\t\t\t}\n\t\t})\n\t}\n}\n\ntype step struct {\n\tn int\n\td time.Duration\n}\n\nfunc TestAllowNConcurrent(t *testing.T) {\n\tbase := time.Date(2025, 1, 1, 0, 0, 0, 0, time.UTC)\n\tfc := newFakeClock(base)\n\tb, err := NewBucket(100, 0, fc)\n\tif err != nil {\n\t\tt.Fatalf(\"NewBucket: %v\", err)\n\t}\n\tconst workers = 8\n\tconst perWorker = 20\n\tdone := make(chan int, workers*perWorker)\n\tfor w := 0; w < workers; w++ {\n\t\tgo func() {\n\t\t\tfor i := 0; i < perWorker; i++ {\n\t\t\t\tif b.AllowN(1) {\n\t\t\t\t\tdone <- 1\n\t\t\t\t} else {\n\t\t\t\t\tdone <- 0\n\t\t\t\t}\n\t\t\t}\n\t\t}()\n\t}\n\ttotal := 0\n\tfor i := 0; i < workers*perWorker; i++ {\n\t\ttotal += <-done\n\t}\n\tif total != 100 {\n\t\tt.Fatalf(\"total allowed = %d, want 100\", total)\n\t}\n}\n\nfunc TestNewBucketReturnsDistinctInstances(t *testing.T) {\n\tbase := time.Date(2025, 1, 1, 0, 0, 0, 0, time.UTC)\n\ta, err := NewBucket(1, 1, newFakeClock(base))\n\tif err != nil {\n\t\tt.Fatalf(\"NewBucket a: %v\", err)\n\t}\n\tb, err := NewBucket(1, 1, newFakeClock(base))\n\tif err != nil {\n\t\tt.Fatalf(\"NewBucket b: %v\", err)\n\t}\n\tif a == b {\n\t\tt.Fatal(\"NewBucket returned the same pointer for distinct calls\")\n\t}\n}\n\nfunc TestErrorsAreDistinct(t *testing.T) {\n\tbase := time.Date(2025, 1, 1, 0, 0, 0, 0, time.UTC)\n\t_, e1 := NewBucket(0, 1, newFakeClock(base))\n\t_, e2 := NewBucket(1, 0, newFakeClock(base))\n\tif e1 == nil || e2 == nil || errors.Is(e1, e2) {\n\t\tt.Fatalf(\"expected distinct non-nil errors, got %v and %v\", e1, e2)\n\t}\n}\n\nfunc nan() float64 {\n\tvar z float64\n\treturn z / z\n}\n\nfunc inf(sign int) float64 {\n\tif sign > 0 {\n\t\treturn 1e308 * 10\n\t}\n\treturn -1e308 * 10\n}\n```",
+          "output_characters": 7013,
+          "output_sha256": "fda05792425ae59725eb80e475094ddf370510a64e7dc3c96939f297bb513a1e",
+          "prompt_tokens": 150,
+          "reasoning_characters": 0,
+          "reasoning_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "response_tail_seconds": 0.002682,
+          "run": 1,
+          "stream_done_marker": true,
+          "stream_sha256": "fda05792425ae59725eb80e475094ddf370510a64e7dc3c96939f297bb513a1e",
+          "time_to_first_visible_seconds": 0.341405,
+          "time_to_last_output_seconds": 44.82716,
+          "ttft_seconds": 0.341405,
+          "wall_seconds": 44.829842
+        },
+        {
+          "completion_tokens": 2294,
+          "completion_validation": {
+            "valid": true
+          },
+          "decode_seconds": 36.036853,
+          "decode_tokens_per_second": 63.629,
+          "finish_reason": "stop",
+          "measured_sse_events": 2293,
+          "output": "```go\n// ratelimit/ratelimit.go\npackage ratelimit\n\nimport (\n\t\"errors\"\n\t\"math\"\n\t\"sync\"\n\t\"time\"\n)\n\n// Clock abstracts time.Now so tests can drive the limiter deterministically.\ntype Clock interface {\n\tNow() time.Time\n}\n\n// RealClock returns the system clock.\ntype RealClock struct{}\n\nfunc (RealClock) Now() time.Time { return time.Now() }\n\n// Limiter is a concurrency-safe token-bucket rate limiter.\ntype Limiter struct {\n\tmu       sync.Mutex\n\tclock    Clock\n\trate     float64 // tokens per second\n\tcapacity float64 // max tokens\n\ttokens   float64\n\tlast     time.Time\n}\n\n// New validates parameters and returns a fully refilled Limiter.\nfunc New(clock Clock, rate, capacity float64) (*Limiter, error) {\n\tif clock == nil {\n\t\treturn nil, errors.New(\"ratelimit: nil clock\")\n\t}\n\tif math.IsNaN(rate) || math.IsInf(rate, 0) || rate <= 0 {\n\t\treturn nil, errors.New(\"ratelimit: rate must be a positive finite number\")\n\t}\n\tif math.IsNaN(capacity) || math.IsInf(capacity, 0) || capacity <= 0 {\n\t\treturn nil, errors.New(\"ratelimit: capacity must be a positive finite number\")\n\t}\n\tnow := clock.Now()\n\treturn &Limiter{\n\t\tclock:    clock,\n\t\trate:     rate,\n\t\tcapacity: capacity,\n\t\ttokens:   capacity,\n\t\tlast:     now,\n\t}, nil\n}\n\n// AllowN reports whether n tokens may be consumed at the current instant.\n// It never blocks; on failure it consumes nothing.\nfunc (l *Limiter) AllowN(n int) bool {\n\tif n < 0 {\n\t\treturn false\n\t}\n\tl.mu.Lock()\n\tdefer l.mu.Unlock()\n\n\tnow := l.clock.Now()\n\telapsed := now.Sub(l.last)\n\tif elapsed > 0 {\n\t\tl.tokens += elapsed.Seconds() * l.rate\n\t\tif l.tokens > l.capacity {\n\t\t\tl.tokens = l.capacity\n\t\t}\n\t\tl.last = now\n\t}\n\n\tneed := float64(n)\n\tif l.tokens < need {\n\t\treturn false\n\t}\n\tl.tokens -= need\n\treturn true\n}\n```\n\n```go\n// ratelimit/ratelimit_test.go\npackage ratelimit\n\nimport (\n\t\"errors\"\n\t\"testing\"\n\t\"time\"\n)\n\ntype fakeClock struct {\n\tmu  chan struct{}\n\tnow time.Time\n}\n\nfunc newFakeClock(t time.Time) *fakeClock {\n\treturn &fakeClock{mu: make(chan struct{}, 1), now: t}\n}\n\nfunc (f *fakeClock) Now() time.Time {\n\t<-f.mu\n\tt := f.now\n\tf.mu <- struct{}{}\n\treturn t\n}\n\nfunc (f *fakeClock) Advance(d time.Duration) {\n\t<-f.mu\n\tf.now = f.now.Add(d)\n\tf.mu <- struct{}{}\n}\n\nfunc TestNewValidation(t *testing.T) {\n\tfc := newFakeClock(time.Unix(0, 0))\n\ttests := []struct {\n\t\tname   string\n\t\tclock  Clock\n\t\trate   float64\n\t\tcap    float64\n\t\twantOK bool\n\t}{\n\t\t{\"nil clock\", nil, 1, 1, false},\n\t\t{\"zero rate\", fc, 0, 1, false},\n\t\t{\"negative rate\", fc, -1, 1, false},\n\t\t{\"NaN rate\", fc, nan(), 1, false},\n\t\t{\"Inf rate\", fc, inf(1), 1, false},\n\t\t{\"zero capacity\", fc, 1, 0, false},\n\t\t{\"negative capacity\", fc, 1, -1, false},\n\t\t{\"NaN capacity\", fc, 1, nan(), false},\n\t\t{\"Inf capacity\", fc, 1, inf(1), false},\n\t\t{\"valid\", fc, 2.5, 10, true},\n\t}\n\tfor _, tc := range tests {\n\t\tt.Run(tc.name, func(t *testing.T) {\n\t\t\tl, err := New(tc.clock, tc.rate, tc.cap)\n\t\t\tif tc.wantOK {\n\t\t\t\tif err != nil {\n\t\t\t\t\tt.Fatalf(\"New() error = %v, want nil\", err)\n\t\t\t\t}\n\t\t\t\tif l == nil {\n\t\t\t\t\tt.Fatal(\"New() returned nil limiter\")\n\t\t\t\t}\n\t\t\t\treturn\n\t\t\t}\n\t\t\tif err == nil {\n\t\t\t\tt.Fatalf(\"New() = nil error, want error\")\n\t\t\t}\n\t\t\tif l != nil {\n\t\t\t\tt.Fatalf(\"New() returned non-nil limiter on error\")\n\t\t\t}\n\t\t})\n\t}\n}\n\nfunc TestAllowN(t *testing.T) {\n\tstart := time.Unix(1_700_000_000, 0)\n\tfc := newFakeClock(start)\n\tl, err := New(fc, 1, 3) // 1 token/sec, capacity 3\n\tif err != nil {\n\t\tt.Fatalf(\"New() error = %v\", err)\n\t}\n\n\ttests := []struct {\n\t\tname string\n\t\tn    int\n\t\tadv  time.Duration\n\t\twant bool\n\t}{\n\t\t{\"initial burst 3\", 3, 0, true},\n\t\t{\"burst exhausted\", 1, 0, false},\n\t\t{\"negative n\", -1, 0, false},\n\t\t{\"wait 1s refills 1\", 1, time.Second, true},\n\t\t{\"no refill yet\", 1, 999 * time.Millisecond, false},\n\t\t{\"cap respected\", 3, 10 * time.Second, true},\n\t}\n\tfor _, tc := range tests {\n\t\tt.Run(tc.name, func(t *testing.T) {\n\t\t\tif tc.adv > 0 {\n\t\t\t\tfc.Advance(tc.adv)\n\t\t\t}\n\t\t\tif got := l.AllowN(tc.n); got != tc.want {\n\t\t\t\tt.Fatalf(\"AllowN(%d) = %v, want %v\", tc.n, got, tc.want)\n\t\t\t}\n\t\t})\n\t}\n}\n\nfunc TestAllowNConcurrent(t *testing.T) {\n\tfc := newFakeClock(time.Unix(0, 0))\n\tl, err := New(fc, 1000, 100)\n\tif err != nil {\n\t\tt.Fatalf(\"New() error = %v\", err)\n\t}\n\tconst workers = 8\n\tconst per = 20\n\tdone := make(chan int, workers*per)\n\tfor w := 0; w < workers; w++ {\n\t\tgo func() {\n\t\t\tfor i := 0; i < per; i++ {\n\t\t\t\tif l.AllowN(1) {\n\t\t\t\t\tdone <- 1\n\t\t\t\t}\n\t\t\t}\n\t\t}()\n\t}\n\ttotal := 0\n\tfor i := 0; i < workers*per; i++ {\n\t\tselect {\n\t\tcase <-done:\n\t\t\ttotal++\n\t\tdefault:\n\t\t}\n\t}\n\t// Drain any stragglers without blocking.\n\tfor {\n\t\tselect {\n\t\tcase <-done:\n\t\t\ttotal++\n\t\tdefault:\n\t\t\tgoto out\n\t\t}\n\t}\nout:\n\tif total > 100 {\n\t\tt.Fatalf(\"allowed %d tokens, capacity is 100\", total)\n\t}\n}\n\nfunc TestAllowNNoConsumeOnDeny(t *testing.T) {\n\tfc := newFakeClock(time.Unix(0, 0))\n\tl, err := New(fc, 1, 1)\n\tif err != nil {\n\t\tt.Fatalf(\"New() error = %v\", err)\n\t}\n\tif !l.AllowN(1) {\n\t\tt.Fatal(\"first AllowN(1) = false, want true\")\n\t}\n\tif l.AllowN(1) {\n\t\tt.Fatal(\"second AllowN(1) = true, want false\")\n\t}\n\tfc.Advance(500 * time.Millisecond)\n\tif l.AllowN(1) {\n\t\tt.Fatal(\"AllowN(1) at 0.5s = true, want false\")\n\t}\n\tfc.Advance(500 * time.Millisecond)\n\tif !l.AllowN(1) {\n\t\tt.Fatal(\"AllowN(1) at 1.0s = false, want true\")\n\t}\n}\n\nfunc TestRealClockSmoke(t *testing.T) {\n\tl, err := New(RealClock{}, 1e9, 1)\n\tif err != nil {\n\t\tt.Fatalf(\"New() error = %v\", err)\n\t}\n\tif !l.AllowN(1) {\n\t\tt.Fatal(\"AllowN(1) = false, want true\")\n\t}\n}\n\nfunc nan() float64 {\n\tvar z float64\n\treturn z / z\n}\n\nfunc inf(sign int) float64 {\n\tif sign > 0 {\n\t\treturn 1e308 * 10\n\t}\n\treturn -1e308 * 10\n}\n\nvar _ = errors.New // keep import if unused in future edits\n```",
+          "output_characters": 5569,
+          "output_sha256": "b1848c64644ec75bb99652bb4d49db98202c7b7496f665d63215cd8e0ac7e139",
+          "prompt_tokens": 152,
+          "reasoning_characters": 0,
+          "reasoning_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "response_tail_seconds": 0.033055,
+          "run": 2,
+          "stream_done_marker": true,
+          "stream_sha256": "b1848c64644ec75bb99652bb4d49db98202c7b7496f665d63215cd8e0ac7e139",
+          "time_to_first_visible_seconds": 0.329028,
+          "time_to_last_output_seconds": 36.36588,
+          "ttft_seconds": 0.329028,
+          "wall_seconds": 36.398935
+        }
+      ],
+      "time_to_last_output_seconds": {
+        "maximum": 44.827,
+        "median": 40.597,
+        "minimum": 36.366,
+        "p90": 44.827
+      },
+      "ttft_seconds": {
+        "maximum": 0.341,
+        "median": 0.335,
+        "minimum": 0.329,
+        "p90": 0.341
+      },
+      "wall_seconds": {
+        "maximum": 44.83,
+        "median": 40.614,
+        "minimum": 36.399,
+        "p90": 44.83
+      }
+    },
+    "prose": {
+      "completion_gate": {
+        "passed": 2,
+        "total": 2
+      },
+      "decode_tokens_per_second": {
+        "maximum": 55.685,
+        "median": 55.514,
+        "minimum": 55.344,
+        "p90": 55.685
+      },
+      "runs": [
+        {
+          "completion_tokens": 803,
+          "completion_validation": {
+            "valid": true
+          },
+          "decode_seconds": 14.491108,
+          "decode_tokens_per_second": 55.344,
+          "finish_reason": "stop",
+          "measured_sse_events": 802,
+          "output": "To: Engineering Leadership\nFrom: Infrastructure Working Group\nSubject: Local AI hardware: expand or optimise?\n\nWe are at a decision point on how to serve growing demand for local AI workloads. The options on the table are straightforward: purchase additional hardware to increase raw capacity, or invest engineering effort in improving utilisation of the fleet we already own. This memo lays out the trade-offs and offers a recommendation.\n\nThe most obvious argument for buying hardware is that it converts money into capacity quickly. If we have a clear, near-term workload that saturates current resources, additional cards shorten the path to delivery. Yet capital expenditure is a one-way door. Once purchased, the cost is sunk, and the economics of utilisation become fixed. If demand does not materialise as forecast, we are left carrying idle assets, maintenance contracts, and the quiet drag of underused silicon. The upfront price of a system is also a poor proxy for total cost of ownership. Power, cooling, networking, spares, and the engineering time required to integrate and monitor new machines all accumulate over the life of the asset. A cheap purchase can become an expensive liability if those factors are not modelled honestly.\n\nLatency and reliability complicate the picture further. Adding hardware does not automatically improve response times. If our current bottleneck is not compute but rather data movement, model loading, or shared storage, more cards may simply queue behind the same choke points. Reliability, too, is not a function of quantity. A larger fleet increases the surface area for failure, and without mature provisioning, failover, and monitoring, we may trade a small, predictable problem for a larger, less predictable one. We should be wary of the assumption that more hardware is inherently more robust; it is only more robust if the surrounding systems are designed to tolerate failure.\n\nThe opportunity cost of a purchase is easy to underestimate. Every dollar and every engineering hour spent on procuring and integrating new hardware is an hour not spent on improving the efficiency of what we have. Optimisation work, such as better scheduling, finer-grained batching, model quantisation, caching of frequent requests, and smarter allocation of shared resources, can yield compounding returns. Unlike a capital purchase, these improvements are not tied to a single point in time; they can be revisited, tuned, and extended as workloads evolve. They also tend to be reversible. If a change turns out to be harmful, we can roll it back, whereas a procurement decision is far harder to unwind without financial loss.\n\nReversibility is a useful lens for the decision as a whole. A preference for options that preserve future choices is prudent when uncertainty is high. We do not yet have a long enough track record to be confident in our demand forecasts, and the pace of model and tooling change means that today\u2019s hardware choices may be suboptimal in a year. By contrast, improving utilisation is a path that keeps our options open. It reduces the pressure to buy, buys time to gather better data, and positions us to make a more informed capital decision later if it becomes necessary.\n\nGiven all of this, our recommendation is to prioritise a focused programme of utilisation improvement before committing to new hardware. We propose dedicating a small, time-boxed effort to measure where our current systems actually spend their time, to eliminate obvious waste, and to implement the highest-impact efficiency measures. This effort should be treated with the same seriousness as a procurement project, with clear goals and a review point.\n\nWe acknowledge uncertainty. It is possible that our analysis will reveal a hard capacity ceiling that cannot be addressed through software alone, in which case a targeted hardware purchase may become the right next step. But that conclusion is more credible once we have better data, and it is a conclusion we can reach with greater confidence and less risk if we first exhaust the reversible, lower-cost options available to us. In short, we recommend optimising first, and buying only if the evidence demands it.",
+          "output_characters": 4208,
+          "output_sha256": "7cc5cef27b544a5c0ee2a86232cc9a7ce3ca683728a455412ac605f5dcb046d9",
+          "prompt_tokens": 139,
+          "reasoning_characters": 0,
+          "reasoning_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "response_tail_seconds": 0.033383,
+          "run": 1,
+          "stream_done_marker": true,
+          "stream_sha256": "7cc5cef27b544a5c0ee2a86232cc9a7ce3ca683728a455412ac605f5dcb046d9",
+          "time_to_first_visible_seconds": 0.490979,
+          "time_to_last_output_seconds": 14.982086,
+          "ttft_seconds": 0.490979,
+          "wall_seconds": 15.01547
+        },
+        {
+          "completion_tokens": 1023,
+          "completion_validation": {
+            "valid": true
+          },
+          "decode_seconds": 18.353283,
+          "decode_tokens_per_second": 55.685,
+          "finish_reason": "stop",
+          "measured_sse_events": 1022,
+          "output": "To: Engineering Leadership\nFrom: [Your Name]\nSubject: Recommendation on AI Hardware: Purchase vs. Utilisation\nDate: [Date]\n\nWe are at a familiar inflection point. The queue of promising experiments is growing faster than our current compute can comfortably serve, and the question before us is whether to buy more local AI hardware or to improve the utilisation of what we already own. This is not merely a procurement decision; it is a statement about how we value our engineering time, our financial prudence, and our long-term architectural flexibility. After weighing the trade-offs, my recommendation is to prioritise a deep, structured effort to improve utilisation of our existing fleet, while simultaneously scoping a smaller, targeted hardware purchase to address the most acute and predictable bottlenecks.\n\nThe most immediate argument for more hardware is the reduction of latency. If our current systems are queuing jobs and causing developers to wait, that friction compounds into lost productivity and a slower feedback loop. However, simply adding more machines does not guarantee that this latency will be evenly distributed or that it will solve the root cause. Often, the bottleneck is not raw compute but memory bandwidth, storage I/O, or a poorly partitioned workload. Throwing hardware at a software-defined problem is a costly and often temporary fix. The financial outlay is significant and immediate, and it commits us to a new asset with its own maintenance, power, and cooling overheads. This is where the concept of opportunity cost becomes stark. Every dollar spent on underutilised silicon is a dollar not spent on a senior engineer\u2019s time, a critical security audit, or a feature that directly generates revenue. The opportunity cost of a poor utilisation strategy is not just the idle hardware; it is the entire spectrum of forgone investment.\n\nConversely, the path of improving utilisation is more intellectually demanding but far more reversible. It requires us to treat our compute as a shared, precious resource and to instrument it deeply. We need to understand who is using what, when, and why. Are there idle GPUs during the day that are saturated at night? Can we implement smarter scheduling to pack workloads more efficiently? Can we adopt model distillation or quantisation to make our existing models run faster on the same hardware? This work is a direct investment in our engineering culture. It builds internal tooling and expertise that will serve us regardless of what hardware we eventually own. The financial cost is primarily in engineering time, which is a more flexible and ultimately more valuable currency. The reliability of this approach is high; we are not introducing new, untested physical systems into our environment. The risk is low, and the potential upside\u2014a dramatic increase in effective capacity without a corresponding capital expenditure\u2014is enormous.\n\nThe question of reversibility is central. A decision to buy hardware is largely irreversible in the short term. We will own this asset, with its specific power and cooling needs, for a depreciation cycle of three to five years. If our workload patterns shift, or if a more efficient cloud provider or a new architectural paradigm emerges, we are left with a potentially stranded asset. Improving utilisation, on the other hand, is a series of reversible, incremental steps. We can implement a new scheduler, test it, and roll it back if it proves problematic. We can refactor a model, measure the improvement, and decide whether to keep it. This optionality is a form of financial and technical resilience. It allows us to learn and adapt without being locked into a rigid physical footprint.\n\nThat said, I acknowledge significant uncertainty. Our current monitoring is not granular enough to make a fully data-driven decision. We do not have a precise, real-time map of utilisation by team, project, and model type. There is a risk that a deep dive into utilisation reveals that our hardware is, in fact, already near its practical limits for the workloads we are running, and that a targeted purchase is the only way forward. Furthermore, the lead time for custom hardware can be long, and if we delay a necessary purchase, we may stall a critical project. The uncertainty is not in whether we need to act, but in the precise nature of the action.\n\nTherefore, my recommendation is a hybrid path, sequenced to preserve optionality. For the next four to six weeks, we should form a small, cross-functional task force to conduct a rigorous utilisation audit. Their goal is not to write a report, but to identify and implement at least three concrete improvements\u2014such as dynamic scheduling, right-sizing instances, or adopting more efficient inference runtimes. In parallel, we should identify the single most predictable, long-term workload, such as a training job that is on a critical path, and scope a small, modular hardware purchase to accelerate just that workload. This approach respects the financial discipline of improving what we have, acknowledges the latency needs of our most critical work, and, most importantly, keeps our options open. We are choosing to learn before we commit, and in a domain that changes this quickly, that is the most reliable strategy of all.",
+          "output_characters": 5302,
+          "output_sha256": "83976d73669ef92cc7ec6072f2bf9a4805f7cabfab2353af9a2510f0490fdf49",
+          "prompt_tokens": 141,
+          "reasoning_characters": 0,
+          "reasoning_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "response_tail_seconds": 0.002973,
+          "run": 2,
+          "stream_done_marker": true,
+          "stream_sha256": "83976d73669ef92cc7ec6072f2bf9a4805f7cabfab2353af9a2510f0490fdf49",
+          "time_to_first_visible_seconds": 0.49413,
+          "time_to_last_output_seconds": 18.847414,
+          "ttft_seconds": 0.49413,
+          "wall_seconds": 18.850387
+        }
+      ],
+      "time_to_last_output_seconds": {
+        "maximum": 18.847,
+        "median": 16.915,
+        "minimum": 14.982,
+        "p90": 18.847
+      },
+      "ttft_seconds": {
+        "maximum": 0.494,
+        "median": 0.493,
+        "minimum": 0.491,
+        "p90": 0.494
+      },
+      "wall_seconds": {
+        "maximum": 18.85,
+        "median": 16.933,
+        "minimum": 15.015,
+        "p90": 18.85
+      }
+    },
+    "structured": {
+      "completion_gate": {
+        "passed": 2,
+        "total": 2
+      },
+      "decode_tokens_per_second": {
+        "maximum": 64.824,
+        "median": 64.726,
+        "minimum": 64.628,
+        "p90": 64.824
+      },
+      "runs": [
+        {
+          "completion_tokens": 600,
+          "completion_validation": {
+            "valid": true
+          },
+          "decode_seconds": 9.240414,
+          "decode_tokens_per_second": 64.824,
+          "finish_reason": "stop",
+          "measured_sse_events": 599,
+          "output": "[{\"index\":1,\"square\":1},{\"index\":2,\"square\":4},{\"index\":3,\"square\":9},{\"index\":4,\"square\":16},{\"index\":5,\"square\":25},{\"index\":6,\"square\":36},{\"index\":7,\"square\":49},{\"index\":8,\"square\":64},{\"index\":9,\"square\":81},{\"index\":10,\"square\":100},{\"index\":11,\"square\":121},{\"index\":12,\"square\":144},{\"index\":13,\"square\":169},{\"index\":14,\"square\":196},{\"index\":15,\"square\":225},{\"index\":16,\"square\":256},{\"index\":17,\"square\":289},{\"index\":18,\"square\":324},{\"index\":19,\"square\":361},{\"index\":20,\"square\":400},{\"index\":21,\"square\":441},{\"index\":22,\"square\":484},{\"index\":23,\"square\":529},{\"index\":24,\"square\":576},{\"index\":25,\"square\":625},{\"index\":26,\"square\":676},{\"index\":27,\"square\":729},{\"index\":28,\"square\":784},{\"index\":29,\"square\":841},{\"index\":30,\"square\":900},{\"index\":31,\"square\":961},{\"index\":32,\"square\":1024},{\"index\":33,\"square\":1089},{\"index\":34,\"square\":1156},{\"index\":35,\"square\":1225},{\"index\":36,\"square\":1296},{\"index\":37,\"square\":1369},{\"index\":38,\"square\":1444},{\"index\":39,\"square\":1521},{\"index\":40,\"square\":1600},{\"index\":41,\"square\":1681},{\"index\":42,\"square\":1764},{\"index\":43,\"square\":1849},{\"index\":44,\"square\":1936},{\"index\":45,\"square\":2025},{\"index\":46,\"square\":2116},{\"index\":47,\"square\":2209},{\"index\":48,\"square\":2304},{\"index\":49,\"square\":2401},{\"index\":50,\"square\":2500}]",
+          "output_characters": 1299,
+          "output_sha256": "654a5359e59bad57071f454922f88d55d393a17d6eec293ae79ea185c3cd7453",
+          "prompt_tokens": 128,
+          "reasoning_characters": 0,
+          "reasoning_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "response_tail_seconds": 0.032549,
+          "run": 1,
+          "stream_done_marker": true,
+          "stream_sha256": "654a5359e59bad57071f454922f88d55d393a17d6eec293ae79ea185c3cd7453",
+          "time_to_first_visible_seconds": 0.440388,
+          "time_to_last_output_seconds": 9.680802,
+          "ttft_seconds": 0.440388,
+          "wall_seconds": 9.71335
+        },
+        {
+          "completion_tokens": 600,
+          "completion_validation": {
+            "valid": true
+          },
+          "decode_seconds": 9.268449,
+          "decode_tokens_per_second": 64.628,
+          "finish_reason": "stop",
+          "measured_sse_events": 599,
+          "output": "[{\"index\":1,\"square\":1},{\"index\":2,\"square\":4},{\"index\":3,\"square\":9},{\"index\":4,\"square\":16},{\"index\":5,\"square\":25},{\"index\":6,\"square\":36},{\"index\":7,\"square\":49},{\"index\":8,\"square\":64},{\"index\":9,\"square\":81},{\"index\":10,\"square\":100},{\"index\":11,\"square\":121},{\"index\":12,\"square\":144},{\"index\":13,\"square\":169},{\"index\":14,\"square\":196},{\"index\":15,\"square\":225},{\"index\":16,\"square\":256},{\"index\":17,\"square\":289},{\"index\":18,\"square\":324},{\"index\":19,\"square\":361},{\"index\":20,\"square\":400},{\"index\":21,\"square\":441},{\"index\":22,\"square\":484},{\"index\":23,\"square\":529},{\"index\":24,\"square\":576},{\"index\":25,\"square\":625},{\"index\":26,\"square\":676},{\"index\":27,\"square\":729},{\"index\":28,\"square\":784},{\"index\":29,\"square\":841},{\"index\":30,\"square\":900},{\"index\":31,\"square\":961},{\"index\":32,\"square\":1024},{\"index\":33,\"square\":1089},{\"index\":34,\"square\":1156},{\"index\":35,\"square\":1225},{\"index\":36,\"square\":1296},{\"index\":37,\"square\":1369},{\"index\":38,\"square\":1444},{\"index\":39,\"square\":1521},{\"index\":40,\"square\":1600},{\"index\":41,\"square\":1681},{\"index\":42,\"square\":1764},{\"index\":43,\"square\":1849},{\"index\":44,\"square\":1936},{\"index\":45,\"square\":2025},{\"index\":46,\"square\":2116},{\"index\":47,\"square\":2209},{\"index\":48,\"square\":2304},{\"index\":49,\"square\":2401},{\"index\":50,\"square\":2500}]",
+          "output_characters": 1299,
+          "output_sha256": "654a5359e59bad57071f454922f88d55d393a17d6eec293ae79ea185c3cd7453",
+          "prompt_tokens": 128,
+          "reasoning_characters": 0,
+          "reasoning_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "response_tail_seconds": 0.03293,
+          "run": 2,
+          "stream_done_marker": true,
+          "stream_sha256": "654a5359e59bad57071f454922f88d55d393a17d6eec293ae79ea185c3cd7453",
+          "time_to_first_visible_seconds": 0.442963,
+          "time_to_last_output_seconds": 9.711411,
+          "ttft_seconds": 0.442963,
+          "wall_seconds": 9.744341
+        }
+      ],
+      "time_to_last_output_seconds": {
+        "maximum": 9.711,
+        "median": 9.696,
+        "minimum": 9.681,
+        "p90": 9.711
+      },
+      "ttft_seconds": {
+        "maximum": 0.443,
+        "median": 0.442,
+        "minimum": 0.44,
+        "p90": 0.443
+      },
+      "wall_seconds": {
+        "maximum": 9.744,
+        "median": 9.729,
+        "minimum": 9.713,
+        "p90": 9.744
+      }
+    }
+  },
+  "protocol": {
+    "prompts_sha256": "0c3ac4015813af6a1b967659bd2289990fde895a5e43ae065b894d1e1f909ecb",
+    "prompts_version": "1.0.0",
+    "repository_dirty": false,
+    "repository_revision": "40fabcaf6e963ac27ab347f61d54a225dbd07419",
+    "repository_source": "git-worktree",
+    "repository_source_sha256": "71cf88ee30ff5e0c976ad5b1d8221af9115447a690039ac9aa020a85015fe300",
+    "version": "1.1.0"
+  },
+  "run": {
+    "appliance": {
+      "competing_traffic": "none",
+      "context_limit": 262144,
+      "drafter": "Ling-3.2-air's native MTP layer, one draft per step for every active request, verified in one batched forward; Atlas's throughput gate decodes plainly when that delivers more",
+      "hardware": "1x NVIDIA DGX Spark (GB10, 128 GB)",
+      "kv_cache_dtype": "bf16 latent MLA (576 values per token per layer)",
+      "model": "primitive-ai/Ling-3.2-air-NVFP4A16",
+      "model_revision": "3a78e58506316b5b9b7d06037910c3f4abdd291f",
+      "negotiated_link_speed": "not applicable",
+      "quantisation": "NVFP4A16 experts (publisher); Spark mode NVFP4 prefill activations and NVFP4 attention-projection decode, BF16 vocabulary head",
+      "reasoning": "thinking off (chat_template_kwargs.enable_thinking=false); Ling's template has no effort levels",
+      "scheduler": "SparkLing default profile: max-num-seqs 8, gpu-memory-utilization 0.89, prefill chunks 8192, prefix caching (16 GiB disk tier), display carveout",
+      "serving_engine": "SparkLing 0.1.3 (Atlas, Enntity/atlas ling/3.2-air @ 46ed1a1f3)",
+      "serving_image": "ghcr.io/enntity/atlas-sparkling:0.1.3 (= :7a1f9d22997d), the release image, via ./start.sh",
+      "topology": "TP1, single Spark"
+    },
+    "comparison_id": "ling-3.2-air",
+    "finished_at": "2026-11-26T11:35:10.698796+00:00",
+    "label": "uncapped-final-prose",
+    "model": "ling-3.2-air-atlas",
+    "platform": "Linux-7.0.0-1019-nvidia-aarch64-with-glibc2.39",
+    "python": "3.12.3",
+    "started_at": "2026-11-26T11:31:47.972337+00:00"
+  },
+  "schema": 1,
+  "settings": {
+    "concurrency": [
+      1,
+      4,
+      8
+    ],
+    "concurrency_runs": 2,
+    "concurrency_tokens": 256,
+    "concurrency_workload": "prose",
+    "decode_tokens": 4096,
+    "extra_body": {
+      "chat_template_kwargs": {
+        "enable_thinking": false
+      }
+    },
+    "prefill_depths": [],
+    "prefill_runs": 3,
+    "runs": 2,
+    "seed": 20260905,
+    "staggered": [],
+    "staggered_arrival_tokens": 256,
+    "staggered_delay_seconds": 1.0,
+    "staggered_depth": 32768,
+    "staggered_incumbent_tokens": 1024,
+    "staggered_runs": 3,
+    "staggered_workload": "code",
+    "temperature": 0.0,
+    "top_p": 1.0
+  }
+}

@@ -1,6 +1,10 @@
 <!-- SPDX-License-Identifier: AGPL-3.0-only -->
 # Results
 
+## One DGX Spark, November 26, 2026: SparkLing 0.1.3
+
+[Several requests draft together: the batched verify and draft, RigMark against 0.1.2 and vLLM, why drafting stops at four requests, and the release image](2026-11-26-0.1.3/README.md)
+
 ## One DGX Spark, November 26, 2026: SparkLing 0.1.2
 
 [The drafter fix: what Ling's predictor was fed, acceptance before and after against vLLM, and the release image](2026-11-26-0.1.2/README.md)
