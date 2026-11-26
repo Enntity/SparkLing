@@ -1,0 +1,7 @@
+{"case": "gif-red-blue", "answer": "red blue", "prompt_tokens": 269, "seconds": 0.58, "passed": true}
+{"case": "mp4-red-blue", "answer": "red blue", "prompt_tokens": 329, "seconds": 0.79, "passed": true}
+{"case": "mp4-count8", "answer": "1, 2, 3, 4, 5, 6, 7, 8", "prompt_tokens": 1877, "seconds": 2.79, "passed": true}
+{"case": "gif-count8", "answer": "1, 2, 3, 4, 5, 6, 7, 8", "prompt_tokens": 597, "seconds": 1.17, "passed": true}
+{"case": "mp4-long90", "answer": "This 90-second synthetic test pattern displays six vertical color bars (red, green, yellow, blue, magenta, cyan) overlaid with moving diagonal lines, a drifting gray crosshair, and a flickering gray square that periodically appears and disappears over the crosshair.", "prompt_tokens": 4408, "seconds": 6.96, "passed": true}
+{"case": "invoice", "answer": "Supplier: Harbor Street Bakery\nInvoice: 48213\nTotal: 66.15", "prompt_tokens": 257, "seconds": 0.98, "passed": true}
+{"case": "grid", "answer": "Looking at the grid:\n\n- **A1** is red.\n- **B2** is blue.\n- **C3** is green.\n\nSo the colors are: A1 = red, B2 = blue, C3 = green.", "prompt_tokens": 1242, "seconds": 3.56, "passed": true}
