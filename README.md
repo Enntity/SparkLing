@@ -28,11 +28,11 @@ Both recipes were installed and started this way on a DGX Spark on November 25, 
 
 ## LingSante demo
 
-[demo/lingsante](demo/lingsante/README.md) is a one-page demo that calls LingSante live; every patient in it is synthetic. In the recorded run on one Spark:
+[demo/lingsante](demo/lingsante/README.md) is a one-page demo that calls LingSante live; every patient in it is synthetic. In the run recorded on SparkLing 0.1.3, on one Spark:
 
-- **Chart review.** It read a six-year chart of 51,349 tokens in 25.4 s and named all four planted problems, including a lung nodule never followed up and metformin continued at eGFR 27. A follow-up question about the same chart started answering after 1.4 s, because the chart was still in the cache.
-- **Film and labs.** It described a chest radiograph in 3.4 s. Given the radiograph and a lab report together, it filed a structured encounter note as a tool call in 11.5 s.
-- **Triage.** It triaged eight emergency patients sent at once, all within 6.6 s.
+- **Chart review.** It read a six-year chart of 51,349 tokens in 25.4 s and named all four planted problems, including a lung nodule never followed up and metformin continued at eGFR 27. A follow-up question about the same chart started answering after 1.9 s, because the chart was still in the cache.
+- **Film and labs.** It described a chest radiograph in 3.5 s. Given the radiograph and a lab report together, it filed a structured encounter note as a tool call in 11.7 s.
+- **Triage.** It triaged eight emergency patients sent at once, all within 6.8 s.
 
 It is a research demonstration, not medical advice.
 
