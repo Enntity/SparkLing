@@ -1,6 +1,6 @@
 <!-- SPDX-License-Identifier: AGPL-3.0-only -->
 <p align="center">
-  <img src="docs/assets/banner.png" alt="SparkLing 0.1.2 on one DGX Spark at eight full context windows. One stream with exact native drafting, mean of eight prompts: Ling-3.2-air 61.0 and LingSante-3.1-air-VL 57.5 tokens/s. Eight streams together: 104.5 and 104.2 tokens/s. Shared cache: 2.22 and 2.37 million tokens." width="100%">
+  <img src="docs/assets/banner.png" alt="SparkLing 0.1.2 on one DGX Spark, RigMark 1.1.0 with thinking off, tokens per second. Ling-3.2-air: code 62.9, structured 64.9, eight requests 142.3. LingSante-3.1-air-VL: code 62.5, structured 63.7, eight requests 136.2." width="100%">
 </p>
 
 # SparkLing
@@ -30,8 +30,8 @@ Both recipes were installed and started this way on a DGX Spark on November 25, 
 
 [demo/lingsante](demo/lingsante/README.md) is a one-page demo that calls LingSante live; every patient in it is synthetic. In the recorded run on one Spark:
 
-- **Chart review.** It read a six-year chart of 51,349 tokens in 25.4 s and named all four planted problems, including a lung nodule never followed up and metformin continued at eGFR 27. A follow-up question about the same chart started answering after 2.9 s, because the chart was still in the cache.
-- **Film and labs.** It described a chest radiograph in 3.8 s. Given the radiograph and a lab report together, it filed a structured encounter note as a tool call in 14.5 s.
+- **Chart review.** It read a six-year chart of 51,349 tokens in 25.4 s and named all four planted problems, including a lung nodule never followed up and metformin continued at eGFR 27. A follow-up question about the same chart started answering after 1.4 s, because the chart was still in the cache.
+- **Film and labs.** It described a chest radiograph in 3.4 s. Given the radiograph and a lab report together, it filed a structured encounter note as a tool call in 11.5 s.
 - **Triage.** It triaged eight emergency patients sent at once, all within 6.6 s.
 
 It is a research demonstration, not medical advice.
@@ -40,9 +40,28 @@ It is a research demonstration, not medical advice.
 
 > **Correction to 0.1.0.** SparkLing 0.1.0 advertised a 131,072-token default shared by eight requests. Its KV pool held 56,352 tokens in total, so it could not serve even one 131,072-token request. Atlas cached Ling’s attention as expanded per-head keys and values, 16.6 KB per token per layer. 0.1.1 caches the model’s 576-value compressed latent instead, 1.15 KB per token per layer, and now holds the full window for every request. [0.1.0’s own cache log](results/2026-11-25-0.1.1/raw/010-ling-spark-kv.log)
 
-## Speed on one Spark
+## Performance
 
-All engines below ran on the same GB10, one at a time, with nothing else using the GPU. SparkLing’s column is the published `0.1.2` image launched by `./start.sh up` with its 262,144-token window. The other engines ran with an 8,192-token window. The client sent the same request bodies to each engine: eight greedy prompts of 256 tokens each, with thinking off. Decode rate is measured after the first token.
+Measured on the 0.1.2 image with [RigMark](https://github.com/alexellis/rigmark) `40fabcaf6e96`, protocol 1.1.0, thinking off (Ling's template has no effort levels), on one Spark with the default profile and drafter, against the pinned vLLM image with and without its MTP drafter on the same Spark: [the result, with every receipt](results/2026-11-26-0.1.2/README.md#rigmark).
+
+| | Ling-3.2-air | LingSante-3.1-air-VL | vLLM, MTP ×3 | vLLM |
+|---|---:|---:|---:|---:|
+| Code decode, tok/s | **62.9** | 62.5 | 45.4 | 21.6 |
+| Prose decode | **54.7** | 49.7 | 32.9 | 21.7 |
+| Structured decode | **64.9** | 63.7 | 44.9 | 21.7 |
+| 32K cold prefill, tok/s | **2,582** | 2,573 | 2,474 | 2,120 |
+| 8K cold prefill | **3,400** | 3,412 | 2,908 | 2,355 |
+| Short code, C1 / C2 / C4 / C8 aggregate | **58.3** / 66.1 / 98.8 / 142.3 | 56.5 / 66.5 / 96.6 / 136.2 | 37.3 / **67.3 / 112.4 / 167.5** | 20.9 / 45.2 / 79.7 / 129.4 |
+| Short prose, C1 / C4 / C8 aggregate | **50.6 / 86.6** / 115.1 | 47.0 / 86.8 / 116.5 | 29.2 / 82.2 / **125.8** | 21.3 / 75.7 / 119.6 |
+| 32K prompt sent again, time to first token | **0.02 s** | 0.02 s | 1.15 s | 0.89 s |
+| Longest request | 262,144 | 131,072 | 40,960 as configured | 40,960 as configured |
+| Basic output gates | 6/6 | 6/6 | 6/6 | 6/6 |
+
+On Ling-3.2-air, SparkLing leads vLLM with its drafter on code (1.39x), prose (1.66x), structured output (1.45x), cold prefill (1.04x at 32K, 1.17x at 8K), one request (1.56x) and a repeated 32K prompt. It ties at two short-code requests (0.98x) and trails at four and eight (0.88x, 0.85x) and at eight prose requests (0.91x). SparkLing drafts for one live request and decodes plainly from two, because its two-row verify does not yet batch across requests; vLLM keeps drafting in a batch. The vLLM columns serve the same NVFP4A16 checkpoint with a 40,960-token window.
+
+### Eight short prompts, with llama.cpp
+
+SparkLing’s own probe adds llama.cpp and shows each prompt. All engines ran on the same GB10, one at a time, with nothing else using the GPU. SparkLing’s column is the published `0.1.2` image launched by `./start.sh up` with its 262,144-token window. The other engines ran with an 8,192-token window. The client sent the same request bodies to each engine: eight greedy prompts of 256 tokens each, with thinking off. Decode rate is measured after the first token.
 
 | One GB10 · Ling-3.2-air | SparkLing 0.1.2 | vLLM, MTP ×3 | vLLM | llama.cpp, MTP | llama.cpp |
 | --- | ---: | ---: | ---: | ---: | ---: |
@@ -57,7 +76,7 @@ SparkLing ran on November 26, 2026; the other engines on November 25, on the sam
 
 SparkLing is fastest on all eight prompts, including the predictable ones where llama.cpp drafts several tokens per step: counting, code, JSON and Rust at 66.1, 64.2, 60.9 and 64.7 tok/s against llama.cpp’s 58.4, 57.0, 58.5 and 58.0.
 
-Where SparkLing is not fastest: **eight concurrent requests.** vLLM with MTP leads by 4%. Atlas prefills simultaneous prompts one after another rather than in one batch. At eight clients its median time to first token was 1.04 s, against vLLM’s 0.69 s.
+On this probe too, vLLM with MTP leads at eight concurrent requests, by 4%. Atlas also prefills simultaneous prompts one after another rather than in one batch: at eight clients its median time to first token was 1.04 s, against vLLM’s 0.69 s.
 
 [Measurements, commands and raw streams](results/2026-11-26-0.1.2/README.md) · [0.1.0 comparison runs](results/2026-11-25/README.md)
 

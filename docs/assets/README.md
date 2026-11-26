@@ -1,6 +1,6 @@
 # SparkLing cards
 
-The README banner and social preview use the SparkQwen arcade frame and SparkInkling’s Press Start 2P layout. The three rows come from the published 0.1.2 image in its default setup on one DGX Spark, Ling-3.2-air with native drafting and LingSante-3.1-air-VL with Ling's borrowed drafter: one-stream decode as the mean of the eight probe prompts, the aggregate rate of eight concurrent streams, and the shared KV cache size from the server log. [Release receipts](../../results/2026-11-25-0.1.1/release)
+The README banner and social preview use the SparkQwen arcade frame and SparkInkling’s Press Start 2P layout. The three rows are RigMark 1.1.0 medians from the published 0.1.2 image in its default setup on one DGX Spark, thinking off: code decode, structured decode and the aggregate of eight concurrent short-code requests, for Ling-3.2-air with native drafting and LingSante-3.1-air-VL with Ling's borrowed drafter. `make_cards.py` reads them from the RigMark receipts. [Release receipts](../../results/2026-11-25-0.1.1/release)
 
 To render both cards, install Pillow, obtain the Press Start 2P font (SIL Open Font License 1.1) and use the two base PNGs from [SparkQwen at bd26c6d](https://github.com/Enntity/sparkqwen/tree/bd26c6d/docs/assets). From the SparkLing repo root, run:
 

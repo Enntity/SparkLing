@@ -85,14 +85,14 @@
       <pre class="chart mono" id="c-chart"></pre>
     </div>
     <div style="flex:1;display:flex;flex-direction:column;gap:14px;height:760px">
-      <div class="panel" style="flex:1">
+      <div class="panel" style="flex:1;display:flex;flex-direction:column;min-height:0">
         <div class="title"><span>LingSante · safety review</span><span id="c-status" class="timer"></span></div>
-        <div class="out" id="c-out"></div>
+        <div class="out" id="c-out" style="flex:1;min-height:0"></div>
       </div>
-      <div class="panel" id="c-fu" style="height:250px;display:none">
+      <div class="panel" id="c-fu" style="height:300px;display:none;flex-direction:column;min-height:0">
         <div class="title"><span>Follow-up question</span><span id="c-fu-status" class="timer"></span></div>
         <div class="q" id="c-fu-q"></div>
-        <div class="out" id="c-fu-out"></div>
+        <div class="out" id="c-fu-out" style="flex:1;min-height:0"></div>
       </div>
     </div>
   </div>
@@ -147,7 +147,7 @@
   <div class="center">
     <div class="big">One DGX Spark. <span>No cloud.</span></div>
     <div class="recap" id="recap"></div>
-    <div class="fine">LingSante-3.1-air-VL (inclusionAI, MIT) served by SparkLing 0.1.1 and the Atlas engine through LLooM, with native drafting.
+    <div class="fine">LingSante-3.1-air-VL (inclusionAI, MIT) served by SparkLing 0.1.2 and the Atlas engine, with native drafting.
       Synthetic data; research demonstration only, not for clinical use. github.com/Enntity/SparkLing</div>
   </div>
 </section>

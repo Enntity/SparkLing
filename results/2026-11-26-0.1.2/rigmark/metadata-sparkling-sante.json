@@ -1,0 +1,16 @@
+{
+ "hardware": "1x NVIDIA DGX Spark (GB10, 128 GB)",
+ "topology": "TP1, single Spark",
+ "negotiated_link_speed": "not applicable",
+ "competing_traffic": "none",
+ "reasoning": "thinking off (chat_template_kwargs.enable_thinking=false); Ling's template has no effort levels",
+ "model": "Enntity/LingSante-3.1-air-VL-NVFP4 (from inclusionAI/LingSante-3.1-air-VL BF16)",
+ "model_revision": "SparkLing 0.1.2 pin",
+ "quantisation": "Enntity NVFP4 experts; NVFP4 prefill activations and NVFP4 attention-projection decode",
+ "kv_cache_dtype": "bf16 latent MLA",
+ "serving_engine": "SparkLing 0.1.2 (Atlas, Enntity/atlas ling/3.2-air @ 18dec2347)",
+ "serving_image": "ghcr.io/enntity/atlas-sparkling:0.1.2 (= :2b64f3eb9763, index sha256:a86632ffc12369be26cd9b9250d09f9dd24c96dacdf00703374dc40a2294581f), the release image, via ./start.sh",
+ "drafter": "Ling-3.2-air's MTP layer (borrowed), one draft per step with one live request, plain decode from two",
+ "context_limit": 131072,
+ "scheduler": "SparkLing default profile: max-num-seqs 8, gpu-memory-utilization 0.89, prefill chunks 8192, prefix caching (16 GiB disk tier), display carveout"
+}
