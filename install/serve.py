@@ -205,6 +205,12 @@ def launch(environ, profile):
         else:
             raise ValueError('mtp requires the embedded Ling predictor; ling-mtp requires BF16-derived Air-VL NVFP4')
         args += ['--speculative', '--num-drafts=1', '--mtp-quantization=bf16']
+        # Up to four active requests draft together, verified in one batched
+        # forward. At eight, a verify reads nearly twice the routed experts of
+        # a plain step (512 experts, top 8) for 1.8x the tokens; drafting there
+        # measured Ling's prose 4.6% below plain decode (RigMark 1.1.0), so
+        # from five the batch decodes plainly.
+        env['ATLAS_MTP_MAX_SEQS'] = '4'
         if mode == 'spark':
             env['ATLAS_LING_MTP_QUANT_HEAD'] = '1'
     if decode_precision != 'checkpoint':

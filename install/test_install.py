@@ -102,10 +102,11 @@ class InstallTests(unittest.TestCase):
         args, settings = serve.launch(env, profile)
         self.assertIn('--speculative', args)
         self.assertIn('--num-drafts=1', args)
-        # Every active request drafts (Atlas verifies them in one batched
-        # forward); drafter prefill is Atlas's default.
-        for pinned in ('ATLAS_MTP_MAX_SEQS', 'ATLAS_MTP_DRAFTER_PREFILL', 'ATLAS_MTP_CATCHUP'):
-            self.assertNotIn(pinned, settings)
+        # Up to four active requests draft, verified in one batched forward;
+        # from five the batch decodes plainly. Drafter prefill is Atlas's default.
+        self.assertEqual(settings['ATLAS_MTP_MAX_SEQS'], '4')
+        for obsolete in ('ATLAS_MTP_DRAFTER_PREFILL', 'ATLAS_MTP_CATCHUP'):
+            self.assertNotIn(obsolete, settings)
         self.assertTrue(settings['ATLAS_KV_NVME_DIR'].endswith('-mtp1/kv'))
         with self.assertRaisesRegex(ValueError, 'embedded'):
             serve.launch({**env, 'SPARKLING_MODEL': 'sante-air-vl'}, profile)
@@ -183,7 +184,7 @@ class InstallTests(unittest.TestCase):
             self.assertEqual(serve.default_precision(mode, model_id, quant), 'checkpoint')
         args, env = serve.launch({'MODEL_PATH': '/model', 'SPARKLING_DRAFTER': 'mtp'}, profile)
         self.assertIn('--speculative', args)
-        self.assertNotIn('ATLAS_MTP_MAX_SEQS', env)
+        self.assertEqual(env['ATLAS_MTP_MAX_SEQS'], '4')
         for mode, model_id in [('strict', 'ling-3.2-air'), ('spark', 'sante-air-vl'), ('strict', 'sante-air-vl')]:
             self.assertEqual(serve.default_precision(mode, model_id), 'checkpoint')
 
