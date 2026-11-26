@@ -1,0 +1,2765 @@
+OUTPATIENT RECORD EXPORT (SYNTHETIC - FOR SOFTWARE DEMONSTRATION ONLY)
+Synthetic Patient 0417 (fictional), female, born 1957-04-02
+Problem list: type 2 diabetes mellitus; essential hypertension; hyperlipidemia; GERD; osteoarthritis of both knees; heart failure with reduced ejection fraction (added 2023).
+
+=== ALLERGY LIST (entered 2019-05-14) ===
+  - PENICILLIN: anaphylaxis (throat swelling, hypotension) after IM penicillin G in 1984. Avoid all penicillins.
+  - Sulfa: rash (mild).
+
+=== OFFICE VISIT 2019-05-14 | Primary care | Dr. A. Rivera (PCP) ===
+Patient: Synthetic Patient 0417 (fictional), female, born 1957-04-02
+HPI: No chest pain, no syncope. Occasional heartburn after large meals, controlled on omeprazole. Feels well. Daughter visiting from out of state. Asked about shingles vaccine.
+Review of systems: Constitutional: no fever, no weight loss. Eyes: no vision change. ENT: no sore throat. Cardiovascular: no chest pain, no palpitations. Respiratory: no cough, no hemoptysis. GI: no nausea, no melena. GU: no dysuria. MSK: knee stiffness as above. Skin: no rash. Neuro: no focal weakness. Psych: mood good.
+Vitals: BP 145/77 mmHg, HR 67, RR 18, T 36.9 C, SpO2 96% RA, weight 86 kg
+Exam: General: well appearing, no distress. HEENT: normocephalic, oropharynx clear. Neck: supple, no JVD. Lungs: clear to auscultation bilaterally. Heart: regular rate and rhythm, no murmur. Abdomen: soft, non-tender. Extremities: trace bilateral ankle edema. Neuro: alert, oriented.
+Current medications:
+  - metformin 1000 mg PO twice daily
+  - lisinopril 20 mg PO daily
+  - atorvastatin 40 mg PO nightly
+  - aspirin 81 mg PO daily
+  - omeprazole 20 mg PO daily
+Allergies: see allergy list
+Assessment and plan:
+1. Type 2 diabetes: continue metformin 1000 mg twice daily. Recheck HbA1c in 6 months.
+2. Hypertension: continue current regimen. Home BP log encouraged.
+3. Hyperlipidemia: continue atorvastatin.
+4. Knee osteoarthritis: activity as tolerated.
+Follow up in 6 months with labs.
+LAB RESULTS 2019-05-14
+  Sodium 139 mmol/L (135-145)
+  Potassium 4.2 mmol/L (3.5-5.1)
+  Chloride 100 mmol/L
+  CO2 24 mmol/L
+  BUN 12 mg/dL (7-20)
+  Creatinine 0.9 mg/dL (0.5-1.1)
+  eGFR 68 mL/min/1.73m2 (>60)
+  Glucose 157 mg/dL
+  Calcium 9.3 mg/dL
+  HbA1c 7.1 %
+  WBC 7.1 K/uL
+  Hemoglobin 13.1 g/dL
+  Platelets 249 K/uL
+  LDL 82 mg/dL
+  ALT 27 U/L
+  TSH 2.4 mIU/L
+--- PORTAL MESSAGE 2019-05-14 ---
+Patient asks about refill timing and parking validation. Refills sent for metformin 1000 mg PO twice daily. Reminder sent for annual eye exam and foot exam.
+
+--- PREVENTIVE CARE 2019-05-14 ---
+Mammogram ordered. Colonoscopy 2018 normal, repeat 2028. Diabetic eye exam: no retinopathy. Monofilament exam normal. Pneumococcal and shingles vaccines documented. Depression screen PHQ-2 negative.
+
+--- DIETITIAN NOTE 2019-05-14 ---
+Thirty-minute session on plate method, sodium under 2 g per day and label reading. Typical day reviewed: oatmeal, sandwiches, rice and chicken, fruit. Goal: walk after dinner.
+
+--- PREVENTIVE CARE 2019-05-14 ---
+Mammogram up to date. Colonoscopy 2018 normal, repeat 2028. Diabetic eye exam: no retinopathy. Monofilament exam normal. Pneumococcal and shingles vaccines documented. Depression screen PHQ-2 negative.
+
+--- PREVENTIVE CARE 2019-05-14 ---
+Mammogram up to date. Colonoscopy 2018 normal, repeat 2028. Diabetic eye exam: no retinopathy. Monofilament exam normal. Pneumococcal and shingles vaccines documented. Depression screen PHQ-2 negative.
+
+--- NURSE TELEPHONE NOTE 2019-05-14 ---
+Called to review home glucose log: fasting 129, post-prandial 177. No hypoglycemia. Reinforced carbohydrate counting and foot care. Patient verbalized understanding.
+
+--- DIETITIAN NOTE 2019-05-14 ---
+Thirty-minute session on plate method, sodium under 2 g per day and label reading. Typical day reviewed: oatmeal, sandwiches, rice and chicken, fruit. Goal: replace soda with water.
+
+--- SOCIAL WORK NOTE 2019-05-14 ---
+Lives with husband in a two-story home; drives; volunteers at the library twice weekly. Medicare with supplemental plan. No financial barriers to medications reported. Advance directive on file; healthcare proxy is her daughter.
+
+--- NURSE TELEPHONE NOTE 2019-05-14 ---
+Called to review home glucose log: fasting 135, post-prandial 173. No hypoglycemia. Reinforced carbohydrate counting and foot care. Patient verbalized understanding.
+
+--- DIETITIAN NOTE 2019-05-14 ---
+Thirty-minute session on plate method, sodium under 2 g per day and label reading. Typical day reviewed: oatmeal, sandwiches, rice and chicken, fruit. Goal: replace soda with water.
+
+--- SOCIAL WORK NOTE 2019-05-14 ---
+Lives with husband in a two-story home; drives; volunteers at the library twice weekly. Medicare with supplemental plan. No financial barriers to medications reported. Advance directive on file; healthcare proxy is her daughter.
+
+--- PREVENTIVE CARE 2019-05-14 ---
+Mammogram ordered. Colonoscopy 2018 normal, repeat 2028. Diabetic eye exam: no retinopathy. Monofilament exam normal. Pneumococcal and shingles vaccines documented. Depression screen PHQ-2 negative.
+
+--- PORTAL MESSAGE 2019-05-14 ---
+Patient asks about refill timing and parking validation. Refills sent for atorvastatin 40 mg PO nightly. Reminder sent for annual eye exam and foot exam.
+
+--- DIETITIAN NOTE 2019-05-14 ---
+Thirty-minute session on plate method, sodium under 2 g per day and label reading. Typical day reviewed: oatmeal, sandwiches, rice and chicken, fruit. Goal: walk after dinner.
+
+--- DIETITIAN NOTE 2019-05-14 ---
+Thirty-minute session on plate method, sodium under 2 g per day and label reading. Typical day reviewed: oatmeal, sandwiches, rice and chicken, fruit. Goal: replace soda with water.
+
+--- MEDICATION RECONCILIATION 2019-05-14 ---
+Reviewed with patient at pharmacy counter:
+  - metformin 1000 mg PO twice daily: taking as prescribed
+  - lisinopril 20 mg PO daily: taking as prescribed
+  - atorvastatin 40 mg PO nightly: taking as prescribed
+  - aspirin 81 mg PO daily: taking as prescribed
+  - omeprazole 20 mg PO daily: taking as prescribed
+No changes made.
+
+--- MEDICATION RECONCILIATION 2019-05-14 ---
+Reviewed with patient at pharmacy counter:
+  - metformin 1000 mg PO twice daily: taking as prescribed
+  - lisinopril 20 mg PO daily: taking as prescribed
+  - atorvastatin 40 mg PO nightly: taking as prescribed
+  - aspirin 81 mg PO daily: taking as prescribed
+  - omeprazole 20 mg PO daily: taking as prescribed
+No changes made.
+
+--- PORTAL MESSAGE 2019-05-14 ---
+Patient asks about refill timing and parking validation. Refills sent for aspirin 81 mg PO daily. Reminder sent for annual eye exam and foot exam.
+
+--- NURSE TELEPHONE NOTE 2019-05-14 ---
+Called to review home glucose log: fasting 126, post-prandial 176. No hypoglycemia. Reinforced carbohydrate counting and foot care. Patient verbalized understanding.
+
+--- MEDICATION RECONCILIATION 2019-05-14 ---
+Reviewed with patient at pharmacy counter:
+  - metformin 1000 mg PO twice daily: taking as prescribed
+  - lisinopril 20 mg PO daily: taking as prescribed
+  - atorvastatin 40 mg PO nightly: taking as prescribed
+  - aspirin 81 mg PO daily: taking as prescribed
+  - omeprazole 20 mg PO daily: taking as prescribed
+No changes made.
+
+--- NURSE TELEPHONE NOTE 2019-05-14 ---
+Called to review home glucose log: fasting 150, post-prandial 178. No hypoglycemia. Reinforced carbohydrate counting and foot care. Patient verbalized understanding.
+
+--- PORTAL MESSAGE 2019-05-14 ---
+Patient asks about refill timing and parking validation. Refills sent for omeprazole 20 mg PO daily. Reminder sent for annual eye exam and foot exam.
+
+--- DIETITIAN NOTE 2019-05-14 ---
+Thirty-minute session on plate method, sodium under 2 g per day and label reading. Typical day reviewed: oatmeal, sandwiches, rice and chicken, fruit. Goal: walk after dinner.
+
+--- NURSE TELEPHONE NOTE 2019-05-14 ---
+Called to review home glucose log: fasting 131, post-prandial 181. No hypoglycemia. Reinforced carbohydrate counting and foot care. Patient verbalized understanding.
+
+--- PORTAL MESSAGE 2019-05-14 ---
+Patient asks about refill timing and parking validation. Refills sent for metformin 1000 mg PO twice daily. Reminder sent for annual eye exam and foot exam.
+
+--- PORTAL MESSAGE 2019-05-14 ---
+Patient asks about refill timing and parking validation. Refills sent for omeprazole 20 mg PO daily. Reminder sent for annual eye exam and foot exam.
+
+--- DIETITIAN NOTE 2019-05-14 ---
+Thirty-minute session on plate method, sodium under 2 g per day and label reading. Typical day reviewed: oatmeal, sandwiches, rice and chicken, fruit. Goal: replace soda with water.
+
+--- DIETITIAN NOTE 2019-05-14 ---
+Thirty-minute session on plate method, sodium under 2 g per day and label reading. Typical day reviewed: oatmeal, sandwiches, rice and chicken, fruit. Goal: walk after dinner.
+
+--- NURSE TELEPHONE NOTE 2019-05-14 ---
+Called to review home glucose log: fasting 149, post-prandial 201. No hypoglycemia. Reinforced carbohydrate counting and foot care. Patient verbalized understanding.
+
+--- PHYSICAL THERAPY NOTE 2019-05-14 ---
+Knee program session 11 of 12. Quadriceps strengthening, gait training, stationary bike 15 minutes. Pain 3/10 after session. Home exercise program updated. Tolerated well.
+
+--- MEDICATION RECONCILIATION 2019-05-14 ---
+Reviewed with patient at pharmacy counter:
+  - metformin 1000 mg PO twice daily: taking as prescribed
+  - lisinopril 20 mg PO daily: taking as prescribed
+  - atorvastatin 40 mg PO nightly: taking as prescribed
+  - aspirin 81 mg PO daily: taking as prescribed
+  - omeprazole 20 mg PO daily: taking as prescribed
+No changes made.
+
+--- PREVENTIVE CARE 2019-05-14 ---
+Mammogram ordered. Colonoscopy 2018 normal, repeat 2028. Diabetic eye exam: no retinopathy. Monofilament exam normal. Pneumococcal and shingles vaccines documented. Depression screen PHQ-2 negative.
+
+--- PORTAL MESSAGE 2019-05-14 ---
+Patient asks about refill timing and parking validation. Refills sent for metformin 1000 mg PO twice daily. Reminder sent for annual eye exam and foot exam.
+
+--- NURSE TELEPHONE NOTE 2019-05-14 ---
+Called to review home glucose log: fasting 116, post-prandial 170. No hypoglycemia. Reinforced carbohydrate counting and foot care. Patient verbalized understanding.
+
+--- PORTAL MESSAGE 2019-05-14 ---
+Patient asks about refill timing and parking validation. Refills sent for atorvastatin 40 mg PO nightly. Reminder sent for annual eye exam and foot exam.
+
+--- SOCIAL WORK NOTE 2019-05-14 ---
+Lives with husband in a two-story home; drives; volunteers at the library twice weekly. Medicare with supplemental plan. No financial barriers to medications reported. Advance directive on file; healthcare proxy is her daughter.
+
+--- PREVENTIVE CARE 2019-05-14 ---
+Mammogram ordered. Colonoscopy 2018 normal, repeat 2028. Diabetic eye exam: no retinopathy. Monofilament exam normal. Pneumococcal and shingles vaccines documented. Depression screen PHQ-2 negative.
+
+--- PHYSICAL THERAPY NOTE 2019-05-14 ---
+Knee program session 8 of 12. Quadriceps strengthening, gait training, stationary bike 14 minutes. Pain 2/10 after session. Home exercise program updated. Tolerated well.
+
+--- NURSE TELEPHONE NOTE 2019-05-14 ---
+Called to review home glucose log: fasting 156, post-prandial 165. No hypoglycemia. Reinforced carbohydrate counting and foot care. Patient verbalized understanding.
+
+--- PHYSICAL THERAPY NOTE 2019-05-14 ---
+Knee program session 8 of 12. Quadriceps strengthening, gait training, stationary bike 15 minutes. Pain 5/10 after session. Home exercise program updated. Tolerated well.
+
+=== OFFICE VISIT 2019-11-20 | Primary care | Dr. A. Rivera (PCP) ===
+Patient: Synthetic Patient 0417 (fictional), female, born 1957-04-02
+HPI: Reports good adherence to medications. Walking 20 minutes most days. Diet reviewed; trying to reduce portion sizes. Home glucose readings mostly 120-160 fasting. No hypoglycemia symptoms reported.
+Review of systems: Constitutional: no fever, no weight loss. Eyes: no vision change. ENT: no sore throat. Cardiovascular: no chest pain, no palpitations. Respiratory: no cough, no hemoptysis. GI: no nausea, no melena. GU: no dysuria. MSK: knee stiffness as above. Skin: no rash. Neuro: no focal weakness. Psych: mood good.
+Vitals: BP 131/83 mmHg, HR 71, RR 15, T 36.9 C, SpO2 97% RA, weight 85 kg
+Exam: General: well appearing, no distress. HEENT: normocephalic, oropharynx clear. Neck: supple, no JVD. Lungs: clear to auscultation bilaterally. Heart: regular rate and rhythm, no murmur. Abdomen: soft, non-tender. Extremities: trace bilateral ankle edema. Neuro: alert, oriented.
+Current medications:
+  - metformin 1000 mg PO twice daily
+  - lisinopril 20 mg PO daily
+  - atorvastatin 40 mg PO nightly
+  - aspirin 81 mg PO daily
+  - omeprazole 20 mg PO daily
+Allergies: see allergy list
+Assessment and plan:
+1. Type 2 diabetes: continue metformin 1000 mg twice daily. Recheck HbA1c in 6 months.
+2. Hypertension: continue current regimen. Home BP log encouraged.
+3. Hyperlipidemia: continue atorvastatin.
+4. Knee osteoarthritis: activity as tolerated.
+Follow up in 6 months with labs.
+LAB RESULTS 2019-11-20
+  Sodium 138 mmol/L (135-145)
+  Potassium 4.3 mmol/L (3.5-5.1)
+  Chloride 100 mmol/L
+  CO2 22 mmol/L
+  BUN 12 mg/dL (7-20)
+  Creatinine 0.9 mg/dL (0.5-1.1)
+  eGFR 68 mL/min/1.73m2 (>60)
+  Glucose 145 mg/dL
+  Calcium 9.4 mg/dL
+--- PREVENTIVE CARE 2019-11-20 ---
+Mammogram up to date. Colonoscopy 2018 normal, repeat 2028. Diabetic eye exam: no retinopathy. Monofilament exam normal. Pneumococcal and shingles vaccines documented. Depression screen PHQ-2 negative.
+
+--- NURSE TELEPHONE NOTE 2019-11-20 ---
+Called to review home glucose log: fasting 124, post-prandial 153. No hypoglycemia. Reinforced carbohydrate counting and foot care. Patient verbalized understanding.
+
+--- PHYSICAL THERAPY NOTE 2019-11-20 ---
+Knee program session 11 of 12. Quadriceps strengthening, gait training, stationary bike 8 minutes. Pain 2/10 after session. Home exercise program updated. Tolerated well.
+
+--- PORTAL MESSAGE 2019-11-20 ---
+Patient asks about refill timing and parking validation. Refills sent for metformin 1000 mg PO twice daily. Reminder sent for annual eye exam and foot exam.
+
+--- PREVENTIVE CARE 2019-11-20 ---
+Mammogram ordered. Colonoscopy 2018 normal, repeat 2028. Diabetic eye exam: no retinopathy. Monofilament exam normal. Pneumococcal and shingles vaccines documented. Depression screen PHQ-2 negative.
+
+--- MEDICATION RECONCILIATION 2019-11-20 ---
+Reviewed with patient at pharmacy counter:
+  - metformin 1000 mg PO twice daily: taking as prescribed
+  - lisinopril 20 mg PO daily: taking as prescribed
+  - atorvastatin 40 mg PO nightly: taking as prescribed
+  - aspirin 81 mg PO daily: taking as prescribed
+  - omeprazole 20 mg PO daily: taking as prescribed
+No changes made.
+
+--- PREVENTIVE CARE 2019-11-20 ---
+Mammogram up to date. Colonoscopy 2018 normal, repeat 2028. Diabetic eye exam: no retinopathy. Monofilament exam normal. Pneumococcal and shingles vaccines documented. Depression screen PHQ-2 negative.
+
+--- PORTAL MESSAGE 2019-11-20 ---
+Patient asks about refill timing and parking validation. Refills sent for metformin 1000 mg PO twice daily. Reminder sent for annual eye exam and foot exam.
+
+--- DIETITIAN NOTE 2019-11-20 ---
+Thirty-minute session on plate method, sodium under 2 g per day and label reading. Typical day reviewed: oatmeal, sandwiches, rice and chicken, fruit. Goal: replace soda with water.
+
+--- NURSE TELEPHONE NOTE 2019-11-20 ---
+Called to review home glucose log: fasting 129, post-prandial 188. No hypoglycemia. Reinforced carbohydrate counting and foot care. Patient verbalized understanding.
+
+--- PHYSICAL THERAPY NOTE 2019-11-20 ---
+Knee program session 11 of 12. Quadriceps strengthening, gait training, stationary bike 13 minutes. Pain 4/10 after session. Home exercise program updated. Tolerated well.
+
+--- SOCIAL WORK NOTE 2019-11-20 ---
+Lives with husband in a two-story home; drives; volunteers at the library twice weekly. Medicare with supplemental plan. No financial barriers to medications reported. Advance directive on file; healthcare proxy is her daughter.
+
+--- SOCIAL WORK NOTE 2019-11-20 ---
+Lives with husband in a two-story home; drives; volunteers at the library twice weekly. Medicare with supplemental plan. No financial barriers to medications reported. Advance directive on file; healthcare proxy is her daughter.
+
+--- PORTAL MESSAGE 2019-11-20 ---
+Patient asks about refill timing and parking validation. Refills sent for metformin 1000 mg PO twice daily. Reminder sent for annual eye exam and foot exam.
+
+--- DIETITIAN NOTE 2019-11-20 ---
+Thirty-minute session on plate method, sodium under 2 g per day and label reading. Typical day reviewed: oatmeal, sandwiches, rice and chicken, fruit. Goal: two vegetable servings at dinner.
+
+--- MEDICATION RECONCILIATION 2019-11-20 ---
+Reviewed with patient at pharmacy counter:
+  - metformin 1000 mg PO twice daily: taking as prescribed
+  - lisinopril 20 mg PO daily: taking as prescribed
+  - atorvastatin 40 mg PO nightly: taking as prescribed
+  - aspirin 81 mg PO daily: taking as prescribed
+  - omeprazole 20 mg PO daily: taking as prescribed
+No changes made.
+
+--- MEDICATION RECONCILIATION 2019-11-20 ---
+Reviewed with patient at pharmacy counter:
+  - metformin 1000 mg PO twice daily: taking as prescribed
+  - lisinopril 20 mg PO daily: taking as prescribed
+  - atorvastatin 40 mg PO nightly: taking as prescribed
+  - aspirin 81 mg PO daily: taking as prescribed
+  - omeprazole 20 mg PO daily: taking as prescribed
+No changes made.
+
+--- DIETITIAN NOTE 2019-11-20 ---
+Thirty-minute session on plate method, sodium under 2 g per day and label reading. Typical day reviewed: oatmeal, sandwiches, rice and chicken, fruit. Goal: two vegetable servings at dinner.
+
+--- SOCIAL WORK NOTE 2019-11-20 ---
+Lives with husband in a two-story home; drives; volunteers at the library twice weekly. Medicare with supplemental plan. No financial barriers to medications reported. Advance directive on file; healthcare proxy is her daughter.
+
+--- NURSE TELEPHONE NOTE 2019-11-20 ---
+Called to review home glucose log: fasting 145, post-prandial 203. No hypoglycemia. Reinforced carbohydrate counting and foot care. Patient verbalized understanding.
+
+--- PREVENTIVE CARE 2019-11-20 ---
+Mammogram ordered. Colonoscopy 2018 normal, repeat 2028. Diabetic eye exam: no retinopathy. Monofilament exam normal. Pneumococcal and shingles vaccines documented. Depression screen PHQ-2 negative.
+
+--- DIETITIAN NOTE 2019-11-20 ---
+Thirty-minute session on plate method, sodium under 2 g per day and label reading. Typical day reviewed: oatmeal, sandwiches, rice and chicken, fruit. Goal: replace soda with water.
+
+--- PREVENTIVE CARE 2019-11-20 ---
+Mammogram ordered. Colonoscopy 2018 normal, repeat 2028. Diabetic eye exam: no retinopathy. Monofilament exam normal. Pneumococcal and shingles vaccines documented. Depression screen PHQ-2 negative.
+
+--- DIETITIAN NOTE 2019-11-20 ---
+Thirty-minute session on plate method, sodium under 2 g per day and label reading. Typical day reviewed: oatmeal, sandwiches, rice and chicken, fruit. Goal: replace soda with water.
+
+--- SOCIAL WORK NOTE 2019-11-20 ---
+Lives with husband in a two-story home; drives; volunteers at the library twice weekly. Medicare with supplemental plan. No financial barriers to medications reported. Advance directive on file; healthcare proxy is her daughter.
+
+--- MEDICATION RECONCILIATION 2019-11-20 ---
+Reviewed with patient at pharmacy counter:
+  - metformin 1000 mg PO twice daily: taking as prescribed
+  - lisinopril 20 mg PO daily: taking as prescribed
+  - atorvastatin 40 mg PO nightly: taking as prescribed
+  - aspirin 81 mg PO daily: taking as prescribed
+  - omeprazole 20 mg PO daily: taking as prescribed
+No changes made.
+
+--- MEDICATION RECONCILIATION 2019-11-20 ---
+Reviewed with patient at pharmacy counter:
+  - metformin 1000 mg PO twice daily: taking as prescribed
+  - lisinopril 20 mg PO daily: taking as prescribed
+  - atorvastatin 40 mg PO nightly: taking as prescribed
+  - aspirin 81 mg PO daily: taking as prescribed
+  - omeprazole 20 mg PO daily: taking as prescribed
+No changes made.
+
+--- MEDICATION RECONCILIATION 2019-11-20 ---
+Reviewed with patient at pharmacy counter:
+  - metformin 1000 mg PO twice daily: taking as prescribed
+  - lisinopril 20 mg PO daily: taking as prescribed
+  - atorvastatin 40 mg PO nightly: taking as prescribed
+  - aspirin 81 mg PO daily: taking as prescribed
+  - omeprazole 20 mg PO daily: taking as prescribed
+No changes made.
+
+--- DIETITIAN NOTE 2019-11-20 ---
+Thirty-minute session on plate method, sodium under 2 g per day and label reading. Typical day reviewed: oatmeal, sandwiches, rice and chicken, fruit. Goal: replace soda with water.
+
+--- PHYSICAL THERAPY NOTE 2019-11-20 ---
+Knee program session 11 of 12. Quadriceps strengthening, gait training, stationary bike 8 minutes. Pain 2/10 after session. Home exercise program updated. Tolerated well.
+
+--- DIETITIAN NOTE 2019-11-20 ---
+Thirty-minute session on plate method, sodium under 2 g per day and label reading. Typical day reviewed: oatmeal, sandwiches, rice and chicken, fruit. Goal: replace soda with water.
+
+--- SOCIAL WORK NOTE 2019-11-20 ---
+Lives with husband in a two-story home; drives; volunteers at the library twice weekly. Medicare with supplemental plan. No financial barriers to medications reported. Advance directive on file; healthcare proxy is her daughter.
+
+--- DIETITIAN NOTE 2019-11-20 ---
+Thirty-minute session on plate method, sodium under 2 g per day and label reading. Typical day reviewed: oatmeal, sandwiches, rice and chicken, fruit. Goal: walk after dinner.
+
+--- SOCIAL WORK NOTE 2019-11-20 ---
+Lives with husband in a two-story home; drives; volunteers at the library twice weekly. Medicare with supplemental plan. No financial barriers to medications reported. Advance directive on file; healthcare proxy is her daughter.
+
+--- PORTAL MESSAGE 2019-11-20 ---
+Patient asks about refill timing and parking validation. Refills sent for metformin 1000 mg PO twice daily. Reminder sent for annual eye exam and foot exam.
+
+--- DIETITIAN NOTE 2019-11-20 ---
+Thirty-minute session on plate method, sodium under 2 g per day and label reading. Typical day reviewed: oatmeal, sandwiches, rice and chicken, fruit. Goal: replace soda with water.
+
+--- PREVENTIVE CARE 2019-11-20 ---
+Mammogram up to date. Colonoscopy 2018 normal, repeat 2028. Diabetic eye exam: no retinopathy. Monofilament exam normal. Pneumococcal and shingles vaccines documented. Depression screen PHQ-2 negative.
+
+--- MEDICATION RECONCILIATION 2019-11-20 ---
+Reviewed with patient at pharmacy counter:
+  - metformin 1000 mg PO twice daily: taking as prescribed
+  - lisinopril 20 mg PO daily: taking as prescribed
+  - atorvastatin 40 mg PO nightly: taking as prescribed
+  - aspirin 81 mg PO daily: taking as prescribed
+  - omeprazole 20 mg PO daily: taking as prescribed
+No changes made.
+
+--- PREVENTIVE CARE 2019-11-20 ---
+Mammogram ordered. Colonoscopy 2018 normal, repeat 2028. Diabetic eye exam: no retinopathy. Monofilament exam normal. Pneumococcal and shingles vaccines documented. Depression screen PHQ-2 negative.
+
+--- PREVENTIVE CARE 2019-11-20 ---
+Mammogram up to date. Colonoscopy 2018 normal, repeat 2028. Diabetic eye exam: no retinopathy. Monofilament exam normal. Pneumococcal and shingles vaccines documented. Depression screen PHQ-2 negative.
+
+=== OFFICE VISIT 2020-06-02 | Primary care | N. Patel, NP (PCP) ===
+Patient: Synthetic Patient 0417 (fictional), female, born 1957-04-02
+HPI: Mild bilateral knee stiffness in the mornings, improves after 15 minutes. No falls. Sleeping 6-7 hours. Home glucose readings mostly 120-160 fasting. No hypoglycemia symptoms reported.
+Review of systems: Constitutional: no fever, no weight loss. Eyes: no vision change. ENT: no sore throat. Cardiovascular: no chest pain, no palpitations. Respiratory: no cough, no hemoptysis. GI: no nausea, no melena. GU: no dysuria. MSK: knee stiffness as above. Skin: no rash. Neuro: no focal weakness. Psych: mood good.
+Vitals: BP 141/82 mmHg, HR 74, RR 16, T 36.7 C, SpO2 96% RA, weight 85 kg
+Exam: General: well appearing, no distress. HEENT: normocephalic, oropharynx clear. Neck: supple, no JVD. Lungs: clear to auscultation bilaterally. Heart: regular rate and rhythm, no murmur. Abdomen: soft, non-tender. Extremities: trace bilateral ankle edema. Neuro: alert, oriented.
+Current medications:
+  - metformin 1000 mg PO twice daily
+  - lisinopril 20 mg PO daily
+  - atorvastatin 40 mg PO nightly
+  - aspirin 81 mg PO daily
+  - omeprazole 20 mg PO daily
+Allergies: see allergy list
+Assessment and plan:
+1. Type 2 diabetes: continue metformin 1000 mg twice daily. Recheck HbA1c in 6 months.
+2. Hypertension: continue current regimen. Home BP log encouraged.
+3. Hyperlipidemia: continue atorvastatin.
+4. Knee osteoarthritis: activity as tolerated.
+Follow up in 6 months with labs.
+LAB RESULTS 2020-06-02
+  Sodium 140 mmol/L (135-145)
+  Potassium 4.3 mmol/L (3.5-5.1)
+  Chloride 101 mmol/L
+  CO2 25 mmol/L
+  BUN 13 mg/dL (7-20)
+  Creatinine 0.95 mg/dL (0.5-1.1)
+  eGFR 64 mL/min/1.73m2 (>60)
+  Glucose 134 mg/dL
+  Calcium 9.3 mg/dL
+  HbA1c 7.1 %
+  WBC 7.1 K/uL
+  Hemoglobin 13.1 g/dL
+  Platelets 290 K/uL
+  LDL 74 mg/dL
+  ALT 23 U/L
+  TSH 1.8 mIU/L
+--- MEDICATION RECONCILIATION 2020-06-02 ---
+Reviewed with patient at pharmacy counter:
+  - metformin 1000 mg PO twice daily: taking as prescribed
+  - lisinopril 20 mg PO daily: taking as prescribed
+  - atorvastatin 40 mg PO nightly: taking as prescribed
+  - aspirin 81 mg PO daily: taking as prescribed
+  - omeprazole 20 mg PO daily: taking as prescribed
+No changes made.
+
+--- SOCIAL WORK NOTE 2020-06-02 ---
+Lives with husband in a two-story home; drives; volunteers at the library twice weekly. Medicare with supplemental plan. No financial barriers to medications reported. Advance directive on file; healthcare proxy is her daughter.
+
+--- MEDICATION RECONCILIATION 2020-06-02 ---
+Reviewed with patient at pharmacy counter:
+  - metformin 1000 mg PO twice daily: taking as prescribed
+  - lisinopril 20 mg PO daily: taking as prescribed
+  - atorvastatin 40 mg PO nightly: taking as prescribed
+  - aspirin 81 mg PO daily: taking as prescribed
+  - omeprazole 20 mg PO daily: taking as prescribed
+No changes made.
+
+--- DIETITIAN NOTE 2020-06-02 ---
+Thirty-minute session on plate method, sodium under 2 g per day and label reading. Typical day reviewed: oatmeal, sandwiches, rice and chicken, fruit. Goal: replace soda with water.
+
+--- SOCIAL WORK NOTE 2020-06-02 ---
+Lives with husband in a two-story home; drives; volunteers at the library twice weekly. Medicare with supplemental plan. No financial barriers to medications reported. Advance directive on file; healthcare proxy is her daughter.
+
+--- PHYSICAL THERAPY NOTE 2020-06-02 ---
+Knee program session 9 of 12. Quadriceps strengthening, gait training, stationary bike 11 minutes. Pain 4/10 after session. Home exercise program updated. Tolerated well.
+
+--- PORTAL MESSAGE 2020-06-02 ---
+Patient asks about refill timing and parking validation. Refills sent for atorvastatin 40 mg PO nightly. Reminder sent for annual eye exam and foot exam.
+
+--- MEDICATION RECONCILIATION 2020-06-02 ---
+Reviewed with patient at pharmacy counter:
+  - metformin 1000 mg PO twice daily: taking as prescribed
+  - lisinopril 20 mg PO daily: taking as prescribed
+  - atorvastatin 40 mg PO nightly: taking as prescribed
+  - aspirin 81 mg PO daily: taking as prescribed
+  - omeprazole 20 mg PO daily: taking as prescribed
+No changes made.
+
+--- PORTAL MESSAGE 2020-06-02 ---
+Patient asks about refill timing and parking validation. Refills sent for metformin 1000 mg PO twice daily. Reminder sent for annual eye exam and foot exam.
+
+--- PREVENTIVE CARE 2020-06-02 ---
+Mammogram up to date. Colonoscopy 2018 normal, repeat 2028. Diabetic eye exam: no retinopathy. Monofilament exam normal. Pneumococcal and shingles vaccines documented. Depression screen PHQ-2 negative.
+
+--- PREVENTIVE CARE 2020-06-02 ---
+Mammogram ordered. Colonoscopy 2018 normal, repeat 2028. Diabetic eye exam: no retinopathy. Monofilament exam normal. Pneumococcal and shingles vaccines documented. Depression screen PHQ-2 negative.
+
+--- MEDICATION RECONCILIATION 2020-06-02 ---
+Reviewed with patient at pharmacy counter:
+  - metformin 1000 mg PO twice daily: taking as prescribed
+  - lisinopril 20 mg PO daily: taking as prescribed
+  - atorvastatin 40 mg PO nightly: taking as prescribed
+  - aspirin 81 mg PO daily: taking as prescribed
+  - omeprazole 20 mg PO daily: taking as prescribed
+No changes made.
+
+--- DIETITIAN NOTE 2020-06-02 ---
+Thirty-minute session on plate method, sodium under 2 g per day and label reading. Typical day reviewed: oatmeal, sandwiches, rice and chicken, fruit. Goal: walk after dinner.
+
+--- PHYSICAL THERAPY NOTE 2020-06-02 ---
+Knee program session 3 of 12. Quadriceps strengthening, gait training, stationary bike 14 minutes. Pain 2/10 after session. Home exercise program updated. Tolerated well.
+
+--- NURSE TELEPHONE NOTE 2020-06-02 ---
+Called to review home glucose log: fasting 112, post-prandial 189. No hypoglycemia. Reinforced carbohydrate counting and foot care. Patient verbalized understanding.
+
+--- PHYSICAL THERAPY NOTE 2020-06-02 ---
+Knee program session 9 of 12. Quadriceps strengthening, gait training, stationary bike 13 minutes. Pain 4/10 after session. Home exercise program updated. Tolerated well.
+
+--- DIETITIAN NOTE 2020-06-02 ---
+Thirty-minute session on plate method, sodium under 2 g per day and label reading. Typical day reviewed: oatmeal, sandwiches, rice and chicken, fruit. Goal: two vegetable servings at dinner.
+
+--- PREVENTIVE CARE 2020-06-02 ---
+Mammogram up to date. Colonoscopy 2018 normal, repeat 2028. Diabetic eye exam: no retinopathy. Monofilament exam normal. Pneumococcal and shingles vaccines documented. Depression screen PHQ-2 negative.
+
+--- PHYSICAL THERAPY NOTE 2020-06-02 ---
+Knee program session 11 of 12. Quadriceps strengthening, gait training, stationary bike 13 minutes. Pain 3/10 after session. Home exercise program updated. Tolerated well.
+
+--- PHYSICAL THERAPY NOTE 2020-06-02 ---
+Knee program session 9 of 12. Quadriceps strengthening, gait training, stationary bike 10 minutes. Pain 3/10 after session. Home exercise program updated. Tolerated well.
+
+--- MEDICATION RECONCILIATION 2020-06-02 ---
+Reviewed with patient at pharmacy counter:
+  - metformin 1000 mg PO twice daily: taking as prescribed
+  - lisinopril 20 mg PO daily: taking as prescribed
+  - atorvastatin 40 mg PO nightly: taking as prescribed
+  - aspirin 81 mg PO daily: taking as prescribed
+  - omeprazole 20 mg PO daily: taking as prescribed
+No changes made.
+
+--- PORTAL MESSAGE 2020-06-02 ---
+Patient asks about refill timing and parking validation. Refills sent for omeprazole 20 mg PO daily. Reminder sent for annual eye exam and foot exam.
+
+--- MEDICATION RECONCILIATION 2020-06-02 ---
+Reviewed with patient at pharmacy counter:
+  - metformin 1000 mg PO twice daily: taking as prescribed
+  - lisinopril 20 mg PO daily: taking as prescribed
+  - atorvastatin 40 mg PO nightly: taking as prescribed
+  - aspirin 81 mg PO daily: taking as prescribed
+  - omeprazole 20 mg PO daily: taking as prescribed
+No changes made.
+
+--- DIETITIAN NOTE 2020-06-02 ---
+Thirty-minute session on plate method, sodium under 2 g per day and label reading. Typical day reviewed: oatmeal, sandwiches, rice and chicken, fruit. Goal: two vegetable servings at dinner.
+
+--- PORTAL MESSAGE 2020-06-02 ---
+Patient asks about refill timing and parking validation. Refills sent for aspirin 81 mg PO daily. Reminder sent for annual eye exam and foot exam.
+
+--- DIETITIAN NOTE 2020-06-02 ---
+Thirty-minute session on plate method, sodium under 2 g per day and label reading. Typical day reviewed: oatmeal, sandwiches, rice and chicken, fruit. Goal: walk after dinner.
+
+--- SOCIAL WORK NOTE 2020-06-02 ---
+Lives with husband in a two-story home; drives; volunteers at the library twice weekly. Medicare with supplemental plan. No financial barriers to medications reported. Advance directive on file; healthcare proxy is her daughter.
+
+--- MEDICATION RECONCILIATION 2020-06-02 ---
+Reviewed with patient at pharmacy counter:
+  - metformin 1000 mg PO twice daily: taking as prescribed
+  - lisinopril 20 mg PO daily: taking as prescribed
+  - atorvastatin 40 mg PO nightly: taking as prescribed
+  - aspirin 81 mg PO daily: taking as prescribed
+  - omeprazole 20 mg PO daily: taking as prescribed
+No changes made.
+
+--- NURSE TELEPHONE NOTE 2020-06-02 ---
+Called to review home glucose log: fasting 137, post-prandial 203. No hypoglycemia. Reinforced carbohydrate counting and foot care. Patient verbalized understanding.
+
+--- PORTAL MESSAGE 2020-06-02 ---
+Patient asks about refill timing and parking validation. Refills sent for lisinopril 20 mg PO daily. Reminder sent for annual eye exam and foot exam.
+
+--- NURSE TELEPHONE NOTE 2020-06-02 ---
+Called to review home glucose log: fasting 126, post-prandial 171. No hypoglycemia. Reinforced carbohydrate counting and foot care. Patient verbalized understanding.
+
+--- NURSE TELEPHONE NOTE 2020-06-02 ---
+Called to review home glucose log: fasting 118, post-prandial 155. No hypoglycemia. Reinforced carbohydrate counting and foot care. Patient verbalized understanding.
+
+--- NURSE TELEPHONE NOTE 2020-06-02 ---
+Called to review home glucose log: fasting 133, post-prandial 180. No hypoglycemia. Reinforced carbohydrate counting and foot care. Patient verbalized understanding.
+
+--- SOCIAL WORK NOTE 2020-06-02 ---
+Lives with husband in a two-story home; drives; volunteers at the library twice weekly. Medicare with supplemental plan. No financial barriers to medications reported. Advance directive on file; healthcare proxy is her daughter.
+
+--- PHYSICAL THERAPY NOTE 2020-06-02 ---
+Knee program session 10 of 12. Quadriceps strengthening, gait training, stationary bike 9 minutes. Pain 4/10 after session. Home exercise program updated. Tolerated well.
+
+--- DIETITIAN NOTE 2020-06-02 ---
+Thirty-minute session on plate method, sodium under 2 g per day and label reading. Typical day reviewed: oatmeal, sandwiches, rice and chicken, fruit. Goal: replace soda with water.
+
+--- SOCIAL WORK NOTE 2020-06-02 ---
+Lives with husband in a two-story home; drives; volunteers at the library twice weekly. Medicare with supplemental plan. No financial barriers to medications reported. Advance directive on file; healthcare proxy is her daughter.
+
+--- MEDICATION RECONCILIATION 2020-06-02 ---
+Reviewed with patient at pharmacy counter:
+  - metformin 1000 mg PO twice daily: taking as prescribed
+  - lisinopril 20 mg PO daily: taking as prescribed
+  - atorvastatin 40 mg PO nightly: taking as prescribed
+  - aspirin 81 mg PO daily: taking as prescribed
+  - omeprazole 20 mg PO daily: taking as prescribed
+No changes made.
+
+--- DIETITIAN NOTE 2020-06-02 ---
+Thirty-minute session on plate method, sodium under 2 g per day and label reading. Typical day reviewed: oatmeal, sandwiches, rice and chicken, fruit. Goal: replace soda with water.
+
+--- PREVENTIVE CARE 2020-06-02 ---
+Mammogram up to date. Colonoscopy 2018 normal, repeat 2028. Diabetic eye exam: no retinopathy. Monofilament exam normal. Pneumococcal and shingles vaccines documented. Depression screen PHQ-2 negative.
+
+=== OFFICE VISIT 2020-12-09 | Primary care | Dr. A. Rivera (PCP) ===
+Patient: Synthetic Patient 0417 (fictional), female, born 1957-04-02
+HPI: No chest pain, no syncope. Occasional heartburn after large meals, controlled on omeprazole. Home glucose readings mostly 120-160 fasting. No hypoglycemia symptoms reported.
+Review of systems: Constitutional: no fever, no weight loss. Eyes: no vision change. ENT: no sore throat. Cardiovascular: no chest pain, no palpitations. Respiratory: no cough, no hemoptysis. GI: no nausea, no melena. GU: no dysuria. MSK: knee stiffness as above. Skin: no rash. Neuro: no focal weakness. Psych: mood good.
+Vitals: BP 139/82 mmHg, HR 77, RR 17, T 36.7 C, SpO2 95% RA, weight 85 kg
+Exam: General: well appearing, no distress. HEENT: normocephalic, oropharynx clear. Neck: supple, no JVD. Lungs: clear to auscultation bilaterally. Heart: regular rate and rhythm, no murmur. Abdomen: soft, non-tender. Extremities: trace bilateral ankle edema. Neuro: alert, oriented.
+Current medications:
+  - metformin 1000 mg PO twice daily
+  - lisinopril 20 mg PO daily
+  - atorvastatin 40 mg PO nightly
+  - aspirin 81 mg PO daily
+  - omeprazole 20 mg PO daily
+Allergies: see allergy list
+Assessment and plan:
+1. Type 2 diabetes: continue metformin 1000 mg twice daily. Recheck HbA1c in 6 months.
+2. Hypertension: continue current regimen. Home BP log encouraged.
+3. Hyperlipidemia: continue atorvastatin.
+4. Knee osteoarthritis: activity as tolerated.
+Follow up in 6 months with labs.
+LAB RESULTS 2020-12-09
+  Sodium 136 mmol/L (135-145)
+  Potassium 4.4 mmol/L (3.5-5.1)
+  Chloride 99 mmol/L
+  CO2 24 mmol/L
+  BUN 14 mg/dL (7-20)
+  Creatinine 1.0 mg/dL (0.5-1.1)
+  eGFR 60 mL/min/1.73m2 (>60)
+  Glucose 150 mg/dL
+  Calcium 9.4 mg/dL
+--- NURSE TELEPHONE NOTE 2020-12-09 ---
+Called to review home glucose log: fasting 112, post-prandial 201. No hypoglycemia. Reinforced carbohydrate counting and foot care. Patient verbalized understanding.
+
+--- NURSE TELEPHONE NOTE 2020-12-09 ---
+Called to review home glucose log: fasting 135, post-prandial 153. No hypoglycemia. Reinforced carbohydrate counting and foot care. Patient verbalized understanding.
+
+--- SOCIAL WORK NOTE 2020-12-09 ---
+Lives with husband in a two-story home; drives; volunteers at the library twice weekly. Medicare with supplemental plan. No financial barriers to medications reported. Advance directive on file; healthcare proxy is her daughter.
+
+--- DIETITIAN NOTE 2020-12-09 ---
+Thirty-minute session on plate method, sodium under 2 g per day and label reading. Typical day reviewed: oatmeal, sandwiches, rice and chicken, fruit. Goal: replace soda with water.
+
+--- PORTAL MESSAGE 2020-12-09 ---
+Patient asks about refill timing and parking validation. Refills sent for omeprazole 20 mg PO daily. Reminder sent for annual eye exam and foot exam.
+
+--- PHYSICAL THERAPY NOTE 2020-12-09 ---
+Knee program session 5 of 12. Quadriceps strengthening, gait training, stationary bike 15 minutes. Pain 5/10 after session. Home exercise program updated. Tolerated well.
+
+--- PHYSICAL THERAPY NOTE 2020-12-09 ---
+Knee program session 2 of 12. Quadriceps strengthening, gait training, stationary bike 10 minutes. Pain 2/10 after session. Home exercise program updated. Tolerated well.
+
+--- PHYSICAL THERAPY NOTE 2020-12-09 ---
+Knee program session 3 of 12. Quadriceps strengthening, gait training, stationary bike 13 minutes. Pain 2/10 after session. Home exercise program updated. Tolerated well.
+
+--- PREVENTIVE CARE 2020-12-09 ---
+Mammogram up to date. Colonoscopy 2018 normal, repeat 2028. Diabetic eye exam: no retinopathy. Monofilament exam normal. Pneumococcal and shingles vaccines documented. Depression screen PHQ-2 negative.
+
+--- PREVENTIVE CARE 2020-12-09 ---
+Mammogram ordered. Colonoscopy 2018 normal, repeat 2028. Diabetic eye exam: no retinopathy. Monofilament exam normal. Pneumococcal and shingles vaccines documented. Depression screen PHQ-2 negative.
+
+--- PORTAL MESSAGE 2020-12-09 ---
+Patient asks about refill timing and parking validation. Refills sent for omeprazole 20 mg PO daily. Reminder sent for annual eye exam and foot exam.
+
+--- SOCIAL WORK NOTE 2020-12-09 ---
+Lives with husband in a two-story home; drives; volunteers at the library twice weekly. Medicare with supplemental plan. No financial barriers to medications reported. Advance directive on file; healthcare proxy is her daughter.
+
+--- MEDICATION RECONCILIATION 2020-12-09 ---
+Reviewed with patient at pharmacy counter:
+  - metformin 1000 mg PO twice daily: taking as prescribed
+  - lisinopril 20 mg PO daily: taking as prescribed
+  - atorvastatin 40 mg PO nightly: taking as prescribed
+  - aspirin 81 mg PO daily: taking as prescribed
+  - omeprazole 20 mg PO daily: taking as prescribed
+No changes made.
+
+--- NURSE TELEPHONE NOTE 2020-12-09 ---
+Called to review home glucose log: fasting 153, post-prandial 171. No hypoglycemia. Reinforced carbohydrate counting and foot care. Patient verbalized understanding.
+
+--- MEDICATION RECONCILIATION 2020-12-09 ---
+Reviewed with patient at pharmacy counter:
+  - metformin 1000 mg PO twice daily: taking as prescribed
+  - lisinopril 20 mg PO daily: taking as prescribed
+  - atorvastatin 40 mg PO nightly: taking as prescribed
+  - aspirin 81 mg PO daily: taking as prescribed
+  - omeprazole 20 mg PO daily: taking as prescribed
+No changes made.
+
+--- NURSE TELEPHONE NOTE 2020-12-09 ---
+Called to review home glucose log: fasting 153, post-prandial 165. No hypoglycemia. Reinforced carbohydrate counting and foot care. Patient verbalized understanding.
+
+--- MEDICATION RECONCILIATION 2020-12-09 ---
+Reviewed with patient at pharmacy counter:
+  - metformin 1000 mg PO twice daily: taking as prescribed
+  - lisinopril 20 mg PO daily: taking as prescribed
+  - atorvastatin 40 mg PO nightly: taking as prescribed
+  - aspirin 81 mg PO daily: taking as prescribed
+  - omeprazole 20 mg PO daily: taking as prescribed
+No changes made.
+
+--- NURSE TELEPHONE NOTE 2020-12-09 ---
+Called to review home glucose log: fasting 142, post-prandial 164. No hypoglycemia. Reinforced carbohydrate counting and foot care. Patient verbalized understanding.
+
+--- PORTAL MESSAGE 2020-12-09 ---
+Patient asks about refill timing and parking validation. Refills sent for omeprazole 20 mg PO daily. Reminder sent for annual eye exam and foot exam.
+
+--- MEDICATION RECONCILIATION 2020-12-09 ---
+Reviewed with patient at pharmacy counter:
+  - metformin 1000 mg PO twice daily: taking as prescribed
+  - lisinopril 20 mg PO daily: taking as prescribed
+  - atorvastatin 40 mg PO nightly: taking as prescribed
+  - aspirin 81 mg PO daily: taking as prescribed
+  - omeprazole 20 mg PO daily: taking as prescribed
+No changes made.
+
+--- DIETITIAN NOTE 2020-12-09 ---
+Thirty-minute session on plate method, sodium under 2 g per day and label reading. Typical day reviewed: oatmeal, sandwiches, rice and chicken, fruit. Goal: walk after dinner.
+
+--- DIETITIAN NOTE 2020-12-09 ---
+Thirty-minute session on plate method, sodium under 2 g per day and label reading. Typical day reviewed: oatmeal, sandwiches, rice and chicken, fruit. Goal: replace soda with water.
+
+--- PHYSICAL THERAPY NOTE 2020-12-09 ---
+Knee program session 4 of 12. Quadriceps strengthening, gait training, stationary bike 8 minutes. Pain 5/10 after session. Home exercise program updated. Tolerated well.
+
+--- SOCIAL WORK NOTE 2020-12-09 ---
+Lives with husband in a two-story home; drives; volunteers at the library twice weekly. Medicare with supplemental plan. No financial barriers to medications reported. Advance directive on file; healthcare proxy is her daughter.
+
+--- SOCIAL WORK NOTE 2020-12-09 ---
+Lives with husband in a two-story home; drives; volunteers at the library twice weekly. Medicare with supplemental plan. No financial barriers to medications reported. Advance directive on file; healthcare proxy is her daughter.
+
+--- DIETITIAN NOTE 2020-12-09 ---
+Thirty-minute session on plate method, sodium under 2 g per day and label reading. Typical day reviewed: oatmeal, sandwiches, rice and chicken, fruit. Goal: two vegetable servings at dinner.
+
+--- MEDICATION RECONCILIATION 2020-12-09 ---
+Reviewed with patient at pharmacy counter:
+  - metformin 1000 mg PO twice daily: taking as prescribed
+  - lisinopril 20 mg PO daily: taking as prescribed
+  - atorvastatin 40 mg PO nightly: taking as prescribed
+  - aspirin 81 mg PO daily: taking as prescribed
+  - omeprazole 20 mg PO daily: taking as prescribed
+No changes made.
+
+--- PHYSICAL THERAPY NOTE 2020-12-09 ---
+Knee program session 2 of 12. Quadriceps strengthening, gait training, stationary bike 12 minutes. Pain 4/10 after session. Home exercise program updated. Tolerated well.
+
+--- SOCIAL WORK NOTE 2020-12-09 ---
+Lives with husband in a two-story home; drives; volunteers at the library twice weekly. Medicare with supplemental plan. No financial barriers to medications reported. Advance directive on file; healthcare proxy is her daughter.
+
+--- NURSE TELEPHONE NOTE 2020-12-09 ---
+Called to review home glucose log: fasting 150, post-prandial 193. No hypoglycemia. Reinforced carbohydrate counting and foot care. Patient verbalized understanding.
+
+--- SOCIAL WORK NOTE 2020-12-09 ---
+Lives with husband in a two-story home; drives; volunteers at the library twice weekly. Medicare with supplemental plan. No financial barriers to medications reported. Advance directive on file; healthcare proxy is her daughter.
+
+--- MEDICATION RECONCILIATION 2020-12-09 ---
+Reviewed with patient at pharmacy counter:
+  - metformin 1000 mg PO twice daily: taking as prescribed
+  - lisinopril 20 mg PO daily: taking as prescribed
+  - atorvastatin 40 mg PO nightly: taking as prescribed
+  - aspirin 81 mg PO daily: taking as prescribed
+  - omeprazole 20 mg PO daily: taking as prescribed
+No changes made.
+
+--- SOCIAL WORK NOTE 2020-12-09 ---
+Lives with husband in a two-story home; drives; volunteers at the library twice weekly. Medicare with supplemental plan. No financial barriers to medications reported. Advance directive on file; healthcare proxy is her daughter.
+
+--- NURSE TELEPHONE NOTE 2020-12-09 ---
+Called to review home glucose log: fasting 153, post-prandial 202. No hypoglycemia. Reinforced carbohydrate counting and foot care. Patient verbalized understanding.
+
+--- SOCIAL WORK NOTE 2020-12-09 ---
+Lives with husband in a two-story home; drives; volunteers at the library twice weekly. Medicare with supplemental plan. No financial barriers to medications reported. Advance directive on file; healthcare proxy is her daughter.
+
+--- SOCIAL WORK NOTE 2020-12-09 ---
+Lives with husband in a two-story home; drives; volunteers at the library twice weekly. Medicare with supplemental plan. No financial barriers to medications reported. Advance directive on file; healthcare proxy is her daughter.
+
+--- DIETITIAN NOTE 2020-12-09 ---
+Thirty-minute session on plate method, sodium under 2 g per day and label reading. Typical day reviewed: oatmeal, sandwiches, rice and chicken, fruit. Goal: two vegetable servings at dinner.
+
+--- NURSE TELEPHONE NOTE 2020-12-09 ---
+Called to review home glucose log: fasting 143, post-prandial 174. No hypoglycemia. Reinforced carbohydrate counting and foot care. Patient verbalized understanding.
+
+--- SOCIAL WORK NOTE 2020-12-09 ---
+Lives with husband in a two-story home; drives; volunteers at the library twice weekly. Medicare with supplemental plan. No financial barriers to medications reported. Advance directive on file; healthcare proxy is her daughter.
+
+--- DIETITIAN NOTE 2020-12-09 ---
+Thirty-minute session on plate method, sodium under 2 g per day and label reading. Typical day reviewed: oatmeal, sandwiches, rice and chicken, fruit. Goal: replace soda with water.
+
+=== EMERGENCY DEPARTMENT NOTE 2020-12-29 ===
+Chest pain after lifting boxes, reproducible on palpation. Troponin negative x2. ECG sinus rhythm, no ischemic changes. Discharged with acetaminophen. Musculoskeletal chest wall strain.
+
+=== OFFICE VISIT 2021-06-15 | Primary care | N. Patel, NP (PCP) ===
+Patient: Synthetic Patient 0417 (fictional), female, born 1957-04-02
+HPI: Mild bilateral knee stiffness in the mornings, improves after 15 minutes. No falls. Sleeping 6-7 hours. Feels well. Daughter visiting from out of state. Asked about shingles vaccine.
+Review of systems: Constitutional: no fever, no weight loss. Eyes: no vision change. ENT: no sore throat. Cardiovascular: no chest pain, no palpitations. Respiratory: no cough, no hemoptysis. GI: no nausea, no melena. GU: no dysuria. MSK: knee stiffness as above. Skin: no rash. Neuro: no focal weakness. Psych: mood good.
+Vitals: BP 141/87 mmHg, HR 84, RR 17, T 36.6 C, SpO2 95% RA, weight 83 kg
+Exam: General: well appearing, no distress. HEENT: normocephalic, oropharynx clear. Neck: supple, no JVD. Lungs: clear to auscultation bilaterally. Heart: regular rate and rhythm, no murmur. Abdomen: soft, non-tender. Extremities: trace bilateral ankle edema. Neuro: alert, oriented.
+Current medications:
+  - metformin 1000 mg PO twice daily
+  - lisinopril 20 mg PO daily
+  - atorvastatin 40 mg PO nightly
+  - aspirin 81 mg PO daily
+  - omeprazole 20 mg PO daily
+Allergies: see allergy list
+Assessment and plan:
+1. Type 2 diabetes: continue metformin 1000 mg twice daily. Recheck HbA1c in 6 months.
+2. Hypertension: continue current regimen. Home BP log encouraged.
+3. Hyperlipidemia: continue atorvastatin.
+4. Knee osteoarthritis: activity as tolerated.
+Follow up in 6 months with labs.
+LAB RESULTS 2021-06-15
+  Sodium 138 mmol/L (135-145)
+  Potassium 4.4 mmol/L (3.5-5.1)
+  Chloride 100 mmol/L
+  CO2 27 mmol/L
+  BUN 14 mg/dL (7-20)
+  Creatinine 1.0 mg/dL (0.5-1.1)
+  eGFR 60 mL/min/1.73m2 (>60)
+  Glucose 149 mg/dL
+  Calcium 9.4 mg/dL
+  HbA1c 7.4 %
+  WBC 7.1 K/uL
+  Hemoglobin 13.1 g/dL
+  Platelets 271 K/uL
+  LDL 71 mg/dL
+  ALT 26 U/L
+  TSH 2.1 mIU/L
+--- SOCIAL WORK NOTE 2021-06-15 ---
+Lives with husband in a two-story home; drives; volunteers at the library twice weekly. Medicare with supplemental plan. No financial barriers to medications reported. Advance directive on file; healthcare proxy is her daughter.
+
+--- PORTAL MESSAGE 2021-06-15 ---
+Patient asks about refill timing and parking validation. Refills sent for atorvastatin 40 mg PO nightly. Reminder sent for annual eye exam and foot exam.
+
+--- MEDICATION RECONCILIATION 2021-06-15 ---
+Reviewed with patient at pharmacy counter:
+  - metformin 1000 mg PO twice daily: taking as prescribed
+  - lisinopril 20 mg PO daily: taking as prescribed
+  - atorvastatin 40 mg PO nightly: taking as prescribed
+  - aspirin 81 mg PO daily: taking as prescribed
+  - omeprazole 20 mg PO daily: taking as prescribed
+No changes made.
+
+--- PHYSICAL THERAPY NOTE 2021-06-15 ---
+Knee program session 11 of 12. Quadriceps strengthening, gait training, stationary bike 15 minutes. Pain 3/10 after session. Home exercise program updated. Tolerated well.
+
+--- DIETITIAN NOTE 2021-06-15 ---
+Thirty-minute session on plate method, sodium under 2 g per day and label reading. Typical day reviewed: oatmeal, sandwiches, rice and chicken, fruit. Goal: replace soda with water.
+
+--- NURSE TELEPHONE NOTE 2021-06-15 ---
+Called to review home glucose log: fasting 133, post-prandial 197. No hypoglycemia. Reinforced carbohydrate counting and foot care. Patient verbalized understanding.
+
+--- DIETITIAN NOTE 2021-06-15 ---
+Thirty-minute session on plate method, sodium under 2 g per day and label reading. Typical day reviewed: oatmeal, sandwiches, rice and chicken, fruit. Goal: two vegetable servings at dinner.
+
+--- PHYSICAL THERAPY NOTE 2021-06-15 ---
+Knee program session 8 of 12. Quadriceps strengthening, gait training, stationary bike 10 minutes. Pain 4/10 after session. Home exercise program updated. Tolerated well.
+
+--- DIETITIAN NOTE 2021-06-15 ---
+Thirty-minute session on plate method, sodium under 2 g per day and label reading. Typical day reviewed: oatmeal, sandwiches, rice and chicken, fruit. Goal: replace soda with water.
+
+--- NURSE TELEPHONE NOTE 2021-06-15 ---
+Called to review home glucose log: fasting 124, post-prandial 209. No hypoglycemia. Reinforced carbohydrate counting and foot care. Patient verbalized understanding.
+
+--- PORTAL MESSAGE 2021-06-15 ---
+Patient asks about refill timing and parking validation. Refills sent for aspirin 81 mg PO daily. Reminder sent for annual eye exam and foot exam.
+
+--- PHYSICAL THERAPY NOTE 2021-06-15 ---
+Knee program session 8 of 12. Quadriceps strengthening, gait training, stationary bike 14 minutes. Pain 5/10 after session. Home exercise program updated. Tolerated well.
+
+--- PHYSICAL THERAPY NOTE 2021-06-15 ---
+Knee program session 11 of 12. Quadriceps strengthening, gait training, stationary bike 15 minutes. Pain 4/10 after session. Home exercise program updated. Tolerated well.
+
+--- SOCIAL WORK NOTE 2021-06-15 ---
+Lives with husband in a two-story home; drives; volunteers at the library twice weekly. Medicare with supplemental plan. No financial barriers to medications reported. Advance directive on file; healthcare proxy is her daughter.
+
+--- PREVENTIVE CARE 2021-06-15 ---
+Mammogram up to date. Colonoscopy 2018 normal, repeat 2028. Diabetic eye exam: no retinopathy. Monofilament exam normal. Pneumococcal and shingles vaccines documented. Depression screen PHQ-2 negative.
+
+--- SOCIAL WORK NOTE 2021-06-15 ---
+Lives with husband in a two-story home; drives; volunteers at the library twice weekly. Medicare with supplemental plan. No financial barriers to medications reported. Advance directive on file; healthcare proxy is her daughter.
+
+--- MEDICATION RECONCILIATION 2021-06-15 ---
+Reviewed with patient at pharmacy counter:
+  - metformin 1000 mg PO twice daily: taking as prescribed
+  - lisinopril 20 mg PO daily: taking as prescribed
+  - atorvastatin 40 mg PO nightly: taking as prescribed
+  - aspirin 81 mg PO daily: taking as prescribed
+  - omeprazole 20 mg PO daily: taking as prescribed
+No changes made.
+
+--- PREVENTIVE CARE 2021-06-15 ---
+Mammogram ordered. Colonoscopy 2018 normal, repeat 2028. Diabetic eye exam: no retinopathy. Monofilament exam normal. Pneumococcal and shingles vaccines documented. Depression screen PHQ-2 negative.
+
+--- PORTAL MESSAGE 2021-06-15 ---
+Patient asks about refill timing and parking validation. Refills sent for metformin 1000 mg PO twice daily. Reminder sent for annual eye exam and foot exam.
+
+--- PHYSICAL THERAPY NOTE 2021-06-15 ---
+Knee program session 6 of 12. Quadriceps strengthening, gait training, stationary bike 8 minutes. Pain 4/10 after session. Home exercise program updated. Tolerated well.
+
+--- DIETITIAN NOTE 2021-06-15 ---
+Thirty-minute session on plate method, sodium under 2 g per day and label reading. Typical day reviewed: oatmeal, sandwiches, rice and chicken, fruit. Goal: walk after dinner.
+
+--- NURSE TELEPHONE NOTE 2021-06-15 ---
+Called to review home glucose log: fasting 125, post-prandial 169. No hypoglycemia. Reinforced carbohydrate counting and foot care. Patient verbalized understanding.
+
+--- MEDICATION RECONCILIATION 2021-06-15 ---
+Reviewed with patient at pharmacy counter:
+  - metformin 1000 mg PO twice daily: taking as prescribed
+  - lisinopril 20 mg PO daily: taking as prescribed
+  - atorvastatin 40 mg PO nightly: taking as prescribed
+  - aspirin 81 mg PO daily: taking as prescribed
+  - omeprazole 20 mg PO daily: taking as prescribed
+No changes made.
+
+--- PORTAL MESSAGE 2021-06-15 ---
+Patient asks about refill timing and parking validation. Refills sent for atorvastatin 40 mg PO nightly. Reminder sent for annual eye exam and foot exam.
+
+--- NURSE TELEPHONE NOTE 2021-06-15 ---
+Called to review home glucose log: fasting 118, post-prandial 193. No hypoglycemia. Reinforced carbohydrate counting and foot care. Patient verbalized understanding.
+
+--- PREVENTIVE CARE 2021-06-15 ---
+Mammogram ordered. Colonoscopy 2018 normal, repeat 2028. Diabetic eye exam: no retinopathy. Monofilament exam normal. Pneumococcal and shingles vaccines documented. Depression screen PHQ-2 negative.
+
+--- NURSE TELEPHONE NOTE 2021-06-15 ---
+Called to review home glucose log: fasting 127, post-prandial 196. No hypoglycemia. Reinforced carbohydrate counting and foot care. Patient verbalized understanding.
+
+--- PREVENTIVE CARE 2021-06-15 ---
+Mammogram ordered. Colonoscopy 2018 normal, repeat 2028. Diabetic eye exam: no retinopathy. Monofilament exam normal. Pneumococcal and shingles vaccines documented. Depression screen PHQ-2 negative.
+
+--- MEDICATION RECONCILIATION 2021-06-15 ---
+Reviewed with patient at pharmacy counter:
+  - metformin 1000 mg PO twice daily: taking as prescribed
+  - lisinopril 20 mg PO daily: taking as prescribed
+  - atorvastatin 40 mg PO nightly: taking as prescribed
+  - aspirin 81 mg PO daily: taking as prescribed
+  - omeprazole 20 mg PO daily: taking as prescribed
+No changes made.
+
+--- PHYSICAL THERAPY NOTE 2021-06-15 ---
+Knee program session 2 of 12. Quadriceps strengthening, gait training, stationary bike 8 minutes. Pain 2/10 after session. Home exercise program updated. Tolerated well.
+
+--- DIETITIAN NOTE 2021-06-15 ---
+Thirty-minute session on plate method, sodium under 2 g per day and label reading. Typical day reviewed: oatmeal, sandwiches, rice and chicken, fruit. Goal: walk after dinner.
+
+--- SOCIAL WORK NOTE 2021-06-15 ---
+Lives with husband in a two-story home; drives; volunteers at the library twice weekly. Medicare with supplemental plan. No financial barriers to medications reported. Advance directive on file; healthcare proxy is her daughter.
+
+--- PORTAL MESSAGE 2021-06-15 ---
+Patient asks about refill timing and parking validation. Refills sent for atorvastatin 40 mg PO nightly. Reminder sent for annual eye exam and foot exam.
+
+--- PHYSICAL THERAPY NOTE 2021-06-15 ---
+Knee program session 4 of 12. Quadriceps strengthening, gait training, stationary bike 14 minutes. Pain 3/10 after session. Home exercise program updated. Tolerated well.
+
+--- PHYSICAL THERAPY NOTE 2021-06-15 ---
+Knee program session 4 of 12. Quadriceps strengthening, gait training, stationary bike 11 minutes. Pain 4/10 after session. Home exercise program updated. Tolerated well.
+
+--- MEDICATION RECONCILIATION 2021-06-15 ---
+Reviewed with patient at pharmacy counter:
+  - metformin 1000 mg PO twice daily: taking as prescribed
+  - lisinopril 20 mg PO daily: taking as prescribed
+  - atorvastatin 40 mg PO nightly: taking as prescribed
+  - aspirin 81 mg PO daily: taking as prescribed
+  - omeprazole 20 mg PO daily: taking as prescribed
+No changes made.
+
+--- DIETITIAN NOTE 2021-06-15 ---
+Thirty-minute session on plate method, sodium under 2 g per day and label reading. Typical day reviewed: oatmeal, sandwiches, rice and chicken, fruit. Goal: replace soda with water.
+
+--- PHYSICAL THERAPY NOTE 2021-06-15 ---
+Knee program session 10 of 12. Quadriceps strengthening, gait training, stationary bike 11 minutes. Pain 5/10 after session. Home exercise program updated. Tolerated well.
+
+--- MEDICATION RECONCILIATION 2021-06-15 ---
+Reviewed with patient at pharmacy counter:
+  - metformin 1000 mg PO twice daily: taking as prescribed
+  - lisinopril 20 mg PO daily: taking as prescribed
+  - atorvastatin 40 mg PO nightly: taking as prescribed
+  - aspirin 81 mg PO daily: taking as prescribed
+  - omeprazole 20 mg PO daily: taking as prescribed
+No changes made.
+
+--- SOCIAL WORK NOTE 2021-06-15 ---
+Lives with husband in a two-story home; drives; volunteers at the library twice weekly. Medicare with supplemental plan. No financial barriers to medications reported. Advance directive on file; healthcare proxy is her daughter.
+
+=== RADIOLOGY REPORT: CT CHEST WITHOUT CONTRAST 2021-03-18 ===
+Indication: persistent cough after viral illness.
+Findings: No consolidation. No effusion. Incidental 9 mm solid nodule in the right upper lobe (series 3, image 47), smooth margins. Mild coronary calcification. Small hiatal hernia.
+Impression: 1. No acute process. 2. 9 mm solid right upper lobe pulmonary nodule. Per Fleischner guidance for a solid nodule of this size, recommend follow-up CT chest in 3 months, then PET/CT or tissue sampling as indicated.
+
+--- RESULT NOTE 2021-03-22 ---
+CT reviewed with patient by phone: no pneumonia, cough likely post-viral. Continue supportive care.
+
+=== OFFICE VISIT 2021-12-07 | Primary care | Dr. A. Rivera (PCP) ===
+Patient: Synthetic Patient 0417 (fictional), female, born 1957-04-02
+HPI: Reports good adherence to medications. Walking 20 minutes most days. Diet reviewed; trying to reduce portion sizes. No chest pain, no syncope. Occasional heartburn after large meals, controlled on omeprazole.
+Review of systems: Constitutional: no fever, no weight loss. Eyes: no vision change. ENT: no sore throat. Cardiovascular: no chest pain, no palpitations. Respiratory: no cough, no hemoptysis. GI: no nausea, no melena. GU: no dysuria. MSK: knee stiffness as above. Skin: no rash. Neuro: no focal weakness. Psych: mood good.
+Vitals: BP 140/85 mmHg, HR 68, RR 16, T 36.7 C, SpO2 98% RA, weight 82 kg
+Exam: General: well appearing, no distress. HEENT: normocephalic, oropharynx clear. Neck: supple, no JVD. Lungs: clear to auscultation bilaterally. Heart: regular rate and rhythm, no murmur. Abdomen: soft, non-tender. Extremities: trace bilateral ankle edema. Neuro: alert, oriented.
+Current medications:
+  - metformin 1000 mg PO twice daily
+  - lisinopril 20 mg PO daily
+  - atorvastatin 40 mg PO nightly
+  - aspirin 81 mg PO daily
+  - omeprazole 20 mg PO daily
+Allergies: see allergy list
+Assessment and plan:
+1. Type 2 diabetes: continue metformin 1000 mg twice daily. Recheck HbA1c in 6 months.
+2. Hypertension: continue current regimen. Home BP log encouraged.
+3. Hyperlipidemia: continue atorvastatin.
+4. Knee osteoarthritis: activity as tolerated.
+Follow up in 6 months with labs.
+LAB RESULTS 2021-12-07
+  Sodium 136 mmol/L (135-145)
+  Potassium 4.5 mmol/L (3.5-5.1)
+  Chloride 101 mmol/L
+  CO2 23 mmol/L
+  BUN 15 mg/dL (7-20)
+  Creatinine 1.05 mg/dL (0.5-1.1)
+  eGFR 57 mL/min/1.73m2 (>60)
+  Glucose 144 mg/dL
+  Calcium 9.1 mg/dL
+--- PORTAL MESSAGE 2021-12-07 ---
+Patient asks about refill timing and parking validation. Refills sent for metformin 1000 mg PO twice daily. Reminder sent for annual eye exam and foot exam.
+
+--- NURSE TELEPHONE NOTE 2021-12-07 ---
+Called to review home glucose log: fasting 123, post-prandial 170. No hypoglycemia. Reinforced carbohydrate counting and foot care. Patient verbalized understanding.
+
+--- SOCIAL WORK NOTE 2021-12-07 ---
+Lives with husband in a two-story home; drives; volunteers at the library twice weekly. Medicare with supplemental plan. No financial barriers to medications reported. Advance directive on file; healthcare proxy is her daughter.
+
+--- MEDICATION RECONCILIATION 2021-12-07 ---
+Reviewed with patient at pharmacy counter:
+  - metformin 1000 mg PO twice daily: taking as prescribed
+  - lisinopril 20 mg PO daily: taking as prescribed
+  - atorvastatin 40 mg PO nightly: taking as prescribed
+  - aspirin 81 mg PO daily: taking as prescribed
+  - omeprazole 20 mg PO daily: taking as prescribed
+No changes made.
+
+--- PHYSICAL THERAPY NOTE 2021-12-07 ---
+Knee program session 9 of 12. Quadriceps strengthening, gait training, stationary bike 15 minutes. Pain 4/10 after session. Home exercise program updated. Tolerated well.
+
+--- DIETITIAN NOTE 2021-12-07 ---
+Thirty-minute session on plate method, sodium under 2 g per day and label reading. Typical day reviewed: oatmeal, sandwiches, rice and chicken, fruit. Goal: two vegetable servings at dinner.
+
+--- PORTAL MESSAGE 2021-12-07 ---
+Patient asks about refill timing and parking validation. Refills sent for lisinopril 20 mg PO daily. Reminder sent for annual eye exam and foot exam.
+
+--- MEDICATION RECONCILIATION 2021-12-07 ---
+Reviewed with patient at pharmacy counter:
+  - metformin 1000 mg PO twice daily: taking as prescribed
+  - lisinopril 20 mg PO daily: taking as prescribed
+  - atorvastatin 40 mg PO nightly: taking as prescribed
+  - aspirin 81 mg PO daily: taking as prescribed
+  - omeprazole 20 mg PO daily: taking as prescribed
+No changes made.
+
+--- DIETITIAN NOTE 2021-12-07 ---
+Thirty-minute session on plate method, sodium under 2 g per day and label reading. Typical day reviewed: oatmeal, sandwiches, rice and chicken, fruit. Goal: replace soda with water.
+
+--- DIETITIAN NOTE 2021-12-07 ---
+Thirty-minute session on plate method, sodium under 2 g per day and label reading. Typical day reviewed: oatmeal, sandwiches, rice and chicken, fruit. Goal: two vegetable servings at dinner.
+
+--- PORTAL MESSAGE 2021-12-07 ---
+Patient asks about refill timing and parking validation. Refills sent for aspirin 81 mg PO daily. Reminder sent for annual eye exam and foot exam.
+
+--- PORTAL MESSAGE 2021-12-07 ---
+Patient asks about refill timing and parking validation. Refills sent for aspirin 81 mg PO daily. Reminder sent for annual eye exam and foot exam.
+
+--- MEDICATION RECONCILIATION 2021-12-07 ---
+Reviewed with patient at pharmacy counter:
+  - metformin 1000 mg PO twice daily: taking as prescribed
+  - lisinopril 20 mg PO daily: taking as prescribed
+  - atorvastatin 40 mg PO nightly: taking as prescribed
+  - aspirin 81 mg PO daily: taking as prescribed
+  - omeprazole 20 mg PO daily: taking as prescribed
+No changes made.
+
+--- PORTAL MESSAGE 2021-12-07 ---
+Patient asks about refill timing and parking validation. Refills sent for aspirin 81 mg PO daily. Reminder sent for annual eye exam and foot exam.
+
+--- DIETITIAN NOTE 2021-12-07 ---
+Thirty-minute session on plate method, sodium under 2 g per day and label reading. Typical day reviewed: oatmeal, sandwiches, rice and chicken, fruit. Goal: two vegetable servings at dinner.
+
+--- PREVENTIVE CARE 2021-12-07 ---
+Mammogram ordered. Colonoscopy 2018 normal, repeat 2028. Diabetic eye exam: no retinopathy. Monofilament exam normal. Pneumococcal and shingles vaccines documented. Depression screen PHQ-2 negative.
+
+--- MEDICATION RECONCILIATION 2021-12-07 ---
+Reviewed with patient at pharmacy counter:
+  - metformin 1000 mg PO twice daily: taking as prescribed
+  - lisinopril 20 mg PO daily: taking as prescribed
+  - atorvastatin 40 mg PO nightly: taking as prescribed
+  - aspirin 81 mg PO daily: taking as prescribed
+  - omeprazole 20 mg PO daily: taking as prescribed
+No changes made.
+
+--- PORTAL MESSAGE 2021-12-07 ---
+Patient asks about refill timing and parking validation. Refills sent for atorvastatin 40 mg PO nightly. Reminder sent for annual eye exam and foot exam.
+
+--- DIETITIAN NOTE 2021-12-07 ---
+Thirty-minute session on plate method, sodium under 2 g per day and label reading. Typical day reviewed: oatmeal, sandwiches, rice and chicken, fruit. Goal: replace soda with water.
+
+--- SOCIAL WORK NOTE 2021-12-07 ---
+Lives with husband in a two-story home; drives; volunteers at the library twice weekly. Medicare with supplemental plan. No financial barriers to medications reported. Advance directive on file; healthcare proxy is her daughter.
+
+--- DIETITIAN NOTE 2021-12-07 ---
+Thirty-minute session on plate method, sodium under 2 g per day and label reading. Typical day reviewed: oatmeal, sandwiches, rice and chicken, fruit. Goal: replace soda with water.
+
+--- PHYSICAL THERAPY NOTE 2021-12-07 ---
+Knee program session 7 of 12. Quadriceps strengthening, gait training, stationary bike 11 minutes. Pain 3/10 after session. Home exercise program updated. Tolerated well.
+
+--- PORTAL MESSAGE 2021-12-07 ---
+Patient asks about refill timing and parking validation. Refills sent for atorvastatin 40 mg PO nightly. Reminder sent for annual eye exam and foot exam.
+
+--- NURSE TELEPHONE NOTE 2021-12-07 ---
+Called to review home glucose log: fasting 113, post-prandial 203. No hypoglycemia. Reinforced carbohydrate counting and foot care. Patient verbalized understanding.
+
+--- DIETITIAN NOTE 2021-12-07 ---
+Thirty-minute session on plate method, sodium under 2 g per day and label reading. Typical day reviewed: oatmeal, sandwiches, rice and chicken, fruit. Goal: walk after dinner.
+
+--- PREVENTIVE CARE 2021-12-07 ---
+Mammogram ordered. Colonoscopy 2018 normal, repeat 2028. Diabetic eye exam: no retinopathy. Monofilament exam normal. Pneumococcal and shingles vaccines documented. Depression screen PHQ-2 negative.
+
+--- DIETITIAN NOTE 2021-12-07 ---
+Thirty-minute session on plate method, sodium under 2 g per day and label reading. Typical day reviewed: oatmeal, sandwiches, rice and chicken, fruit. Goal: walk after dinner.
+
+--- PREVENTIVE CARE 2021-12-07 ---
+Mammogram up to date. Colonoscopy 2018 normal, repeat 2028. Diabetic eye exam: no retinopathy. Monofilament exam normal. Pneumococcal and shingles vaccines documented. Depression screen PHQ-2 negative.
+
+--- DIETITIAN NOTE 2021-12-07 ---
+Thirty-minute session on plate method, sodium under 2 g per day and label reading. Typical day reviewed: oatmeal, sandwiches, rice and chicken, fruit. Goal: two vegetable servings at dinner.
+
+--- MEDICATION RECONCILIATION 2021-12-07 ---
+Reviewed with patient at pharmacy counter:
+  - metformin 1000 mg PO twice daily: taking as prescribed
+  - lisinopril 20 mg PO daily: taking as prescribed
+  - atorvastatin 40 mg PO nightly: taking as prescribed
+  - aspirin 81 mg PO daily: taking as prescribed
+  - omeprazole 20 mg PO daily: taking as prescribed
+No changes made.
+
+--- SOCIAL WORK NOTE 2021-12-07 ---
+Lives with husband in a two-story home; drives; volunteers at the library twice weekly. Medicare with supplemental plan. No financial barriers to medications reported. Advance directive on file; healthcare proxy is her daughter.
+
+--- NURSE TELEPHONE NOTE 2021-12-07 ---
+Called to review home glucose log: fasting 143, post-prandial 194. No hypoglycemia. Reinforced carbohydrate counting and foot care. Patient verbalized understanding.
+
+--- MEDICATION RECONCILIATION 2021-12-07 ---
+Reviewed with patient at pharmacy counter:
+  - metformin 1000 mg PO twice daily: taking as prescribed
+  - lisinopril 20 mg PO daily: taking as prescribed
+  - atorvastatin 40 mg PO nightly: taking as prescribed
+  - aspirin 81 mg PO daily: taking as prescribed
+  - omeprazole 20 mg PO daily: taking as prescribed
+No changes made.
+
+--- PHYSICAL THERAPY NOTE 2021-12-07 ---
+Knee program session 6 of 12. Quadriceps strengthening, gait training, stationary bike 13 minutes. Pain 3/10 after session. Home exercise program updated. Tolerated well.
+
+--- PHYSICAL THERAPY NOTE 2021-12-07 ---
+Knee program session 7 of 12. Quadriceps strengthening, gait training, stationary bike 15 minutes. Pain 2/10 after session. Home exercise program updated. Tolerated well.
+
+--- NURSE TELEPHONE NOTE 2021-12-07 ---
+Called to review home glucose log: fasting 131, post-prandial 198. No hypoglycemia. Reinforced carbohydrate counting and foot care. Patient verbalized understanding.
+
+--- DIETITIAN NOTE 2021-12-07 ---
+Thirty-minute session on plate method, sodium under 2 g per day and label reading. Typical day reviewed: oatmeal, sandwiches, rice and chicken, fruit. Goal: replace soda with water.
+
+--- SOCIAL WORK NOTE 2021-12-07 ---
+Lives with husband in a two-story home; drives; volunteers at the library twice weekly. Medicare with supplemental plan. No financial barriers to medications reported. Advance directive on file; healthcare proxy is her daughter.
+
+--- PHYSICAL THERAPY NOTE 2021-12-07 ---
+Knee program session 6 of 12. Quadriceps strengthening, gait training, stationary bike 8 minutes. Pain 2/10 after session. Home exercise program updated. Tolerated well.
+
+--- MEDICATION RECONCILIATION 2021-12-07 ---
+Reviewed with patient at pharmacy counter:
+  - metformin 1000 mg PO twice daily: taking as prescribed
+  - lisinopril 20 mg PO daily: taking as prescribed
+  - atorvastatin 40 mg PO nightly: taking as prescribed
+  - aspirin 81 mg PO daily: taking as prescribed
+  - omeprazole 20 mg PO daily: taking as prescribed
+No changes made.
+
+=== OFFICE VISIT 2022-06-21 | Primary care | Dr. A. Rivera (PCP) ===
+Patient: Synthetic Patient 0417 (fictional), female, born 1957-04-02
+HPI: Some fatigue in the afternoons, attributes to poor sleep. No orthopnea. No PND. Feels well. Daughter visiting from out of state. Asked about shingles vaccine.
+Review of systems: Constitutional: no fever, no weight loss. Eyes: no vision change. ENT: no sore throat. Cardiovascular: no chest pain, no palpitations. Respiratory: no cough, no hemoptysis. GI: no nausea, no melena. GU: no dysuria. MSK: knee stiffness as above. Skin: no rash. Neuro: no focal weakness. Psych: mood good.
+Vitals: BP 139/82 mmHg, HR 69, RR 16, T 36.9 C, SpO2 97% RA, weight 81 kg
+Exam: General: well appearing, no distress. HEENT: normocephalic, oropharynx clear. Neck: supple, no JVD. Lungs: clear to auscultation bilaterally. Heart: regular rate and rhythm, no murmur. Abdomen: soft, non-tender. Extremities: trace bilateral ankle edema. Neuro: alert, oriented.
+Current medications:
+  - metformin 1000 mg PO twice daily
+  - lisinopril 20 mg PO daily
+  - atorvastatin 40 mg PO nightly
+  - aspirin 81 mg PO daily
+  - omeprazole 20 mg PO daily
+Allergies: see allergy list
+Assessment and plan:
+1. Type 2 diabetes: continue metformin 1000 mg twice daily. Recheck HbA1c in 6 months.
+2. Hypertension: continue current regimen. Home BP log encouraged.
+3. Hyperlipidemia: continue atorvastatin.
+4. Knee osteoarthritis: activity as tolerated.
+Follow up in 6 months with labs.
+LAB RESULTS 2022-06-21
+  Sodium 137 mmol/L (135-145)
+  Potassium 4.5 mmol/L (3.5-5.1)
+  Chloride 102 mmol/L
+  CO2 23 mmol/L
+  BUN 17 mg/dL (7-20)
+  Creatinine 1.1 mg/dL (0.5-1.1)
+  eGFR 54 mL/min/1.73m2 (>60)
+  Glucose 121 mg/dL
+  Calcium 9.3 mg/dL
+  HbA1c 7.6 %
+  WBC 6.2 K/uL
+  Hemoglobin 13.1 g/dL
+  Platelets 230 K/uL
+  LDL 67 mg/dL
+  ALT 17 U/L
+  TSH 2.4 mIU/L
+--- MEDICATION RECONCILIATION 2022-06-21 ---
+Reviewed with patient at pharmacy counter:
+  - metformin 1000 mg PO twice daily: taking as prescribed
+  - lisinopril 20 mg PO daily: taking as prescribed
+  - atorvastatin 40 mg PO nightly: taking as prescribed
+  - aspirin 81 mg PO daily: taking as prescribed
+  - omeprazole 20 mg PO daily: taking as prescribed
+No changes made.
+
+--- PORTAL MESSAGE 2022-06-21 ---
+Patient asks about refill timing and parking validation. Refills sent for metformin 1000 mg PO twice daily. Reminder sent for annual eye exam and foot exam.
+
+--- PHYSICAL THERAPY NOTE 2022-06-21 ---
+Knee program session 9 of 12. Quadriceps strengthening, gait training, stationary bike 13 minutes. Pain 3/10 after session. Home exercise program updated. Tolerated well.
+
+--- DIETITIAN NOTE 2022-06-21 ---
+Thirty-minute session on plate method, sodium under 2 g per day and label reading. Typical day reviewed: oatmeal, sandwiches, rice and chicken, fruit. Goal: two vegetable servings at dinner.
+
+--- PORTAL MESSAGE 2022-06-21 ---
+Patient asks about refill timing and parking validation. Refills sent for metformin 1000 mg PO twice daily. Reminder sent for annual eye exam and foot exam.
+
+--- MEDICATION RECONCILIATION 2022-06-21 ---
+Reviewed with patient at pharmacy counter:
+  - metformin 1000 mg PO twice daily: taking as prescribed
+  - lisinopril 20 mg PO daily: taking as prescribed
+  - atorvastatin 40 mg PO nightly: taking as prescribed
+  - aspirin 81 mg PO daily: taking as prescribed
+  - omeprazole 20 mg PO daily: taking as prescribed
+No changes made.
+
+--- PREVENTIVE CARE 2022-06-21 ---
+Mammogram ordered. Colonoscopy 2018 normal, repeat 2028. Diabetic eye exam: no retinopathy. Monofilament exam normal. Pneumococcal and shingles vaccines documented. Depression screen PHQ-2 negative.
+
+--- SOCIAL WORK NOTE 2022-06-21 ---
+Lives with husband in a two-story home; drives; volunteers at the library twice weekly. Medicare with supplemental plan. No financial barriers to medications reported. Advance directive on file; healthcare proxy is her daughter.
+
+--- DIETITIAN NOTE 2022-06-21 ---
+Thirty-minute session on plate method, sodium under 2 g per day and label reading. Typical day reviewed: oatmeal, sandwiches, rice and chicken, fruit. Goal: two vegetable servings at dinner.
+
+--- DIETITIAN NOTE 2022-06-21 ---
+Thirty-minute session on plate method, sodium under 2 g per day and label reading. Typical day reviewed: oatmeal, sandwiches, rice and chicken, fruit. Goal: walk after dinner.
+
+--- DIETITIAN NOTE 2022-06-21 ---
+Thirty-minute session on plate method, sodium under 2 g per day and label reading. Typical day reviewed: oatmeal, sandwiches, rice and chicken, fruit. Goal: two vegetable servings at dinner.
+
+--- PORTAL MESSAGE 2022-06-21 ---
+Patient asks about refill timing and parking validation. Refills sent for omeprazole 20 mg PO daily. Reminder sent for annual eye exam and foot exam.
+
+--- MEDICATION RECONCILIATION 2022-06-21 ---
+Reviewed with patient at pharmacy counter:
+  - metformin 1000 mg PO twice daily: taking as prescribed
+  - lisinopril 20 mg PO daily: taking as prescribed
+  - atorvastatin 40 mg PO nightly: taking as prescribed
+  - aspirin 81 mg PO daily: taking as prescribed
+  - omeprazole 20 mg PO daily: taking as prescribed
+No changes made.
+
+--- MEDICATION RECONCILIATION 2022-06-21 ---
+Reviewed with patient at pharmacy counter:
+  - metformin 1000 mg PO twice daily: taking as prescribed
+  - lisinopril 20 mg PO daily: taking as prescribed
+  - atorvastatin 40 mg PO nightly: taking as prescribed
+  - aspirin 81 mg PO daily: taking as prescribed
+  - omeprazole 20 mg PO daily: taking as prescribed
+No changes made.
+
+--- DIETITIAN NOTE 2022-06-21 ---
+Thirty-minute session on plate method, sodium under 2 g per day and label reading. Typical day reviewed: oatmeal, sandwiches, rice and chicken, fruit. Goal: replace soda with water.
+
+--- NURSE TELEPHONE NOTE 2022-06-21 ---
+Called to review home glucose log: fasting 128, post-prandial 160. No hypoglycemia. Reinforced carbohydrate counting and foot care. Patient verbalized understanding.
+
+--- SOCIAL WORK NOTE 2022-06-21 ---
+Lives with husband in a two-story home; drives; volunteers at the library twice weekly. Medicare with supplemental plan. No financial barriers to medications reported. Advance directive on file; healthcare proxy is her daughter.
+
+--- PHYSICAL THERAPY NOTE 2022-06-21 ---
+Knee program session 5 of 12. Quadriceps strengthening, gait training, stationary bike 14 minutes. Pain 2/10 after session. Home exercise program updated. Tolerated well.
+
+--- PREVENTIVE CARE 2022-06-21 ---
+Mammogram up to date. Colonoscopy 2018 normal, repeat 2028. Diabetic eye exam: no retinopathy. Monofilament exam normal. Pneumococcal and shingles vaccines documented. Depression screen PHQ-2 negative.
+
+--- MEDICATION RECONCILIATION 2022-06-21 ---
+Reviewed with patient at pharmacy counter:
+  - metformin 1000 mg PO twice daily: taking as prescribed
+  - lisinopril 20 mg PO daily: taking as prescribed
+  - atorvastatin 40 mg PO nightly: taking as prescribed
+  - aspirin 81 mg PO daily: taking as prescribed
+  - omeprazole 20 mg PO daily: taking as prescribed
+No changes made.
+
+--- DIETITIAN NOTE 2022-06-21 ---
+Thirty-minute session on plate method, sodium under 2 g per day and label reading. Typical day reviewed: oatmeal, sandwiches, rice and chicken, fruit. Goal: two vegetable servings at dinner.
+
+--- MEDICATION RECONCILIATION 2022-06-21 ---
+Reviewed with patient at pharmacy counter:
+  - metformin 1000 mg PO twice daily: taking as prescribed
+  - lisinopril 20 mg PO daily: taking as prescribed
+  - atorvastatin 40 mg PO nightly: taking as prescribed
+  - aspirin 81 mg PO daily: taking as prescribed
+  - omeprazole 20 mg PO daily: taking as prescribed
+No changes made.
+
+--- DIETITIAN NOTE 2022-06-21 ---
+Thirty-minute session on plate method, sodium under 2 g per day and label reading. Typical day reviewed: oatmeal, sandwiches, rice and chicken, fruit. Goal: replace soda with water.
+
+--- NURSE TELEPHONE NOTE 2022-06-21 ---
+Called to review home glucose log: fasting 140, post-prandial 203. No hypoglycemia. Reinforced carbohydrate counting and foot care. Patient verbalized understanding.
+
+--- PORTAL MESSAGE 2022-06-21 ---
+Patient asks about refill timing and parking validation. Refills sent for lisinopril 20 mg PO daily. Reminder sent for annual eye exam and foot exam.
+
+--- MEDICATION RECONCILIATION 2022-06-21 ---
+Reviewed with patient at pharmacy counter:
+  - metformin 1000 mg PO twice daily: taking as prescribed
+  - lisinopril 20 mg PO daily: taking as prescribed
+  - atorvastatin 40 mg PO nightly: taking as prescribed
+  - aspirin 81 mg PO daily: taking as prescribed
+  - omeprazole 20 mg PO daily: taking as prescribed
+No changes made.
+
+--- PHYSICAL THERAPY NOTE 2022-06-21 ---
+Knee program session 10 of 12. Quadriceps strengthening, gait training, stationary bike 12 minutes. Pain 4/10 after session. Home exercise program updated. Tolerated well.
+
+--- PORTAL MESSAGE 2022-06-21 ---
+Patient asks about refill timing and parking validation. Refills sent for lisinopril 20 mg PO daily. Reminder sent for annual eye exam and foot exam.
+
+--- PREVENTIVE CARE 2022-06-21 ---
+Mammogram up to date. Colonoscopy 2018 normal, repeat 2028. Diabetic eye exam: no retinopathy. Monofilament exam normal. Pneumococcal and shingles vaccines documented. Depression screen PHQ-2 negative.
+
+--- MEDICATION RECONCILIATION 2022-06-21 ---
+Reviewed with patient at pharmacy counter:
+  - metformin 1000 mg PO twice daily: taking as prescribed
+  - lisinopril 20 mg PO daily: taking as prescribed
+  - atorvastatin 40 mg PO nightly: taking as prescribed
+  - aspirin 81 mg PO daily: taking as prescribed
+  - omeprazole 20 mg PO daily: taking as prescribed
+No changes made.
+
+--- PHYSICAL THERAPY NOTE 2022-06-21 ---
+Knee program session 3 of 12. Quadriceps strengthening, gait training, stationary bike 10 minutes. Pain 5/10 after session. Home exercise program updated. Tolerated well.
+
+--- MEDICATION RECONCILIATION 2022-06-21 ---
+Reviewed with patient at pharmacy counter:
+  - metformin 1000 mg PO twice daily: taking as prescribed
+  - lisinopril 20 mg PO daily: taking as prescribed
+  - atorvastatin 40 mg PO nightly: taking as prescribed
+  - aspirin 81 mg PO daily: taking as prescribed
+  - omeprazole 20 mg PO daily: taking as prescribed
+No changes made.
+
+--- PORTAL MESSAGE 2022-06-21 ---
+Patient asks about refill timing and parking validation. Refills sent for atorvastatin 40 mg PO nightly. Reminder sent for annual eye exam and foot exam.
+
+--- PHYSICAL THERAPY NOTE 2022-06-21 ---
+Knee program session 4 of 12. Quadriceps strengthening, gait training, stationary bike 10 minutes. Pain 4/10 after session. Home exercise program updated. Tolerated well.
+
+--- MEDICATION RECONCILIATION 2022-06-21 ---
+Reviewed with patient at pharmacy counter:
+  - metformin 1000 mg PO twice daily: taking as prescribed
+  - lisinopril 20 mg PO daily: taking as prescribed
+  - atorvastatin 40 mg PO nightly: taking as prescribed
+  - aspirin 81 mg PO daily: taking as prescribed
+  - omeprazole 20 mg PO daily: taking as prescribed
+No changes made.
+
+--- MEDICATION RECONCILIATION 2022-06-21 ---
+Reviewed with patient at pharmacy counter:
+  - metformin 1000 mg PO twice daily: taking as prescribed
+  - lisinopril 20 mg PO daily: taking as prescribed
+  - atorvastatin 40 mg PO nightly: taking as prescribed
+  - aspirin 81 mg PO daily: taking as prescribed
+  - omeprazole 20 mg PO daily: taking as prescribed
+No changes made.
+
+--- DIETITIAN NOTE 2022-06-21 ---
+Thirty-minute session on plate method, sodium under 2 g per day and label reading. Typical day reviewed: oatmeal, sandwiches, rice and chicken, fruit. Goal: two vegetable servings at dinner.
+
+--- PORTAL MESSAGE 2022-06-21 ---
+Patient asks about refill timing and parking validation. Refills sent for omeprazole 20 mg PO daily. Reminder sent for annual eye exam and foot exam.
+
+--- NURSE TELEPHONE NOTE 2022-06-21 ---
+Called to review home glucose log: fasting 139, post-prandial 162. No hypoglycemia. Reinforced carbohydrate counting and foot care. Patient verbalized understanding.
+
+--- PHYSICAL THERAPY NOTE 2022-06-21 ---
+Knee program session 7 of 12. Quadriceps strengthening, gait training, stationary bike 10 minutes. Pain 3/10 after session. Home exercise program updated. Tolerated well.
+
+=== OFFICE VISIT 2022-12-13 | Primary care | Dr. A. Rivera (PCP) ===
+Patient: Synthetic Patient 0417 (fictional), female, born 1957-04-02
+HPI: Some fatigue in the afternoons, attributes to poor sleep. No orthopnea. No PND. No chest pain, no syncope. Occasional heartburn after large meals, controlled on omeprazole.
+Review of systems: Constitutional: no fever, no weight loss. Eyes: no vision change. ENT: no sore throat. Cardiovascular: no chest pain, no palpitations. Respiratory: no cough, no hemoptysis. GI: no nausea, no melena. GU: no dysuria. MSK: knee stiffness as above. Skin: no rash. Neuro: no focal weakness. Psych: mood good.
+Vitals: BP 143/80 mmHg, HR 76, RR 17, T 36.6 C, SpO2 96% RA, weight 82 kg
+Exam: General: well appearing, no distress. HEENT: normocephalic, oropharynx clear. Neck: supple, no JVD. Lungs: clear to auscultation bilaterally. Heart: regular rate and rhythm, no murmur. Abdomen: soft, non-tender. Extremities: trace bilateral ankle edema. Neuro: alert, oriented.
+Current medications:
+  - metformin 1000 mg PO twice daily
+  - lisinopril 20 mg PO daily
+  - atorvastatin 40 mg PO nightly
+  - aspirin 81 mg PO daily
+  - omeprazole 20 mg PO daily
+Allergies: see allergy list
+Assessment and plan:
+1. Type 2 diabetes: continue metformin 1000 mg twice daily. Recheck HbA1c in 6 months.
+2. Hypertension: continue current regimen. Home BP log encouraged.
+3. Hyperlipidemia: continue atorvastatin.
+4. Knee osteoarthritis: activity as tolerated.
+Follow up in 6 months with labs.
+LAB RESULTS 2022-12-13
+  Sodium 139 mmol/L (135-145)
+  Potassium 4.6 mmol/L (3.5-5.1)
+  Chloride 106 mmol/L
+  CO2 22 mmol/L
+  BUN 17 mg/dL (7-20)
+  Creatinine 1.1 mg/dL (0.5-1.1)
+  eGFR 54 mL/min/1.73m2 (>60)
+  Glucose 134 mg/dL
+  Calcium 9.3 mg/dL
+--- SOCIAL WORK NOTE 2022-12-13 ---
+Lives with husband in a two-story home; drives; volunteers at the library twice weekly. Medicare with supplemental plan. No financial barriers to medications reported. Advance directive on file; healthcare proxy is her daughter.
+
+--- PREVENTIVE CARE 2022-12-13 ---
+Mammogram ordered. Colonoscopy 2018 normal, repeat 2028. Diabetic eye exam: no retinopathy. Monofilament exam normal. Pneumococcal and shingles vaccines documented. Depression screen PHQ-2 negative.
+
+--- SOCIAL WORK NOTE 2022-12-13 ---
+Lives with husband in a two-story home; drives; volunteers at the library twice weekly. Medicare with supplemental plan. No financial barriers to medications reported. Advance directive on file; healthcare proxy is her daughter.
+
+--- PORTAL MESSAGE 2022-12-13 ---
+Patient asks about refill timing and parking validation. Refills sent for lisinopril 20 mg PO daily. Reminder sent for annual eye exam and foot exam.
+
+--- SOCIAL WORK NOTE 2022-12-13 ---
+Lives with husband in a two-story home; drives; volunteers at the library twice weekly. Medicare with supplemental plan. No financial barriers to medications reported. Advance directive on file; healthcare proxy is her daughter.
+
+--- SOCIAL WORK NOTE 2022-12-13 ---
+Lives with husband in a two-story home; drives; volunteers at the library twice weekly. Medicare with supplemental plan. No financial barriers to medications reported. Advance directive on file; healthcare proxy is her daughter.
+
+--- DIETITIAN NOTE 2022-12-13 ---
+Thirty-minute session on plate method, sodium under 2 g per day and label reading. Typical day reviewed: oatmeal, sandwiches, rice and chicken, fruit. Goal: replace soda with water.
+
+--- PORTAL MESSAGE 2022-12-13 ---
+Patient asks about refill timing and parking validation. Refills sent for metformin 1000 mg PO twice daily. Reminder sent for annual eye exam and foot exam.
+
+--- PORTAL MESSAGE 2022-12-13 ---
+Patient asks about refill timing and parking validation. Refills sent for lisinopril 20 mg PO daily. Reminder sent for annual eye exam and foot exam.
+
+--- PORTAL MESSAGE 2022-12-13 ---
+Patient asks about refill timing and parking validation. Refills sent for omeprazole 20 mg PO daily. Reminder sent for annual eye exam and foot exam.
+
+--- NURSE TELEPHONE NOTE 2022-12-13 ---
+Called to review home glucose log: fasting 117, post-prandial 178. No hypoglycemia. Reinforced carbohydrate counting and foot care. Patient verbalized understanding.
+
+--- NURSE TELEPHONE NOTE 2022-12-13 ---
+Called to review home glucose log: fasting 129, post-prandial 191. No hypoglycemia. Reinforced carbohydrate counting and foot care. Patient verbalized understanding.
+
+--- SOCIAL WORK NOTE 2022-12-13 ---
+Lives with husband in a two-story home; drives; volunteers at the library twice weekly. Medicare with supplemental plan. No financial barriers to medications reported. Advance directive on file; healthcare proxy is her daughter.
+
+--- SOCIAL WORK NOTE 2022-12-13 ---
+Lives with husband in a two-story home; drives; volunteers at the library twice weekly. Medicare with supplemental plan. No financial barriers to medications reported. Advance directive on file; healthcare proxy is her daughter.
+
+--- MEDICATION RECONCILIATION 2022-12-13 ---
+Reviewed with patient at pharmacy counter:
+  - metformin 1000 mg PO twice daily: taking as prescribed
+  - lisinopril 20 mg PO daily: taking as prescribed
+  - atorvastatin 40 mg PO nightly: taking as prescribed
+  - aspirin 81 mg PO daily: taking as prescribed
+  - omeprazole 20 mg PO daily: taking as prescribed
+No changes made.
+
+--- NURSE TELEPHONE NOTE 2022-12-13 ---
+Called to review home glucose log: fasting 149, post-prandial 159. No hypoglycemia. Reinforced carbohydrate counting and foot care. Patient verbalized understanding.
+
+--- SOCIAL WORK NOTE 2022-12-13 ---
+Lives with husband in a two-story home; drives; volunteers at the library twice weekly. Medicare with supplemental plan. No financial barriers to medications reported. Advance directive on file; healthcare proxy is her daughter.
+
+--- PREVENTIVE CARE 2022-12-13 ---
+Mammogram ordered. Colonoscopy 2018 normal, repeat 2028. Diabetic eye exam: no retinopathy. Monofilament exam normal. Pneumococcal and shingles vaccines documented. Depression screen PHQ-2 negative.
+
+--- MEDICATION RECONCILIATION 2022-12-13 ---
+Reviewed with patient at pharmacy counter:
+  - metformin 1000 mg PO twice daily: taking as prescribed
+  - lisinopril 20 mg PO daily: taking as prescribed
+  - atorvastatin 40 mg PO nightly: taking as prescribed
+  - aspirin 81 mg PO daily: taking as prescribed
+  - omeprazole 20 mg PO daily: taking as prescribed
+No changes made.
+
+--- MEDICATION RECONCILIATION 2022-12-13 ---
+Reviewed with patient at pharmacy counter:
+  - metformin 1000 mg PO twice daily: taking as prescribed
+  - lisinopril 20 mg PO daily: taking as prescribed
+  - atorvastatin 40 mg PO nightly: taking as prescribed
+  - aspirin 81 mg PO daily: taking as prescribed
+  - omeprazole 20 mg PO daily: taking as prescribed
+No changes made.
+
+--- PREVENTIVE CARE 2022-12-13 ---
+Mammogram up to date. Colonoscopy 2018 normal, repeat 2028. Diabetic eye exam: no retinopathy. Monofilament exam normal. Pneumococcal and shingles vaccines documented. Depression screen PHQ-2 negative.
+
+--- SOCIAL WORK NOTE 2022-12-13 ---
+Lives with husband in a two-story home; drives; volunteers at the library twice weekly. Medicare with supplemental plan. No financial barriers to medications reported. Advance directive on file; healthcare proxy is her daughter.
+
+--- DIETITIAN NOTE 2022-12-13 ---
+Thirty-minute session on plate method, sodium under 2 g per day and label reading. Typical day reviewed: oatmeal, sandwiches, rice and chicken, fruit. Goal: walk after dinner.
+
+--- NURSE TELEPHONE NOTE 2022-12-13 ---
+Called to review home glucose log: fasting 128, post-prandial 206. No hypoglycemia. Reinforced carbohydrate counting and foot care. Patient verbalized understanding.
+
+--- PORTAL MESSAGE 2022-12-13 ---
+Patient asks about refill timing and parking validation. Refills sent for lisinopril 20 mg PO daily. Reminder sent for annual eye exam and foot exam.
+
+--- PREVENTIVE CARE 2022-12-13 ---
+Mammogram ordered. Colonoscopy 2018 normal, repeat 2028. Diabetic eye exam: no retinopathy. Monofilament exam normal. Pneumococcal and shingles vaccines documented. Depression screen PHQ-2 negative.
+
+--- MEDICATION RECONCILIATION 2022-12-13 ---
+Reviewed with patient at pharmacy counter:
+  - metformin 1000 mg PO twice daily: taking as prescribed
+  - lisinopril 20 mg PO daily: taking as prescribed
+  - atorvastatin 40 mg PO nightly: taking as prescribed
+  - aspirin 81 mg PO daily: taking as prescribed
+  - omeprazole 20 mg PO daily: taking as prescribed
+No changes made.
+
+--- DIETITIAN NOTE 2022-12-13 ---
+Thirty-minute session on plate method, sodium under 2 g per day and label reading. Typical day reviewed: oatmeal, sandwiches, rice and chicken, fruit. Goal: replace soda with water.
+
+--- PHYSICAL THERAPY NOTE 2022-12-13 ---
+Knee program session 7 of 12. Quadriceps strengthening, gait training, stationary bike 11 minutes. Pain 2/10 after session. Home exercise program updated. Tolerated well.
+
+--- PORTAL MESSAGE 2022-12-13 ---
+Patient asks about refill timing and parking validation. Refills sent for omeprazole 20 mg PO daily. Reminder sent for annual eye exam and foot exam.
+
+--- DIETITIAN NOTE 2022-12-13 ---
+Thirty-minute session on plate method, sodium under 2 g per day and label reading. Typical day reviewed: oatmeal, sandwiches, rice and chicken, fruit. Goal: replace soda with water.
+
+--- NURSE TELEPHONE NOTE 2022-12-13 ---
+Called to review home glucose log: fasting 117, post-prandial 171. No hypoglycemia. Reinforced carbohydrate counting and foot care. Patient verbalized understanding.
+
+--- DIETITIAN NOTE 2022-12-13 ---
+Thirty-minute session on plate method, sodium under 2 g per day and label reading. Typical day reviewed: oatmeal, sandwiches, rice and chicken, fruit. Goal: two vegetable servings at dinner.
+
+--- DIETITIAN NOTE 2022-12-13 ---
+Thirty-minute session on plate method, sodium under 2 g per day and label reading. Typical day reviewed: oatmeal, sandwiches, rice and chicken, fruit. Goal: two vegetable servings at dinner.
+
+--- DIETITIAN NOTE 2022-12-13 ---
+Thirty-minute session on plate method, sodium under 2 g per day and label reading. Typical day reviewed: oatmeal, sandwiches, rice and chicken, fruit. Goal: replace soda with water.
+
+--- MEDICATION RECONCILIATION 2022-12-13 ---
+Reviewed with patient at pharmacy counter:
+  - metformin 1000 mg PO twice daily: taking as prescribed
+  - lisinopril 20 mg PO daily: taking as prescribed
+  - atorvastatin 40 mg PO nightly: taking as prescribed
+  - aspirin 81 mg PO daily: taking as prescribed
+  - omeprazole 20 mg PO daily: taking as prescribed
+No changes made.
+
+--- PHYSICAL THERAPY NOTE 2022-12-13 ---
+Knee program session 2 of 12. Quadriceps strengthening, gait training, stationary bike 15 minutes. Pain 2/10 after session. Home exercise program updated. Tolerated well.
+
+--- PHYSICAL THERAPY NOTE 2022-12-13 ---
+Knee program session 10 of 12. Quadriceps strengthening, gait training, stationary bike 8 minutes. Pain 3/10 after session. Home exercise program updated. Tolerated well.
+
+--- NURSE TELEPHONE NOTE 2022-12-13 ---
+Called to review home glucose log: fasting 124, post-prandial 154. No hypoglycemia. Reinforced carbohydrate counting and foot care. Patient verbalized understanding.
+
+--- NURSE TELEPHONE NOTE 2022-12-13 ---
+Called to review home glucose log: fasting 133, post-prandial 155. No hypoglycemia. Reinforced carbohydrate counting and foot care. Patient verbalized understanding.
+
+=== OFFICE VISIT 2023-06-20 | Primary care | N. Patel, NP (PCP) ===
+Patient: Synthetic Patient 0417 (fictional), female, born 1957-04-02
+HPI: No chest pain, no syncope. Occasional heartburn after large meals, controlled on omeprazole. Feels well. Daughter visiting from out of state. Asked about shingles vaccine.
+Review of systems: Constitutional: no fever, no weight loss. Eyes: no vision change. ENT: no sore throat. Cardiovascular: no chest pain, no palpitations. Respiratory: no cough, no hemoptysis. GI: no nausea, no melena. GU: no dysuria. MSK: knee stiffness as above. Skin: no rash. Neuro: no focal weakness. Psych: mood good.
+Vitals: BP 133/85 mmHg, HR 81, RR 18, T 36.8 C, SpO2 98% RA, weight 86 kg
+Exam: General: well appearing, no distress. HEENT: normocephalic, oropharynx clear. Neck: supple, no JVD. Lungs: clear to auscultation bilaterally. Heart: regular rate and rhythm, no murmur. Abdomen: soft, non-tender. Extremities: trace bilateral ankle edema. Neuro: alert, oriented.
+Current medications:
+  - metformin 1000 mg PO twice daily
+  - lisinopril 20 mg PO daily
+  - atorvastatin 40 mg PO nightly
+  - aspirin 81 mg PO daily
+  - omeprazole 20 mg PO daily
+Allergies: see allergy list
+Assessment and plan:
+1. Type 2 diabetes: continue metformin 1000 mg twice daily. Recheck HbA1c in 6 months.
+2. Hypertension: continue current regimen. Home BP log encouraged.
+3. Hyperlipidemia: continue atorvastatin.
+4. Knee osteoarthritis: activity as tolerated.
+Follow up in 6 months with labs.
+LAB RESULTS 2023-06-20
+  Sodium 139 mmol/L (135-145)
+  Potassium 4.7 mmol/L (3.5-5.1)
+  Chloride 100 mmol/L
+  CO2 27 mmol/L
+  BUN 19 mg/dL (7-20)
+  Creatinine 1.2 mg/dL (0.5-1.1)
+  eGFR 49 mL/min/1.73m2 (>60)
+  Glucose 158 mg/dL
+  Calcium 9.4 mg/dL
+  HbA1c 7.1 %
+  WBC 7.1 K/uL
+  Hemoglobin 12.6 g/dL
+  Platelets 262 K/uL
+  LDL 87 mg/dL
+  ALT 26 U/L
+  TSH 2.1 mIU/L
+--- SOCIAL WORK NOTE 2023-06-20 ---
+Lives with husband in a two-story home; drives; volunteers at the library twice weekly. Medicare with supplemental plan. No financial barriers to medications reported. Advance directive on file; healthcare proxy is her daughter.
+
+--- MEDICATION RECONCILIATION 2023-06-20 ---
+Reviewed with patient at pharmacy counter:
+  - metformin 1000 mg PO twice daily: taking as prescribed
+  - lisinopril 20 mg PO daily: taking as prescribed
+  - atorvastatin 40 mg PO nightly: taking as prescribed
+  - aspirin 81 mg PO daily: taking as prescribed
+  - omeprazole 20 mg PO daily: taking as prescribed
+No changes made.
+
+--- PHYSICAL THERAPY NOTE 2023-06-20 ---
+Knee program session 5 of 12. Quadriceps strengthening, gait training, stationary bike 12 minutes. Pain 2/10 after session. Home exercise program updated. Tolerated well.
+
+--- PREVENTIVE CARE 2023-06-20 ---
+Mammogram ordered. Colonoscopy 2018 normal, repeat 2028. Diabetic eye exam: no retinopathy. Monofilament exam normal. Pneumococcal and shingles vaccines documented. Depression screen PHQ-2 negative.
+
+--- DIETITIAN NOTE 2023-06-20 ---
+Thirty-minute session on plate method, sodium under 2 g per day and label reading. Typical day reviewed: oatmeal, sandwiches, rice and chicken, fruit. Goal: two vegetable servings at dinner.
+
+--- PHYSICAL THERAPY NOTE 2023-06-20 ---
+Knee program session 10 of 12. Quadriceps strengthening, gait training, stationary bike 13 minutes. Pain 5/10 after session. Home exercise program updated. Tolerated well.
+
+--- DIETITIAN NOTE 2023-06-20 ---
+Thirty-minute session on plate method, sodium under 2 g per day and label reading. Typical day reviewed: oatmeal, sandwiches, rice and chicken, fruit. Goal: replace soda with water.
+
+--- DIETITIAN NOTE 2023-06-20 ---
+Thirty-minute session on plate method, sodium under 2 g per day and label reading. Typical day reviewed: oatmeal, sandwiches, rice and chicken, fruit. Goal: two vegetable servings at dinner.
+
+--- SOCIAL WORK NOTE 2023-06-20 ---
+Lives with husband in a two-story home; drives; volunteers at the library twice weekly. Medicare with supplemental plan. No financial barriers to medications reported. Advance directive on file; healthcare proxy is her daughter.
+
+--- DIETITIAN NOTE 2023-06-20 ---
+Thirty-minute session on plate method, sodium under 2 g per day and label reading. Typical day reviewed: oatmeal, sandwiches, rice and chicken, fruit. Goal: walk after dinner.
+
+--- PREVENTIVE CARE 2023-06-20 ---
+Mammogram ordered. Colonoscopy 2018 normal, repeat 2028. Diabetic eye exam: no retinopathy. Monofilament exam normal. Pneumococcal and shingles vaccines documented. Depression screen PHQ-2 negative.
+
+--- PHYSICAL THERAPY NOTE 2023-06-20 ---
+Knee program session 2 of 12. Quadriceps strengthening, gait training, stationary bike 10 minutes. Pain 4/10 after session. Home exercise program updated. Tolerated well.
+
+--- NURSE TELEPHONE NOTE 2023-06-20 ---
+Called to review home glucose log: fasting 116, post-prandial 196. No hypoglycemia. Reinforced carbohydrate counting and foot care. Patient verbalized understanding.
+
+--- DIETITIAN NOTE 2023-06-20 ---
+Thirty-minute session on plate method, sodium under 2 g per day and label reading. Typical day reviewed: oatmeal, sandwiches, rice and chicken, fruit. Goal: two vegetable servings at dinner.
+
+--- PREVENTIVE CARE 2023-06-20 ---
+Mammogram ordered. Colonoscopy 2018 normal, repeat 2028. Diabetic eye exam: no retinopathy. Monofilament exam normal. Pneumococcal and shingles vaccines documented. Depression screen PHQ-2 negative.
+
+--- SOCIAL WORK NOTE 2023-06-20 ---
+Lives with husband in a two-story home; drives; volunteers at the library twice weekly. Medicare with supplemental plan. No financial barriers to medications reported. Advance directive on file; healthcare proxy is her daughter.
+
+--- PHYSICAL THERAPY NOTE 2023-06-20 ---
+Knee program session 10 of 12. Quadriceps strengthening, gait training, stationary bike 8 minutes. Pain 5/10 after session. Home exercise program updated. Tolerated well.
+
+--- PHYSICAL THERAPY NOTE 2023-06-20 ---
+Knee program session 10 of 12. Quadriceps strengthening, gait training, stationary bike 8 minutes. Pain 3/10 after session. Home exercise program updated. Tolerated well.
+
+--- DIETITIAN NOTE 2023-06-20 ---
+Thirty-minute session on plate method, sodium under 2 g per day and label reading. Typical day reviewed: oatmeal, sandwiches, rice and chicken, fruit. Goal: replace soda with water.
+
+--- MEDICATION RECONCILIATION 2023-06-20 ---
+Reviewed with patient at pharmacy counter:
+  - metformin 1000 mg PO twice daily: taking as prescribed
+  - lisinopril 20 mg PO daily: taking as prescribed
+  - atorvastatin 40 mg PO nightly: taking as prescribed
+  - aspirin 81 mg PO daily: taking as prescribed
+  - omeprazole 20 mg PO daily: taking as prescribed
+No changes made.
+
+--- PHYSICAL THERAPY NOTE 2023-06-20 ---
+Knee program session 7 of 12. Quadriceps strengthening, gait training, stationary bike 11 minutes. Pain 3/10 after session. Home exercise program updated. Tolerated well.
+
+--- DIETITIAN NOTE 2023-06-20 ---
+Thirty-minute session on plate method, sodium under 2 g per day and label reading. Typical day reviewed: oatmeal, sandwiches, rice and chicken, fruit. Goal: two vegetable servings at dinner.
+
+--- MEDICATION RECONCILIATION 2023-06-20 ---
+Reviewed with patient at pharmacy counter:
+  - metformin 1000 mg PO twice daily: taking as prescribed
+  - lisinopril 20 mg PO daily: taking as prescribed
+  - atorvastatin 40 mg PO nightly: taking as prescribed
+  - aspirin 81 mg PO daily: taking as prescribed
+  - omeprazole 20 mg PO daily: taking as prescribed
+No changes made.
+
+--- MEDICATION RECONCILIATION 2023-06-20 ---
+Reviewed with patient at pharmacy counter:
+  - metformin 1000 mg PO twice daily: taking as prescribed
+  - lisinopril 20 mg PO daily: taking as prescribed
+  - atorvastatin 40 mg PO nightly: taking as prescribed
+  - aspirin 81 mg PO daily: taking as prescribed
+  - omeprazole 20 mg PO daily: taking as prescribed
+No changes made.
+
+--- NURSE TELEPHONE NOTE 2023-06-20 ---
+Called to review home glucose log: fasting 113, post-prandial 162. No hypoglycemia. Reinforced carbohydrate counting and foot care. Patient verbalized understanding.
+
+--- DIETITIAN NOTE 2023-06-20 ---
+Thirty-minute session on plate method, sodium under 2 g per day and label reading. Typical day reviewed: oatmeal, sandwiches, rice and chicken, fruit. Goal: walk after dinner.
+
+--- PREVENTIVE CARE 2023-06-20 ---
+Mammogram ordered. Colonoscopy 2018 normal, repeat 2028. Diabetic eye exam: no retinopathy. Monofilament exam normal. Pneumococcal and shingles vaccines documented. Depression screen PHQ-2 negative.
+
+--- PORTAL MESSAGE 2023-06-20 ---
+Patient asks about refill timing and parking validation. Refills sent for lisinopril 20 mg PO daily. Reminder sent for annual eye exam and foot exam.
+
+--- PORTAL MESSAGE 2023-06-20 ---
+Patient asks about refill timing and parking validation. Refills sent for atorvastatin 40 mg PO nightly. Reminder sent for annual eye exam and foot exam.
+
+--- MEDICATION RECONCILIATION 2023-06-20 ---
+Reviewed with patient at pharmacy counter:
+  - metformin 1000 mg PO twice daily: taking as prescribed
+  - lisinopril 20 mg PO daily: taking as prescribed
+  - atorvastatin 40 mg PO nightly: taking as prescribed
+  - aspirin 81 mg PO daily: taking as prescribed
+  - omeprazole 20 mg PO daily: taking as prescribed
+No changes made.
+
+--- PHYSICAL THERAPY NOTE 2023-06-20 ---
+Knee program session 6 of 12. Quadriceps strengthening, gait training, stationary bike 9 minutes. Pain 3/10 after session. Home exercise program updated. Tolerated well.
+
+--- PREVENTIVE CARE 2023-06-20 ---
+Mammogram ordered. Colonoscopy 2018 normal, repeat 2028. Diabetic eye exam: no retinopathy. Monofilament exam normal. Pneumococcal and shingles vaccines documented. Depression screen PHQ-2 negative.
+
+--- NURSE TELEPHONE NOTE 2023-06-20 ---
+Called to review home glucose log: fasting 133, post-prandial 164. No hypoglycemia. Reinforced carbohydrate counting and foot care. Patient verbalized understanding.
+
+--- DIETITIAN NOTE 2023-06-20 ---
+Thirty-minute session on plate method, sodium under 2 g per day and label reading. Typical day reviewed: oatmeal, sandwiches, rice and chicken, fruit. Goal: two vegetable servings at dinner.
+
+--- NURSE TELEPHONE NOTE 2023-06-20 ---
+Called to review home glucose log: fasting 120, post-prandial 181. No hypoglycemia. Reinforced carbohydrate counting and foot care. Patient verbalized understanding.
+
+--- DIETITIAN NOTE 2023-06-20 ---
+Thirty-minute session on plate method, sodium under 2 g per day and label reading. Typical day reviewed: oatmeal, sandwiches, rice and chicken, fruit. Goal: walk after dinner.
+
+--- PREVENTIVE CARE 2023-06-20 ---
+Mammogram up to date. Colonoscopy 2018 normal, repeat 2028. Diabetic eye exam: no retinopathy. Monofilament exam normal. Pneumococcal and shingles vaccines documented. Depression screen PHQ-2 negative.
+
+--- MEDICATION RECONCILIATION 2023-06-20 ---
+Reviewed with patient at pharmacy counter:
+  - metformin 1000 mg PO twice daily: taking as prescribed
+  - lisinopril 20 mg PO daily: taking as prescribed
+  - atorvastatin 40 mg PO nightly: taking as prescribed
+  - aspirin 81 mg PO daily: taking as prescribed
+  - omeprazole 20 mg PO daily: taking as prescribed
+No changes made.
+
+--- MEDICATION RECONCILIATION 2023-06-20 ---
+Reviewed with patient at pharmacy counter:
+  - metformin 1000 mg PO twice daily: taking as prescribed
+  - lisinopril 20 mg PO daily: taking as prescribed
+  - atorvastatin 40 mg PO nightly: taking as prescribed
+  - aspirin 81 mg PO daily: taking as prescribed
+  - omeprazole 20 mg PO daily: taking as prescribed
+No changes made.
+
+--- DIETITIAN NOTE 2023-06-20 ---
+Thirty-minute session on plate method, sodium under 2 g per day and label reading. Typical day reviewed: oatmeal, sandwiches, rice and chicken, fruit. Goal: walk after dinner.
+
+=== CARDIOLOGY CONSULT 2023-08-29 ===
+Dyspnea on exertion. Echocardiogram: LVEF 35%, global hypokinesis. Diagnosis: heart failure with reduced ejection fraction. Plan: start carvedilol 12.5 mg twice daily, spironolactone 25 mg daily, furosemide 20 mg daily; continue lisinopril. Recheck BMP in 1 week.
+
+=== OFFICE VISIT 2023-10-03 | Primary care | N. Patel, NP (PCP) ===
+Patient: Synthetic Patient 0417 (fictional), female, born 1957-04-02
+HPI: Some fatigue in the afternoons, attributes to poor sleep. No orthopnea. No PND. Home glucose readings mostly 120-160 fasting. No hypoglycemia symptoms reported.
+Review of systems: Constitutional: no fever, no weight loss. Eyes: no vision change. ENT: no sore throat. Cardiovascular: no chest pain, no palpitations. Respiratory: no cough, no hemoptysis. GI: no nausea, no melena. GU: no dysuria. MSK: knee stiffness as above. Skin: no rash. Neuro: no focal weakness. Psych: mood good.
+Vitals: BP 143/88 mmHg, HR 67, RR 18, T 36.9 C, SpO2 95% RA, weight 82 kg
+Exam: General: well appearing, no distress. HEENT: normocephalic, oropharynx clear. Neck: supple, no JVD. Lungs: clear to auscultation bilaterally. Heart: regular rate and rhythm, no murmur. Abdomen: soft, non-tender. Extremities: trace bilateral ankle edema. Neuro: alert, oriented.
+Current medications:
+  - metformin 1000 mg PO twice daily
+  - lisinopril 20 mg PO daily
+  - atorvastatin 40 mg PO nightly
+  - aspirin 81 mg PO daily
+  - omeprazole 20 mg PO daily
+  - carvedilol 12.5 mg PO twice daily
+  - spironolactone 25 mg PO daily
+  - furosemide 20 mg PO daily
+Allergies: see allergy list
+Assessment and plan:
+1. Type 2 diabetes: continue metformin 1000 mg twice daily. Recheck HbA1c in 6 months.
+2. Hypertension: continue current regimen. Home BP log encouraged.
+3. Hyperlipidemia: continue atorvastatin.
+4. Knee osteoarthritis: activity as tolerated.
+Follow up in 6 months with labs.
+LAB RESULTS 2023-10-03
+  Sodium 140 mmol/L (135-145)
+  Potassium 5.0 mmol/L (3.5-5.1)
+  Chloride 99 mmol/L
+  CO2 22 mmol/L
+  BUN 22 mg/dL (7-20)
+  Creatinine 1.3 mg/dL (0.5-1.1)
+  eGFR 44 mL/min/1.73m2 (>60)
+  Glucose 168 mg/dL
+  Calcium 9.1 mg/dL
+--- MEDICATION RECONCILIATION 2023-10-03 ---
+Reviewed with patient at pharmacy counter:
+  - metformin 1000 mg PO twice daily: taking as prescribed
+  - lisinopril 20 mg PO daily: taking as prescribed
+  - atorvastatin 40 mg PO nightly: taking as prescribed
+  - aspirin 81 mg PO daily: taking as prescribed
+  - omeprazole 20 mg PO daily: taking as prescribed
+  - carvedilol 12.5 mg PO twice daily: taking as prescribed
+  - spironolactone 25 mg PO daily: taking as prescribed
+  - furosemide 20 mg PO daily: taking as prescribed
+No changes made.
+
+--- PHYSICAL THERAPY NOTE 2023-10-03 ---
+Knee program session 5 of 12. Quadriceps strengthening, gait training, stationary bike 10 minutes. Pain 4/10 after session. Home exercise program updated. Tolerated well.
+
+--- PHYSICAL THERAPY NOTE 2023-10-03 ---
+Knee program session 8 of 12. Quadriceps strengthening, gait training, stationary bike 11 minutes. Pain 3/10 after session. Home exercise program updated. Tolerated well.
+
+--- DIETITIAN NOTE 2023-10-03 ---
+Thirty-minute session on plate method, sodium under 2 g per day and label reading. Typical day reviewed: oatmeal, sandwiches, rice and chicken, fruit. Goal: replace soda with water.
+
+--- DIETITIAN NOTE 2023-10-03 ---
+Thirty-minute session on plate method, sodium under 2 g per day and label reading. Typical day reviewed: oatmeal, sandwiches, rice and chicken, fruit. Goal: walk after dinner.
+
+--- SOCIAL WORK NOTE 2023-10-03 ---
+Lives with husband in a two-story home; drives; volunteers at the library twice weekly. Medicare with supplemental plan. No financial barriers to medications reported. Advance directive on file; healthcare proxy is her daughter.
+
+--- MEDICATION RECONCILIATION 2023-10-03 ---
+Reviewed with patient at pharmacy counter:
+  - metformin 1000 mg PO twice daily: taking as prescribed
+  - lisinopril 20 mg PO daily: taking as prescribed
+  - atorvastatin 40 mg PO nightly: taking as prescribed
+  - aspirin 81 mg PO daily: taking as prescribed
+  - omeprazole 20 mg PO daily: taking as prescribed
+  - carvedilol 12.5 mg PO twice daily: taking as prescribed
+  - spironolactone 25 mg PO daily: taking as prescribed
+  - furosemide 20 mg PO daily: taking as prescribed
+No changes made.
+
+--- MEDICATION RECONCILIATION 2023-10-03 ---
+Reviewed with patient at pharmacy counter:
+  - metformin 1000 mg PO twice daily: taking as prescribed
+  - lisinopril 20 mg PO daily: taking as prescribed
+  - atorvastatin 40 mg PO nightly: taking as prescribed
+  - aspirin 81 mg PO daily: taking as prescribed
+  - omeprazole 20 mg PO daily: taking as prescribed
+  - carvedilol 12.5 mg PO twice daily: taking as prescribed
+  - spironolactone 25 mg PO daily: taking as prescribed
+  - furosemide 20 mg PO daily: taking as prescribed
+No changes made.
+
+--- MEDICATION RECONCILIATION 2023-10-03 ---
+Reviewed with patient at pharmacy counter:
+  - metformin 1000 mg PO twice daily: taking as prescribed
+  - lisinopril 20 mg PO daily: taking as prescribed
+  - atorvastatin 40 mg PO nightly: taking as prescribed
+  - aspirin 81 mg PO daily: taking as prescribed
+  - omeprazole 20 mg PO daily: taking as prescribed
+  - carvedilol 12.5 mg PO twice daily: taking as prescribed
+  - spironolactone 25 mg PO daily: taking as prescribed
+  - furosemide 20 mg PO daily: taking as prescribed
+No changes made.
+
+--- DIETITIAN NOTE 2023-10-03 ---
+Thirty-minute session on plate method, sodium under 2 g per day and label reading. Typical day reviewed: oatmeal, sandwiches, rice and chicken, fruit. Goal: walk after dinner.
+
+--- DIETITIAN NOTE 2023-10-03 ---
+Thirty-minute session on plate method, sodium under 2 g per day and label reading. Typical day reviewed: oatmeal, sandwiches, rice and chicken, fruit. Goal: two vegetable servings at dinner.
+
+--- PHYSICAL THERAPY NOTE 2023-10-03 ---
+Knee program session 8 of 12. Quadriceps strengthening, gait training, stationary bike 11 minutes. Pain 4/10 after session. Home exercise program updated. Tolerated well.
+
+--- SOCIAL WORK NOTE 2023-10-03 ---
+Lives with husband in a two-story home; drives; volunteers at the library twice weekly. Medicare with supplemental plan. No financial barriers to medications reported. Advance directive on file; healthcare proxy is her daughter.
+
+--- PREVENTIVE CARE 2023-10-03 ---
+Mammogram up to date. Colonoscopy 2018 normal, repeat 2028. Diabetic eye exam: no retinopathy. Monofilament exam normal. Pneumococcal and shingles vaccines documented. Depression screen PHQ-2 negative.
+
+--- SOCIAL WORK NOTE 2023-10-03 ---
+Lives with husband in a two-story home; drives; volunteers at the library twice weekly. Medicare with supplemental plan. No financial barriers to medications reported. Advance directive on file; healthcare proxy is her daughter.
+
+--- NURSE TELEPHONE NOTE 2023-10-03 ---
+Called to review home glucose log: fasting 155, post-prandial 165. No hypoglycemia. Reinforced carbohydrate counting and foot care. Patient verbalized understanding.
+
+--- MEDICATION RECONCILIATION 2023-10-03 ---
+Reviewed with patient at pharmacy counter:
+  - metformin 1000 mg PO twice daily: taking as prescribed
+  - lisinopril 20 mg PO daily: taking as prescribed
+  - atorvastatin 40 mg PO nightly: taking as prescribed
+  - aspirin 81 mg PO daily: taking as prescribed
+  - omeprazole 20 mg PO daily: taking as prescribed
+  - carvedilol 12.5 mg PO twice daily: taking as prescribed
+  - spironolactone 25 mg PO daily: taking as prescribed
+  - furosemide 20 mg PO daily: taking as prescribed
+No changes made.
+
+--- PREVENTIVE CARE 2023-10-03 ---
+Mammogram up to date. Colonoscopy 2018 normal, repeat 2028. Diabetic eye exam: no retinopathy. Monofilament exam normal. Pneumococcal and shingles vaccines documented. Depression screen PHQ-2 negative.
+
+--- SOCIAL WORK NOTE 2023-10-03 ---
+Lives with husband in a two-story home; drives; volunteers at the library twice weekly. Medicare with supplemental plan. No financial barriers to medications reported. Advance directive on file; healthcare proxy is her daughter.
+
+--- NURSE TELEPHONE NOTE 2023-10-03 ---
+Called to review home glucose log: fasting 117, post-prandial 208. No hypoglycemia. Reinforced carbohydrate counting and foot care. Patient verbalized understanding.
+
+--- PORTAL MESSAGE 2023-10-03 ---
+Patient asks about refill timing and parking validation. Refills sent for omeprazole 20 mg PO daily. Reminder sent for annual eye exam and foot exam.
+
+--- PORTAL MESSAGE 2023-10-03 ---
+Patient asks about refill timing and parking validation. Refills sent for atorvastatin 40 mg PO nightly. Reminder sent for annual eye exam and foot exam.
+
+--- PORTAL MESSAGE 2023-10-03 ---
+Patient asks about refill timing and parking validation. Refills sent for metformin 1000 mg PO twice daily. Reminder sent for annual eye exam and foot exam.
+
+--- PORTAL MESSAGE 2023-10-03 ---
+Patient asks about refill timing and parking validation. Refills sent for furosemide 20 mg PO daily. Reminder sent for annual eye exam and foot exam.
+
+--- DIETITIAN NOTE 2023-10-03 ---
+Thirty-minute session on plate method, sodium under 2 g per day and label reading. Typical day reviewed: oatmeal, sandwiches, rice and chicken, fruit. Goal: replace soda with water.
+
+--- PREVENTIVE CARE 2023-10-03 ---
+Mammogram up to date. Colonoscopy 2018 normal, repeat 2028. Diabetic eye exam: no retinopathy. Monofilament exam normal. Pneumococcal and shingles vaccines documented. Depression screen PHQ-2 negative.
+
+--- DIETITIAN NOTE 2023-10-03 ---
+Thirty-minute session on plate method, sodium under 2 g per day and label reading. Typical day reviewed: oatmeal, sandwiches, rice and chicken, fruit. Goal: walk after dinner.
+
+--- MEDICATION RECONCILIATION 2023-10-03 ---
+Reviewed with patient at pharmacy counter:
+  - metformin 1000 mg PO twice daily: taking as prescribed
+  - lisinopril 20 mg PO daily: taking as prescribed
+  - atorvastatin 40 mg PO nightly: taking as prescribed
+  - aspirin 81 mg PO daily: taking as prescribed
+  - omeprazole 20 mg PO daily: taking as prescribed
+  - carvedilol 12.5 mg PO twice daily: taking as prescribed
+  - spironolactone 25 mg PO daily: taking as prescribed
+  - furosemide 20 mg PO daily: taking as prescribed
+No changes made.
+
+--- DIETITIAN NOTE 2023-10-03 ---
+Thirty-minute session on plate method, sodium under 2 g per day and label reading. Typical day reviewed: oatmeal, sandwiches, rice and chicken, fruit. Goal: two vegetable servings at dinner.
+
+--- PORTAL MESSAGE 2023-10-03 ---
+Patient asks about refill timing and parking validation. Refills sent for spironolactone 25 mg PO daily. Reminder sent for annual eye exam and foot exam.
+
+--- SOCIAL WORK NOTE 2023-10-03 ---
+Lives with husband in a two-story home; drives; volunteers at the library twice weekly. Medicare with supplemental plan. No financial barriers to medications reported. Advance directive on file; healthcare proxy is her daughter.
+
+--- PORTAL MESSAGE 2023-10-03 ---
+Patient asks about refill timing and parking validation. Refills sent for metformin 1000 mg PO twice daily. Reminder sent for annual eye exam and foot exam.
+
+--- MEDICATION RECONCILIATION 2023-10-03 ---
+Reviewed with patient at pharmacy counter:
+  - metformin 1000 mg PO twice daily: taking as prescribed
+  - lisinopril 20 mg PO daily: taking as prescribed
+  - atorvastatin 40 mg PO nightly: taking as prescribed
+  - aspirin 81 mg PO daily: taking as prescribed
+  - omeprazole 20 mg PO daily: taking as prescribed
+  - carvedilol 12.5 mg PO twice daily: taking as prescribed
+  - spironolactone 25 mg PO daily: taking as prescribed
+  - furosemide 20 mg PO daily: taking as prescribed
+No changes made.
+
+--- NURSE TELEPHONE NOTE 2023-10-03 ---
+Called to review home glucose log: fasting 114, post-prandial 207. No hypoglycemia. Reinforced carbohydrate counting and foot care. Patient verbalized understanding.
+
+--- MEDICATION RECONCILIATION 2023-10-03 ---
+Reviewed with patient at pharmacy counter:
+  - metformin 1000 mg PO twice daily: taking as prescribed
+  - lisinopril 20 mg PO daily: taking as prescribed
+  - atorvastatin 40 mg PO nightly: taking as prescribed
+  - aspirin 81 mg PO daily: taking as prescribed
+  - omeprazole 20 mg PO daily: taking as prescribed
+  - carvedilol 12.5 mg PO twice daily: taking as prescribed
+  - spironolactone 25 mg PO daily: taking as prescribed
+  - furosemide 20 mg PO daily: taking as prescribed
+No changes made.
+
+--- PORTAL MESSAGE 2023-10-03 ---
+Patient asks about refill timing and parking validation. Refills sent for aspirin 81 mg PO daily. Reminder sent for annual eye exam and foot exam.
+
+--- NURSE TELEPHONE NOTE 2023-10-03 ---
+Called to review home glucose log: fasting 122, post-prandial 197. No hypoglycemia. Reinforced carbohydrate counting and foot care. Patient verbalized understanding.
+
+--- PORTAL MESSAGE 2023-10-03 ---
+Patient asks about refill timing and parking validation. Refills sent for spironolactone 25 mg PO daily. Reminder sent for annual eye exam and foot exam.
+
+--- NURSE TELEPHONE NOTE 2023-10-03 ---
+Called to review home glucose log: fasting 158, post-prandial 207. No hypoglycemia. Reinforced carbohydrate counting and foot care. Patient verbalized understanding.
+
+--- PREVENTIVE CARE 2023-10-03 ---
+Mammogram up to date. Colonoscopy 2018 normal, repeat 2028. Diabetic eye exam: no retinopathy. Monofilament exam normal. Pneumococcal and shingles vaccines documented. Depression screen PHQ-2 negative.
+
+=== OFFICE VISIT 2024-03-12 | Primary care | N. Patel, NP (PCP) ===
+Patient: Synthetic Patient 0417 (fictional), female, born 1957-04-02
+HPI: No chest pain, no syncope. Occasional heartburn after large meals, controlled on omeprazole. Feels well. Daughter visiting from out of state. Asked about shingles vaccine.
+Review of systems: Constitutional: no fever, no weight loss. Eyes: no vision change. ENT: no sore throat. Cardiovascular: no chest pain, no palpitations. Respiratory: no cough, no hemoptysis. GI: no nausea, no melena. GU: no dysuria. MSK: knee stiffness as above. Skin: no rash. Neuro: no focal weakness. Psych: mood good.
+Vitals: BP 148/86 mmHg, HR 70, RR 16, T 36.6 C, SpO2 98% RA, weight 86 kg
+Exam: General: well appearing, no distress. HEENT: normocephalic, oropharynx clear. Neck: supple, no JVD. Lungs: clear to auscultation bilaterally. Heart: regular rate and rhythm, no murmur. Abdomen: soft, non-tender. Extremities: trace bilateral ankle edema. Neuro: alert, oriented.
+Current medications:
+  - metformin 1000 mg PO twice daily
+  - lisinopril 20 mg PO daily
+  - atorvastatin 40 mg PO nightly
+  - aspirin 81 mg PO daily
+  - omeprazole 20 mg PO daily
+  - carvedilol 12.5 mg PO twice daily
+  - spironolactone 25 mg PO daily
+  - furosemide 20 mg PO daily
+Allergies: see allergy list
+Assessment and plan:
+1. Type 2 diabetes: continue metformin 1000 mg twice daily. Recheck HbA1c in 6 months.
+2. Hypertension: continue current regimen. Home BP log encouraged.
+3. Hyperlipidemia: continue atorvastatin.
+4. Knee osteoarthritis: activity as tolerated.
+Follow up in 6 months with labs.
+LAB RESULTS 2024-03-12
+  Sodium 138 mmol/L (135-145)
+  Potassium 5.1 mmol/L (3.5-5.1)
+  Chloride 104 mmol/L
+  CO2 25 mmol/L
+  BUN 24 mg/dL (7-20)
+  Creatinine 1.4 mg/dL (0.5-1.1)
+  eGFR 40 mL/min/1.73m2 (>60)
+  Glucose 168 mg/dL
+  Calcium 9.4 mg/dL
+  HbA1c 7.3 %
+  WBC 6.2 K/uL
+  Hemoglobin 12.6 g/dL
+  Platelets 241 K/uL
+  LDL 76 mg/dL
+  ALT 21 U/L
+  TSH 2.4 mIU/L
+--- PORTAL MESSAGE 2024-03-12 ---
+Patient asks about refill timing and parking validation. Refills sent for omeprazole 20 mg PO daily. Reminder sent for annual eye exam and foot exam.
+
+--- DIETITIAN NOTE 2024-03-12 ---
+Thirty-minute session on plate method, sodium under 2 g per day and label reading. Typical day reviewed: oatmeal, sandwiches, rice and chicken, fruit. Goal: walk after dinner.
+
+--- DIETITIAN NOTE 2024-03-12 ---
+Thirty-minute session on plate method, sodium under 2 g per day and label reading. Typical day reviewed: oatmeal, sandwiches, rice and chicken, fruit. Goal: walk after dinner.
+
+--- PORTAL MESSAGE 2024-03-12 ---
+Patient asks about refill timing and parking validation. Refills sent for lisinopril 20 mg PO daily. Reminder sent for annual eye exam and foot exam.
+
+--- PREVENTIVE CARE 2024-03-12 ---
+Mammogram up to date. Colonoscopy 2018 normal, repeat 2028. Diabetic eye exam: no retinopathy. Monofilament exam normal. Pneumococcal and shingles vaccines documented. Depression screen PHQ-2 negative.
+
+--- NURSE TELEPHONE NOTE 2024-03-12 ---
+Called to review home glucose log: fasting 126, post-prandial 208. No hypoglycemia. Reinforced carbohydrate counting and foot care. Patient verbalized understanding.
+
+--- PHYSICAL THERAPY NOTE 2024-03-12 ---
+Knee program session 7 of 12. Quadriceps strengthening, gait training, stationary bike 12 minutes. Pain 2/10 after session. Home exercise program updated. Tolerated well.
+
+--- PORTAL MESSAGE 2024-03-12 ---
+Patient asks about refill timing and parking validation. Refills sent for omeprazole 20 mg PO daily. Reminder sent for annual eye exam and foot exam.
+
+--- DIETITIAN NOTE 2024-03-12 ---
+Thirty-minute session on plate method, sodium under 2 g per day and label reading. Typical day reviewed: oatmeal, sandwiches, rice and chicken, fruit. Goal: replace soda with water.
+
+--- PORTAL MESSAGE 2024-03-12 ---
+Patient asks about refill timing and parking validation. Refills sent for spironolactone 25 mg PO daily. Reminder sent for annual eye exam and foot exam.
+
+--- MEDICATION RECONCILIATION 2024-03-12 ---
+Reviewed with patient at pharmacy counter:
+  - metformin 1000 mg PO twice daily: taking as prescribed
+  - lisinopril 20 mg PO daily: taking as prescribed
+  - atorvastatin 40 mg PO nightly: taking as prescribed
+  - aspirin 81 mg PO daily: taking as prescribed
+  - omeprazole 20 mg PO daily: taking as prescribed
+  - carvedilol 12.5 mg PO twice daily: taking as prescribed
+  - spironolactone 25 mg PO daily: taking as prescribed
+  - furosemide 20 mg PO daily: taking as prescribed
+No changes made.
+
+--- PREVENTIVE CARE 2024-03-12 ---
+Mammogram up to date. Colonoscopy 2018 normal, repeat 2028. Diabetic eye exam: no retinopathy. Monofilament exam normal. Pneumococcal and shingles vaccines documented. Depression screen PHQ-2 negative.
+
+--- PREVENTIVE CARE 2024-03-12 ---
+Mammogram up to date. Colonoscopy 2018 normal, repeat 2028. Diabetic eye exam: no retinopathy. Monofilament exam normal. Pneumococcal and shingles vaccines documented. Depression screen PHQ-2 negative.
+
+--- DIETITIAN NOTE 2024-03-12 ---
+Thirty-minute session on plate method, sodium under 2 g per day and label reading. Typical day reviewed: oatmeal, sandwiches, rice and chicken, fruit. Goal: replace soda with water.
+
+--- NURSE TELEPHONE NOTE 2024-03-12 ---
+Called to review home glucose log: fasting 118, post-prandial 189. No hypoglycemia. Reinforced carbohydrate counting and foot care. Patient verbalized understanding.
+
+--- PHYSICAL THERAPY NOTE 2024-03-12 ---
+Knee program session 10 of 12. Quadriceps strengthening, gait training, stationary bike 15 minutes. Pain 3/10 after session. Home exercise program updated. Tolerated well.
+
+--- SOCIAL WORK NOTE 2024-03-12 ---
+Lives with husband in a two-story home; drives; volunteers at the library twice weekly. Medicare with supplemental plan. No financial barriers to medications reported. Advance directive on file; healthcare proxy is her daughter.
+
+--- PHYSICAL THERAPY NOTE 2024-03-12 ---
+Knee program session 7 of 12. Quadriceps strengthening, gait training, stationary bike 9 minutes. Pain 4/10 after session. Home exercise program updated. Tolerated well.
+
+--- SOCIAL WORK NOTE 2024-03-12 ---
+Lives with husband in a two-story home; drives; volunteers at the library twice weekly. Medicare with supplemental plan. No financial barriers to medications reported. Advance directive on file; healthcare proxy is her daughter.
+
+--- MEDICATION RECONCILIATION 2024-03-12 ---
+Reviewed with patient at pharmacy counter:
+  - metformin 1000 mg PO twice daily: taking as prescribed
+  - lisinopril 20 mg PO daily: taking as prescribed
+  - atorvastatin 40 mg PO nightly: taking as prescribed
+  - aspirin 81 mg PO daily: taking as prescribed
+  - omeprazole 20 mg PO daily: taking as prescribed
+  - carvedilol 12.5 mg PO twice daily: taking as prescribed
+  - spironolactone 25 mg PO daily: taking as prescribed
+  - furosemide 20 mg PO daily: taking as prescribed
+No changes made.
+
+--- NURSE TELEPHONE NOTE 2024-03-12 ---
+Called to review home glucose log: fasting 153, post-prandial 189. No hypoglycemia. Reinforced carbohydrate counting and foot care. Patient verbalized understanding.
+
+--- DIETITIAN NOTE 2024-03-12 ---
+Thirty-minute session on plate method, sodium under 2 g per day and label reading. Typical day reviewed: oatmeal, sandwiches, rice and chicken, fruit. Goal: replace soda with water.
+
+--- DIETITIAN NOTE 2024-03-12 ---
+Thirty-minute session on plate method, sodium under 2 g per day and label reading. Typical day reviewed: oatmeal, sandwiches, rice and chicken, fruit. Goal: two vegetable servings at dinner.
+
+--- SOCIAL WORK NOTE 2024-03-12 ---
+Lives with husband in a two-story home; drives; volunteers at the library twice weekly. Medicare with supplemental plan. No financial barriers to medications reported. Advance directive on file; healthcare proxy is her daughter.
+
+--- PORTAL MESSAGE 2024-03-12 ---
+Patient asks about refill timing and parking validation. Refills sent for furosemide 20 mg PO daily. Reminder sent for annual eye exam and foot exam.
+
+--- PREVENTIVE CARE 2024-03-12 ---
+Mammogram ordered. Colonoscopy 2018 normal, repeat 2028. Diabetic eye exam: no retinopathy. Monofilament exam normal. Pneumococcal and shingles vaccines documented. Depression screen PHQ-2 negative.
+
+--- PORTAL MESSAGE 2024-03-12 ---
+Patient asks about refill timing and parking validation. Refills sent for omeprazole 20 mg PO daily. Reminder sent for annual eye exam and foot exam.
+
+--- DIETITIAN NOTE 2024-03-12 ---
+Thirty-minute session on plate method, sodium under 2 g per day and label reading. Typical day reviewed: oatmeal, sandwiches, rice and chicken, fruit. Goal: replace soda with water.
+
+--- MEDICATION RECONCILIATION 2024-03-12 ---
+Reviewed with patient at pharmacy counter:
+  - metformin 1000 mg PO twice daily: taking as prescribed
+  - lisinopril 20 mg PO daily: taking as prescribed
+  - atorvastatin 40 mg PO nightly: taking as prescribed
+  - aspirin 81 mg PO daily: taking as prescribed
+  - omeprazole 20 mg PO daily: taking as prescribed
+  - carvedilol 12.5 mg PO twice daily: taking as prescribed
+  - spironolactone 25 mg PO daily: taking as prescribed
+  - furosemide 20 mg PO daily: taking as prescribed
+No changes made.
+
+--- PORTAL MESSAGE 2024-03-12 ---
+Patient asks about refill timing and parking validation. Refills sent for aspirin 81 mg PO daily. Reminder sent for annual eye exam and foot exam.
+
+--- PHYSICAL THERAPY NOTE 2024-03-12 ---
+Knee program session 5 of 12. Quadriceps strengthening, gait training, stationary bike 15 minutes. Pain 2/10 after session. Home exercise program updated. Tolerated well.
+
+--- MEDICATION RECONCILIATION 2024-03-12 ---
+Reviewed with patient at pharmacy counter:
+  - metformin 1000 mg PO twice daily: taking as prescribed
+  - lisinopril 20 mg PO daily: taking as prescribed
+  - atorvastatin 40 mg PO nightly: taking as prescribed
+  - aspirin 81 mg PO daily: taking as prescribed
+  - omeprazole 20 mg PO daily: taking as prescribed
+  - carvedilol 12.5 mg PO twice daily: taking as prescribed
+  - spironolactone 25 mg PO daily: taking as prescribed
+  - furosemide 20 mg PO daily: taking as prescribed
+No changes made.
+
+--- DIETITIAN NOTE 2024-03-12 ---
+Thirty-minute session on plate method, sodium under 2 g per day and label reading. Typical day reviewed: oatmeal, sandwiches, rice and chicken, fruit. Goal: two vegetable servings at dinner.
+
+--- PORTAL MESSAGE 2024-03-12 ---
+Patient asks about refill timing and parking validation. Refills sent for atorvastatin 40 mg PO nightly. Reminder sent for annual eye exam and foot exam.
+
+--- NURSE TELEPHONE NOTE 2024-03-12 ---
+Called to review home glucose log: fasting 135, post-prandial 169. No hypoglycemia. Reinforced carbohydrate counting and foot care. Patient verbalized understanding.
+
+--- PREVENTIVE CARE 2024-03-12 ---
+Mammogram up to date. Colonoscopy 2018 normal, repeat 2028. Diabetic eye exam: no retinopathy. Monofilament exam normal. Pneumococcal and shingles vaccines documented. Depression screen PHQ-2 negative.
+
+--- PHYSICAL THERAPY NOTE 2024-03-12 ---
+Knee program session 9 of 12. Quadriceps strengthening, gait training, stationary bike 12 minutes. Pain 4/10 after session. Home exercise program updated. Tolerated well.
+
+--- DIETITIAN NOTE 2024-03-12 ---
+Thirty-minute session on plate method, sodium under 2 g per day and label reading. Typical day reviewed: oatmeal, sandwiches, rice and chicken, fruit. Goal: replace soda with water.
+
+--- DIETITIAN NOTE 2024-03-12 ---
+Thirty-minute session on plate method, sodium under 2 g per day and label reading. Typical day reviewed: oatmeal, sandwiches, rice and chicken, fruit. Goal: walk after dinner.
+
+--- PORTAL MESSAGE 2024-03-12 ---
+Patient asks about refill timing and parking validation. Refills sent for lisinopril 20 mg PO daily. Reminder sent for annual eye exam and foot exam.
+
+=== OFFICE VISIT 2024-09-24 | Primary care | N. Patel, NP (PCP) ===
+Patient: Synthetic Patient 0417 (fictional), female, born 1957-04-02
+HPI: Reports good adherence to medications. Walking 20 minutes most days. Diet reviewed; trying to reduce portion sizes. Feels well. Daughter visiting from out of state. Asked about shingles vaccine.
+Review of systems: Constitutional: no fever, no weight loss. Eyes: no vision change. ENT: no sore throat. Cardiovascular: no chest pain, no palpitations. Respiratory: no cough, no hemoptysis. GI: no nausea, no melena. GU: no dysuria. MSK: knee stiffness as above. Skin: no rash. Neuro: no focal weakness. Psych: mood good.
+Vitals: BP 136/77 mmHg, HR 74, RR 15, T 36.8 C, SpO2 98% RA, weight 83 kg
+Exam: General: well appearing, no distress. HEENT: normocephalic, oropharynx clear. Neck: supple, no JVD. Lungs: clear to auscultation bilaterally. Heart: regular rate and rhythm, no murmur. Abdomen: soft, non-tender. Extremities: trace bilateral ankle edema. Neuro: alert, oriented.
+Current medications:
+  - metformin 1000 mg PO twice daily
+  - lisinopril 20 mg PO daily
+  - atorvastatin 40 mg PO nightly
+  - aspirin 81 mg PO daily
+  - omeprazole 20 mg PO daily
+  - carvedilol 12.5 mg PO twice daily
+  - spironolactone 25 mg PO daily
+  - furosemide 20 mg PO daily
+Allergies: see allergy list
+Assessment and plan:
+1. Type 2 diabetes: continue metformin 1000 mg twice daily. Recheck HbA1c in 6 months.
+2. Hypertension: continue current regimen. Home BP log encouraged.
+3. Hyperlipidemia: continue atorvastatin.
+4. Knee osteoarthritis: activity as tolerated.
+Follow up in 6 months with labs.
+LAB RESULTS 2024-09-24
+  Sodium 139 mmol/L (135-145)
+  Potassium 5.2 mmol/L (3.5-5.1)
+  Chloride 105 mmol/L
+  CO2 26 mmol/L
+  BUN 27 mg/dL (7-20)
+  Creatinine 1.5 mg/dL (0.5-1.1)
+  eGFR 37 mL/min/1.73m2 (>60)
+  Glucose 135 mg/dL
+  Calcium 9.1 mg/dL
+--- PREVENTIVE CARE 2024-09-24 ---
+Mammogram up to date. Colonoscopy 2018 normal, repeat 2028. Diabetic eye exam: no retinopathy. Monofilament exam normal. Pneumococcal and shingles vaccines documented. Depression screen PHQ-2 negative.
+
+--- PREVENTIVE CARE 2024-09-24 ---
+Mammogram up to date. Colonoscopy 2018 normal, repeat 2028. Diabetic eye exam: no retinopathy. Monofilament exam normal. Pneumococcal and shingles vaccines documented. Depression screen PHQ-2 negative.
+
+--- PHYSICAL THERAPY NOTE 2024-09-24 ---
+Knee program session 5 of 12. Quadriceps strengthening, gait training, stationary bike 8 minutes. Pain 3/10 after session. Home exercise program updated. Tolerated well.
+
+--- MEDICATION RECONCILIATION 2024-09-24 ---
+Reviewed with patient at pharmacy counter:
+  - metformin 1000 mg PO twice daily: taking as prescribed
+  - lisinopril 20 mg PO daily: taking as prescribed
+  - atorvastatin 40 mg PO nightly: taking as prescribed
+  - aspirin 81 mg PO daily: taking as prescribed
+  - omeprazole 20 mg PO daily: taking as prescribed
+  - carvedilol 12.5 mg PO twice daily: taking as prescribed
+  - spironolactone 25 mg PO daily: taking as prescribed
+  - furosemide 20 mg PO daily: taking as prescribed
+No changes made.
+
+--- MEDICATION RECONCILIATION 2024-09-24 ---
+Reviewed with patient at pharmacy counter:
+  - metformin 1000 mg PO twice daily: taking as prescribed
+  - lisinopril 20 mg PO daily: taking as prescribed
+  - atorvastatin 40 mg PO nightly: taking as prescribed
+  - aspirin 81 mg PO daily: taking as prescribed
+  - omeprazole 20 mg PO daily: taking as prescribed
+  - carvedilol 12.5 mg PO twice daily: taking as prescribed
+  - spironolactone 25 mg PO daily: taking as prescribed
+  - furosemide 20 mg PO daily: taking as prescribed
+No changes made.
+
+--- PORTAL MESSAGE 2024-09-24 ---
+Patient asks about refill timing and parking validation. Refills sent for metformin 1000 mg PO twice daily. Reminder sent for annual eye exam and foot exam.
+
+--- NURSE TELEPHONE NOTE 2024-09-24 ---
+Called to review home glucose log: fasting 138, post-prandial 154. No hypoglycemia. Reinforced carbohydrate counting and foot care. Patient verbalized understanding.
+
+--- PHYSICAL THERAPY NOTE 2024-09-24 ---
+Knee program session 5 of 12. Quadriceps strengthening, gait training, stationary bike 14 minutes. Pain 5/10 after session. Home exercise program updated. Tolerated well.
+
+--- MEDICATION RECONCILIATION 2024-09-24 ---
+Reviewed with patient at pharmacy counter:
+  - metformin 1000 mg PO twice daily: taking as prescribed
+  - lisinopril 20 mg PO daily: taking as prescribed
+  - atorvastatin 40 mg PO nightly: taking as prescribed
+  - aspirin 81 mg PO daily: taking as prescribed
+  - omeprazole 20 mg PO daily: taking as prescribed
+  - carvedilol 12.5 mg PO twice daily: taking as prescribed
+  - spironolactone 25 mg PO daily: taking as prescribed
+  - furosemide 20 mg PO daily: taking as prescribed
+No changes made.
+
+--- SOCIAL WORK NOTE 2024-09-24 ---
+Lives with husband in a two-story home; drives; volunteers at the library twice weekly. Medicare with supplemental plan. No financial barriers to medications reported. Advance directive on file; healthcare proxy is her daughter.
+
+--- PORTAL MESSAGE 2024-09-24 ---
+Patient asks about refill timing and parking validation. Refills sent for lisinopril 20 mg PO daily. Reminder sent for annual eye exam and foot exam.
+
+--- NURSE TELEPHONE NOTE 2024-09-24 ---
+Called to review home glucose log: fasting 137, post-prandial 178. No hypoglycemia. Reinforced carbohydrate counting and foot care. Patient verbalized understanding.
+
+--- PORTAL MESSAGE 2024-09-24 ---
+Patient asks about refill timing and parking validation. Refills sent for furosemide 20 mg PO daily. Reminder sent for annual eye exam and foot exam.
+
+--- PREVENTIVE CARE 2024-09-24 ---
+Mammogram ordered. Colonoscopy 2018 normal, repeat 2028. Diabetic eye exam: no retinopathy. Monofilament exam normal. Pneumococcal and shingles vaccines documented. Depression screen PHQ-2 negative.
+
+--- SOCIAL WORK NOTE 2024-09-24 ---
+Lives with husband in a two-story home; drives; volunteers at the library twice weekly. Medicare with supplemental plan. No financial barriers to medications reported. Advance directive on file; healthcare proxy is her daughter.
+
+--- DIETITIAN NOTE 2024-09-24 ---
+Thirty-minute session on plate method, sodium under 2 g per day and label reading. Typical day reviewed: oatmeal, sandwiches, rice and chicken, fruit. Goal: two vegetable servings at dinner.
+
+--- NURSE TELEPHONE NOTE 2024-09-24 ---
+Called to review home glucose log: fasting 147, post-prandial 193. No hypoglycemia. Reinforced carbohydrate counting and foot care. Patient verbalized understanding.
+
+--- NURSE TELEPHONE NOTE 2024-09-24 ---
+Called to review home glucose log: fasting 127, post-prandial 172. No hypoglycemia. Reinforced carbohydrate counting and foot care. Patient verbalized understanding.
+
+--- PREVENTIVE CARE 2024-09-24 ---
+Mammogram up to date. Colonoscopy 2018 normal, repeat 2028. Diabetic eye exam: no retinopathy. Monofilament exam normal. Pneumococcal and shingles vaccines documented. Depression screen PHQ-2 negative.
+
+--- SOCIAL WORK NOTE 2024-09-24 ---
+Lives with husband in a two-story home; drives; volunteers at the library twice weekly. Medicare with supplemental plan. No financial barriers to medications reported. Advance directive on file; healthcare proxy is her daughter.
+
+--- NURSE TELEPHONE NOTE 2024-09-24 ---
+Called to review home glucose log: fasting 141, post-prandial 166. No hypoglycemia. Reinforced carbohydrate counting and foot care. Patient verbalized understanding.
+
+--- MEDICATION RECONCILIATION 2024-09-24 ---
+Reviewed with patient at pharmacy counter:
+  - metformin 1000 mg PO twice daily: taking as prescribed
+  - lisinopril 20 mg PO daily: taking as prescribed
+  - atorvastatin 40 mg PO nightly: taking as prescribed
+  - aspirin 81 mg PO daily: taking as prescribed
+  - omeprazole 20 mg PO daily: taking as prescribed
+  - carvedilol 12.5 mg PO twice daily: taking as prescribed
+  - spironolactone 25 mg PO daily: taking as prescribed
+  - furosemide 20 mg PO daily: taking as prescribed
+No changes made.
+
+--- PORTAL MESSAGE 2024-09-24 ---
+Patient asks about refill timing and parking validation. Refills sent for omeprazole 20 mg PO daily. Reminder sent for annual eye exam and foot exam.
+
+--- PHYSICAL THERAPY NOTE 2024-09-24 ---
+Knee program session 10 of 12. Quadriceps strengthening, gait training, stationary bike 9 minutes. Pain 2/10 after session. Home exercise program updated. Tolerated well.
+
+--- SOCIAL WORK NOTE 2024-09-24 ---
+Lives with husband in a two-story home; drives; volunteers at the library twice weekly. Medicare with supplemental plan. No financial barriers to medications reported. Advance directive on file; healthcare proxy is her daughter.
+
+--- NURSE TELEPHONE NOTE 2024-09-24 ---
+Called to review home glucose log: fasting 155, post-prandial 157. No hypoglycemia. Reinforced carbohydrate counting and foot care. Patient verbalized understanding.
+
+--- MEDICATION RECONCILIATION 2024-09-24 ---
+Reviewed with patient at pharmacy counter:
+  - metformin 1000 mg PO twice daily: taking as prescribed
+  - lisinopril 20 mg PO daily: taking as prescribed
+  - atorvastatin 40 mg PO nightly: taking as prescribed
+  - aspirin 81 mg PO daily: taking as prescribed
+  - omeprazole 20 mg PO daily: taking as prescribed
+  - carvedilol 12.5 mg PO twice daily: taking as prescribed
+  - spironolactone 25 mg PO daily: taking as prescribed
+  - furosemide 20 mg PO daily: taking as prescribed
+No changes made.
+
+--- DIETITIAN NOTE 2024-09-24 ---
+Thirty-minute session on plate method, sodium under 2 g per day and label reading. Typical day reviewed: oatmeal, sandwiches, rice and chicken, fruit. Goal: two vegetable servings at dinner.
+
+--- NURSE TELEPHONE NOTE 2024-09-24 ---
+Called to review home glucose log: fasting 155, post-prandial 169. No hypoglycemia. Reinforced carbohydrate counting and foot care. Patient verbalized understanding.
+
+--- NURSE TELEPHONE NOTE 2024-09-24 ---
+Called to review home glucose log: fasting 132, post-prandial 160. No hypoglycemia. Reinforced carbohydrate counting and foot care. Patient verbalized understanding.
+
+--- NURSE TELEPHONE NOTE 2024-09-24 ---
+Called to review home glucose log: fasting 118, post-prandial 209. No hypoglycemia. Reinforced carbohydrate counting and foot care. Patient verbalized understanding.
+
+--- PREVENTIVE CARE 2024-09-24 ---
+Mammogram up to date. Colonoscopy 2018 normal, repeat 2028. Diabetic eye exam: no retinopathy. Monofilament exam normal. Pneumococcal and shingles vaccines documented. Depression screen PHQ-2 negative.
+
+--- PORTAL MESSAGE 2024-09-24 ---
+Patient asks about refill timing and parking validation. Refills sent for spironolactone 25 mg PO daily. Reminder sent for annual eye exam and foot exam.
+
+--- DIETITIAN NOTE 2024-09-24 ---
+Thirty-minute session on plate method, sodium under 2 g per day and label reading. Typical day reviewed: oatmeal, sandwiches, rice and chicken, fruit. Goal: two vegetable servings at dinner.
+
+--- NURSE TELEPHONE NOTE 2024-09-24 ---
+Called to review home glucose log: fasting 135, post-prandial 206. No hypoglycemia. Reinforced carbohydrate counting and foot care. Patient verbalized understanding.
+
+--- SOCIAL WORK NOTE 2024-09-24 ---
+Lives with husband in a two-story home; drives; volunteers at the library twice weekly. Medicare with supplemental plan. No financial barriers to medications reported. Advance directive on file; healthcare proxy is her daughter.
+
+--- DIETITIAN NOTE 2024-09-24 ---
+Thirty-minute session on plate method, sodium under 2 g per day and label reading. Typical day reviewed: oatmeal, sandwiches, rice and chicken, fruit. Goal: two vegetable servings at dinner.
+
+--- DIETITIAN NOTE 2024-09-24 ---
+Thirty-minute session on plate method, sodium under 2 g per day and label reading. Typical day reviewed: oatmeal, sandwiches, rice and chicken, fruit. Goal: walk after dinner.
+
+--- NURSE TELEPHONE NOTE 2024-09-24 ---
+Called to review home glucose log: fasting 133, post-prandial 167. No hypoglycemia. Reinforced carbohydrate counting and foot care. Patient verbalized understanding.
+
+--- DIETITIAN NOTE 2024-09-24 ---
+Thirty-minute session on plate method, sodium under 2 g per day and label reading. Typical day reviewed: oatmeal, sandwiches, rice and chicken, fruit. Goal: walk after dinner.
+
+=== ORTHOPEDICS VISIT 2024-11-12 ===
+Bilateral knee osteoarthritis, worse on the right. X-ray: moderate medial compartment narrowing. Plan: start ibuprofen 600 mg three times daily with food, physical therapy referral, consider steroid injection if no improvement.
+
+=== OFFICE VISIT 2025-01-28 | Primary care | N. Patel, NP (PCP) ===
+Patient: Synthetic Patient 0417 (fictional), female, born 1957-04-02
+HPI: Some fatigue in the afternoons, attributes to poor sleep. No orthopnea. No PND. Home glucose readings mostly 120-160 fasting. No hypoglycemia symptoms reported.
+Review of systems: Constitutional: no fever, no weight loss. Eyes: no vision change. ENT: no sore throat. Cardiovascular: no chest pain, no palpitations. Respiratory: no cough, no hemoptysis. GI: no nausea, no melena. GU: no dysuria. MSK: knee stiffness as above. Skin: no rash. Neuro: no focal weakness. Psych: mood good.
+Vitals: BP 137/77 mmHg, HR 80, RR 15, T 36.8 C, SpO2 95% RA, weight 86 kg
+Exam: General: well appearing, no distress. HEENT: normocephalic, oropharynx clear. Neck: supple, no JVD. Lungs: clear to auscultation bilaterally. Heart: regular rate and rhythm, no murmur. Abdomen: soft, non-tender. Extremities: trace bilateral ankle edema. Neuro: alert, oriented.
+Current medications:
+  - metformin 1000 mg PO twice daily
+  - lisinopril 20 mg PO daily
+  - atorvastatin 40 mg PO nightly
+  - aspirin 81 mg PO daily
+  - omeprazole 20 mg PO daily
+  - carvedilol 12.5 mg PO twice daily
+  - spironolactone 25 mg PO daily
+  - furosemide 20 mg PO daily
+  - ibuprofen 600 mg PO three times daily
+Allergies: see allergy list
+Assessment and plan:
+1. Type 2 diabetes: continue metformin 1000 mg twice daily. Recheck HbA1c in 6 months.
+2. Hypertension: continue current regimen. Home BP log encouraged.
+3. Hyperlipidemia: continue atorvastatin.
+4. Knee osteoarthritis: activity as tolerated.
+Follow up in 6 months with labs.
+LAB RESULTS 2025-01-28
+  Sodium 137 mmol/L (135-145)
+  Potassium 5.6 mmol/L (3.5-5.1)
+  Chloride 103 mmol/L
+  CO2 23 mmol/L
+  BUN 34 mg/dL (7-20)
+  Creatinine 1.8 mg/dL (0.5-1.1)
+  eGFR 30 mL/min/1.73m2 (>60)
+  Glucose 168 mg/dL
+  Calcium 9.4 mg/dL
+  HbA1c 7.6 %
+  WBC 6.2 K/uL
+  Hemoglobin 12.6 g/dL
+  Platelets 240 K/uL
+  LDL 75 mg/dL
+  ALT 28 U/L
+  TSH 2.1 mIU/L
+--- NURSE TELEPHONE NOTE 2025-01-28 ---
+Called to review home glucose log: fasting 135, post-prandial 179. No hypoglycemia. Reinforced carbohydrate counting and foot care. Patient verbalized understanding.
+
+--- DIETITIAN NOTE 2025-01-28 ---
+Thirty-minute session on plate method, sodium under 2 g per day and label reading. Typical day reviewed: oatmeal, sandwiches, rice and chicken, fruit. Goal: walk after dinner.
+
+--- SOCIAL WORK NOTE 2025-01-28 ---
+Lives with husband in a two-story home; drives; volunteers at the library twice weekly. Medicare with supplemental plan. No financial barriers to medications reported. Advance directive on file; healthcare proxy is her daughter.
+
+--- MEDICATION RECONCILIATION 2025-01-28 ---
+Reviewed with patient at pharmacy counter:
+  - metformin 1000 mg PO twice daily: taking as prescribed
+  - lisinopril 20 mg PO daily: taking as prescribed
+  - atorvastatin 40 mg PO nightly: taking as prescribed
+  - aspirin 81 mg PO daily: taking as prescribed
+  - omeprazole 20 mg PO daily: taking as prescribed
+  - carvedilol 12.5 mg PO twice daily: taking as prescribed
+  - spironolactone 25 mg PO daily: taking as prescribed
+  - furosemide 20 mg PO daily: taking as prescribed
+  - ibuprofen 600 mg PO three times daily: taking as prescribed
+No changes made.
+
+--- MEDICATION RECONCILIATION 2025-01-28 ---
+Reviewed with patient at pharmacy counter:
+  - metformin 1000 mg PO twice daily: taking as prescribed
+  - lisinopril 20 mg PO daily: taking as prescribed
+  - atorvastatin 40 mg PO nightly: taking as prescribed
+  - aspirin 81 mg PO daily: taking as prescribed
+  - omeprazole 20 mg PO daily: taking as prescribed
+  - carvedilol 12.5 mg PO twice daily: taking as prescribed
+  - spironolactone 25 mg PO daily: taking as prescribed
+  - furosemide 20 mg PO daily: taking as prescribed
+  - ibuprofen 600 mg PO three times daily: taking as prescribed
+No changes made.
+
+--- PHYSICAL THERAPY NOTE 2025-01-28 ---
+Knee program session 6 of 12. Quadriceps strengthening, gait training, stationary bike 14 minutes. Pain 4/10 after session. Home exercise program updated. Tolerated well.
+
+--- PHYSICAL THERAPY NOTE 2025-01-28 ---
+Knee program session 11 of 12. Quadriceps strengthening, gait training, stationary bike 14 minutes. Pain 3/10 after session. Home exercise program updated. Tolerated well.
+
+--- PHYSICAL THERAPY NOTE 2025-01-28 ---
+Knee program session 5 of 12. Quadriceps strengthening, gait training, stationary bike 15 minutes. Pain 2/10 after session. Home exercise program updated. Tolerated well.
+
+--- PREVENTIVE CARE 2025-01-28 ---
+Mammogram up to date. Colonoscopy 2018 normal, repeat 2028. Diabetic eye exam: no retinopathy. Monofilament exam normal. Pneumococcal and shingles vaccines documented. Depression screen PHQ-2 negative.
+
+--- SOCIAL WORK NOTE 2025-01-28 ---
+Lives with husband in a two-story home; drives; volunteers at the library twice weekly. Medicare with supplemental plan. No financial barriers to medications reported. Advance directive on file; healthcare proxy is her daughter.
+
+--- PHYSICAL THERAPY NOTE 2025-01-28 ---
+Knee program session 5 of 12. Quadriceps strengthening, gait training, stationary bike 8 minutes. Pain 5/10 after session. Home exercise program updated. Tolerated well.
+
+--- SOCIAL WORK NOTE 2025-01-28 ---
+Lives with husband in a two-story home; drives; volunteers at the library twice weekly. Medicare with supplemental plan. No financial barriers to medications reported. Advance directive on file; healthcare proxy is her daughter.
+
+--- PREVENTIVE CARE 2025-01-28 ---
+Mammogram up to date. Colonoscopy 2018 normal, repeat 2028. Diabetic eye exam: no retinopathy. Monofilament exam normal. Pneumococcal and shingles vaccines documented. Depression screen PHQ-2 negative.
+
+--- PHYSICAL THERAPY NOTE 2025-01-28 ---
+Knee program session 7 of 12. Quadriceps strengthening, gait training, stationary bike 12 minutes. Pain 3/10 after session. Home exercise program updated. Tolerated well.
+
+--- NURSE TELEPHONE NOTE 2025-01-28 ---
+Called to review home glucose log: fasting 142, post-prandial 195. No hypoglycemia. Reinforced carbohydrate counting and foot care. Patient verbalized understanding.
+
+--- PREVENTIVE CARE 2025-01-28 ---
+Mammogram up to date. Colonoscopy 2018 normal, repeat 2028. Diabetic eye exam: no retinopathy. Monofilament exam normal. Pneumococcal and shingles vaccines documented. Depression screen PHQ-2 negative.
+
+--- MEDICATION RECONCILIATION 2025-01-28 ---
+Reviewed with patient at pharmacy counter:
+  - metformin 1000 mg PO twice daily: taking as prescribed
+  - lisinopril 20 mg PO daily: taking as prescribed
+  - atorvastatin 40 mg PO nightly: taking as prescribed
+  - aspirin 81 mg PO daily: taking as prescribed
+  - omeprazole 20 mg PO daily: taking as prescribed
+  - carvedilol 12.5 mg PO twice daily: taking as prescribed
+  - spironolactone 25 mg PO daily: taking as prescribed
+  - furosemide 20 mg PO daily: taking as prescribed
+  - ibuprofen 600 mg PO three times daily: taking as prescribed
+No changes made.
+
+--- PREVENTIVE CARE 2025-01-28 ---
+Mammogram ordered. Colonoscopy 2018 normal, repeat 2028. Diabetic eye exam: no retinopathy. Monofilament exam normal. Pneumococcal and shingles vaccines documented. Depression screen PHQ-2 negative.
+
+--- MEDICATION RECONCILIATION 2025-01-28 ---
+Reviewed with patient at pharmacy counter:
+  - metformin 1000 mg PO twice daily: taking as prescribed
+  - lisinopril 20 mg PO daily: taking as prescribed
+  - atorvastatin 40 mg PO nightly: taking as prescribed
+  - aspirin 81 mg PO daily: taking as prescribed
+  - omeprazole 20 mg PO daily: taking as prescribed
+  - carvedilol 12.5 mg PO twice daily: taking as prescribed
+  - spironolactone 25 mg PO daily: taking as prescribed
+  - furosemide 20 mg PO daily: taking as prescribed
+  - ibuprofen 600 mg PO three times daily: taking as prescribed
+No changes made.
+
+--- NURSE TELEPHONE NOTE 2025-01-28 ---
+Called to review home glucose log: fasting 147, post-prandial 163. No hypoglycemia. Reinforced carbohydrate counting and foot care. Patient verbalized understanding.
+
+--- PORTAL MESSAGE 2025-01-28 ---
+Patient asks about refill timing and parking validation. Refills sent for carvedilol 12.5 mg PO twice daily. Reminder sent for annual eye exam and foot exam.
+
+--- DIETITIAN NOTE 2025-01-28 ---
+Thirty-minute session on plate method, sodium under 2 g per day and label reading. Typical day reviewed: oatmeal, sandwiches, rice and chicken, fruit. Goal: walk after dinner.
+
+--- DIETITIAN NOTE 2025-01-28 ---
+Thirty-minute session on plate method, sodium under 2 g per day and label reading. Typical day reviewed: oatmeal, sandwiches, rice and chicken, fruit. Goal: walk after dinner.
+
+--- NURSE TELEPHONE NOTE 2025-01-28 ---
+Called to review home glucose log: fasting 138, post-prandial 198. No hypoglycemia. Reinforced carbohydrate counting and foot care. Patient verbalized understanding.
+
+--- PREVENTIVE CARE 2025-01-28 ---
+Mammogram ordered. Colonoscopy 2018 normal, repeat 2028. Diabetic eye exam: no retinopathy. Monofilament exam normal. Pneumococcal and shingles vaccines documented. Depression screen PHQ-2 negative.
+
+--- DIETITIAN NOTE 2025-01-28 ---
+Thirty-minute session on plate method, sodium under 2 g per day and label reading. Typical day reviewed: oatmeal, sandwiches, rice and chicken, fruit. Goal: two vegetable servings at dinner.
+
+--- PORTAL MESSAGE 2025-01-28 ---
+Patient asks about refill timing and parking validation. Refills sent for metformin 1000 mg PO twice daily. Reminder sent for annual eye exam and foot exam.
+
+--- PHYSICAL THERAPY NOTE 2025-01-28 ---
+Knee program session 2 of 12. Quadriceps strengthening, gait training, stationary bike 13 minutes. Pain 5/10 after session. Home exercise program updated. Tolerated well.
+
+--- PORTAL MESSAGE 2025-01-28 ---
+Patient asks about refill timing and parking validation. Refills sent for metformin 1000 mg PO twice daily. Reminder sent for annual eye exam and foot exam.
+
+--- PREVENTIVE CARE 2025-01-28 ---
+Mammogram ordered. Colonoscopy 2018 normal, repeat 2028. Diabetic eye exam: no retinopathy. Monofilament exam normal. Pneumococcal and shingles vaccines documented. Depression screen PHQ-2 negative.
+
+--- DIETITIAN NOTE 2025-01-28 ---
+Thirty-minute session on plate method, sodium under 2 g per day and label reading. Typical day reviewed: oatmeal, sandwiches, rice and chicken, fruit. Goal: two vegetable servings at dinner.
+
+--- NURSE TELEPHONE NOTE 2025-01-28 ---
+Called to review home glucose log: fasting 145, post-prandial 184. No hypoglycemia. Reinforced carbohydrate counting and foot care. Patient verbalized understanding.
+
+--- PORTAL MESSAGE 2025-01-28 ---
+Patient asks about refill timing and parking validation. Refills sent for lisinopril 20 mg PO daily. Reminder sent for annual eye exam and foot exam.
+
+--- SOCIAL WORK NOTE 2025-01-28 ---
+Lives with husband in a two-story home; drives; volunteers at the library twice weekly. Medicare with supplemental plan. No financial barriers to medications reported. Advance directive on file; healthcare proxy is her daughter.
+
+--- PREVENTIVE CARE 2025-01-28 ---
+Mammogram ordered. Colonoscopy 2018 normal, repeat 2028. Diabetic eye exam: no retinopathy. Monofilament exam normal. Pneumococcal and shingles vaccines documented. Depression screen PHQ-2 negative.
+
+--- PREVENTIVE CARE 2025-01-28 ---
+Mammogram up to date. Colonoscopy 2018 normal, repeat 2028. Diabetic eye exam: no retinopathy. Monofilament exam normal. Pneumococcal and shingles vaccines documented. Depression screen PHQ-2 negative.
+
+--- SOCIAL WORK NOTE 2025-01-28 ---
+Lives with husband in a two-story home; drives; volunteers at the library twice weekly. Medicare with supplemental plan. No financial barriers to medications reported. Advance directive on file; healthcare proxy is her daughter.
+
+--- PHYSICAL THERAPY NOTE 2025-01-28 ---
+Knee program session 10 of 12. Quadriceps strengthening, gait training, stationary bike 11 minutes. Pain 4/10 after session. Home exercise program updated. Tolerated well.
+
+--- SOCIAL WORK NOTE 2025-01-28 ---
+Lives with husband in a two-story home; drives; volunteers at the library twice weekly. Medicare with supplemental plan. No financial barriers to medications reported. Advance directive on file; healthcare proxy is her daughter.
+
+--- DIETITIAN NOTE 2025-01-28 ---
+Thirty-minute session on plate method, sodium under 2 g per day and label reading. Typical day reviewed: oatmeal, sandwiches, rice and chicken, fruit. Goal: replace soda with water.
+
+=== OFFICE VISIT 2025-04-15 | Primary care | Dr. A. Rivera (PCP) ===
+Patient: Synthetic Patient 0417 (fictional), female, born 1957-04-02
+HPI: Reports good adherence to medications. Walking 20 minutes most days. Diet reviewed; trying to reduce portion sizes. No chest pain, no syncope. Occasional heartburn after large meals, controlled on omeprazole.
+Review of systems: Constitutional: no fever, no weight loss. Eyes: no vision change. ENT: no sore throat. Cardiovascular: no chest pain, no palpitations. Respiratory: no cough, no hemoptysis. GI: no nausea, no melena. GU: no dysuria. MSK: knee stiffness as above. Skin: no rash. Neuro: no focal weakness. Psych: mood good.
+Vitals: BP 137/77 mmHg, HR 70, RR 18, T 36.6 C, SpO2 96% RA, weight 84 kg
+Exam: General: well appearing, no distress. HEENT: normocephalic, oropharynx clear. Neck: supple, no JVD. Lungs: clear to auscultation bilaterally. Heart: regular rate and rhythm, no murmur. Abdomen: soft, non-tender. Extremities: trace bilateral ankle edema. Neuro: alert, oriented.
+Current medications:
+  - metformin 1000 mg PO twice daily
+  - lisinopril 20 mg PO daily
+  - atorvastatin 40 mg PO nightly
+  - aspirin 81 mg PO daily
+  - omeprazole 20 mg PO daily
+  - carvedilol 12.5 mg PO twice daily
+  - spironolactone 25 mg PO daily
+  - furosemide 20 mg PO daily
+  - ibuprofen 600 mg PO three times daily
+Allergies: see allergy list
+Assessment and plan:
+1. Type 2 diabetes: continue metformin 1000 mg twice daily. Recheck HbA1c in 6 months.
+2. Hypertension: continue current regimen. Home BP log encouraged.
+3. Hyperlipidemia: continue atorvastatin.
+4. Knee osteoarthritis: activity as tolerated.
+Follow up in 6 months with labs.
+LAB RESULTS 2025-04-15
+  Sodium 140 mmol/L (135-145)
+  Potassium 5.8 mmol/L (3.5-5.1)
+  Chloride 106 mmol/L
+  CO2 26 mmol/L
+  BUN 39 mg/dL (7-20)
+  Creatinine 2.0 mg/dL (0.5-1.1)
+  eGFR 27 mL/min/1.73m2 (>60)
+  Glucose 145 mg/dL
+  Calcium 9.1 mg/dL
+--- SOCIAL WORK NOTE 2025-04-15 ---
+Lives with husband in a two-story home; drives; volunteers at the library twice weekly. Medicare with supplemental plan. No financial barriers to medications reported. Advance directive on file; healthcare proxy is her daughter.
+
+--- DIETITIAN NOTE 2025-04-15 ---
+Thirty-minute session on plate method, sodium under 2 g per day and label reading. Typical day reviewed: oatmeal, sandwiches, rice and chicken, fruit. Goal: two vegetable servings at dinner.
+
+--- PORTAL MESSAGE 2025-04-15 ---
+Patient asks about refill timing and parking validation. Refills sent for lisinopril 20 mg PO daily. Reminder sent for annual eye exam and foot exam.
+
+--- PREVENTIVE CARE 2025-04-15 ---
+Mammogram ordered. Colonoscopy 2018 normal, repeat 2028. Diabetic eye exam: no retinopathy. Monofilament exam normal. Pneumococcal and shingles vaccines documented. Depression screen PHQ-2 negative.
+
+--- NURSE TELEPHONE NOTE 2025-04-15 ---
+Called to review home glucose log: fasting 139, post-prandial 153. No hypoglycemia. Reinforced carbohydrate counting and foot care. Patient verbalized understanding.
+
+--- DIETITIAN NOTE 2025-04-15 ---
+Thirty-minute session on plate method, sodium under 2 g per day and label reading. Typical day reviewed: oatmeal, sandwiches, rice and chicken, fruit. Goal: walk after dinner.
+
+--- DIETITIAN NOTE 2025-04-15 ---
+Thirty-minute session on plate method, sodium under 2 g per day and label reading. Typical day reviewed: oatmeal, sandwiches, rice and chicken, fruit. Goal: two vegetable servings at dinner.
+
+--- SOCIAL WORK NOTE 2025-04-15 ---
+Lives with husband in a two-story home; drives; volunteers at the library twice weekly. Medicare with supplemental plan. No financial barriers to medications reported. Advance directive on file; healthcare proxy is her daughter.
+
+--- PREVENTIVE CARE 2025-04-15 ---
+Mammogram ordered. Colonoscopy 2018 normal, repeat 2028. Diabetic eye exam: no retinopathy. Monofilament exam normal. Pneumococcal and shingles vaccines documented. Depression screen PHQ-2 negative.
+
+--- PORTAL MESSAGE 2025-04-15 ---
+Patient asks about refill timing and parking validation. Refills sent for atorvastatin 40 mg PO nightly. Reminder sent for annual eye exam and foot exam.
+
+--- SOCIAL WORK NOTE 2025-04-15 ---
+Lives with husband in a two-story home; drives; volunteers at the library twice weekly. Medicare with supplemental plan. No financial barriers to medications reported. Advance directive on file; healthcare proxy is her daughter.
+
+--- DIETITIAN NOTE 2025-04-15 ---
+Thirty-minute session on plate method, sodium under 2 g per day and label reading. Typical day reviewed: oatmeal, sandwiches, rice and chicken, fruit. Goal: walk after dinner.
+
+--- MEDICATION RECONCILIATION 2025-04-15 ---
+Reviewed with patient at pharmacy counter:
+  - metformin 1000 mg PO twice daily: taking as prescribed
+  - lisinopril 20 mg PO daily: taking as prescribed
+  - atorvastatin 40 mg PO nightly: taking as prescribed
+  - aspirin 81 mg PO daily: taking as prescribed
+  - omeprazole 20 mg PO daily: taking as prescribed
+  - carvedilol 12.5 mg PO twice daily: taking as prescribed
+  - spironolactone 25 mg PO daily: taking as prescribed
+  - furosemide 20 mg PO daily: taking as prescribed
+  - ibuprofen 600 mg PO three times daily: taking as prescribed
+No changes made.
+
+--- PREVENTIVE CARE 2025-04-15 ---
+Mammogram ordered. Colonoscopy 2018 normal, repeat 2028. Diabetic eye exam: no retinopathy. Monofilament exam normal. Pneumococcal and shingles vaccines documented. Depression screen PHQ-2 negative.
+
+--- NURSE TELEPHONE NOTE 2025-04-15 ---
+Called to review home glucose log: fasting 116, post-prandial 174. No hypoglycemia. Reinforced carbohydrate counting and foot care. Patient verbalized understanding.
+
+--- NURSE TELEPHONE NOTE 2025-04-15 ---
+Called to review home glucose log: fasting 133, post-prandial 192. No hypoglycemia. Reinforced carbohydrate counting and foot care. Patient verbalized understanding.
+
+--- NURSE TELEPHONE NOTE 2025-04-15 ---
+Called to review home glucose log: fasting 148, post-prandial 185. No hypoglycemia. Reinforced carbohydrate counting and foot care. Patient verbalized understanding.
+
+--- SOCIAL WORK NOTE 2025-04-15 ---
+Lives with husband in a two-story home; drives; volunteers at the library twice weekly. Medicare with supplemental plan. No financial barriers to medications reported. Advance directive on file; healthcare proxy is her daughter.
+
+--- DIETITIAN NOTE 2025-04-15 ---
+Thirty-minute session on plate method, sodium under 2 g per day and label reading. Typical day reviewed: oatmeal, sandwiches, rice and chicken, fruit. Goal: two vegetable servings at dinner.
+
+--- PORTAL MESSAGE 2025-04-15 ---
+Patient asks about refill timing and parking validation. Refills sent for carvedilol 12.5 mg PO twice daily. Reminder sent for annual eye exam and foot exam.
+
+--- PREVENTIVE CARE 2025-04-15 ---
+Mammogram up to date. Colonoscopy 2018 normal, repeat 2028. Diabetic eye exam: no retinopathy. Monofilament exam normal. Pneumococcal and shingles vaccines documented. Depression screen PHQ-2 negative.
+
+--- SOCIAL WORK NOTE 2025-04-15 ---
+Lives with husband in a two-story home; drives; volunteers at the library twice weekly. Medicare with supplemental plan. No financial barriers to medications reported. Advance directive on file; healthcare proxy is her daughter.
+
+--- PORTAL MESSAGE 2025-04-15 ---
+Patient asks about refill timing and parking validation. Refills sent for ibuprofen 600 mg PO three times daily. Reminder sent for annual eye exam and foot exam.
+
+--- SOCIAL WORK NOTE 2025-04-15 ---
+Lives with husband in a two-story home; drives; volunteers at the library twice weekly. Medicare with supplemental plan. No financial barriers to medications reported. Advance directive on file; healthcare proxy is her daughter.
+
+--- NURSE TELEPHONE NOTE 2025-04-15 ---
+Called to review home glucose log: fasting 114, post-prandial 210. No hypoglycemia. Reinforced carbohydrate counting and foot care. Patient verbalized understanding.
+
+--- PORTAL MESSAGE 2025-04-15 ---
+Patient asks about refill timing and parking validation. Refills sent for ibuprofen 600 mg PO three times daily. Reminder sent for annual eye exam and foot exam.
+
+--- NURSE TELEPHONE NOTE 2025-04-15 ---
+Called to review home glucose log: fasting 149, post-prandial 196. No hypoglycemia. Reinforced carbohydrate counting and foot care. Patient verbalized understanding.
+
+--- NURSE TELEPHONE NOTE 2025-04-15 ---
+Called to review home glucose log: fasting 126, post-prandial 163. No hypoglycemia. Reinforced carbohydrate counting and foot care. Patient verbalized understanding.
+
+--- MEDICATION RECONCILIATION 2025-04-15 ---
+Reviewed with patient at pharmacy counter:
+  - metformin 1000 mg PO twice daily: taking as prescribed
+  - lisinopril 20 mg PO daily: taking as prescribed
+  - atorvastatin 40 mg PO nightly: taking as prescribed
+  - aspirin 81 mg PO daily: taking as prescribed
+  - omeprazole 20 mg PO daily: taking as prescribed
+  - carvedilol 12.5 mg PO twice daily: taking as prescribed
+  - spironolactone 25 mg PO daily: taking as prescribed
+  - furosemide 20 mg PO daily: taking as prescribed
+  - ibuprofen 600 mg PO three times daily: taking as prescribed
+No changes made.
+
+--- PHYSICAL THERAPY NOTE 2025-04-15 ---
+Knee program session 2 of 12. Quadriceps strengthening, gait training, stationary bike 13 minutes. Pain 5/10 after session. Home exercise program updated. Tolerated well.
+
+--- NURSE TELEPHONE NOTE 2025-04-15 ---
+Called to review home glucose log: fasting 149, post-prandial 177. No hypoglycemia. Reinforced carbohydrate counting and foot care. Patient verbalized understanding.
+
+--- DIETITIAN NOTE 2025-04-15 ---
+Thirty-minute session on plate method, sodium under 2 g per day and label reading. Typical day reviewed: oatmeal, sandwiches, rice and chicken, fruit. Goal: replace soda with water.
+
+--- MEDICATION RECONCILIATION 2025-04-15 ---
+Reviewed with patient at pharmacy counter:
+  - metformin 1000 mg PO twice daily: taking as prescribed
+  - lisinopril 20 mg PO daily: taking as prescribed
+  - atorvastatin 40 mg PO nightly: taking as prescribed
+  - aspirin 81 mg PO daily: taking as prescribed
+  - omeprazole 20 mg PO daily: taking as prescribed
+  - carvedilol 12.5 mg PO twice daily: taking as prescribed
+  - spironolactone 25 mg PO daily: taking as prescribed
+  - furosemide 20 mg PO daily: taking as prescribed
+  - ibuprofen 600 mg PO three times daily: taking as prescribed
+No changes made.
+
+--- PREVENTIVE CARE 2025-04-15 ---
+Mammogram up to date. Colonoscopy 2018 normal, repeat 2028. Diabetic eye exam: no retinopathy. Monofilament exam normal. Pneumococcal and shingles vaccines documented. Depression screen PHQ-2 negative.
+
+--- PHYSICAL THERAPY NOTE 2025-04-15 ---
+Knee program session 5 of 12. Quadriceps strengthening, gait training, stationary bike 8 minutes. Pain 2/10 after session. Home exercise program updated. Tolerated well.
+
+--- PORTAL MESSAGE 2025-04-15 ---
+Patient asks about refill timing and parking validation. Refills sent for ibuprofen 600 mg PO three times daily. Reminder sent for annual eye exam and foot exam.
+
+--- PREVENTIVE CARE 2025-04-15 ---
+Mammogram ordered. Colonoscopy 2018 normal, repeat 2028. Diabetic eye exam: no retinopathy. Monofilament exam normal. Pneumococcal and shingles vaccines documented. Depression screen PHQ-2 negative.
+
+--- PORTAL MESSAGE 2025-04-15 ---
+Patient asks about refill timing and parking validation. Refills sent for metformin 1000 mg PO twice daily. Reminder sent for annual eye exam and foot exam.
+
+--- NURSE TELEPHONE NOTE 2025-04-15 ---
+Called to review home glucose log: fasting 144, post-prandial 197. No hypoglycemia. Reinforced carbohydrate counting and foot care. Patient verbalized understanding.
+
+--- PREVENTIVE CARE 2025-04-15 ---
+Mammogram ordered. Colonoscopy 2018 normal, repeat 2028. Diabetic eye exam: no retinopathy. Monofilament exam normal. Pneumococcal and shingles vaccines documented. Depression screen PHQ-2 negative.

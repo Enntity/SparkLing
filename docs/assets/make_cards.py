@@ -133,7 +133,7 @@ def scores(card, x0, y, k, ky, data):
     """Show packaged single-stream decode rates for both models."""
     head, small, label, num = int(21 * k), int(13 * k), int(23 * k), int(31 * k)
     cols = [("LING", "8 x 256K", x0 + int(800 * k)),
-            ("SANTÉ", "8 x 128K", x0 + int(1200 * k))]
+            ("LINGSANTE", "8 x 128K", x0 + int(1200 * k))]
     workloads = [("COUNTING", "count"), ("PROSE", "prose"), ("PYTHON", "code")]
 
     def right(xr, yy, s, size, color, glow=None):
@@ -156,8 +156,8 @@ def scores(card, x0, y, k, ky, data):
 
 LINES = (["Exact native MTP", "same text drafted or not"],
          ["Text", "images", "video", "tools"],
-         ["Single stream", "256 greedy tokens per prompt"])
-SOURCE = ["0.1.1", "25 NOV 2026"]
+         ["./start.sh up", "lloom setup"])
+SOURCE = ["0.1.1", "single stream", "256 greedy tokens", "25 NOV 2026"]
 URL = "github.com/Enntity/SparkLing"
 
 
@@ -169,7 +169,7 @@ def banner(base, font, out, data):
     c.clear((150, 521, 1200, 700))        # supporting lines (icons stay)
     c.clear((1550, 636, 2110, 688), stars=False)  # the URL (the GitHub mark stays)
     c.title((88, 112), [("Spark", SPARK), ("Ling", LING)], 112)
-    c.text((88, 270), ["Ling + Santé Air-VL on one DGX Spark", "Atlas"], 23, WHITE)
+    c.text((88, 270), ["Ling + LingSante-VL on one DGX Spark", "Atlas"], 23, WHITE)
     scores(c, 100, 326, 1.0, 1.0, data)
     for y, parts in zip((537, 580, 624), LINES):
         c.text((172, y), parts, 20, WHITE)
@@ -191,7 +191,7 @@ def social(base, font, out, data):
     c.clear((150, 596, 1050, 815))        # supporting lines (icons stay)
     c.clear((1140, 784, 1690, 830), stars=False)  # the URL (the GitHub mark stays)
     c.title((80, 178), [("Spark", SPARK), ("Ling", LING)], 86)
-    c.text((82, 312), ["Ling + Santé Air-VL on one DGX Spark", "Atlas"], 19, WHITE)
+    c.text((82, 312), ["Ling + LingSante-VL on one DGX Spark", "Atlas"], 19, WHITE)
     scores(c, 82, 380, 0.84, 1.08, data)
     for y, parts in zip((618, 668, 718), LINES):
         c.text((170, y), parts, 17, WHITE, gap=12)

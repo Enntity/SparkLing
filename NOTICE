@@ -13,3 +13,9 @@ retain their original notices.
 LingSante-3.1-air-VL and its MXFP4 release are published by inclusionAI.
 Enntity publishes the optional NVFP4 derivative of the original inclusionAI BF16 files.
 The optional Air-VL draft block comes from Primitive’s Ling-3.2-air-NVFP4A16.
+
+demo/lingsante/data/cxr-lll-pneumonia-effusion-1024.jpg is "Left lower lobe
+pneumonia associated with a small left sided pleural effusion" by James
+Heilman, MD, licensed under CC BY 3.0 (https://creativecommons.org/licenses/by/3.0/),
+via Wikimedia Commons, downscaled to 1,024 pixels wide. The demo's chart, lab
+report and patients are synthetic.

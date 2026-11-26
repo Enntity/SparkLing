@@ -1,0 +1,10 @@
+[
+  {"id": "Bay 1", "text": "58-year-old man, crushing substernal chest pain radiating to the left jaw for 40 minutes, diaphoretic. BP 92/58, HR 112. History of diabetes and smoking."},
+  {"id": "Bay 2", "text": "24-year-old woman, sprained right ankle playing soccer 2 hours ago. Can bear weight with pain. Vitals normal. No other injuries."},
+  {"id": "Bay 3", "text": "79-year-old woman, sudden right-sided weakness and slurred speech that started 50 minutes ago. BP 186/98. Takes apixaban for atrial fibrillation."},
+  {"id": "Bay 4", "text": "6-year-old boy, barking cough and low-grade fever overnight. Mild stridor only when crying. SpO2 97%, playful between coughs."},
+  {"id": "Bay 5", "text": "33-year-old woman, 8 weeks pregnant, severe left lower abdominal pain and lightheadedness. BP 88/50, HR 124. Light vaginal bleeding."},
+  {"id": "Bay 6", "text": "45-year-old man, needs a refill of lisinopril; ran out 2 days ago. No symptoms. BP 152/94. Otherwise well."},
+  {"id": "Bay 7", "text": "67-year-old man with COPD, worsening shortness of breath for 2 days, speaking in short phrases. SpO2 84% on room air, RR 30, using accessory muscles."},
+  {"id": "Bay 8", "text": "19-year-old woman, took an unknown number of acetaminophen tablets 6 hours ago after an argument. Currently nauseated, alert, vitals normal."}
+]
