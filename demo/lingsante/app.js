@@ -121,7 +121,7 @@ async function sceneChart() {
   Object.assign(results, { chartTokens: r.usage.prompt_tokens, chartRead: read, chartGen: r.gen });
   await sleep(2500);
   // Follow-up: the chart and the review are already in the prefix cache.
-  $("c-fu").style.display = "block";
+  $("c-fu").style.display = "flex";
   follow(out);
   await typeInto($("c-fu-q"), `<b>Q:</b> ${FOLLOW}`, 18);
   const fout = $("c-fu-out"), fst = $("c-fu-status");
@@ -129,7 +129,7 @@ async function sceneChart() {
   messages.push({ role: "assistant", content: r.text }, { role: "user", content: FOLLOW });
   let s2 = false;
   const f = await stream({ max_tokens: 220, chat_template_kwargs: { enable_thinking: false }, messages },
-    (t) => { if (!s2) { s2 = true; stop2(); fst.textContent = "chart already cached"; } fout.innerHTML = md(t); });
+    (t) => { if (!s2) { s2 = true; stop2(); fst.textContent = "chart already cached"; } fout.innerHTML = md(t); follow(fout); });
   stop2();
   fst.textContent = `first token ${(f.ttft / 1000).toFixed(1)} s · ${fmt(f.usage.prompt_tokens)}-token context`;
   $("m1-fu").textContent = `${(f.ttft / 1000).toFixed(1)} s`;
