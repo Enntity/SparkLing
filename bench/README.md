@@ -1,38 +1,48 @@
 <!-- SPDX-License-Identifier: AGPL-3.0-only -->
 # Benchmark runner and functional-check drivers
 
-SparkLing keeps the SparkInkling functional checks and RigMark throughput
-protocol. The drivers are model-agnostic so the same requests can be replayed
+SparkLing keeps the SparkInkling functional checks and runs the shared
+SparkModelBench suite for throughput and quality. The drivers are model-agnostic so the same requests can be replayed
 against SparkLing and its reference implementation.
 
-## Throughput
+## Throughput and quality
 
-`rigmark.sh` runs the two [RigMark](https://github.com/alexellis/rigmark)
-suites behind the published figures against the server `./start.sh` started,
-in whatever mode it is serving: the code suite (decode, cold and replayed
-prefill at 8K and 32K, 1/2/4/8 concurrent requests) and the prose suite
-(decode, 1/4/8 concurrent requests), with `enable_thinking` set true.
+`run.sh` runs the pinned [SparkModelBench](https://github.com/enntity/sparkmodelbench)
+suite against the server `./start.sh` started, in whatever mode it is serving.
+It is the suite SparkGLM uses: Alex Ellis's [RigMark](https://github.com/alexellis/rigmark)
+decode and exact-depth prefill, four [RigMark Quality](https://github.com/alexellis/rigmark-quality)
+agent tasks, and SparkGLM's staggered four-request field guide. The Git submodule
+`sparkmodelbench` pins the runner and both upstream suites.
 
 ```sh
-./start.sh
+./start.sh up
+git submodule update --init --recursive -- bench/sparkmodelbench
+docker build -t rigmark-quality-runtime:0.4 bench/sparkmodelbench/upstream/rigmark-quality/quality_suite
+cp bench/sparkmodelbench/upstream/rigmark/metadata.example.json /tmp/sparkling-appliance.json
+# Fill in the hardware, model, image and settings of the serving instance.
+bench/run.sh --metadata /tmp/sparkling-appliance.json --out /tmp/sparkling-benchmark
+```
+
+Set `SERVED_MODEL_NAME=lingsante-3.1-air-vl-atlas` for LingSante and
+`SPARKLING_PORT` for another port. Use a new result directory for each run.
+The suite asks for `reasoning_effort: low`; Ling's template has no effort
+levels, so thinking stays on, as it is by default. The staggered field guide
+turns thinking off. Each result holds `CARD.md`, the raw JSON and `SHA256SUMS`.
+
+`rigmark.sh` runs the earlier RigMark 1.1.0 code and prose suites (thinking
+off, 1/2/4/8 concurrent requests) behind the 0.1.2 and 0.1.3 release
+comparisons with vLLM:
+
+```sh
 RIGMARK=/path/to/rigmark bench/rigmark.sh spark metadata.json out/
 ```
 
-`metadata.json` describes the run (hardware, image tag, drafter, competing
-traffic); [REPRODUCE](../docs/REPRODUCE.md) says what goes in it and how to
-read the result. It writes `out/strict-code.json` and `out/strict-prose.json`.
 `SPARKLING_URL`, `SPARKLING_PORT`, `SERVED_MODEL_NAME` and
 `SPARKLING_COMPARISON_ID` override the default address, port, model name and
-RigMark comparison id. The independent functional-check default is port 8897.
-
-Run the candidate and reference one after the other on the same Spark. Stop
-the first server and let the second server finish loading before starting its
-run. Use the same checkpoint, request model name, context limit and benchmark
-settings. RigMark uses the comparison ID to generate prompt nonces. Record the
-engine and image for each run. Both receipts must identify the same
-`model_revision`, `physical_device_id`, hardware/topology and a
-`competing_traffic` value beginning with `none`. Never leave both model servers
-resident during a timed run.
+RigMark comparison id. Run the candidate and reference one after the other on
+the same Spark, with the same checkpoint, request model name, context limit and
+benchmark settings, and never leave both model servers resident during a timed
+run:
 
 ```sh
 # Candidate run
@@ -60,8 +70,8 @@ They need only Python 3, talk to the server `./start.sh` starts on
 `http://127.0.0.1:8897` by default, and send greedy requests (temperature 0)
 with `chat_template_kwargs.enable_thinking` set explicitly for each case. Run them
 one at a time with nothing else using the Spark. They are smoke checks, not
-benchmarks; throughput is measured with
-[RigMark](https://github.com/alexellis/rigmark) as REPRODUCE describes.
+benchmarks; throughput and quality are measured with SparkModelBench as
+REPRODUCE describes.
 
 | Driver | What it checks | Run |
 |---|---|---|

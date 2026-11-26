@@ -1,0 +1,114 @@
+{
+  "suite": "ebc29c4b95b8c8d6734dd8adf2f2adfb532500ce",
+  "protocol": {
+    "version": 1,
+    "decode_runs": 5,
+    "decode_cap": 8192,
+    "prefill_depths": [
+      8192,
+      32768,
+      65536,
+      131072,
+      262144
+    ],
+    "prefill_pairs": 3,
+    "c4": {
+      "depth": 16384,
+      "output": 400,
+      "interval_s": 1,
+      "repetitions": 3
+    },
+    "quality_tasks": [
+      "python-expiry",
+      "go-transfer-ledger",
+      "payment-recovery",
+      "evidence-revisions"
+    ],
+    "task_seconds": 180,
+    "task_output_cap": 8192,
+    "concurrency": {
+      "levels": [
+        1,
+        2,
+        4,
+        8
+      ],
+      "rounds": 3,
+      "output": 256,
+      "workload": "code",
+      "seed": 20260905
+    }
+  },
+  "upstreams": {
+    "rigmark": "946394fa53db83a6865f6e3ae56594e1c299fb2a",
+    "rigmark-quality": "ea6788ff15ee39550577c829a46ee7ed3a79a976"
+  },
+  "model": "ling-3.2-air-atlas",
+  "appliance": {
+    "hardware": "1x NVIDIA DGX Spark (GB10, 128 GB)",
+    "topology": "TP1, single Spark",
+    "negotiated_link_speed": "not applicable",
+    "competing_traffic": "none",
+    "model": "primitive-ai/Ling-3.2-air-NVFP4A16",
+    "model_revision": "3a78e58506316b5b9b7d06037910c3f4abdd291f",
+    "quantisation": "NVFP4A16 experts (publisher); Spark mode NVFP4 prefill activations and NVFP4 attention-projection decode, BF16 vocabulary head",
+    "kv_cache_dtype": "bf16 latent MLA (576 values per token per layer)",
+    "serving_engine": "SparkLing 0.1.3 (Atlas, Enntity/atlas ling/3.2-air @ 46ed1a1f3)",
+    "serving_image": "ghcr.io/enntity/atlas-sparkling:0.1.3 (= :7a1f9d22997d, index sha256:a8565646...71cfbd), the release image, via ./start.sh up",
+    "drafter": "Ling-3.2-air's native MTP layer, one draft per step for up to four active requests, verified in one batched forward; plain decoding from five",
+    "context_limit": 262144,
+    "scheduler": "SparkLing default profile: max-num-seqs 8, gpu-memory-utilization 0.89, prefill chunks 8192, prefix caching with a disk tier, display carveout"
+  },
+  "trial": "fab379e1d866e5aa238d9a07",
+  "comparison_id": "sparkling-0.1.3",
+  "effort": "low",
+  "portable": false,
+  "requested": [
+    "concurrency"
+  ],
+  "lanes": {
+    "concurrency": {
+      "1": {
+        "aggregate_tokens_s": 41.91,
+        "stream_tokens_s": 44.061,
+        "stream_ttft_s": 0.326,
+        "output_tokens": [
+          256,
+          256,
+          256
+        ]
+      },
+      "2": {
+        "aggregate_tokens_s": 64.452,
+        "stream_tokens_s": 34.574,
+        "stream_ttft_s": 0.488,
+        "output_tokens": [
+          512,
+          512,
+          512
+        ]
+      },
+      "4": {
+        "aggregate_tokens_s": 96.012,
+        "stream_tokens_s": 26.058,
+        "stream_ttft_s": 0.828,
+        "output_tokens": [
+          1024,
+          1024,
+          1024
+        ]
+      },
+      "8": {
+        "aggregate_tokens_s": 137.285,
+        "stream_tokens_s": 19.191,
+        "stream_ttft_s": 1.46,
+        "output_tokens": [
+          2048,
+          2048,
+          2048
+        ]
+      }
+    }
+  },
+  "errors": {}
+}

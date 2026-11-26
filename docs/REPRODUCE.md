@@ -1,5 +1,42 @@
 <!-- SPDX-License-Identifier: AGPL-3.0-only -->
-# One-Spark comparison
+# Reproduce our numbers
+
+## Current suite
+
+Run SparkModelBench with the server up and nothing else using the Spark. The
+Git submodule pins the shared runner and both upstream RigMark suites; it is
+the suite SparkGLM uses. Prepare the CPU quality judge before measuring.
+
+```sh
+./start.sh up
+git submodule update --init --recursive -- bench/sparkmodelbench
+docker build -t rigmark-quality-runtime:0.4 bench/sparkmodelbench/upstream/rigmark-quality/quality_suite
+cp bench/sparkmodelbench/upstream/rigmark/metadata.example.json /tmp/sparkling-appliance.json
+# Fill in the hardware, model, image and settings of the serving instance.
+bench/run.sh --metadata /tmp/sparkling-appliance.json --out /tmp/sparkling-benchmark
+```
+
+For LingSante, start it with `./start.sh --model lingsante-3.1-air-vl up` and
+run with `SERVED_MODEL_NAME=lingsante-3.1-air-vl-atlas`. Use a new result
+directory for each run. Prefill depths beyond the model's window (with its
+eight-token output reserve) are skipped: 256K for Ling, 128K and 256K for
+LingSante. Every result includes a card, raw JSON and SHA256SUMS. See the
+[suite protocol](../bench/sparkmodelbench) for how to read output gates, cache
+evidence and task budgets.
+
+The vLLM column ran 0.1.2's reference command
+([vllm-mtp3.cmd](../results/2026-11-26-0.1.2/rigmark/vllm-mtp3.cmd)) with
+`--max-model-len 262144`, on the same Spark after SparkLing stopped, through
+`bench/sparkmodelbench/run.py --base-url http://127.0.0.1:8897 --model ling-3.2-air-atlas`.
+
+The eight-request rows come from SparkModelBench's optional concurrency lane,
+RigMark's own 1/2/4/8 sweep. It is proposed in Enntity/sparkmodelbench#1 and
+is not in the pinned revision yet. To run it, use a separate SparkModelBench
+clone at `ebc29c4` and add `--lanes concurrency` to the same `run.py` command.
+The [scorecard](../results/sparkmodelbench-v0.1.3/CARD.md) combines those
+summaries; its `SHA256SUMS` covers every published file.
+
+## One-Spark comparison with RigMark 1.1.0 (0.1.0 to 0.1.3)
 
 Use RigMark at `40fabcaf6e963ac27ab347f61d54a225dbd07419`, the revision used by SparkInkling 0.4.2.
 Reserve one physical GB10. Record the GPU UUID, model revision, image digest,
