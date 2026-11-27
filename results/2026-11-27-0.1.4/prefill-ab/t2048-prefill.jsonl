@@ -1,0 +1,4 @@
+{"prompt_tokens": 8192, "ttft_seconds": 2.253858, "cached_prompt_tokens": 0, "depth": 8192}
+{"prompt_tokens": 32768, "ttft_seconds": 9.966246, "cached_prompt_tokens": 0, "depth": 32768}
+{"prompt_tokens": 65536, "ttft_seconds": 23.554018, "cached_prompt_tokens": 0, "depth": 65536}
+{"prompt_tokens": 131072, "ttft_seconds": 62.473914, "cached_prompt_tokens": 0, "depth": 131072}

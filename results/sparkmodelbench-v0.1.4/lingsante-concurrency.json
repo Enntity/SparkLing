@@ -1,0 +1,114 @@
+{
+  "suite": "293a44f82dd977af8aeeee31df7ba70da9f4545d",
+  "protocol": {
+    "version": 1,
+    "decode_runs": 5,
+    "decode_cap": 8192,
+    "prefill_depths": [
+      8192,
+      32768,
+      65536,
+      131072,
+      262144
+    ],
+    "prefill_pairs": 3,
+    "c4": {
+      "depth": 16384,
+      "output": 400,
+      "interval_s": 1,
+      "repetitions": 3
+    },
+    "quality_tasks": [
+      "python-expiry",
+      "go-transfer-ledger",
+      "payment-recovery",
+      "evidence-revisions"
+    ],
+    "task_seconds": 180,
+    "task_output_cap": 8192,
+    "concurrency": {
+      "levels": [
+        1,
+        2,
+        4,
+        8
+      ],
+      "rounds": 3,
+      "output": 256,
+      "workload": "code",
+      "seed": 20260905
+    }
+  },
+  "upstreams": {
+    "rigmark": "946394fa53db83a6865f6e3ae56594e1c299fb2a",
+    "rigmark-quality": "ea6788ff15ee39550577c829a46ee7ed3a79a976"
+  },
+  "model": "lingsante-3.1-air-vl-atlas",
+  "appliance": {
+    "hardware": "1x NVIDIA DGX Spark (GB10, 128 GB)",
+    "topology": "TP1, single Spark",
+    "negotiated_link_speed": "not applicable",
+    "competing_traffic": "none",
+    "model": "Enntity/LingSante-3.1-air-VL-NVFP4 (from inclusionAI/LingSante-3.1-air-VL BF16)",
+    "model_revision": "SparkLing 0.1.4 pin",
+    "quantisation": "Enntity NVFP4 experts; NVFP4 prefill activations and NVFP4 attention-projection decode",
+    "kv_cache_dtype": "bf16 latent MLA",
+    "serving_engine": "SparkLing 0.1.4 (Atlas, Enntity/atlas ling/3.2-air @ 469d1649b)",
+    "serving_image": "ghcr.io/enntity/atlas-sparkling:0.1.4 (= :c523fbc3852c), the release image, via ./start.sh up",
+    "drafter": "Ling-3.2-air's MTP layer (borrowed), one draft per step for up to four active requests, verified in one batched forward; plain decoding from five",
+    "context_limit": 131072,
+    "scheduler": "SparkLing default profile: max-num-seqs 8, gpu-memory-utilization 0.89, prefill chunks 8192, prefix caching with a disk tier, display carveout"
+  },
+  "trial": "635c32aab77b84550497a26f",
+  "comparison_id": "sparkling-0.1.4",
+  "effort": "low",
+  "portable": false,
+  "requested": [
+    "concurrency"
+  ],
+  "lanes": {
+    "concurrency": {
+      "1": {
+        "aggregate_tokens_s": 41.169,
+        "stream_tokens_s": 43.576,
+        "stream_ttft_s": 0.342,
+        "output_tokens": [
+          256,
+          256,
+          256
+        ]
+      },
+      "2": {
+        "aggregate_tokens_s": 61.551,
+        "stream_tokens_s": 32.749,
+        "stream_ttft_s": 0.497,
+        "output_tokens": [
+          512,
+          512,
+          512
+        ]
+      },
+      "4": {
+        "aggregate_tokens_s": 86.932,
+        "stream_tokens_s": 23.396,
+        "stream_ttft_s": 0.818,
+        "output_tokens": [
+          1024,
+          1024,
+          1024
+        ]
+      },
+      "8": {
+        "aggregate_tokens_s": 122.767,
+        "stream_tokens_s": 16.791,
+        "stream_ttft_s": 1.501,
+        "output_tokens": [
+          2048,
+          2048,
+          2048
+        ]
+      }
+    }
+  },
+  "errors": {}
+}

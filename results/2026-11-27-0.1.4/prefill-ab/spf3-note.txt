@@ -1,0 +1,3 @@
+xray stop 113 '• Location: left lower lung zone, retrocardiac region (circled area).\n• Type: ho'
+note tool_calls (2634, 517, 0) args 1725 text 0 '{"working_diagnosis":"Community-acquired pneumonia (left lower lobe) with sepsis and acute hypoxemic respiratory failure; possible parapneumonic effusion","imaging_findings":"Frontal chest radiograph:'
+note tool_calls (2634, 517, 2624) args 1725 text 0 '{"working_diagnosis":"Community-acquired pneumonia (left lower lobe) with sepsis and acute hypoxemic respiratory failure; possible parapneumonic effusion","imaging_findings":"Frontal chest radiograph:'
