@@ -1,9 +1,13 @@
 <!-- SPDX-License-Identifier: AGPL-3.0-only -->
 # Results
 
-## SparkModelBench scorecard · v0.1.3 on one Spark
+## SparkModelBench scorecard · v0.1.4 on one Spark
 
-[Ling-3.2-air, LingSante-3.1-air-VL and vLLM with MTP: generation, quality tasks, staggered C4, prefill and concurrency](sparkmodelbench-v0.1.3/CARD.md)
+[Ling-3.2-air, LingSante-3.1-air-VL and vLLM with MTP: generation, quality tasks, staggered C4, prefill and concurrency](sparkmodelbench-v0.1.4/CARD.md) · [v0.1.3](sparkmodelbench-v0.1.3/CARD.md)
+
+## One DGX Spark, November 27, 2026: SparkLing 0.1.4
+
+[Long prompts prefill about twice as fast: the 128-row kernel, one expansion per chunk, exactness against 0.1.3, and the release image](2026-11-27-0.1.4/README.md)
 
 ## One DGX Spark, November 26, 2026: SparkLing 0.1.3
 

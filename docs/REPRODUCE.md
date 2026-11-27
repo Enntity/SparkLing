@@ -24,18 +24,30 @@ LingSante. Every result includes a card, raw JSON and SHA256SUMS. See the
 [suite protocol](../bench/sparkmodelbench) for how to read output gates, cache
 evidence and task budgets.
 
-The vLLM column ran 0.1.2's reference command
+The vLLM column (measured November 26 for 0.1.3 and reused for 0.1.4, since vLLM did not change) ran 0.1.2's reference command
 ([vllm-mtp3.cmd](../results/2026-11-26-0.1.2/rigmark/vllm-mtp3.cmd)) with
 `--max-model-len 262144`, on the same Spark after SparkLing stopped, through
 `bench/sparkmodelbench/run.py --base-url http://127.0.0.1:8897 --model ling-3.2-air-atlas`.
 
 The eight-request rows come from SparkModelBench's optional concurrency lane,
 RigMark's own 1/2/4/8 sweep, which runs only when named:
-`bench/run.sh --metadata ... --out ... --lanes concurrency`. It was measured at
-`ebc29c4`, the commit that added it (Enntity/sparkmodelbench#1); the pinned
-merge leaves the four default lanes as they were.
-The [scorecard](../results/sparkmodelbench-v0.1.3/CARD.md) combines those
+`bench/run.sh --metadata ... --out ... --lanes concurrency`. 0.1.4 measured
+every lane at the pinned `293a44f`; 0.1.3's concurrency rows came from
+`ebc29c4`, the commit that added the lane (Enntity/sparkmodelbench#1), and the
+merge left the four default lanes as they were.
+The [scorecard](../results/sparkmodelbench-v0.1.4/CARD.md) combines those
 summaries; its `SHA256SUMS` covers every published file.
+
+## Prefill A/B and exactness (0.1.4)
+
+[results/2026-11-27-0.1.4/harness](../results/2026-11-27-0.1.4/harness) holds
+the scripts behind 0.1.4's prefill comparison. `pf-ab.sh LABEL BINARY` starts
+the 0.1.3 release image through its `start.sh` arguments with an engine binary
+mounted in place of its own (`release` keeps the image's), then runs the
+eight probes, `long_id.py` (greedy output and logprobs after fixed prompts of
+the given lengths) and cold prefills from 8K to 128K. `pf-sante.sh` does the
+same for LingSante, and `note_replay.py` replays the demo's radiograph read and
+forced-tool note. Compare two runs' JSON lines for equal text and logprobs.
 
 ## One-Spark comparison with RigMark 1.1.0 (0.1.0 to 0.1.3)
 
