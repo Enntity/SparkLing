@@ -53,12 +53,12 @@ def _engine_env(environ, profile):
 
 
 def _memory_share(environ, args):
-    """The SPARKLING_GPU_MEMORY_UTILIZATION override, 0.50 to 0.90."""
+    """The SPARKLING_GPU_MEMORY_UTILIZATION override, 0.50 to 0.95."""
     util = environ.get('SPARKLING_GPU_MEMORY_UTILIZATION')
     if not util:
         return args
-    if not re.fullmatch(r'0\.([5-8][0-9]|90)', util):
-        raise ValueError('SPARKLING_GPU_MEMORY_UTILIZATION must be 0.50 to 0.90')
+    if not re.fullmatch(r'0\.([5-8][0-9]|9[0-5])', util):
+        raise ValueError('SPARKLING_GPU_MEMORY_UTILIZATION must be 0.50 to 0.95')
     return [f'--gpu-memory-utilization={util}' if a.startswith('--gpu-memory-utilization=') else a for a in args]
 
 
@@ -200,17 +200,17 @@ def launch(environ, profile):
     if drafter != 'none':
         if drafter == 'ling-mtp' and model_id == 'sante-air-vl' and environ.get('SPARKLING_QUANT') == 'nvfp4' and mode == 'spark':
             namespace += '-ling-mtp1'
+            args += ['--speculative', '--num-drafts=1', '--mtp-quantization=bf16']
         elif drafter == 'mtp' and model_id == 'ling-3.2-air':
             namespace += '-mtp1'
+            # Chain two drafts at concurrency 1 (K=3 verify) where decode is
+            # memory-bandwidth-bound, and step down to one draft (K=2) for two
+            # to eight active requests where 512-expert MoE reads dominate.
+            args += ['--speculative', '--num-drafts=2', '--mtp-quantization=bf16']
+            env['ATLAS_MTP_K_LADDER'] = '1:2,4:1,8:1'
         else:
             raise ValueError('mtp requires the embedded Ling predictor; ling-mtp requires BF16-derived Air-VL NVFP4')
-        args += ['--speculative', '--num-drafts=1', '--mtp-quantization=bf16']
-        # Up to four active requests draft together, verified in one batched
-        # forward. At eight, a verify reads nearly twice the routed experts of
-        # a plain step (512 experts, top 8) for 1.8x the tokens; drafting there
-        # measured Ling's prose 4.6% below plain decode (RigMark 1.1.0), so
-        # from five the batch decodes plainly.
-        env['ATLAS_MTP_MAX_SEQS'] = '4'
+        env['ATLAS_MTP_MAX_SEQS'] = '8'
         if mode == 'spark':
             env['ATLAS_LING_MTP_QUANT_HEAD'] = '1'
     if decode_precision != 'checkpoint':
@@ -226,7 +226,8 @@ def launch(environ, profile):
         args.append('--lm-head-dtype=nvfp4')
     if precision == 'nvfp4':
         env.update(ATLAS_LING_W4A4_PREFILL='1', ATLAS_BF16_GEMM_CUTLASS='1')
-        args = ['--max-prefill-tokens=8192' if a == '--max-prefill-tokens=2048' else a for a in args]
+        args = ['--max-prefill-tokens=8192' if a.startswith('--max-prefill-tokens=')
+                and int(a.split('=', 1)[1]) < 8192 else a for a in args]
     env.update(SPARKLING_MODE=mode)
     env.update(disk_prefix_cache(environ.get('SPARKLING_PREFIX_CACHE_GB', ''), namespace))
     args = _memory_share(environ, [str(a).replace('${model}', model) for a in args])

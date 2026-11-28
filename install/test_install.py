@@ -101,10 +101,10 @@ class InstallTests(unittest.TestCase):
         env = {'MODEL_PATH': '/model', 'SPARKLING_DRAFTER': 'mtp', 'SPARKLING_PREFIX_CACHE_GB': '48'}
         args, settings = serve.launch(env, profile)
         self.assertIn('--speculative', args)
-        self.assertIn('--num-drafts=1', args)
-        # Up to four active requests draft, verified in one batched forward;
-        # from five the batch decodes plainly. Drafter prefill is Atlas's default.
-        self.assertEqual(settings['ATLAS_MTP_MAX_SEQS'], '4')
+        self.assertIn('--num-drafts=2', args)
+        # Chain two drafts at C1 and step down to one draft for C2-C8.
+        self.assertEqual(settings['ATLAS_MTP_MAX_SEQS'], '8')
+        self.assertEqual(settings['ATLAS_MTP_K_LADDER'], '1:2,4:1,8:1')
         for obsolete in ('ATLAS_MTP_DRAFTER_PREFILL', 'ATLAS_MTP_CATCHUP'):
             self.assertNotIn(obsolete, settings)
         self.assertTrue(settings['ATLAS_KV_NVME_DIR'].endswith('-mtp1/kv'))
@@ -117,6 +117,8 @@ class InstallTests(unittest.TestCase):
                'SPARKLING_MODEL': 'sante-air-vl', 'SPARKLING_DRAFTER': 'ling-mtp', 'SPARKLING_PREFIX_CACHE_GB': '48'}
         args, settings = serve.launch(env, profile)
         self.assertIn('--num-drafts=1', args)
+        self.assertEqual(settings['ATLAS_MTP_MAX_SEQS'], '8')
+        self.assertNotIn('ATLAS_MTP_K_LADDER', settings)
         self.assertTrue(settings['ATLAS_KV_NVME_DIR'].endswith('-ling-mtp1/kv'))
         for override in ({'SPARKLING_QUANT': 'publisher'}, {'SPARKLING_MODE': 'strict'}):
             with self.assertRaises(ValueError):
@@ -145,6 +147,18 @@ class InstallTests(unittest.TestCase):
         self.assertIn('--max-prefill-tokens=8192', args)
         self.assertEqual(env['ATLAS_LING_W4A4_PREFILL'], '1')
         self.assertEqual(env['ATLAS_KV_NVME_DIR'], '/prefix-cache/spark-kv2-prefill-nvfp4/kv')
+        # Custom prefill chunk sizes below 8192 are raised; larger ones stay intact.
+        profile_4k = {**profile, 'server_argv': ['--max-prefill-tokens=4096' if a.startswith('--max-prefill-tokens=') else a for a in profile['server_argv']]}
+        args_4k, _ = serve.launch({**options, 'SPARKLING_MODE': 'spark'}, profile_4k)
+        self.assertIn('--max-prefill-tokens=8192', args_4k)
+        profile_16k = {**profile, 'server_argv': ['--max-prefill-tokens=16384' if a.startswith('--max-prefill-tokens=') else a for a in profile['server_argv']]}
+        args_16k, _ = serve.launch({**options, 'SPARKLING_MODE': 'spark'}, profile_16k)
+        self.assertIn('--max-prefill-tokens=16384', args_16k)
+        # GPU memory utilization override accepts up to 0.95 (matching max.json).
+        args_95, _ = serve.launch({**options, 'SPARKLING_MODE': 'spark', 'SPARKLING_GPU_MEMORY_UTILIZATION': '0.95'}, profile)
+        self.assertIn('--gpu-memory-utilization=0.95', args_95)
+        with self.assertRaisesRegex(ValueError, '0.50 to 0.95'):
+            serve.launch({**options, 'SPARKLING_MODE': 'spark', 'SPARKLING_GPU_MEMORY_UTILIZATION': '0.96'}, profile)
 
     def test_nvfp4_decode_is_explicit_and_keeps_its_own_cache(self):
         profile = json.loads((HERE/'profiles/default.json').read_text())
@@ -184,7 +198,9 @@ class InstallTests(unittest.TestCase):
             self.assertEqual(serve.default_precision(mode, model_id, quant), 'checkpoint')
         args, env = serve.launch({'MODEL_PATH': '/model', 'SPARKLING_DRAFTER': 'mtp'}, profile)
         self.assertIn('--speculative', args)
-        self.assertEqual(env['ATLAS_MTP_MAX_SEQS'], '4')
+        self.assertIn('--num-drafts=2', args)
+        self.assertEqual(env['ATLAS_MTP_MAX_SEQS'], '8')
+        self.assertEqual(env['ATLAS_MTP_K_LADDER'], '1:2,4:1,8:1')
         for mode, model_id in [('strict', 'ling-3.2-air'), ('spark', 'sante-air-vl'), ('strict', 'sante-air-vl')]:
             self.assertEqual(serve.default_precision(mode, model_id), 'checkpoint')
 

@@ -31,11 +31,12 @@ The vLLM column (measured November 26 for 0.1.3 and reused for 0.1.4, since vLLM
 
 The eight-request rows come from SparkModelBench's optional concurrency lane,
 RigMark's own 1/2/4/8 sweep, which runs only when named:
-`bench/run.sh --metadata ... --out ... --lanes concurrency`. 0.1.4 measured
-every lane at the pinned `293a44f`; 0.1.3's concurrency rows came from
-`ebc29c4`, the commit that added the lane (Enntity/sparkmodelbench#1), and the
-merge left the four default lanes as they were.
-The [scorecard](../results/sparkmodelbench-v0.1.4/CARD.md) combines those
+`bench/run.sh --metadata ... --out ... --lanes concurrency`. 0.1.5 and 0.1.4
+measured Ling-3.2-air at `293a44f` (180-second quality task budget) so numbers
+compare directly with vLLM; `bench/sparkmodelbench` now pins `2b9ce8c`, which
+raises `task_seconds` to 300 for future runs. 0.1.3's concurrency rows came
+from `ebc29c4` (Enntity/sparkmodelbench#1).
+The [scorecard](../results/sparkmodelbench-v0.1.5/CARD.md) combines those
 summaries; its `SHA256SUMS` covers every published file.
 
 ## Prefill A/B and exactness (0.1.4)

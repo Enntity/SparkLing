@@ -158,7 +158,7 @@ def scores(card, x0, y, k, ky, data):
 LINES = (["Exact native MTP", "same text drafted or not"],
          ["Text", "images", "video", "tools"],
          ["./start.sh up", "lloom setup"])
-SOURCE = ["0.1.4 benchmarks", "SparkModelBench", "thinking on"]
+SOURCE = ["0.1.5 benchmarks", "SparkModelBench", "thinking on"]
 URL = "github.com/Enntity/SparkLing"
 
 
@@ -205,7 +205,7 @@ def social(base, font, out, data):
 
 if __name__ == "__main__":
     base, font, out = Path(sys.argv[1]), sys.argv[2], Path(sys.argv[3])
-    results = Path(__file__).resolve().parents[2] / "results/sparkmodelbench-v0.1.4"
+    results = Path(__file__).resolve().parents[2] / "results/sparkmodelbench-v0.1.5"
     data = []
     for model in ("ling", "lingsante"):
         decode = json.loads((results / f"{model}.json").read_text())["lanes"]["decode"]
