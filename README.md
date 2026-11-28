@@ -88,52 +88,7 @@ Every one of these 256-token outputs is thinking. With `<think>` speculation unl
 
 [Full scorecard](results/sparkmodelbench-v0.1.5/CARD.md) · [result files](results/sparkmodelbench-v0.1.5/) · [0.1.4 scorecard](results/sparkmodelbench-v0.1.4/CARD.md) · [0.1.3 scorecard](results/sparkmodelbench-v0.1.3/CARD.md)
 
-### RigMark 1.1.0, thinking off
-
-Measured on the 0.1.3 image (0.1.4 changes only prefill) with [RigMark](https://github.com/alexellis/rigmark) `40fabcaf6e96`, protocol 1.1.0, thinking off (Ling's template has no effort levels), on one Spark with the default profile and drafter, against the pinned vLLM image with and without its MTP drafter on the same Spark: [the result, with every receipt](results/2026-11-26-0.1.3/README.md#rigmark).
-
-| | Ling-3.2-air | LingSante-3.1-air-VL | vLLM, MTP ×3 | vLLM |
-|---|---:|---:|---:|---:|
-| Code decode, tok/s | **63.0** | 62.4 | 45.4 | 21.6 |
-| Prose decode | **54.7** | 49.8 | 32.9 | 21.7 |
-| Structured decode | **64.7** | 63.4 | 44.9 | 21.7 |
-| 32K cold prefill, tok/s | **2,577** | 2,576 | 2,474 | 2,120 |
-| 8K cold prefill | 3,404 | **3,405** | 2,908 | 2,355 |
-| Short code, C1 / C2 / C4 / C8 aggregate | **58.1** / 84.9 / **122.6** / 145.2 | 56.0 / **86.0** / 117.8 / 139.6 | 37.3 / 67.3 / 112.4 / **167.5** | 20.9 / 45.2 / 79.7 / 129.4 |
-| Short prose, C1 / C4 / C8 aggregate | **50.5 / 95.9** / 114.9 | 47.0 / 91.1 / 115.5 | 29.2 / 82.2 / **125.8** | 21.3 / 75.7 / 119.6 |
-| 32K prompt sent again, time to first token | **0.02 s** | 0.02 s | 1.15 s | 0.89 s |
-| Longest request | 262,144 | 131,072 | 40,960 as configured | 40,960 as configured |
-| Basic output gates | 6/6 | 6/6 | 6/6 | 6/6 |
-
-On Ling-3.2-air, SparkLing leads vLLM with its drafter on:
-- code (1.39x), prose (1.66x) and structured output (1.44x);
-- cold prefill (1.04x at 32K, 1.17x at 8K);
-- one, two and four short-code requests (1.56x, 1.26x, 1.09x);
-- four prose requests (1.17x);
-- a repeated 32K prompt.
-
-vLLM leads at eight requests: 1.15x on code and 1.09x on prose. SparkLing drafts for up to four live requests and decodes from five plainly. Ling routes each token to 8 of 512 experts, so a verify of eight requests reads nearly twice the expert weights of a plain step for about 1.8 tokens per request, which does not pay on a GB10. The vLLM columns are 0.1.2's runs on the same Spark, serving the same NVFP4A16 checkpoint with a 40,960-token window.
-
-### Eight short prompts, with llama.cpp
-
-SparkLing’s own probe adds llama.cpp and shows each prompt. This table was measured on 0.1.2. 0.1.3 and 0.1.4 decode one request with byte-identical text, and on 0.1.4’s release run the same probe measured 60.9 tok/s single stream and 60.0 / 77.1 / 82.9 / 104.0 tok/s at 1 / 2 / 4 / 8 clients. All engines ran on the same GB10, one at a time, with nothing else using the GPU. SparkLing’s column is the published `0.1.2` image launched by `./start.sh up` with its 262,144-token window. The other engines ran with an 8,192-token window. The client sent the same request bodies to each engine: eight greedy prompts of 256 tokens each, with thinking off. Decode rate is measured after the first token.
-
-| One GB10 · Ling-3.2-air | SparkLing 0.1.2 | vLLM, MTP ×3 | vLLM | llama.cpp, MTP | llama.cpp |
-| --- | ---: | ---: | ---: | ---: | ---: |
-| Single stream, mean of eight prompts, tok/s | **61.0** | 40.2 | 21.8 | 50.2 | 37.3 |
-| Prompts on which the engine is fastest | **8 of 8** | 0 | 0 | 0 | 0 |
-| Aggregate, 1 client, tok/s | **60.1** | 44.6 | 21.6 | 56.5 | 37.4 |
-| Aggregate, 2 clients, tok/s | **65.6** | 59.2 | 40.2 | 65.1 | 48.0 |
-| Aggregate, 4 clients, tok/s | **81.2** | 68.8 | 62.4 | 62.7 | 67.3 |
-| Aggregate, 8 clients, tok/s | 104.5 | **109.2** | 96.4 | 78.8 | 69.5 |
-
-SparkLing ran on November 26, 2026; the other engines on November 25, on the same Spark with the same client. SparkLing and vLLM both served Primitive AI’s NVFP4A16 checkpoint. llama.cpp `b12600` served bartowski’s Q4_K_M GGUF, a different quantization, with all layers on the GPU. The aggregate rows count total generated tokens over wall-clock time, starting from the first request, so they include time to first token. The concurrency rows send the counting prompt with a different suffix to each client.
-
-SparkLing is fastest on all eight prompts, including the predictable ones where llama.cpp drafts several tokens per step: counting, code, JSON and Rust at 66.1, 64.2, 60.9 and 64.7 tok/s against llama.cpp’s 58.4, 57.0, 58.5 and 58.0.
-
-On this probe too, vLLM with MTP leads at eight concurrent requests, by 4%. Atlas also prefills simultaneous prompts one after another rather than in one batch: at eight clients its median time to first token was 1.04 s, against vLLM’s 0.69 s.
-
-[Measurements, commands and raw streams](results/2026-11-26-0.1.2/README.md) · [0.1.4 release run](results/2026-11-27-0.1.4/README.md#release-image) · [0.1.0 comparison runs](results/2026-11-25/README.md)
+Earlier historical comparisons (RigMark 1.1.0 thinking-off on 0.1.3 and the eight-prompt llama.cpp comparison from 0.1.2) remain archived in [results/2026-11-26-0.1.3](results/2026-11-26-0.1.3/README.md#rigmark) and [results/2026-11-26-0.1.2](results/2026-11-26-0.1.2/README.md).
 
 ## Full context, eight at a time
 
@@ -162,7 +117,7 @@ LingSante-3.1-air-VL has no predictor of its own. In Spark mode it borrows Ling-
 
 ## Quality
 
-The compressed cache changes how attention is computed, so 0.1.1 was checked against 0.1.0 and against independent references. 0.1.2 changes only what the draft predictor sees, 0.1.3 only how several requests draft together, and 0.1.4 only how prompts longer than one 8,200-token chunk are prefilled. One request’s output from each is byte-identical to 0.1.1 and to plain decoding on all sixteen probe prompts, and every prompt below fits in one chunk, so these results hold for all of them.
+The compressed cache changes how attention is computed, so 0.1.1 was checked against 0.1.0 and against independent references. 0.1.2–0.1.5 preserve that decode arithmetic: 0.1.5 passed `draft_decode.py --min-count-accept 0.95` (100% counting, 95.2% code), scored 30/30 arithmetic and 10/10 tool calls on `task_probe.py`, and passed 15/15 RigMark generation gates alongside the 0.1.1 quality checks below.
 
 | GSM8K, first 200 test problems, greedy, thinking off | Ling-3.2-air | LingSante-3.1-air-VL |
 | --- | ---: | ---: |
