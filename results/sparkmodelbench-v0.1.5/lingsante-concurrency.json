@@ -1,5 +1,5 @@
 {
-  "suite": "293a44f82dd977af8aeeee31df7ba70da9f4545d",
+  "suite": "2b9ce8ce5ec1ddb495dc94b8b31ec610ef044d80",
   "protocol": {
     "version": 1,
     "decode_runs": 5,
@@ -24,7 +24,7 @@
       "payment-recovery",
       "evidence-revisions"
     ],
-    "task_seconds": 180,
+    "task_seconds": 300,
     "task_output_cap": 8192,
     "concurrency": {
       "levels": [
@@ -49,29 +49,30 @@
     "topology": "TP1, single Spark",
     "negotiated_link_speed": "not applicable",
     "competing_traffic": "none",
-    "model": "Enntity/LingSante-3.1-air-VL-NVFP4 (from inclusionAI/LingSante-3.1-air-VL BF16)",
-    "model_revision": "SparkLing 0.1.4 pin",
-    "quantisation": "Enntity NVFP4 experts; NVFP4 prefill activations and NVFP4 attention-projection decode",
-    "kv_cache_dtype": "bf16 latent MLA",
-    "serving_engine": "SparkLing 0.1.4 (Atlas, Enntity/atlas ling/3.2-air @ 469d1649b)",
-    "serving_image": "ghcr.io/enntity/atlas-sparkling:0.1.4 (= :c523fbc3852c), the release image, via ./start.sh up",
-    "drafter": "Ling-3.2-air's MTP layer (borrowed), one draft per step for up to four active requests, verified in one batched forward; plain decoding from five",
+    "model": "Enntity/LingSante-3.1-air-VL-NVFP4",
+    "model_revision": "2702935791ac4f04b2b103c748a19de89f6df940",
+    "quantisation": "Enntity NVFP4 from inclusionAI BF16; Spark mode NVFP4 prefill activations and NVFP4 attention-projection decode, BF16 vocabulary head",
+    "kv_cache_dtype": "bf16 latent MLA (576 values per token per layer)",
+    "serving_engine": "SparkLing 0.1.5 (Atlas, Enntity/atlas ling/3.2-air @ f9d0ebf95)",
+    "serving_image": "ghcr.io/enntity/atlas-sparkling:0.1.5 (= :cacf8ea89389), via ./start.sh --model lingsante-3.1-air-vl up",
+    "drafter": "Ling-3.2-air MTP layer (borrowed), 1 draft up to 8 active requests, active inside <think>",
     "context_limit": 131072,
-    "scheduler": "SparkLing default profile: max-num-seqs 8, gpu-memory-utilization 0.89, prefill chunks 8192, prefix caching with a disk tier, display carveout"
+    "scheduler": "SparkLing default profile: max-num-seqs 8, gpu-memory-utilization 0.89, prefill chunks 8192, prefix caching"
   },
-  "trial": "635c32aab77b84550497a26f",
-  "comparison_id": "sparkling-0.1.4",
+  "trial": "54cf9a5528dcfefcdca7b938",
+  "comparison_id": "smb-sante-015",
   "effort": "low",
   "portable": false,
+  "errors": {},
   "requested": [
     "concurrency"
   ],
   "lanes": {
     "concurrency": {
       "1": {
-        "aggregate_tokens_s": 41.169,
-        "stream_tokens_s": 43.576,
-        "stream_ttft_s": 0.342,
+        "aggregate_tokens_s": 53.44,
+        "stream_tokens_s": 57.011,
+        "stream_ttft_s": 0.314,
         "output_tokens": [
           256,
           256,
@@ -79,9 +80,9 @@
         ]
       },
       "2": {
-        "aggregate_tokens_s": 61.551,
-        "stream_tokens_s": 32.749,
-        "stream_ttft_s": 0.497,
+        "aggregate_tokens_s": 79.461,
+        "stream_tokens_s": 43.42,
+        "stream_ttft_s": 0.47,
         "output_tokens": [
           512,
           512,
@@ -89,9 +90,9 @@
         ]
       },
       "4": {
-        "aggregate_tokens_s": 86.932,
-        "stream_tokens_s": 23.396,
-        "stream_ttft_s": 0.818,
+        "aggregate_tokens_s": 104.267,
+        "stream_tokens_s": 29.151,
+        "stream_ttft_s": 0.801,
         "output_tokens": [
           1024,
           1024,
@@ -99,9 +100,9 @@
         ]
       },
       "8": {
-        "aggregate_tokens_s": 122.767,
-        "stream_tokens_s": 16.791,
-        "stream_ttft_s": 1.501,
+        "aggregate_tokens_s": 129.352,
+        "stream_tokens_s": 17.919,
+        "stream_ttft_s": 1.415,
         "output_tokens": [
           2048,
           2048,
@@ -109,6 +110,5 @@
         ]
       }
     }
-  },
-  "errors": {}
+  }
 }

@@ -32,7 +32,11 @@ vLLM still leads at eight concurrent requests (174.3 vs 141.5 tok/s) because Atl
 
 ## Functional checks
 
-- `bench/draft_decode.py --min-count-accept 0.95`: passed (`count` 100.0% accept at 73.1 tok/s, `code` 95.2% at 73.6 tok/s, `prose` 68.8% at 50.3 tok/s) — [ling-spark-draft-check.jsonl](release/ling-spark-draft-check.jsonl)
-- `bench/task_probe.py`: 30/30 arithmetic, 10/10 tool calls — [ling-spark-task.json](release/ling-spark-task.json)
-- Eight-probe A/B sweep (thinking off / on): 62.54 / 60.46 tok/s mean (0.1.4 on the same host: 61.21 / 47.91 tok/s) — [ling-spark-ab.json](release/ling-spark-ab.json)
-- LingSante-3.1-air-VL was not re-measured for 0.1.5; the [v0.1.5 scorecard](../sparkmodelbench-v0.1.5/CARD.md) retains its 0.1.4 rows explicitly labelled.
+- **Ling-3.2-air:**
+  - `bench/draft_decode.py --min-count-accept 0.95`: passed (`count` 100.0% accept at 73.1 tok/s, `code` 95.2% at 73.6 tok/s, `prose` 68.8% at 50.3 tok/s) — [ling-spark-draft-check.jsonl](release/ling-spark-draft-check.jsonl)
+  - `bench/task_probe.py`: 30/30 arithmetic, 10/10 tool calls — [ling-spark-task.json](release/ling-spark-task.json)
+  - Eight-probe A/B sweep (thinking off / on): 62.54 / 60.46 tok/s mean (0.1.4 on the same host: 61.21 / 47.91 tok/s) — [ling-spark-ab.json](release/ling-spark-ab.json)
+- **LingSante-3.1-air-VL** (measured on `ghcr.io/enntity/atlas-sparkling:0.1.5`, November 28, 2026):
+  - `bench/draft_decode.py --model lingsante-3.1-air-vl-atlas --min-count-accept 0.95`: passed (`count` 100.0% accept at 63.2 tok/s, `code` 96.9% at 61.8 tok/s, `prose` 55.0% at 50.2 tok/s) — [sante-spark-draft-check.jsonl](release/sante-spark-draft-check.jsonl)
+  - `bench/task_probe.py`: 30/30 arithmetic, 10/10 tool calls — [sante-spark-task.json](release/sante-spark-task.json)
+  - SparkModelBench (`2b9ce8c`, 300 s quality budget): generation **60.78 / 56.77 / 60.32 tok/s** (code 5/5, prose 3/5, structured 5/5; up from 45.93 / 44.59 / 53.15 on 0.1.4); concurrency **53.4 / 79.5 / 104.3 / 129.4 tok/s** at C1/C2/C4/C8 (up from 41.2 / 61.6 / 86.9 / 122.8); cold prefill **3,712 / 3,468 / 3,042 tok/s** at 8K/32K/64K; staggered C4 **36.61 s**; RigMark Quality `python-expiry` 48.0 s, `payment-recovery` 19.2 s, `evidence-revisions` 12.8 s (full scorecard in [v0.1.5 CARD.md](../sparkmodelbench-v0.1.5/CARD.md)).
