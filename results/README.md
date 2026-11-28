@@ -3,7 +3,7 @@
 
 ## SparkModelBench scorecard · v0.1.5 on one Spark
 
-[Ling-3.2-air (0.1.5), LingSante-3.1-air-VL (0.1.4) and vLLM with MTP: generation, quality tasks, staggered C4, prefill and concurrency](sparkmodelbench-v0.1.5/CARD.md) · [v0.1.4](sparkmodelbench-v0.1.4/CARD.md) · [v0.1.3](sparkmodelbench-v0.1.3/CARD.md)
+[Ling-3.2-air, LingSante-3.1-air-VL and vLLM with MTP: generation, quality tasks, staggered C4, prefill and concurrency](sparkmodelbench-v0.1.5/CARD.md) · [v0.1.4](sparkmodelbench-v0.1.4/CARD.md) · [v0.1.3](sparkmodelbench-v0.1.3/CARD.md)
 
 ## One DGX Spark, November 27, 2026: SparkLing 0.1.5
 

@@ -1,6 +1,6 @@
 <!-- SPDX-License-Identifier: AGPL-3.0-only -->
 <p align="center">
-  <img src="docs/assets/banner.png" alt="SparkLing 0.1.5 on one DGX Spark, SparkModelBench with thinking on, tokens per second. Ling-3.2-air: code 66.1, structured 67.1, eight requests 141.5. LingSante-3.1-air-VL (0.1.4): code 45.9, structured 53.2, eight requests 122.8." width="100%">
+  <img src="docs/assets/banner.png" alt="SparkLing 0.1.5 on one DGX Spark, SparkModelBench with thinking on, tokens per second. Ling-3.2-air: code 66.1, structured 67.1, eight requests 141.5. LingSante-3.1-air-VL: code 60.8, structured 60.3, eight requests 129.4." width="100%">
 </p>
 
 # SparkLing
@@ -36,7 +36,7 @@ Both recipes were installed and started this way on a DGX Spark on November 25, 
 
 It is a research demonstration, not medical advice.
 
-> **0.1.5 unlocks drafting inside thinking and chains two drafts at C1.** Up to 0.1.4, Atlas turned speculation off during `<think>` blocks, capped Ling at one draft per step, and stopped drafting above four concurrent requests. 0.1.5 declares Ling's verify bit-exact (re-enabling speculation throughout reasoning), chains two drafts at one request and steps down to one draft for two to eight requests (`ATLAS_MTP_K_LADDER=1:2,4:1,8:1`), adds ragged batched verify, and closes a 33–127-row MoE dispatch dead zone. On SparkModelBench with thinking on, Ling-3.2-air single-stream decode rises from 49.8 / 49.0 / 54.3 to **66.1 / 57.1 / 67.1 tok/s** (code / prose / structured, 15/15 gates), and short-code concurrency rises to **56.5 / 84.4 / 125.8 / 141.5 tok/s** at 1 / 2 / 4 / 8 requests, beating vLLM MTP ×3 at C1, C2 and C4. [What changed](results/2026-11-27-0.1.5/README.md#what-changed)
+> **0.1.5 unlocks drafting inside thinking and chains two drafts at C1.** Up to 0.1.4, Atlas turned speculation off during `<think>` blocks, capped Ling at one draft per step, and stopped drafting above four concurrent requests. 0.1.5 declares Ling's verify bit-exact (re-enabling speculation throughout reasoning), chains two drafts at one request and steps down to one draft for two to eight requests on Ling-3.2-air (`ATLAS_MTP_K_LADDER=1:2,4:1,8:1`, one draft up to eight requests on LingSante), adds ragged batched verify, and closes a 33–127-row MoE dispatch dead zone. On SparkModelBench with thinking on, Ling-3.2-air single-stream decode rises from 49.8 / 49.0 / 54.3 to **66.1 / 57.1 / 67.1 tok/s** (15/15 gates) and LingSante rises from 45.9 / 44.6 / 53.2 to **60.8 / 56.8 / 60.3 tok/s** (code gates 5/5); short-code concurrency rises to **56.5 / 84.4 / 125.8 / 141.5 tok/s** on Ling-3.2-air and **53.4 / 79.5 / 104.3 / 129.4 tok/s** on LingSante. [What changed](results/2026-11-27-0.1.5/README.md#what-changed)
 
 > **0.1.4 prefills long prompts about twice as fast.** Ling's prefill attention now uses a 128-row FlashAttention-2 style kernel (62.5 TFLOP/s on a GB10, 3.5 times the old one), and each 8,192-token chunk expands the cached latent once instead of four times. A first 128K prompt reaches its first token in 54.9 s instead of 107.0 s, and SparkLing now prefills faster than vLLM at every depth, by 1.30x at 128K. Prompts up to one 8,200-token chunk are byte-identical to 0.1.3; longer ones move at rounding level. [What changed](results/2026-11-27-0.1.4/README.md#what-changed-long-prompts-prefill-about-twice-as-fast)
 
@@ -50,38 +50,38 @@ It is a research demonstration, not medical advice.
 
 ### SparkModelBench scorecard · v0.1.5 on one Spark
 
-We ran Ling-3.2-air on SparkLing 0.1.5 (Atlas `f9d0ebf95`) on one DGX Spark on November 27, 2026, with the default profile and drafter. LingSante-3.1-air-VL carries forward its November 27 v0.1.4 run, and vLLM carries forward its November 26 run with its MTP drafter (three tokens) on the same Spark, serving the same Ling-3.2-air NVFP4A16 checkpoint with the full 262,144-token window. SparkModelBench pins Alex Ellis’s RigMark and RigMark Quality and selects the workloads and settings. Alex Ellis and OpenFaaS Ltd publish both under the MIT license. Enntity adds the staggered four-request test. [SparkModelBench](https://github.com/enntity/sparkmodelbench) · [RigMark](https://github.com/alexellis/rigmark) · [RigMark Quality](https://github.com/alexellis/rigmark-quality)
+We ran both Ling-3.2-air and LingSante-3.1-air-VL on SparkLing 0.1.5 (Atlas `f9d0ebf95`, `ghcr.io/enntity/atlas-sparkling:0.1.5`) on one DGX Spark on November 27–28, 2026, with the default profile and drafter. The vLLM column is the pinned vLLM nightly with its MTP drafter (three tokens), run on the same Spark on November 26, serving the same Ling-3.2-air NVFP4A16 checkpoint with the full 262,144-token window. SparkModelBench pins Alex Ellis’s RigMark and RigMark Quality and selects the workloads and settings. Alex Ellis and OpenFaaS Ltd publish both under the MIT license. Enntity adds the staggered four-request test. [SparkModelBench](https://github.com/enntity/sparkmodelbench) · [RigMark](https://github.com/alexellis/rigmark) · [RigMark Quality](https://github.com/alexellis/rigmark-quality)
 
 SparkModelBench asks for `reasoning_effort: low`. Ling’s template has no effort levels, so its thinking stays on: most of these tokens are thinking.
 
-| RigMark generation, median tok/s | Ling-3.2-air (0.1.5) | LingSante-3.1-air-VL (0.1.4) | vLLM, MTP ×3 |
+| RigMark generation, median tok/s | Ling-3.2-air | LingSante-3.1-air-VL | vLLM, MTP ×3 |
 |---|---:|---:|---:|
-| Code | **66.15** | 45.93 | 42.47 |
-| Prose | **57.10** | 44.59 | 37.70 |
-| Structured | **67.14** | 53.15 | 41.87 |
-| Completion gates, code / prose / structured | 5/5 · 5/5 · 5/5 | 3/5 · 3/5 · 5/5 | 2/5 · 3/5 · 5/5 |
+| Code | **66.15** | 60.78 | 42.47 |
+| Prose | **57.10** | 56.77 | 37.70 |
+| Structured | **67.14** | 60.32 | 41.87 |
+| Completion gates, code / prose / structured | 5/5 · 5/5 · 5/5 | 5/5 · 3/5 · 5/5 | 2/5 · 3/5 · 5/5 |
 
-Generation figures are medians of five runs per workload, up to 8,192 tokens each. A run that reaches the cap fails its gate: vLLM reached it on three code runs and two prose runs, and LingSante on two code runs and two prose runs. RigMark decodes greedily, yet five runs of one workload range widely in length, and decode slows as the context deepens, so these medians move with output length from run to run.
+Generation figures are medians of five runs per workload, up to 8,192 tokens each. A run that reaches the cap fails its gate: vLLM reached it on three code runs and two prose runs, and LingSante on two prose runs. RigMark decodes greedily, yet five runs of one workload range widely in length, and decode slows as the context deepens, so these medians move with output length from run to run.
 
-| RigMark Quality task | Ling-3.2-air (0.1.5) | LingSante-3.1-air-VL (0.1.4) | vLLM, MTP ×3 |
+| RigMark Quality task | Ling-3.2-air | LingSante-3.1-air-VL | vLLM, MTP ×3 |
 |---|---|---|---|
-| `python-expiry` | Passed, 36.9 s | Passed, 74.1 s | Passed, 31.8 s |
-| `go-transfer-ledger` | Timed out at 180 s | Timed out | Timed out |
-| `payment-recovery` | Passed, 17.6 s | Passed, 21.8 s | Passed, 16.9 s |
-| `evidence-revisions` | Passed, 7.9 s | Passed, 11.3 s | Passed, 7.1 s |
+| `python-expiry` | Passed, 36.9 s | Passed, 48.0 s | Passed, 31.8 s |
+| `go-transfer-ledger` | Timed out at 180 s | Exhausted 8K token cap (173.1 s) | Timed out at 180 s |
+| `payment-recovery` | Passed, 17.6 s | Passed, 19.2 s | Passed, 16.9 s |
+| `evidence-revisions` | Passed, 7.9 s | Passed, 12.8 s | Passed, 7.1 s |
 
-Each quality task ran once under the 180-second budget used across 0.1.4 and vLLM; time includes grading. On `go-transfer-ledger`, Ling-3.2-air wrote both `transfer.go` and `transfer_test.go` and ran tests before timing out on a 1-line test fix (9,452 output tokens across 5 steps). `bench/sparkmodelbench` now sets a 300-second budget for future runs.
+Each quality task ran once; time includes grading. Ling-3.2-air and vLLM ran with the 180-second budget; LingSante ran with the updated 300-second budget (`bench/sparkmodelbench` at `2b9ce8c`) and finished within time on `go-transfer-ledger` before hitting the per-response 8,192-token cap.
 
-**Staggered C4.** Four roughly 16K-token prompts arrived one second apart, thinking off. All streams on both engines reached 400 output tokens. The median time from the first request to the end of a round was **36.71 seconds** for Ling-3.2-air (36.89 on 0.1.4, 36.74 for LingSante-3.1-air-VL) against 73.30 for vLLM, 2.00x faster. SparkLing prefills all four prompts before it decodes any of them, so each stream’s first token came about 18.2 s after its request. vLLM answered the first request in 6.5 s and the fourth after 57.8 s.
+**Staggered C4.** Four roughly 16K-token prompts arrived one second apart, thinking off. All streams on both engines reached 400 output tokens. The median time from the first request to the end of a round was **36.71 seconds** for Ling-3.2-air and **36.61 seconds** for LingSante-3.1-air-VL against 73.30 for vLLM, 2.00x faster. SparkLing prefills all four prompts before it decodes any of them, so each stream’s first token came about 18.2 s after its request. vLLM answered the first request in 6.5 s and the fourth after 57.8 s.
 
 ![SparkLing v0.1.5 and vLLM with MTP on one Spark, Ling-3.2-air. First-request prefill: SparkLing 3,730 tokens/s at 8K, 3,476 at 32K, 3,042 at 64K and 2,408 at 128K; vLLM 3,082, 2,768, 2,391 and 1,842.](results/sparkmodelbench-v0.1.5/prefill.png)
 
-SparkLing prefills a first prompt faster than vLLM at every depth: 1.21x at 8K, 1.26x at 32K, 1.27x at 64K and 1.31x at 128K. LingSante-3.1-air-VL prefills within 0.6% of Ling-3.2-air up to its 131,072-token window. 256K is not run, because the sweep’s 262,144-token prompt plus its output does not fit the window. A prompt sent again starts in 0.014–0.027 s on SparkLing, against 0.7–1.6 s on vLLM.
+SparkLing prefills a first prompt faster than vLLM at every depth: 1.21x at 8K, 1.26x at 32K, 1.27x at 64K and 1.31x at 128K. LingSante-3.1-air-VL prefills within 0.5% of Ling-3.2-air up to its 131,072-token window (3,712 / 3,468 / 3,042 tok/s at 8K / 32K / 64K). 256K is not run, because the sweep’s 262,144-token prompt plus its output does not fit the window. A prompt sent again starts in 0.014–0.027 s on SparkLing, against 0.7–1.6 s on vLLM.
 
 | RigMark concurrency, short code, aggregate tok/s | 1 | 2 | 4 | 8 |
 |---|---:|---:|---:|---:|
-| Ling-3.2-air (0.1.5) | **56.5** | **84.4** | **125.8** | 141.5 |
-| LingSante-3.1-air-VL (0.1.4) | 41.2 | 61.6 | 86.9 | 122.8 |
+| Ling-3.2-air | **56.5** | **84.4** | **125.8** | 141.5 |
+| LingSante-3.1-air-VL | 53.4 | 79.5 | 104.3 | 129.4 |
 | vLLM, MTP ×3 | 41.5 | 73.1 | 112.2 | **174.3** |
 
 Every one of these 256-token outputs is thinking. With `<think>` speculation unlocked and the MTP ladder active up to eight requests, SparkLing now leads vLLM MTP ×3 at one, two and four requests (1.36x, 1.16x and 1.12x). vLLM still leads at eight requests (1.23x): Atlas prefills the eight short prompts serially (1.38 s vs 0.53 s median TTFT) and its unfused `ling_expert_mma` kernel scales worse than Marlin's fused grouped MoE at 16–32 rows.
