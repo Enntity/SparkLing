@@ -1,0 +1,114 @@
+{
+  "suite": "ebc29c4b95b8c8d6734dd8adf2f2adfb532500ce",
+  "protocol": {
+    "version": 1,
+    "decode_runs": 5,
+    "decode_cap": 8192,
+    "prefill_depths": [
+      8192,
+      32768,
+      65536,
+      131072,
+      262144
+    ],
+    "prefill_pairs": 3,
+    "c4": {
+      "depth": 16384,
+      "output": 400,
+      "interval_s": 1,
+      "repetitions": 3
+    },
+    "quality_tasks": [
+      "python-expiry",
+      "go-transfer-ledger",
+      "payment-recovery",
+      "evidence-revisions"
+    ],
+    "task_seconds": 180,
+    "task_output_cap": 8192,
+    "concurrency": {
+      "levels": [
+        1,
+        2,
+        4,
+        8
+      ],
+      "rounds": 3,
+      "output": 256,
+      "workload": "code",
+      "seed": 20260905
+    }
+  },
+  "upstreams": {
+    "rigmark": "946394fa53db83a6865f6e3ae56594e1c299fb2a",
+    "rigmark-quality": "ea6788ff15ee39550577c829a46ee7ed3a79a976"
+  },
+  "model": "ling-3.2-air-atlas",
+  "appliance": {
+    "hardware": "1x NVIDIA DGX Spark (GB10, 128 GB)",
+    "topology": "TP1, single Spark",
+    "negotiated_link_speed": "not applicable",
+    "competing_traffic": "none",
+    "model": "primitive-ai/Ling-3.2-air-NVFP4A16",
+    "model_revision": "3a78e58506316b5b9b7d06037910c3f4abdd291f",
+    "quantisation": "NVFP4A16 (Marlin weight-only FP4 on GB10)",
+    "kv_cache_dtype": "auto",
+    "serving_engine": "vLLM nightly a2bcb5657 (SparkLing reference command, as in 0.1.2)",
+    "serving_image": "vllm/vllm-openai:cu134-nightly-a2bcb5657 @ sha256:24541db891c590e3a4022c7206c3ebb00e4be35442f54c20f2edf12eddfef4bf",
+    "drafter": "native MTP, num_speculative_tokens 3",
+    "context_limit": 262144,
+    "scheduler": "max-num-seqs 8, gpu-memory-utilization 0.92, prefix caching, mamba-cache-mode align"
+  },
+  "trial": "df8081d3157e6e0316156ec3",
+  "comparison_id": "sparkling-0.1.3",
+  "effort": "low",
+  "portable": false,
+  "requested": [
+    "concurrency"
+  ],
+  "lanes": {
+    "concurrency": {
+      "1": {
+        "aggregate_tokens_s": 41.477,
+        "stream_tokens_s": 43.178,
+        "stream_ttft_s": 0.265,
+        "output_tokens": [
+          256,
+          256,
+          256
+        ]
+      },
+      "2": {
+        "aggregate_tokens_s": 73.079,
+        "stream_tokens_s": 38.953,
+        "stream_ttft_s": 0.32,
+        "output_tokens": [
+          512,
+          512,
+          512
+        ]
+      },
+      "4": {
+        "aggregate_tokens_s": 112.21,
+        "stream_tokens_s": 30.501,
+        "stream_ttft_s": 0.54,
+        "output_tokens": [
+          1024,
+          1024,
+          1024
+        ]
+      },
+      "8": {
+        "aggregate_tokens_s": 174.347,
+        "stream_tokens_s": 24.774,
+        "stream_ttft_s": 0.526,
+        "output_tokens": [
+          2048,
+          2048,
+          2048
+        ]
+      }
+    }
+  },
+  "errors": {}
+}

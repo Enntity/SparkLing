@@ -1,6 +1,14 @@
 <!-- SPDX-License-Identifier: AGPL-3.0-only -->
 # Results
 
+## SparkModelBench scorecard · v0.1.5 on one Spark
+
+[Ling-3.2-air (0.1.5), LingSante-3.1-air-VL (0.1.4) and vLLM with MTP: generation, quality tasks, staggered C4, prefill and concurrency](sparkmodelbench-v0.1.5/CARD.md) · [v0.1.4](sparkmodelbench-v0.1.4/CARD.md) · [v0.1.3](sparkmodelbench-v0.1.3/CARD.md)
+
+## One DGX Spark, November 27, 2026: SparkLing 0.1.5
+
+[Thinking speculation unlocked, two-draft C1 + K-ladder C2–C8 MTP, ragged batched verify, and MoE/projection dispatch fixes](2026-11-27-0.1.5/README.md)
+
 ## SparkModelBench scorecard · v0.1.4 on one Spark
 
 [Ling-3.2-air, LingSante-3.1-air-VL and vLLM with MTP: generation, quality tasks, staggered C4, prefill and concurrency](sparkmodelbench-v0.1.4/CARD.md) · [v0.1.3](sparkmodelbench-v0.1.3/CARD.md)

@@ -1,0 +1,114 @@
+{
+  "suite": "293a44f82dd977af8aeeee31df7ba70da9f4545d",
+  "protocol": {
+    "version": 1,
+    "decode_runs": 5,
+    "decode_cap": 8192,
+    "prefill_depths": [
+      8192,
+      32768,
+      65536,
+      131072,
+      262144
+    ],
+    "prefill_pairs": 3,
+    "c4": {
+      "depth": 16384,
+      "output": 400,
+      "interval_s": 1,
+      "repetitions": 3
+    },
+    "quality_tasks": [
+      "python-expiry",
+      "go-transfer-ledger",
+      "payment-recovery",
+      "evidence-revisions"
+    ],
+    "task_seconds": 180,
+    "task_output_cap": 8192,
+    "concurrency": {
+      "levels": [
+        1,
+        2,
+        4,
+        8
+      ],
+      "rounds": 3,
+      "output": 256,
+      "workload": "code",
+      "seed": 20260905
+    }
+  },
+  "upstreams": {
+    "rigmark": "946394fa53db83a6865f6e3ae56594e1c299fb2a",
+    "rigmark-quality": "ea6788ff15ee39550577c829a46ee7ed3a79a976"
+  },
+  "model": "ling-3.2-air-atlas",
+  "appliance": {
+    "hardware": "1x NVIDIA DGX Spark (GB10, 128 GB)",
+    "topology": "TP1, single Spark",
+    "negotiated_link_speed": "not applicable",
+    "competing_traffic": "none",
+    "model": "primitive-ai/Ling-3.2-air-NVFP4A16",
+    "model_revision": "3a78e58506316b5b9b7d06037910c3f4abdd291f",
+    "quantisation": "NVFP4A16 experts (publisher); Spark mode NVFP4 prefill activations and NVFP4 attention-projection decode, BF16 vocabulary head",
+    "kv_cache_dtype": "bf16 latent MLA (576 values per token per layer)",
+    "serving_engine": "SparkLing 0.1.5 (Atlas, Enntity/atlas ling/3.2-air @ f9d0ebf95)",
+    "serving_image": "patched spark binary mounted into ghcr.io/enntity/atlas-sparkling:c523fbc3852c",
+    "drafter": "Ling-3.2-air native MTP, ladder 1:2,4:1,8:1 (2 drafts at C1, 1 draft at C2..C8), unlocked inside <think>",
+    "context_limit": 262144,
+    "scheduler": "SparkLing default profile: max-num-seqs 8, gpu-memory-utilization 0.89, prefill chunks 8192, prefix caching"
+  },
+  "trial": "ec885238471058150beaa180",
+  "comparison_id": "smb-opt-final",
+  "effort": "low",
+  "portable": false,
+  "errors": {},
+  "requested": [
+    "concurrency"
+  ],
+  "lanes": {
+    "concurrency": {
+      "1": {
+        "aggregate_tokens_s": 56.521,
+        "stream_tokens_s": 60.646,
+        "stream_ttft_s": 0.298,
+        "output_tokens": [
+          256,
+          256,
+          256
+        ]
+      },
+      "2": {
+        "aggregate_tokens_s": 84.423,
+        "stream_tokens_s": 45.595,
+        "stream_ttft_s": 0.464,
+        "output_tokens": [
+          512,
+          512,
+          512
+        ]
+      },
+      "4": {
+        "aggregate_tokens_s": 125.795,
+        "stream_tokens_s": 34.249,
+        "stream_ttft_s": 0.768,
+        "output_tokens": [
+          1024,
+          1024,
+          1024
+        ]
+      },
+      "8": {
+        "aggregate_tokens_s": 141.504,
+        "stream_tokens_s": 19.813,
+        "stream_ttft_s": 1.378,
+        "output_tokens": [
+          2048,
+          2048,
+          2048
+        ]
+      }
+    }
+  }
+}
